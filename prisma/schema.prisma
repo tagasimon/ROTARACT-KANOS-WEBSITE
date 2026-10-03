@@ -1,0 +1,1154 @@
+// Rotaract Club Kampala North — digital archive + club platform
+// PostgreSQL schema. Every researched/imported record keeps provenance
+// (source, sourceUrl, sourceType, externalId, discoveredAt, lastCheckedAt,
+// verification, verifiedAt, verifiedById).
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────── enums ─────────────────────────
+
+enum Role {
+  SUPER_ADMIN
+  CLUB_ADMIN
+  ATTENDANCE_OFFICER
+  EDITOR
+  MEMBER
+}
+
+enum Verification {
+  VERIFIED
+  NEEDS_VERIFICATION
+  CONFLICTING
+  UNVERIFIED
+}
+
+enum PublishStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+}
+
+enum MemberStatus {
+  ACTIVE
+  ALUMNI
+  INACTIVE
+  HONORARY
+  PENDING
+}
+
+enum PersonType {
+  MEMBER
+  ROTARIAN
+  DISTRICT_LEADER
+  PARTNER_CONTACT
+  COMMUNITY_LEADER
+  GUEST
+  OTHER
+}
+
+enum OrgType {
+  ROTARACT_CLUB
+  ROTARY_CLUB
+  ROTARACT_DISTRICT
+  ROTARY_DISTRICT
+  ROTARY_INTERNATIONAL
+  NGO
+  CORPORATE
+  GOVERNMENT
+  SCHOOL
+  COMMUNITY
+  MEDIA
+  OTHER
+}
+
+enum RoleCategory {
+  BOARD
+  COMMITTEE_CHAIR
+  DISTRICT
+  OTHER
+}
+
+enum ProjectStatus {
+  IDEA
+  PLANNING
+  FUNDRAISING
+  IMPLEMENTATION
+  ONGOING
+  COMPLETED
+  PAUSED
+}
+
+enum MilestoneStage {
+  NEED
+  IDEA
+  PLANNING
+  FUNDRAISING
+  PARTNERSHIP
+  IMPLEMENTATION
+  MILESTONE
+  COMPLETION
+  IMPACT
+  UPDATE
+}
+
+enum PhotoPhase {
+  BEFORE
+  DURING
+  AFTER
+  CURRENT
+}
+
+enum EventType {
+  CLUB_MEETING
+  FELLOWSHIP
+  SERVICE_PROJECT
+  COMMUNITY_OUTREACH
+  PROFESSIONAL_DEVELOPMENT
+  CAREER
+  TRAINING
+  FUNDRAISER
+  SOCIAL
+  SPORTS
+  NETWORKING
+  INDUCTION
+  INSTALLATION
+  DISTRICT_CONFERENCE
+  DISTRICT_ASSEMBLY
+  DISTRICT_TRAINING
+  LEADERSHIP
+  OFFICIAL_VISIT
+  ROTARACT_DISTRICT_EVENT
+  INTERNATIONAL
+  OTHER
+}
+
+enum EventStatus {
+  SCHEDULED
+  TENTATIVE
+  POSTPONED
+  CANCELLED
+  COMPLETED
+}
+
+enum VisitStatus {
+  CONFIRMED
+  TENTATIVE
+  REPORTED
+  COMPLETED
+  CANCELLED
+}
+
+enum ContentCategory {
+  ANNOUNCEMENT
+  PROJECT_UPDATE
+  EVENT
+  PHOTO_STORY
+  VIDEO
+  ACHIEVEMENT
+  FELLOWSHIP
+  MEMBER_SPOTLIGHT
+  LEADERSHIP_UPDATE
+  PROFESSIONAL_DEVELOPMENT
+  COMMUNITY_SERVICE
+}
+
+enum SocialPlatform {
+  X
+  INSTAGRAM
+  FACEBOOK
+  LINKEDIN
+  YOUTUBE
+  TIKTOK
+  WEBSITE
+  OTHER
+}
+
+enum MediaKind {
+  IMAGE
+  VIDEO
+}
+
+enum VideoProvider {
+  UPLOAD
+  YOUTUBE
+  EXTERNAL
+}
+
+enum AlbumCategory {
+  GENERAL
+  PROJECT
+  EVENT
+  FELLOWSHIP
+  COMMUNITY_SERVICE
+  PROFESSIONAL_DEVELOPMENT
+  DISTRICT_VISIT
+  CONFERENCE
+  INSTALLATION
+  INDUCTION
+}
+
+enum HistoryKind {
+  FORMATION
+  CHARTER
+  PRESIDENT
+  PROJECT
+  INITIATIVE
+  TRANSITION
+  EVENT
+  AWARD
+  PARTNERSHIP
+  MOMENT
+  CURRENT
+}
+
+enum FeedKind {
+  ICS
+  RSS
+  JSON_FEED
+  MANUAL
+}
+
+enum FeedTrust {
+  TRUSTED
+  REVIEW
+}
+
+enum CheckInMethod {
+  QR_ACCOUNT
+  QR_PIN
+  MANUAL
+}
+
+enum InquiryType {
+  ATTEND
+  VOLUNTEER
+  PARTNER
+  SUPPORT_PROJECT
+  JOIN
+  CONTACT
+}
+
+enum InquiryStatus {
+  NEW
+  IN_PROGRESS
+  CLOSED
+}
+
+// ───────────────────────── auth ─────────────────────────
+
+model User {
+  id                        String              @id @default(cuid())
+  email                     String              @unique
+  passwordHash              String
+  role                      Role                @default(MEMBER)
+  active                    Boolean             @default(true)
+  memberId                  String?             @unique
+  member                    Member?             @relation(fields: [memberId], references: [id], onDelete: SetNull)
+  lastLoginAt               DateTime?
+  createdAt                 DateTime            @default(now())
+  updatedAt                 DateTime            @updatedAt
+  sessions                  Session[]
+  auditLogs                 AuditLog[]
+  attendanceSessionsCreated AttendanceSession[]
+  attendanceAdjustments     AttendanceRecord[]  @relation("AttendanceAdjuster")
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id // sha256 of the cookie token
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+// ───────────────────────── years ─────────────────────────
+
+model RotaractYear {
+  id        String   @id @default(cuid())
+  label     String   @unique // "2026–2027"
+  slug      String   @unique // "2026-2027"
+  startDate DateTime
+  endDate   DateTime
+  theme     String?
+  riTheme   String?
+  summary   String?
+  isCurrent Boolean  @default(false)
+  coverId   String?
+  cover     Media?   @relation("YearCover", fields: [coverId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leadership           LeadershipAssignment[]
+  projects             Project[]
+  milestones           ProjectMilestone[]
+  events               Event[]
+  stories              Story[]
+  achievements         Achievement[]
+  attendance           AttendanceSession[]
+  districtVisits       DistrictVisit[]
+  socialPosts          SocialPost[]
+  media                Media[]                @relation("MediaYear")
+  albums               PhotoAlbum[]
+  documents            Document[]
+  history              HistoryEntry[]
+  committeeMemberships CommitteeMembership[]
+
+  @@index([startDate])
+  @@map("rotaract_years")
+}
+
+// ───────────────────────── people ─────────────────────────
+
+/// Public-facing profile. Anyone who appears on the site (member, Rotarian,
+/// district leader, partner contact) has one. Private data lives on Member.
+model Person {
+  id                String       @id @default(cuid())
+  slug              String       @unique
+  name              String
+  type              PersonType   @default(MEMBER)
+  honorific         String? // e.g. "Rtr.", "PP", "Rtn."
+  photoId           String?
+  photo             Media?       @relation("PersonPhoto", fields: [photoId], references: [id], onDelete: SetNull)
+  professionalTitle String?
+  organization      String?
+  bio               String?
+  interests         String?
+  expertise         String?
+  linkedin          String?
+  x                 String?
+  instagram         String?
+  website           String?
+  isPublic          Boolean      @default(true)
+  featured          Boolean      @default(false)
+  // provenance
+  source            String?
+  sourceUrl         String?
+  sourceType        String?
+  externalId        String?
+  discoveredAt      DateTime?
+  lastCheckedAt     DateTime?
+  verification      Verification @default(NEEDS_VERIFICATION)
+  verifiedAt        DateTime?
+  verifiedById      String?
+  // seo
+  seoTitle          String?
+  seoDescription    String?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  member               Member?
+  skills               Skill[]
+  leadership           LeadershipAssignment[]
+  projectRoles         ProjectTeamMember[]
+  ledProjects          Project[]              @relation("ProjectLead")
+  milestones           ProjectMilestone[]     @relation("MilestonePeople")
+  events               Event[]                @relation("EventPeople")
+  stories              Story[]                @relation("StoryPeople")
+  socialPosts          SocialPost[]           @relation("SocialPeople")
+  media                Media[]                @relation("MediaPeople")
+  achievements         Achievement[]
+  districtVisits       DistrictVisit[]
+  history              HistoryEntry[]         @relation("HistoryPeople")
+  committeeMemberships CommitteeMembership[]
+
+  @@index([name])
+  @@index([type])
+  @@map("people_profiles")
+}
+
+/// Private membership record (never rendered publicly).
+model Member {
+  id             String       @id @default(cuid())
+  personId       String       @unique
+  person         Person       @relation(fields: [personId], references: [id], onDelete: Cascade)
+  memberNumber   String       @unique
+  email          String?
+  phone          String?
+  pinHash        String?
+  membershipDate DateTime?
+  status         MemberStatus @default(ACTIVE)
+  notes          String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  user       User?
+  attendance AttendanceRecord[]
+
+  @@index([status])
+  @@map("members")
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  people      Person[]
+
+  @@map("skills")
+}
+
+// Person<->Skill implicit join table is "_PersonToSkill" (the member_skills relation)
+
+model Committee {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  focus       String?
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  memberships CommitteeMembership[]
+  leadership  LeadershipAssignment[]
+  projects    Project[]
+
+  @@map("committees")
+}
+
+model CommitteeMembership {
+  id          String        @id @default(cuid())
+  committeeId String
+  committee   Committee     @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+  personId    String
+  person      Person        @relation(fields: [personId], references: [id], onDelete: Cascade)
+  yearId      String?
+  year        RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  role        String? // "Member", "Co-chair"…
+
+  @@unique([committeeId, personId, yearId])
+  @@map("committee_memberships")
+}
+
+model LeadershipRole {
+  id          String                 @id @default(cuid())
+  title       String                 @unique
+  slug        String                 @unique
+  category    RoleCategory           @default(BOARD)
+  description String?
+  sortOrder   Int                    @default(100)
+  assignments LeadershipAssignment[]
+
+  @@map("leadership_roles")
+}
+
+model LeadershipAssignment {
+  id            String         @id @default(cuid())
+  personId      String
+  person        Person         @relation(fields: [personId], references: [id], onDelete: Cascade)
+  roleId        String
+  role          LeadershipRole @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  yearId        String
+  year          RotaractYear   @relation(fields: [yearId], references: [id], onDelete: Cascade)
+  committeeId   String?
+  committee     Committee?     @relation(fields: [committeeId], references: [id], onDelete: SetNull)
+  customTitle   String? // overrides role title if the club uses a club-specific name
+  highlights    String? // leadership highlights for past-presidents archive
+  sortOrder     Int            @default(0)
+  source        String?
+  sourceUrl     String?
+  sourceType    String?
+  discoveredAt  DateTime?
+  lastCheckedAt DateTime?
+  verification  Verification   @default(NEEDS_VERIFICATION)
+  verifiedAt    DateTime?
+  verifiedById  String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([yearId])
+  @@index([personId])
+  @@map("leadership_assignments")
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  shortName   String?
+  type        OrgType  @default(OTHER)
+  description String?
+  website     String?
+  logoId      String?
+  logo        Media?   @relation("OrgLogo", fields: [logoId], references: [id], onDelete: SetNull)
+  isSelf      Boolean  @default(false) // the Rotaract Club Kampala North itself
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  events       Event[]
+  feeds        EventFeed[]
+  partnerships ProjectPartner[]
+  socialPosts  SocialPost[]
+
+  @@map("organizations")
+}
+
+// ───────────────────────── projects ─────────────────────────
+
+model Project {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  tagline          String?
+  summary          String?
+  status           ProjectStatus @default(PLANNING)
+  // Journey narrative (markdown)
+  need             String?
+  idea             String?
+  beginning        String?
+  impact           String?
+  today            String?
+  quote            String?
+  quoteAttribution String?
+  startDate        DateTime?
+  endDate          DateTime?
+  locationName     String?
+  latitude         Float?
+  longitude        Float?
+  beneficiaries    String?
+  coverId          String?
+  cover            Media?        @relation("ProjectCover", fields: [coverId], references: [id], onDelete: SetNull)
+  featured         Boolean       @default(false)
+  yearId           String?
+  year             RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  leadId           String?
+  lead             Person?       @relation("ProjectLead", fields: [leadId], references: [id], onDelete: SetNull)
+  committeeId      String?
+  committee        Committee?    @relation(fields: [committeeId], references: [id], onDelete: SetNull)
+  publishStatus    PublishStatus @default(PUBLISHED)
+  source           String?
+  sourceUrl        String?
+  sourceType       String?
+  externalId       String?
+  discoveredAt     DateTime?
+  lastCheckedAt    DateTime?
+  verification     Verification  @default(NEEDS_VERIFICATION)
+  verifiedAt       DateTime?
+  verifiedById     String?
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  milestones   ProjectMilestone[]
+  metrics      ProjectMetric[]
+  partners     ProjectPartner[]
+  team         ProjectTeamMember[]
+  events       Event[]
+  stories      Story[]
+  media        Media[]             @relation("MediaProject")
+  albums       PhotoAlbum[]
+  documents    Document[]
+  achievements Achievement[]
+  socialPosts  SocialPost[]
+  history      HistoryEntry[]      @relation("HistoryProjects")
+
+  @@index([status])
+  @@index([yearId])
+  @@map("projects")
+}
+
+model ProjectMilestone {
+  id            String         @id @default(cuid())
+  projectId     String
+  project       Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  date          DateTime?
+  dateLabel     String? // e.g. "Early 2025" when exact date unknown
+  title         String
+  description   String?
+  stage         MilestoneStage @default(MILESTONE)
+  imageId       String?
+  image         Media?         @relation("MilestoneImage", fields: [imageId], references: [id], onDelete: SetNull)
+  videoUrl      String?
+  eventId       String?
+  event         Event?         @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  yearId        String?
+  year          RotaractYear?  @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  people        Person[]       @relation("MilestonePeople")
+  documents     Document[]     @relation("MilestoneDocuments")
+  sortOrder     Int            @default(0)
+  source        String?
+  sourceUrl     String?
+  sourceType    String?
+  discoveredAt  DateTime?
+  lastCheckedAt DateTime?
+  verification  Verification   @default(NEEDS_VERIFICATION)
+  verifiedAt    DateTime?
+  verifiedById  String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([projectId, date])
+  @@map("project_milestones")
+}
+
+model ProjectMetric {
+  id           String       @id @default(cuid())
+  projectId    String
+  project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  label        String // "Trees planted"
+  value        Float
+  unit         String? // "trees", "UGX"
+  impactKey    String? // groups metrics into club-wide totals, e.g. "trees_planted"
+  date         DateTime?
+  showInImpact Boolean      @default(true)
+  sortOrder    Int          @default(0)
+  source       String?
+  sourceUrl    String?
+  verification Verification @default(NEEDS_VERIFICATION)
+  verifiedAt   DateTime?
+  verifiedById String?
+
+  @@index([impactKey])
+  @@map("project_metrics")
+}
+
+model ProjectPartner {
+  id             String       @id @default(cuid())
+  projectId      String
+  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  role           String? // "Sponsor", "Supporting Rotary club", "Community partner"
+  description    String?
+  sourceUrl      String?
+  verification   Verification @default(NEEDS_VERIFICATION)
+
+  @@unique([projectId, organizationId])
+  @@map("project_partners")
+}
+
+model ProjectTeamMember {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  personId  String
+  person    Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
+  role      String  @default("Rotaractor") // "Project lead", "Club president", "Committee", "Community leader"…
+  sortOrder Int     @default(0)
+
+  @@unique([projectId, personId, role])
+  @@map("project_team_members")
+}
+
+// ───────────────────────── events ─────────────────────────
+
+model Event {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  description     String?
+  date            DateTime // start date (date part significant)
+  startTime       DateTime?
+  endTime         DateTime?
+  endDate         DateTime? // multi-day events
+  allDay          Boolean       @default(false)
+  venue           String?
+  address         String?
+  latitude        Float?
+  longitude       Float?
+  onlineUrl       String?
+  organizerId     String?
+  organizer       Organization? @relation(fields: [organizerId], references: [id], onDelete: SetNull)
+  type            EventType     @default(OTHER)
+  status          EventStatus   @default(SCHEDULED)
+  projectId       String?
+  project         Project?      @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  yearId          String?
+  year            RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  people          Person[]      @relation("EventPeople")
+  coverId         String?
+  cover           Media?        @relation("EventCover", fields: [coverId], references: [id], onDelete: SetNull)
+  registrationUrl String?
+  publishStatus   PublishStatus @default(PUBLISHED)
+  mergedIntoId    String?
+  mergedInto      Event?        @relation("EventMerge", fields: [mergedIntoId], references: [id], onDelete: SetNull)
+  mergedFrom      Event[]       @relation("EventMerge")
+  // provenance
+  source          String?
+  sourceUrl       String?
+  sourceType      String?
+  externalId      String?
+  importedAt      DateTime?
+  lastCheckedAt   DateTime?
+  verification    Verification  @default(NEEDS_VERIFICATION)
+  verifiedAt      DateTime?
+  verifiedById    String?
+  seoTitle        String?
+  seoDescription  String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  sources        EventSource[]
+  milestones     ProjectMilestone[]
+  stories        Story[]
+  media          Media[]             @relation("MediaEvent")
+  albums         PhotoAlbum[]
+  achievements   Achievement[]
+  attendance     AttendanceSession[]
+  districtVisits DistrictVisit[]
+  socialPosts    SocialPost[]
+
+  @@index([date])
+  @@index([organizerId])
+  @@index([publishStatus, date])
+  @@index([externalId])
+  @@map("events")
+}
+
+/// Every place an event was seen. A merged event keeps all its sources.
+model EventSource {
+  id            String     @id @default(cuid())
+  eventId       String
+  event         Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  feedId        String?
+  feed          EventFeed? @relation(fields: [feedId], references: [id], onDelete: SetNull)
+  source        String // "Rotary District 9213 website"
+  sourceUrl     String?
+  sourceType    String? // DISTRICT, ROTARYO, CLUB_SOCIAL, MANUAL…
+  externalId    String?
+  rawTitle      String?
+  rawData       Json?
+  firstImported DateTime   @default(now())
+  lastChecked   DateTime   @default(now())
+
+  @@unique([feedId, externalId])
+  @@index([eventId])
+  @@map("event_sources")
+}
+
+/// Configured public sources polled by the discovery job.
+model EventFeed {
+  id             String        @id @default(cuid())
+  name           String
+  url            String
+  kind           FeedKind      @default(ICS)
+  trust          FeedTrust     @default(REVIEW)
+  organizerId    String?
+  organizer      Organization? @relation(fields: [organizerId], references: [id], onDelete: SetNull)
+  defaultType    EventType     @default(OTHER)
+  active         Boolean       @default(true)
+  lastCheckedAt  DateTime?
+  lastStatus     String?
+  lastFoundCount Int?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  records        EventSource[]
+
+  @@map("event_feeds")
+}
+
+model DistrictVisit {
+  id            String        @id @default(cuid())
+  visitorName   String
+  visitorTitle  String // "District Governor", "District Rotaract Representative", "Assistant Governor"
+  personId      String?
+  person        Person?       @relation(fields: [personId], references: [id], onDelete: SetNull)
+  date          DateTime
+  startTime     DateTime?
+  venue         String?
+  status        VisitStatus   @default(TENTATIVE)
+  summary       String?
+  yearId        String?
+  year          RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  eventId       String?
+  event         Event?        @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  source        String?
+  sourceUrl     String?
+  sourceType    String?
+  discoveredAt  DateTime?
+  lastCheckedAt DateTime?
+  verification  Verification  @default(NEEDS_VERIFICATION)
+  verifiedAt    DateTime?
+  verifiedById  String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([date])
+  @@map("district_visits")
+}
+
+// ───────────────────────── content ─────────────────────────
+
+model Story {
+  id             String          @id @default(cuid())
+  slug           String          @unique
+  title          String
+  excerpt        String?
+  body           String? // markdown
+  category       ContentCategory @default(ANNOUNCEMENT)
+  coverId        String?
+  cover          Media?          @relation("StoryCover", fields: [coverId], references: [id], onDelete: SetNull)
+  authorName     String?
+  publishedAt    DateTime?
+  publishStatus  PublishStatus   @default(DRAFT)
+  featured       Boolean         @default(false)
+  yearId         String?
+  year           RotaractYear?   @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  projectId      String?
+  project        Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  eventId        String?
+  event          Event?          @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  people         Person[]        @relation("StoryPeople")
+  socialPostId   String?
+  socialPost     SocialPost?     @relation("StoryFromPost", fields: [socialPostId], references: [id], onDelete: SetNull)
+  source         String?
+  sourceUrl      String?
+  sourceType     String?
+  discoveredAt   DateTime?
+  verification   Verification    @default(NEEDS_VERIFICATION)
+  verifiedAt     DateTime?
+  verifiedById   String?
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([publishStatus, publishedAt])
+  @@map("stories")
+}
+
+model SocialPost {
+  id             String          @id @default(cuid())
+  platform       SocialPlatform
+  url            String          @unique
+  content        String?
+  imageId        String?
+  image          Media?          @relation("SocialImage", fields: [imageId], references: [id], onDelete: SetNull)
+  imageUrl       String? // remote image reference when not uploaded
+  postedAt       DateTime?
+  organizationId String?
+  organization   Organization?   @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  category       ContentCategory @default(ANNOUNCEMENT)
+  projectId      String?
+  project        Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  eventId        String?
+  event          Event?          @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  yearId         String?
+  year           RotaractYear?   @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  people         Person[]        @relation("SocialPeople")
+  publishStatus  PublishStatus   @default(IN_REVIEW)
+  showInFeed     Boolean         @default(true)
+  convertedTo    Json? // [{type:"story", id:"…"}]
+  externalId     String?
+  sourceUrl      String?
+  source         String?
+  sourceType     String?
+  discoveredAt   DateTime        @default(now())
+  lastCheckedAt  DateTime?
+  verification   Verification    @default(NEEDS_VERIFICATION)
+  verifiedAt     DateTime?
+  verifiedById   String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  stories Story[] @relation("StoryFromPost")
+
+  @@index([publishStatus, postedAt])
+  @@map("social_posts")
+}
+
+model Media {
+  id           String        @id @default(cuid())
+  kind         MediaKind     @default(IMAGE)
+  provider     VideoProvider @default(UPLOAD)
+  storageKey   String? // key in storage driver (local or S3)
+  url          String? // external URL (YouTube link, remote image)
+  mimeType     String?
+  width        Int?
+  height       Int?
+  variants     Json? // {"sm":"key","md":"key","lg":"key"}
+  title        String?
+  alt          String?
+  caption      String?
+  description  String?
+  credit       String?
+  date         DateTime?
+  phase        PhotoPhase? // Then → Now comparisons
+  albumId      String?
+  album        PhotoAlbum?   @relation("AlbumMedia", fields: [albumId], references: [id], onDelete: SetNull)
+  projectId    String?
+  project      Project?      @relation("MediaProject", fields: [projectId], references: [id], onDelete: SetNull)
+  eventId      String?
+  event        Event?        @relation("MediaEvent", fields: [eventId], references: [id], onDelete: SetNull)
+  yearId       String?
+  year         RotaractYear? @relation("MediaYear", fields: [yearId], references: [id], onDelete: SetNull)
+  people       Person[]      @relation("MediaPeople")
+  sortOrder    Int           @default(0)
+  source       String?
+  sourceUrl    String?
+  verification Verification  @default(NEEDS_VERIFICATION)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  // back-relations for covers/photos
+  yearCovers      RotaractYear[]     @relation("YearCover")
+  personPhotos    Person[]           @relation("PersonPhoto")
+  orgLogos        Organization[]     @relation("OrgLogo")
+  projectCovers   Project[]          @relation("ProjectCover")
+  milestoneImages ProjectMilestone[] @relation("MilestoneImage")
+  eventCovers     Event[]            @relation("EventCover")
+  storyCovers     Story[]            @relation("StoryCover")
+  socialImages    SocialPost[]       @relation("SocialImage")
+  albumCovers     PhotoAlbum[]       @relation("AlbumCover")
+  achievementImgs Achievement[]      @relation("AchievementImage")
+  historyImages   HistoryEntry[]     @relation("HistoryImage")
+
+  @@index([albumId])
+  @@index([projectId])
+  @@index([eventId])
+  @@index([kind, date])
+  @@map("media")
+}
+
+model PhotoAlbum {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  description   String?
+  category      AlbumCategory @default(GENERAL)
+  date          DateTime?
+  coverId       String?
+  cover         Media?        @relation("AlbumCover", fields: [coverId], references: [id], onDelete: SetNull)
+  yearId        String?
+  year          RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  projectId     String?
+  project       Project?      @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  eventId       String?
+  event         Event?        @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  publishStatus PublishStatus @default(PUBLISHED)
+  source        String?
+  sourceUrl     String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  media         Media[]       @relation("AlbumMedia")
+
+  @@map("photo_albums")
+}
+
+model Document {
+  id          String             @id @default(cuid())
+  slug        String             @unique
+  title       String
+  description String?
+  storageKey  String?
+  url         String?
+  mimeType    String?
+  date        DateTime?
+  isPublic    Boolean            @default(true)
+  yearId      String?
+  year        RotaractYear?      @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  projectId   String?
+  project     Project?           @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  milestones  ProjectMilestone[] @relation("MilestoneDocuments")
+  source      String?
+  sourceUrl   String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@map("documents")
+}
+
+model Achievement {
+  id            String        @id @default(cuid())
+  title         String
+  description   String?
+  date          DateTime?
+  metricValue   Float?
+  metricLabel   String?
+  imageId       String?
+  image         Media?        @relation("AchievementImage", fields: [imageId], references: [id], onDelete: SetNull)
+  projectId     String?
+  project       Project?      @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  eventId       String?
+  event         Event?        @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  personId      String?
+  person        Person?       @relation(fields: [personId], references: [id], onDelete: SetNull)
+  yearId        String?
+  year          RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  featured      Boolean       @default(false)
+  publishStatus PublishStatus @default(PUBLISHED)
+  source        String?
+  sourceUrl     String?
+  sourceType    String?
+  discoveredAt  DateTime?
+  lastCheckedAt DateTime?
+  verification  Verification  @default(NEEDS_VERIFICATION)
+  verifiedAt    DateTime?
+  verifiedById  String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([date])
+  @@map("achievements")
+}
+
+/// "Our Story" timeline entries.
+model HistoryEntry {
+  id            String        @id @default(cuid())
+  date          DateTime?
+  dateLabel     String?
+  title         String
+  description   String?
+  kind          HistoryKind   @default(MOMENT)
+  imageId       String?
+  image         Media?        @relation("HistoryImage", fields: [imageId], references: [id], onDelete: SetNull)
+  videoUrl      String?
+  yearId        String?
+  year          RotaractYear? @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  people        Person[]      @relation("HistoryPeople")
+  projects      Project[]     @relation("HistoryProjects")
+  publishStatus PublishStatus @default(PUBLISHED)
+  source        String?
+  sourceUrl     String?
+  sourceType    String?
+  discoveredAt  DateTime?
+  lastCheckedAt DateTime?
+  verification  Verification  @default(NEEDS_VERIFICATION)
+  verifiedAt    DateTime?
+  verifiedById  String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([date])
+  @@map("history_entries")
+}
+
+/// Club-wide impact numbers not derivable from project metrics.
+model ImpactMetric {
+  id           String       @id @default(cuid())
+  key          String       @unique
+  label        String
+  value        Float
+  unit         String?
+  description  String?
+  sortOrder    Int          @default(0)
+  visible      Boolean      @default(true)
+  asOf         DateTime?
+  source       String?
+  sourceUrl    String?
+  verification Verification @default(NEEDS_VERIFICATION)
+
+  @@map("impact_metrics")
+}
+
+// ───────────────────────── attendance ─────────────────────────
+
+model AttendanceSession {
+  id               String             @id @default(cuid())
+  title            String
+  type             EventType          @default(CLUB_MEETING)
+  eventId          String?
+  event            Event?             @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  yearId           String?
+  year             RotaractYear?      @relation(fields: [yearId], references: [id], onDelete: SetNull)
+  startsAt         DateTime
+  opensAt          DateTime
+  closesAt         DateTime
+  venue            String?
+  token            String             @unique // static URL token (QR payload)
+  secret           String // HMAC secret for rotating codes
+  rotating         Boolean            @default(false)
+  rotationSeconds  Int                @default(30)
+  ipAllowlist      String? // optional comma-separated IP prefixes (e.g. the venue Wi-Fi public IP)
+  closed           Boolean            @default(false)
+  countsTowardRate Boolean            @default(true)
+  createdById      String?
+  createdBy        User?              @relation(fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  records          AttendanceRecord[]
+
+  @@index([startsAt])
+  @@map("attendance_sessions")
+}
+
+model AttendanceRecord {
+  id           String            @id @default(cuid())
+  sessionId    String
+  session      AttendanceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  memberId     String
+  member       Member            @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  checkedInAt  DateTime          @default(now())
+  method       CheckInMethod     @default(QR_ACCOUNT)
+  ip           String?
+  userAgent    String?
+  deviceHash   String?
+  excused      Boolean           @default(false)
+  adjustedById String?
+  adjustedBy   User?             @relation("AttendanceAdjuster", fields: [adjustedById], references: [id], onDelete: SetNull)
+  note         String?
+
+  @@unique([sessionId, memberId])
+  @@index([memberId])
+  @@map("attendance_records")
+}
+
+// ───────────────────────── misc ─────────────────────────
+
+model Inquiry {
+  id           String        @id @default(cuid())
+  type         InquiryType
+  name         String
+  email        String
+  phone        String?
+  organization String?
+  message      String?
+  projectId    String?
+  status       InquiryStatus @default(NEW)
+  createdAt    DateTime      @default(now())
+
+  @@index([status, createdAt])
+  @@map("inquiries")
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String // create | update | delete | verify | merge | approve | reject | login | checkin_adjust …
+  entity    String
+  entityId  String?
+  summary   String?
+  data      Json?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model RateLimit {
+  key     String   @id
+  count   Int
+  resetAt DateTime
+
+  @@map("rate_limits")
+}

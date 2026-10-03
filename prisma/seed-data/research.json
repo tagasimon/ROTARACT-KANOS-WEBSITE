@@ -1,0 +1,929 @@
+{
+  "generated_at": "2026-10-03T17:14:35Z",
+  "blocked_sources": [
+    {
+      "url": "https://x.com/kanosug",
+      "reason": "WebFetch refused (robots.txt disallow); Twitter syndication endpoint returned HTTP 429. Only the display name 'Rotaract Kampala North (@kanosug)' was seen in a search-result title. No tweets retrieved."
+    },
+    {
+      "url": "https://web.archive.org/web/20221114165958/https://twitter.com/kanosug",
+      "reason": "An archived copy of the X profile exists, but web.archive.org is blocked from this environment."
+    },
+    {
+      "url": "https://www.instagram.com/kanosug/",
+      "reason": "The HTML page is blocked by robots.txt. The public web_profile_info JSON endpoint did work and returned the bio and the 12 most recent of 27 posts (all from Oct-Nov 2016). Pagination needs a login (HTTP 401), so the other 15 older posts were not retrieved."
+    },
+    {
+      "url": "https://www.facebook.com/kanosug/",
+      "reason": "The page exists (search result title 'Rotaract Club of Kampala North') but only shows a login wall to anonymous fetches. No content retrieved."
+    },
+    {
+      "url": "https://rotaractd9213.org/itstimetojoinrotaract-campaign-kampala-north/",
+      "reason": "Old WordPress post titled '#ItsTimeToJoinRotaract Campaign - Kampala North' (seen in search results). Now 404 on the live site. A Wayback snapshot exists (20260420163321) but archive.org is blocked from this environment."
+    },
+    {
+      "url": "https://rotaryd9213.org/events",
+      "reason": "Calendar is rendered client-side. The page shows 'No events found' without JS. Upcoming events were taken from the district homepage instead."
+    },
+    {
+      "url": "https://rotaractd9213.org/assets/District-Goals-2026-27.pdf",
+      "reason": "Linked from the events page but returns 404."
+    }
+  ],
+  "club": {
+    "official_name_ri": "Kampala-North (Rotaract)",
+    "common_names": [
+      "Rotaract Club of Kampala North",
+      "Rotaract Kampala North",
+      "RAC Kampala North"
+    ],
+    "nickname": "KANOS",
+    "nickname_note": "Instagram posts use the hashtag #KanosNewsletter and the account handle is 'kanosug'. The E-Club of Kampala North (a separate club) uses #EKANOsCelebratesYou. Nobody has stated in so many words that 'KANOS' is the club's nickname, so it is marked needs_verification.",
+    "nickname_verification": "needs_verification",
+    "ri_club_id": 92123,
+    "club_type": "Rotaract Club, Community",
+    "district": "Rotary District 9213 (Uganda)",
+    "zone": 22,
+    "charter_date": "2014-12-01",
+    "charter_date_sources": [
+      "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx",
+      "https://www.instagram.com/kanosug/"
+    ],
+    "charter_date_verification": "verified",
+    "chartered_member_count": 4,
+    "chartered_member_count_note": "The district clubs list (RI export) puts 'Chartered Member Count' at 4. This looks low for a charter and may be a data artifact.",
+    "chartered_member_count_verification": "needs_verification",
+    "current_member_count": 102,
+    "current_member_count_source": "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx",
+    "current_member_count_note": "Taken from the RY 2026-27 district clubs list (RI export). Performance reports put the club in the 'Tier 2 (>= 40 members)' band.",
+    "sponsor_rotary_club": null,
+    "sponsor_note": "No public source found that names the sponsoring Rotary club. The Rotary Club of Kampala North (RI club 25541) is a separate club. Do not assume it is the sponsor until the club confirms.",
+    "meeting": {
+      "current": {
+        "day": "Friday",
+        "time": "18:00",
+        "venue": "Hotel Triangle, Buganda Road, Kampala",
+        "mode": "In person",
+        "sources": [
+          "https://rotaryd9213.org/clubinfo/kampala-north-1",
+          "https://www.rotaryo.org/search/clubs?ClubsSearch%5Bq%5D=Kampala+North",
+          "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx"
+        ],
+        "verification": "verified"
+      },
+      "historical": {
+        "day": "Friday",
+        "time": "18:00-19:00",
+        "venue": "Nommo Gallery (next to State House), Kampala",
+        "as_of": "Instagram bio (undated; posts on the account are from 2016)",
+        "source_url": "https://www.instagram.com/kanosug/",
+        "verification": "needs_verification"
+      }
+    },
+    "hashtags": [
+      "#KanosNewsletter",
+      "#JRFR16"
+    ],
+    "hashtags_source": "https://www.instagram.com/kanosug/",
+    "motto": null,
+    "motto_note": "No club-specific motto found. On Rotary-O, Kampala North, E-Club of Kampala North and Kampala North Musical all show the tagline 'Building Together', so it may be a platform or district default rather than the club's own motto.",
+    "handles": {
+      "x": "https://x.com/kanosug",
+      "instagram": "https://www.instagram.com/kanosug/",
+      "facebook": "https://www.facebook.com/kanosug/"
+    },
+    "instagram_profile": {
+      "display_name": "Rotaract Kampala North",
+      "bio": "Charted 1st December 2014. We meet every Friday 6-7pm #Nommo Gallery Next to State House. Our All Star President Julius Sse .Mail us kanosug@gmail.com",
+      "followers": 91,
+      "following": 51,
+      "posts": 27,
+      "latest_post_date": "2016-11-22",
+      "source_url": "https://www.instagram.com/kanosug/"
+    },
+    "email": "kanosug@gmail.com",
+    "email_source": "https://www.instagram.com/kanosug/",
+    "email_verification": "needs_verification",
+    "email_note": "Taken from the Instagram bio, which appears to be about 10 years old. Confirm it is still in use.",
+    "website": null,
+    "district_logo_image": "https://rotaractd9213.org/wp-content/uploads/2024/08/Kampala-North-1024x557.png",
+    "district_logo_image_note": "Referenced on rotaractd9213.org/clubs.php, but the direct URL currently returns 404 (the site falls back to a generic Rotaract logo).",
+    "related_but_distinct_clubs": [
+      {
+        "name": "Rotary Club of Kampala North",
+        "ri_club_id": 25541,
+        "type": "Rotary club",
+        "meets": "Mondays 6:00 PM, Protea Hotel, Kololo",
+        "email": "rkampalanorth@gmail.com",
+        "source_url": "https://rotaryd9213.org/clubinfo/kampala-north"
+      },
+      {
+        "name": "Rotaract Club of Kampala North Musical",
+        "ri_club_id": 214715,
+        "charter_date": "2017-04-18",
+        "meets": "Thursday 18:30 (Shell Club Lugogo per Rotary-O)",
+        "facebook": "https://www.facebook.com/rctklanorthmusical/",
+        "source_url": "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx"
+      },
+      {
+        "name": "Rotaract E-Club of Kampala North",
+        "ri_club_id": 8827515,
+        "charter_date": "2025-08-06",
+        "meets": "Tuesday 19:00, online and Hotel Triangle, Buganda Rd",
+        "source_url": "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx"
+      }
+    ],
+    "sources": [
+      "https://rotaryd9213.org/clubinfo/kampala-north-1",
+      "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx",
+      "https://rotaractd9213.org/clubs.php",
+      "https://www.rotaryo.org/search/clubs?ClubsSearch%5Bq%5D=Kampala+North",
+      "https://www.instagram.com/kanosug/",
+      "https://www.instagram.com/api/v1/users/web_profile_info/?username=kanosug",
+      "https://www.facebook.com/kanosug/",
+      "https://x.com/kanosug"
+    ]
+  },
+  "rotaract_years": [
+    {
+      "label": "2026-2027",
+      "district_theme": "Creating Lasting Impact (DRR vision: 'Creating Impact Beyond Moments')",
+      "president": "Ezekiel Kiggundu",
+      "source_url": "https://rotaryd9213.org/clubinfo/kampala-north-1",
+      "verification": "needs_verification",
+      "note": "ClubRunner lists Ezekiel Kiggundu as President, and Rotary-O lists 'Kiggundu Ezekiel' as the club's president/contact. However, the RI export in the RY 2026-27 district clubs list names 'MR. ROGERS WANELOBA' as Club President, while ClubRunner lists Rogers Waneloba as Executive Secretary/Director. Neither source states the year explicitly, so confirm with the club."
+    },
+    {
+      "label": "2025-2026",
+      "president": null,
+      "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2025",
+      "verification": "needs_verification",
+      "note": "No public source found for the 2025-26 president or board."
+    },
+    {
+      "label": "2016-2017 (approx.)",
+      "president": "Julius Sse (as written in the Instagram bio)",
+      "source_url": "https://www.instagram.com/kanosug/",
+      "verification": "needs_verification",
+      "note": "The bio reads 'Our All Star President Julius Sse' but is undated. Surname may be truncated. A Nov 2016 post refers to 'IPP Eric Byenkya'."
+    },
+    {
+      "label": "2015-2016 (approx.)",
+      "president": "Eric Byenkya (referred to as IPP in Nov 2016)",
+      "source_url": "https://www.instagram.com/p/BM3Y2JugFnU/",
+      "verification": "needs_verification"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ezekiel Kiggundu",
+      "roles": [
+        {
+          "title": "President",
+          "year": "current per ClubRunner (likely 2026-27)"
+        }
+      ],
+      "source_url": "https://rotaryd9213.org/clubinfo/kampala-north-1",
+      "also_source": "https://www.rotaryo.org/search/clubs?ClubsSearch%5Bq%5D=Kampala+North",
+      "verification": "needs_verification"
+    },
+    {
+      "name": "Rogers Waneloba",
+      "roles": [
+        {
+          "title": "Executive Secretary/Director",
+          "year": "current per ClubRunner"
+        },
+        {
+          "title": "Club President (per RI club export)",
+          "year": "RY 2026-27 clubs list"
+        }
+      ],
+      "source_url": "https://rotaryd9213.org/clubinfo/kampala-north-1",
+      "also_source": "https://rotaractd9213.org/assets/D9213-Clubs-2026-27.xlsx",
+      "verification": "needs_verification",
+      "note": "The two sources disagree on his role."
+    },
+    {
+      "name": "Nanziri Fatuma",
+      "roles": [
+        {
+          "title": "Assistant District Rotaract Representative (ADRR), Central Cluster 16 (cluster includes Kampala North)",
+          "year": "2026-27"
+        }
+      ],
+      "source_url": "https://rotaractd9213.org/assets/Rotaract-D9213-Team-Directory.xlsx",
+      "verification": "verified",
+      "note": "Club membership not stated. She is the cluster ADRR whose list of clubs includes Kampala North."
+    },
+    {
+      "name": "Mumbere Kisembo Walter",
+      "roles": [
+        {
+          "title": "Deputy Public Image Chair, Rotaract D9213 (club: Kampala North)",
+          "year": "2026-27"
+        }
+      ],
+      "source_url": "https://rotaractd9213.org/assets/Rotaract-D9213-Team-Directory.xlsx",
+      "verification": "verified"
+    },
+    {
+      "name": "Nahurira Victor",
+      "roles": [
+        {
+          "title": "Projects Chair, Rotaract D9213 (club: Kampala North)",
+          "year": "2026-27"
+        }
+      ],
+      "source_url": "https://rotaractd9213.org/assets/Rotaract-D9213-Team-Directory.xlsx",
+      "verification": "verified"
+    },
+    {
+      "name": "Karen Claire Nassanga",
+      "roles": [
+        {
+          "title": "Rotaract Ladies Initiative (ROLI) Chair, Rotaract D9213 (club: Kampala North)",
+          "year": "2026-27"
+        },
+        {
+          "title": "Past President ('PP') of the Rotaract Club of Kampala North",
+          "year": "unknown"
+        }
+      ],
+      "source_url": "https://rotaractd9213.org/assets/Rotaract-D9213-Team-Directory.xlsx",
+      "also_source": "https://rotaractd9213.org/assets/Insight-Magazine-August-2026.pdf",
+      "verification": "needs_verification",
+      "note": "The ROLI Chair role is verified in the district team directory. The Insight Magazine (Aug 2026) styles her 'PP Karen Claire Nassanga ... Rotaract Club of Kampala North'. The year of her presidency is unknown."
+    },
+    {
+      "name": "Pascal Ongom",
+      "roles": [
+        {
+          "title": "Rotaract District PIME Chair (club: Kampala-North (Rotaract))",
+          "year": "2024-25"
+        }
+      ],
+      "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024",
+      "verification": "verified",
+      "note": "A 'Pascal Ongom' is also listed as Club Service Projects Chair of the separate Rotary Club of Kampala North (RCKN ClubRunner page). Possibly the same person moving from Rotaract to Rotary, but that is not confirmed."
+    },
+    {
+      "name": "Victoria Nattabi",
+      "roles": [
+        {
+          "title": "Rotaract District Qualification and Stewardship Chair (club: Kampala-North (Rotaract))",
+          "year": "2024-25"
+        }
+      ],
+      "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024",
+      "verification": "verified"
+    },
+    {
+      "name": "Clare Ahebwa",
+      "roles": [
+        {
+          "title": "Youth Co-Chair on Rotary district committee (club: Kampala-North (Rotaract))",
+          "year": "2024-25"
+        }
+      ],
+      "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024",
+      "verification": "verified"
+    },
+    {
+      "name": "Julius Sse",
+      "roles": [
+        {
+          "title": "President",
+          "year": "c. 2016 (undated Instagram bio)"
+        }
+      ],
+      "source_url": "https://www.instagram.com/kanosug/",
+      "verification": "needs_verification"
+    },
+    {
+      "name": "Eric Byenkya",
+      "roles": [
+        {
+          "title": "Immediate Past President (IPP)",
+          "year": "as of Nov 2016"
+        }
+      ],
+      "source_url": "https://www.instagram.com/p/BM3Y2JugFnU/",
+      "verification": "needs_verification"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Kigezi New Year's Retreat (tree planting at Kigezi Primary School)",
+      "summary": "A three-day new year's retreat in Kabale, Western Uganda, organised by the Rotaract Club of Kampala North and attended by the Rotary Club of Muyenga and its Rotaract Club of KIU. Activities included tree planting around Kigezi Primary School, career guidance, team building and touring the Kigezi sub-region. The retreat was hosted by Prof. Augustus Nuwagaba, President of the Rotary Club of Muyenga.",
+      "start_date": "2022-01 (weekend before 2022-01-24)",
+      "location": "Kabale / Kigezi sub-region, Western Uganda",
+      "partners": [
+        "Rotary Club of Muyenga",
+        "Rotaract Club of KIU"
+      ],
+      "metrics": [],
+      "milestones": [
+        {
+          "date": "2022-01-24",
+          "title": "KIU News coverage",
+          "description": "KIU News reported on the retreat, quoting KIU IPP Evelyn Lumonya thanking 'the Rotaract Club of Kampala North for organising such a wonderful event'.",
+          "source_url": "https://news.kiu.ac.ug/rotaract-club-of-kiu-to-reap-big-from-kampala-norths-retreat"
+        }
+      ],
+      "image_urls": [
+        "https://news.kiu.ac.ug/uploads/website/news/be27756fe6ce98c0e471aab98823536aaaf4c1a4.jpg"
+      ],
+      "source_url": "https://news.kiu.ac.ug/rotaract-club-of-kiu-to-reap-big-from-kampala-norths-retreat",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "#JRFR16 fundraiser",
+      "summary": "A fundraiser promoted on the club's Instagram in Nov 2016 with team activities and a 'Sato package' (a reference to a fish dish). The full name of the event is not stated.",
+      "start_date": "2016-11 (weekend after 2016-11-21)",
+      "location": null,
+      "partners": [],
+      "metrics": [],
+      "milestones": [
+        {
+          "date": "2016-11-21",
+          "title": "#JRFR16 is on This weekend",
+          "description": "Instagram promotion posts",
+          "source_url": "https://www.instagram.com/p/BNEWOnBg6LK/"
+        }
+      ],
+      "source_url": "https://www.instagram.com/p/BNEWOnBg6LK/",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "#KanosNewsletter",
+      "summary": "Club newsletter items posted to Instagram on 2016-10-29, with titles including 'You can heal your Life', 'Service above self', 'Rotary My Family' and 'How Rotaract Clubs cam master the art of Social Selling'.",
+      "start_date": "2016-10-29",
+      "location": null,
+      "partners": [],
+      "metrics": [],
+      "milestones": [],
+      "source_url": "https://www.instagram.com/p/BMJQAqwAAN5/",
+      "verification": "needs_verification"
+    }
+  ],
+  "events": [
+    {
+      "title": "Weekly club fellowship",
+      "date": "recurring (Fridays)",
+      "start_time": "18:00",
+      "venue": "Hotel Triangle, Buganda Road, Kampala",
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "club_meeting",
+      "source_url": "https://rotaryd9213.org/clubinfo/kampala-north-1",
+      "verification": "verified"
+    },
+    {
+      "title": "Fellowship hosting Innocent Mugerwa Robin (Rotaract Kampala East; founder, Pearl Foundation NGO) on basic life skills of youth",
+      "date": "2016-11-25 (the Friday after the 2016-11-22 post)",
+      "start_time": null,
+      "venue": null,
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "fellowship",
+      "source_url": "https://www.instagram.com/p/BNHv2Wzg1rQ/",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "Fellowship with IPP Eric Byenkya, organised by Buddy group (Mabirizi)",
+      "date": "2016-11-18 (the Friday after the 2016-11-16 post)",
+      "start_time": null,
+      "venue": null,
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "fellowship",
+      "source_url": "https://www.instagram.com/p/BM3Y2JugFnU/",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "Closed dance fellowship",
+      "date": "2016-11-11 (the Friday of the post)",
+      "start_time": null,
+      "venue": null,
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "fellowship",
+      "source_url": "https://www.instagram.com/p/BMp83sXAjOW/",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "Fellowship hosting Rtn. Ivan Mwondha",
+      "date": "2016-11-04 (the Friday after the 2016-11-03 post)",
+      "start_time": null,
+      "venue": "Nommo Gallery",
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "fellowship",
+      "source_url": "https://www.instagram.com/p/BMVsuI6Ac4w/",
+      "verification": "needs_verification"
+    },
+    {
+      "title": "New year's retreat, Kabale",
+      "date": "2022-01 (weekend before 2022-01-24)",
+      "start_time": null,
+      "venue": "Kabale / Kigezi Primary School",
+      "organizer": "Rotaract Club of Kampala North",
+      "type": "retreat",
+      "source_url": "https://news.kiu.ac.ug/rotaract-club-of-kiu-to-reap-big-from-kampala-norths-retreat",
+      "verification": "needs_verification"
+    }
+  ],
+  "district": {
+    "governors": [
+      {
+        "name": "Anne Nkutu",
+        "year": "2024-2025",
+        "club": "Kampala Naalya",
+        "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024"
+      },
+      {
+        "name": "Geoffrey Martin Kitakule (GK Kitakule)",
+        "year": "2025-2026",
+        "club": "Kampala South",
+        "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2025"
+      },
+      {
+        "name": "Gerald Obai",
+        "year": "2026-2027",
+        "club": "Gulu",
+        "source_url": "https://rotaryd9213.org/districtorganizationchart"
+      },
+      {
+        "name": "Fabian Kasi and Jane Kabugo (both listed as District Governor Elect)",
+        "year": "listed as DGE in 2026-27 chart",
+        "note": "Two DGEs are listed, presumably because of the planned redistricting into two districts. Not confirmed which successor district each will lead.",
+        "source_url": "https://rotaryd9213.org/districtorganizationchart"
+      },
+      {
+        "name": "Kyambadde Kaziro and Peter Dhamuzungu (both listed as District Governor Nominee)",
+        "year": "listed as DGN in 2026-27 chart",
+        "source_url": "https://rotaryd9213.org/districtorganizationchart"
+      }
+    ],
+    "drrs": [
+      {
+        "name": "Emmanuel Lukeera",
+        "year": "2023-2024 (listed as Immediate Past DRR in the 2024-25 chart)",
+        "club": "Kampala City (Rotaract)",
+        "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024"
+      },
+      {
+        "name": "Ssebukulu Simeo",
+        "year": "2024-2025",
+        "club": "Kampala North Musical (Rotaract) - NOT Kampala North",
+        "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024"
+      },
+      {
+        "name": "Abesage Nahabwe",
+        "year": "2025-2026",
+        "club": "Nangabo (Rotaract)",
+        "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2025"
+      },
+      {
+        "name": "Alex Muwanguzi",
+        "year": "2026-2027",
+        "club": "Njeru (Rotaract)",
+        "source_url": "https://rotaryd9213.org/districtorganizationchart",
+        "also_source": "https://rotaractd9213.org/assets/DRR-July-2026-Message.docx"
+      }
+    ],
+    "rotaract_district_stats_2026_27": {
+      "clubs": 148,
+      "members": 3496,
+      "community_university_clubs": "95 / 53",
+      "satellite_clubs": 2,
+      "source_url": "https://rotaractd9213.org/",
+      "verification": "needs_verification",
+      "note": "Figures as published on the homepage. The district's About page also says 114 clubs, so the numbers are inconsistent."
+    },
+    "events": [
+      {
+        "title": "DRR's Address of the First 100 Days",
+        "date": "2026-10-08",
+        "venue": "District 9213",
+        "organizer": "Rotaract D9213 Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "District Training (Virtual) - Balancing Rotary Amidst Life",
+        "date": "2026-10-09",
+        "venue": "Virtual",
+        "organizer": "Rotaract D9213 Learning Team",
+        "type": "training",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "Second Presidential Forum",
+        "date": "2026-10-10",
+        "venue": "District 9213",
+        "organizer": "Rotaract D9213 Secretariat",
+        "type": "forum",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "District Training (Virtual) - Grants Application & Qualification",
+        "date": "2026-10-17",
+        "venue": "Virtual",
+        "organizer": "Rotaract D9213 Learning Team",
+        "type": "training",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "District Training (Virtual) - Grants Application & Qualification (E-Clubs)",
+        "date": "2026-10-23",
+        "venue": "Virtual",
+        "organizer": "Rotaract D9213 Membership Directorate",
+        "type": "training",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "World Polio Day",
+        "date": "2026-10-24",
+        "venue": "District 9213",
+        "organizer": "Rotaract D9213 TRF Chair",
+        "type": "awareness",
+        "source_url": "https://rotaractd9213.org/events.php?all=1"
+      },
+      {
+        "title": "REI - Rotaract Earth Initiative 2026",
+        "date": "2026-10-30 to 2026-11-01",
+        "venue": "District 9213",
+        "organizer": "Rotaract D9213 Projects & REI Chair",
+        "type": "service",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "Interact Week",
+        "date": "2026-11-02 to 2026-11-07",
+        "organizer": "District Interact Chair",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "2026 Rotaract Africa Summit",
+        "date": "2026-11-19 to 2026-11-22",
+        "venue": "San Pedro, Cote d'Ivoire",
+        "organizer": "Rotaract Africa",
+        "type": "international",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "6th Africa Peace Concert",
+        "date": "2026-11-27",
+        "venue": "Munyonyo, Kampala",
+        "organizer": "Africa Zone 22",
+        "type": "zone",
+        "source_url": "https://rotaryd9213.org/stories"
+      },
+      {
+        "title": "Africa Zone Institute Conference",
+        "date": "2026-11-26 to 2026-11-29",
+        "venue": null,
+        "organizer": "Rotary Zone 22",
+        "type": "zone",
+        "source_url": "https://rotaryd9213.org/stories",
+        "note": "The Rotaract year planner instead lists the '7th All Africa Zone Institute' on 29 Sep - 2 Oct 2026 at Speke Resort Munyonyo. The two sources conflict."
+      },
+      {
+        "title": "Rotaract PLD Catalyst Summit",
+        "date": "2026-12-05",
+        "organizer": "District PLD Chair",
+        "type": "training",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "Rotaract Challenge Finale",
+        "date": "2026-12-12",
+        "organizer": "District Membership Directorate",
+        "type": "competition",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "State of the District Address",
+        "date": "2026-12-19",
+        "organizer": "Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "Third Presidential Forum",
+        "date": "2027-01-16",
+        "organizer": "Secretariat",
+        "type": "forum",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "District Vocational Tour to QCIL",
+        "date": "2027-01-23",
+        "organizer": "Secretariat",
+        "type": "vocational",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "World Rotary Day - 122nd Rotary Anniversary",
+        "date": "2027-02-23",
+        "organizer": "Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "4th Inter-District Summit",
+        "date": "2027-02-26 to 2027-02-28",
+        "venue": "Johannesburg, South Africa",
+        "organizer": "District International Service Directorate",
+        "type": "international",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "World Rotaract Week",
+        "date": "2027-03-08 to 2027-03-14",
+        "organizer": "Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "59th Rotaract Anniversary and Rotaract Festival",
+        "date": "2027-03-13",
+        "organizer": "Secretariat / Projects and Family of Rotaract Chairs",
+        "type": "festival",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "REACT - Uganda",
+        "date": "2027-03-26 to 2027-03-28",
+        "organizer": "Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "Fourth Presidential Forum",
+        "date": "2027-04-10",
+        "organizer": "Secretariat",
+        "type": "forum",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "District Assembly",
+        "date": "2027-04-24",
+        "organizer": "Secretariat",
+        "type": "assembly",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "102nd District Conference (102 DISCON)",
+        "date": "2027-04-29 to 2027-05-01",
+        "organizer": "DISCON Chair",
+        "type": "conference",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "District Team Retreat and Gratitude Moment",
+        "date": "2027-05-29",
+        "organizer": "Secretariat",
+        "type": "district",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "RI Convention",
+        "date": "2027-06-26 to 2027-06-30",
+        "venue": "Barcelona, Spain",
+        "organizer": "Rotary International",
+        "type": "international",
+        "source_url": "https://rotaractd9213.org/assets/District-Year-Planner-2026-27.pdf"
+      },
+      {
+        "title": "Rotary DG official visits (upcoming, Rotary clubs)",
+        "date": "2026-10-06 to 2026-10-14",
+        "venue": "various (RC Buloba, Lugogo Mango Tree, Nsasa, Gayaza, Mubende, Mubende Metro, Kabulasoke Gomba, Ssingo Mityana)",
+        "organizer": "Rotary District 9213",
+        "type": "dg_visit",
+        "source_url": "https://rotaryd9213.org/"
+      },
+      {
+        "title": "Celebrating 100 days (Rotary district)",
+        "date": "2026-10-10",
+        "start_time": "08:30",
+        "organizer": "Rotary District 9213",
+        "type": "district",
+        "source_url": "https://rotaryd9213.org/"
+      },
+      {
+        "title": "Measles-Rubella vaccination campaign (Rotary support)",
+        "date": "2026-10-01 to 2026-10-05",
+        "organizer": "Ministry of Health / Rotary D9213",
+        "type": "health",
+        "source_url": "https://rotaryd9213.org/"
+      },
+      {
+        "title": "PAST: 101st District Conference",
+        "date": "2026-04-16 to 2026-04-18",
+        "venue": "Entebbe",
+        "organizer": "Rotary District 9213",
+        "type": "conference",
+        "source_url": "https://rotaryd9213.org/stories"
+      },
+      {
+        "title": "PAST: Rotaract Festival 2026",
+        "date": "2026-03-14",
+        "venue": "Legends Rugby Grounds, Kampala",
+        "organizer": "Rotaract D9213",
+        "type": "festival",
+        "source_url": "https://eagle.co.ug/2026/03/11/rotary-district-9213-calls-upon-public-to-support-rotaract-festival-to-raise-funds-for-community-projects"
+      },
+      {
+        "title": "PAST: 100th District Conference (DISCON 100)",
+        "date": "2025-04-09 to 2025-04-12",
+        "venue": "Jinja",
+        "organizer": "Rotary District 9213",
+        "type": "conference",
+        "source_url": "https://rotaryd9213.org/stories"
+      }
+    ],
+    "pets_note": "No PETS date was found for 2027 in the public sources. The Rotaract planner lists 'ROLS - Incoming District Team' in Feb 2027 with the date TBI.",
+    "redistricting_note": "The DRR's July 2026 message says the district is preparing for redistricting and will hand over 'two strong districts' at the end of RY 2026-27.",
+    "redistricting_source": "https://rotaractd9213.org/assets/DRR-July-2026-Message.docx"
+  },
+  "district_visits": [],
+  "district_visits_note": "No public record found of a DG or DRR official visit to the Rotaract Club of Kampala North in 2025-26 or 2026-27. DRR Abesage's 2025 visits (Nakawa, Uganda Global E-Club, Mukono Central, Clarke International University) and DRR Alex Muwanguzi's 2026 visits (Bukeerere, Upper Kibuli, Gayaza) do not include it. Rotary-O shows no fellowships listed for Kampala North.",
+  "achievements": [
+    {
+      "title": "Ranked #1 among Tier 2 clubs (>= 40 members), Clubs Monthly Performance Report, August 2026",
+      "detail": "Total score 66 (PIME report)",
+      "date": "2026-08",
+      "source_url": "https://rotaractd9213.org/assets/PIME-Performance-Report-August-2026.pdf",
+      "verification": "verified"
+    },
+    {
+      "title": "Ranked #2 among Tier 2 clubs (>= 40 members), Clubs Monthly Performance Report, July 2026",
+      "detail": "Total score 41 (behind Upper Kololo, 43)",
+      "date": "2026-07",
+      "source_url": "https://rotaractd9213.org/assets/July-Performance-Report-2026.pdf",
+      "verification": "verified"
+    },
+    {
+      "title": "Three members serve on the Rotaract D9213 District Team 2026-27 (Projects Chair, Deputy Public Image Chair, ROLI Chair)",
+      "date": "2026-27",
+      "source_url": "https://rotaractd9213.org/assets/Rotaract-D9213-Team-Directory.xlsx",
+      "verification": "verified"
+    },
+    {
+      "title": "Members served on district committees in 2024-25 (Rotaract PIME Chair; Qualification & Stewardship Chair; Rotary district Youth Co-Chair)",
+      "date": "2024-25",
+      "source_url": "https://rotaryd9213.org/DistrictOrganizationChart/2024",
+      "verification": "verified"
+    }
+  ],
+  "social_posts": [
+    {
+      "url": "https://www.instagram.com/p/BNHv2Wzg1rQ/",
+      "date": "2016-11-22",
+      "summary": "Join us this Friday as we host Innocent Mugerwa Robin from Rct. Kampala East (founder, Pearl Foundation NGO) on basic life skills of youth.",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BNEXMwCgElB/",
+      "date": "2016-11-21",
+      "summary": "#JRFR16 The Sato package that awaits you after the Fundraiser",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BNEW56gA4e4/",
+      "date": "2016-11-21",
+      "summary": "#JRFR16 activities for teams",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BNEWcu4A0Sr/",
+      "date": "2016-11-21",
+      "summary": "#JRFR16 activities that await your teams",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BNEWOnBg6LK/",
+      "date": "2016-11-21",
+      "summary": "#JRFR16 is on this weekend",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BM3Y2JugFnU/",
+      "date": "2016-11-16",
+      "summary": "Fellowship hosting IPP Eric Byenkya, organised by Buddy group (Mabirizi).",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMp83sXAjOW/",
+      "date": "2016-11-11",
+      "summary": "Closed dance fellowship this Friday.",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMVsuI6Ac4w/",
+      "date": "2016-11-03",
+      "summary": "Join us this Friday at Nommo Gallery as the Rotaract Club of Kampala North hosts Rtn. Ivan Mwondha.",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMJQAqwAAN5/",
+      "date": "2016-10-29",
+      "summary": "#KanosNewsletter You can heal your Life",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMJPzG3AX0L/",
+      "date": "2016-10-29",
+      "summary": "#KanosNewsletter Service above self",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMJPtBmARov/",
+      "date": "2016-10-29",
+      "summary": "#KanosNewsletter Rotary My Family",
+      "platform": "instagram"
+    },
+    {
+      "url": "https://www.instagram.com/p/BMJPTvUggU3/",
+      "date": "2016-10-29",
+      "summary": "#KanosNewsletter How Rotaract Clubs can master the art of Social Selling",
+      "platform": "instagram"
+    }
+  ],
+  "fellowships": [
+    {
+      "source": "Rotary-O club directory",
+      "club": "Kampala North",
+      "day": "Friday",
+      "time": "6:00pm",
+      "venue": "Hotel Triangle - Buganda Road",
+      "president_listed": "Kiggundu Ezekiel",
+      "tagline": "Building Together",
+      "source_url": "https://www.rotaryo.org/search/clubs?ClubsSearch%5Bq%5D=Kampala+North"
+    },
+    {
+      "source": "Rotary-O fellowships search",
+      "query": "Kampala North",
+      "result": "No fellowships found for the club (checked 2026-10-03).",
+      "source_url": "https://www.rotaryo.org/search/fellowships?FellowshipsSearch%5Bq%5D=Kampala+North"
+    },
+    {
+      "source": "Rotary-O upcoming D9213 Rotaract fellowships (context, other clubs)",
+      "items": [
+        {
+          "title": "ROLI MEGA TAKE OVER",
+          "club": "Kampala Mahaba",
+          "date": "2026-10-03"
+        },
+        {
+          "title": "REI",
+          "club": "Bulindo",
+          "date": "2026-10-04"
+        },
+        {
+          "title": "Weekend Clubs Caravan",
+          "club": "Kulambiro",
+          "date": "2026-10-04"
+        },
+        {
+          "title": "Monday Clubs Caravan - REI 2026 Albertine (hosted by Rct Acacia Sunset)",
+          "club": "Acacia Sunset Kampala",
+          "date": "2026-10-05"
+        },
+        {
+          "title": "Tuesday Clubs Caravan: REI 2026 Albertine",
+          "club": "Lake Victoria",
+          "date": "2026-10-06"
+        },
+        {
+          "title": "What does Rotary mean to you",
+          "club": "Kyambogo University IBC",
+          "date": "2026-10-07"
+        },
+        {
+          "title": "100 Days of Gratitude",
+          "club": "Metropolitan University IBC",
+          "date": "2026-10-15"
+        }
+      ],
+      "source_url": "https://www.rotaryo.org/search/fellowships"
+    }
+  ],
+  "photos": [
+    {
+      "url": "https://news.kiu.ac.ug/uploads/website/news/be27756fe6ce98c0e471aab98823536aaaf4c1a4.jpg",
+      "caption": "Kigezi retreat, Jan 2022 (KIU News)",
+      "source_url": "https://news.kiu.ac.ug/rotaract-club-of-kiu-to-reap-big-from-kampala-norths-retreat"
+    },
+    {
+      "url": "https://rotaractd9213.org/wp-content/uploads/2024/08/Kampala-North-1024x557.png",
+      "caption": "Club banner on the district site (currently 404)",
+      "source_url": "https://rotaractd9213.org/clubs.php"
+    },
+    {
+      "url": "see social_posts Instagram permalinks",
+      "caption": "12 Instagram images from Oct-Nov 2016. Direct CDN URLs expire, so use the permalinks.",
+      "source_url": "https://www.instagram.com/kanosug/"
+    }
+  ],
+  "notes": "NAMING: Rotary International and the district ClubRunner list the club as 'Kampala-North (Rotaract)' (RI ID 92123). The Rotaract district site uses 'RAC Kampala North'. Instagram uses 'Rotaract Kampala North' and its own posts say 'the rotaract club of Kampala north'. KIU News and the Insight Magazine use 'Rotaract Club of Kampala North'. Recommended display name: 'Rotaract Club of Kampala North'.\n\nDO NOT CONFUSE with (a) the Rotary Club of Kampala North (RI 25541, meets Mondays at Protea Hotel Kololo), (b) the Rotaract Club of Kampala North Musical (RI 214715; DRR 2024-25 Ssebukulu Simeo came from this club), or (c) the Rotaract E-Club of Kampala North (RI 8827515, chartered 2025-08-06, uses #EKANOs).\n\nSPONSOR: not confirmed by any public source.\n\nCURRENT PRESIDENT: conflicting sources (Ezekiel Kiggundu per ClubRunner and Rotary-O, Rogers Waneloba per the RI export). Confirm with the club.\n\nThe district site's 2025 allAfrica article naming DRR 'Aleber Kanyonza' (Rotaract Club of Kigo 7 Lakes) does not state a district. The D9213 org chart gives Abesage Nahabwe as the 2025-26 DRR, so Kanyonza is likely D9214 and is excluded here.\n\nPersonal phone numbers and emails of individuals appear in public district spreadsheets and on Rotary-O. They were deliberately left out of this seed file. Only the club's own email is included.\n\nSocial media activity found publicly is old: the Instagram account's last post is from 22 Nov 2016. Recent club activity probably lives on X, Facebook or WhatsApp, which could not be read."
+}

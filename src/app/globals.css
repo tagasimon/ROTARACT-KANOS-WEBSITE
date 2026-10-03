@@ -1,0 +1,162 @@
+@import "tailwindcss";
+/* Rotary brand typography: Frutiger (licensed) → Open Sans (Rotary's official free alternative)
+   for headlines & navigation; Sentinel (licensed) → Georgia for body text.
+   Open Sans is self-hosted with its width axis so we also get "Open Sans Condensed" for labels. */
+@import "@fontsource-variable/open-sans/wdth.css";
+@import "@fontsource-variable/open-sans/wdth-italic.css";
+
+@theme {
+  --font-display: "Frutiger", "Frutiger LT Std", "Frutiger Next", "Open Sans Variable", "Open Sans", Arial, sans-serif;
+  --font-sans: "Frutiger", "Frutiger LT Std", "Frutiger Next", "Open Sans Variable", "Open Sans", Arial, sans-serif;
+  --font-serif: "Sentinel", "Sentinel A", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ── Rotary masterbrand palette (exact values, never altered) ── */
+  --color-royal: #17458f;     /* Rotary Royal Blue */
+  --color-gold: #f7a81b;      /* Rotary Gold */
+  --color-azure: #0067c8;     /* Azure */
+  --color-sky: #00a2e0;       /* Sky Blue */
+  --color-cranberry: #d41367; /* Cranberry: the Rotaract colour */
+  --color-cardinal: #e02927;
+  --color-grass: #009739;
+  --color-powder: #b9d9eb;    /* Powder Blue */
+  --color-slate: #657f99;
+  --color-charcoal: #54565a;
+  --color-pewter: #898a8d;
+  --color-silver: #d0cfcd;
+  --color-cloud: #d6d1ca;
+
+  /* ── semantic roles ── */
+  --color-fg: #000000;               /* headings & primary text (brand Black) */
+  --color-paper: #ffffff;            /* page */
+  --color-paper-2: #f3f5f8;          /* quiet section background (neutral) */
+  --color-paper-3: #d0cfcd;          /* Silver */
+  --color-stone: #54565a;            /* secondary text: Charcoal (7.3:1 on white) */
+  --color-stone-2: #898a8d;          /* Pewter: decorative only (fails small-text contrast) */
+  --color-line: rgb(0 0 0 / 0.12);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-fg font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: #000;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-azure);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  img { max-width: 100%; height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10;
+}
+@utility font-cond {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-variant-numeric: tabular-nums;
+}
+@utility eyebrow {
+  @apply font-cond text-[0.8rem] font-bold uppercase tracking-[0.06em] text-stone;
+}
+@utility rule {
+  @apply border-t border-line;
+}
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-200 disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-cranberry text-white hover:bg-royal;
+}
+@utility btn-ink {
+  @apply btn bg-royal text-white hover:bg-azure;
+}
+@utility btn-ghost {
+  @apply btn border border-royal/40 text-royal hover:border-royal hover:bg-royal/5;
+}
+@utility btn-ghost-light {
+  @apply btn border border-paper/35 text-paper hover:border-paper hover:bg-paper/10;
+}
+@utility btn-danger {
+  @apply btn bg-red-700 text-white hover:bg-red-800;
+}
+@utility btn-sm {
+  @apply min-h-9 px-3.5 py-1.5 text-xs;
+}
+@utility link-u {
+  @apply underline decoration-1 underline-offset-4 decoration-fg/30 hover:decoration-azure;
+}
+@utility prose-ed {
+  @apply font-serif text-[1.15rem] leading-[1.7] text-charcoal;
+  & p { @apply mb-5; }
+  & h2 { @apply mt-10 mb-4 font-display text-3xl font-bold text-royal; }
+  & h3 { @apply mt-8 mb-3 font-display text-2xl font-semibold text-fg; }
+  & a { @apply text-azure underline underline-offset-4; }
+  & ul { @apply mb-5 list-disc pl-6; }
+  & ol { @apply mb-5 list-decimal pl-6; }
+  & blockquote { @apply my-8 border-l-4 border-gold pl-6 font-serif text-2xl italic text-royal; }
+  & img { @apply my-6 rounded-sm; }
+}
+@utility field {
+  @apply grid gap-1.5;
+}
+@utility label {
+  @apply text-xs font-semibold uppercase tracking-wider text-stone;
+}
+@utility input {
+  @apply w-full rounded-md border border-fg/25 bg-white px-3 py-2 text-[0.95rem] text-fg placeholder:text-stone focus:border-azure focus:outline-none focus:ring-2 focus:ring-azure/25;
+}
+@utility card {
+  @apply rounded-lg border border-line bg-white;
+}
+@utility table-x {
+  @apply w-full text-left text-sm;
+  & th { @apply border-b border-line px-3 py-2 text-xs font-semibold uppercase tracking-wider text-stone; }
+  & td { @apply border-b border-line/60 px-3 py-2.5 align-top; }
+}
+
+/* .grain kept as a no-op hook: flat brand colour reads cleaner than texture */
+.grain { position: relative; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.9s var(--ease-out-expo) both; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.24s; }
+.rise-4 { animation-delay: 0.36s; }
+
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  body { background: white; }
+}
