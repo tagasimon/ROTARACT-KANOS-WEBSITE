@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { getSettings } from "@/lib/settings";
+import { baseUrl } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings();
   return {
-    metadataBase: new URL(process.env.APP_URL || "http://localhost:3000"),
+    metadataBase: new URL(baseUrl()),
     title: { default: `${s.clubName} — Young leaders in service, Kampala`, template: `%s · ${s.clubName}` },
     description: s.description,
     openGraph: { type: "website", siteName: s.clubName, locale: "en_UG" },

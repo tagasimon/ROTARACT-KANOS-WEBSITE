@@ -88,3 +88,12 @@ Push to the deployed branch, and Coolify rebuilds. Migrations in `prisma/migrati
 - **Members get logged out or the QR says "expired" right after a redeploy:** `SESSION_SECRET` changed. Keep it constant.
 - **"Check-in is only available on the venue network":** the session has an IP allowlist. Remove it, or add the venue's public IP prefix.
 - **Uploads fail with a 413 error:** raise the proxy body limit in Coolify (Traefik/Caddy). The app accepts up to 25 MB per request.
+
+## Content imported from the club's X account
+
+`prisma/seed-data/x-kanosug.json` holds content curated from @kanosug (presidents 2014–2027, #KANOs4Kakindu
+and other projects, events, awards, district visits, Our Story entries) and `prisma/seed-data/x-media/`
+holds the 206 photos from those posts. On every start the container runs `prisma/seed-x.ts`, which imports
+anything not yet in the database (idempotent; one-off corrections run once). Turn it off with
+`X_IMPORT_ON_START=false`, or run it by hand from the Coolify terminal: `tsx /app/prisma/seed-x.ts`.
+Everything imported shows "Source: X (@kanosug)" and links to the original post; edit it in the CMS as usual.

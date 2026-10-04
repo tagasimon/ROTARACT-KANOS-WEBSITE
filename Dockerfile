@@ -34,6 +34,11 @@ COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=build /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=build /app/node_modules/bcryptjs ./node_modules/bcryptjs
+# sharp (+ native binaries) for the X photo import script; the app itself traces it too
+COPY --from=build /app/node_modules/sharp ./node_modules/sharp
+COPY --from=build /app/node_modules/@img ./node_modules/@img
+COPY --from=build /app/node_modules/detect-libc ./node_modules/detect-libc
+COPY --from=build /app/node_modules/semver ./node_modules/semver
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && mkdir -p /app/storage && chown -R app:app /app
 USER app

@@ -1,8 +1,10 @@
-node_modules
-.next
+!storage/.gitkeep
+*.tgz
+*.tsbuildinfo
+.DS_Store
 .env
 .env.local
-storage/*
-!storage/.gitkeep
-*.tsbuildinfo
+.next
 next-env.d.ts
+node_modules
+storage/*

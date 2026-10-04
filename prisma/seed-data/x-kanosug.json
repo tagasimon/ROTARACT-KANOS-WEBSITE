@@ -1,0 +1,3308 @@
+{
+ "version": 1,
+ "collected_at": "2026-10-04T00:00:00Z",
+ "account": "https://x.com/kanosug",
+ "method": "Read in a logged-in browser from the club's own X account (@kanosug) via X search (from:kanosug ...). Text is the club's own wording; dates are the post dates (UTC). Images are the photos attached to those posts, saved at 1600px in prisma/seed-data/x-media/<media id>.webp.",
+ "corrections": {
+  "sponsor": {
+   "org": "Rotary Club of Kampala North",
+   "description": "The Rotaract club's mother (sponsor) Rotary club. RI club 25541; meets on Mondays at Protea Hotel, Kololo. The Rotaract club calls it \"our mother club\" on X (July 2022) and introduced visitors through \"our patron Tusu, from the mother club\" (February 2024).",
+   "sponsorNote": "Sponsored by the Rotary Club of Kampala North, which the club calls its mother club.",
+   "posts": [
+    "1551594470977769472",
+    "1754426305230094355"
+   ]
+  }
+ },
+ "people": [
+  {
+   "key": "baguma",
+   "name": "Baguma Solomon",
+   "x": "https://x.com/bagumasolomon",
+   "post": "1068703764448780289",
+   "note": "Called \"past president Baguma Solomon\" and a newly made Paul Harris Fellow in Dec 2018."
+  },
+  {
+   "key": "ssekajja",
+   "existing": "julius-sse",
+   "name": "Julius Ssekajja",
+   "honorific": "Rtr.",
+   "x": "https://x.com/ssekalio",
+   "post": "736490911346139137",
+   "note": "Installed as the club's 3rd president on 10 June 2016 (invitation: \"Rtr. Julius Ssekajja, a.k.a Ssekalio\")."
+  },
+  {
+   "key": "sharon",
+   "name": "Sharon Tumushabe",
+   "x": "https://x.com/SharonTumushabe",
+   "post": "883621714315411457",
+   "note": "Introduced as the new president (\"MGP\") on 8 July 2017; called \"our Mission Green President\" when she became a Paul Harris Fellow in Feb 2021."
+  },
+  {
+   "key": "bright",
+   "name": "Bright",
+   "x": "https://x.com/Rctbright",
+   "post": "1041566394503102464",
+   "note": "Called \"our Inspirational President @Rctbright\" in Sept 2018 (2018-19 RI theme: Be the Inspiration). Full name not stated in the posts."
+  },
+  {
+   "key": "younis",
+   "name": "Younis Sebaggala",
+   "x": "https://x.com/Younisebz",
+   "post": "736478613801951233",
+   "note": "PR and Vice President Elect (May 2016), Vice President (May 2017), PLD Chair (2018)."
+  },
+  {
+   "key": "alex",
+   "name": "Alex Niyonzima",
+   "x": "https://x.com/AlexNiyonzima",
+   "post": "1272469428840660992",
+   "photo": "EYmkhi8WoAAm-Gg"
+  },
+  {
+   "key": "clare",
+   "existing": "clare-ahebwa",
+   "name": "Clare Umutesi Ahebwa",
+   "x": "https://x.com/ClareUmutesi",
+   "post": "1393435936206241792"
+  },
+  {
+   "key": "pascal",
+   "existing": "pascal-ongom",
+   "name": "Pascal Ongom",
+   "x": "https://x.com/pascalongom",
+   "post": "1506537044868227077"
+  },
+  {
+   "key": "carolyne",
+   "name": "Carolyne Bavuga",
+   "x": "https://x.com/CarolyneBavuga",
+   "post": "1635180195060793344"
+  },
+  {
+   "key": "edwin",
+   "name": "Edwin Muyunga",
+   "x": "https://x.com/EdwinMuyunga",
+   "post": "1748622658688663842"
+  },
+  {
+   "key": "rogers",
+   "existing": "rogers-waneloba",
+   "name": "Rogers Waneloba",
+   "x": "https://x.com/wanelobarogers",
+   "post": "1732713294773797166",
+   "professionalTitle": "Accountant; managing partner",
+   "note": "Also known as Raj. Introduced in Dec 2023 as \"an accomplished accountant and law student\" and managing partner at Winterdale."
+  },
+  {
+   "key": "ezekiel",
+   "existing": "ezekiel-kiggundu",
+   "name": "Ezekiel Kiggundu",
+   "x": "https://x.com/19StMunian",
+   "post": "2051632181370302491"
+  },
+  {
+   "key": "katende",
+   "name": "Dr. Katende",
+   "x": "https://x.com/Katendefredi",
+   "post": "2079844947981676644",
+   "note": "Called \"our President-Elect, Dr. @Katendefredi\" in July 2026. Full name not stated in the post."
+  },
+  {
+   "key": "sylivia",
+   "name": "Sylivia Kitty",
+   "x": "https://x.com/SyliviaKitty",
+   "post": "1549030514711044098"
+  },
+  {
+   "key": "salma",
+   "name": "Delilah Salma Nakitto",
+   "x": "https://x.com/dnsalma",
+   "post": "792318100238729219",
+   "note": "Club Secretary 2016-17; wrote \"Rotary My Family\" for the club newsletter."
+  },
+  {
+   "key": "mike_sebalu",
+   "name": "Mike Kennedy Sebalu",
+   "type": "DISTRICT_LEADER",
+   "x": "https://x.com/mikesebaluken",
+   "post": "1590999883271770112",
+   "note": "District Governor, D9213, 2022-23."
+  },
+  {
+   "key": "sarah_owembabazi",
+   "name": "Sarah Owembabazi",
+   "type": "DISTRICT_LEADER",
+   "x": "https://x.com/SarahOwembabazi",
+   "post": "1590996629343309824",
+   "note": "District Rotaract Representative, 2022-23."
+  },
+  {
+   "key": "ken_mugisha",
+   "name": "Ken Mugisha",
+   "honorific": "PDG",
+   "type": "ROTARIAN",
+   "x": "https://x.com/DGKenMugisha",
+   "post": "1768930547827359955",
+   "organization": "Board Chairman, Malaria Partners Uganda"
+  },
+  {
+   "key": "abesage",
+   "existing": "abesage-nahabwe",
+   "name": "Abesage Nahabwe",
+   "type": "DISTRICT_LEADER",
+   "x": "https://x.com/AbesageN",
+   "post": "1947980340162707459"
+  },
+  {
+   "key": "winnie",
+   "name": "Winnie Nabukeera",
+   "type": "GUEST",
+   "organization": "Little Winnie Foundation",
+   "x": "https://x.com/Nabukeerawinni4",
+   "post": "2052792153051369700"
+  },
+  {
+   "key": "dennis_okwir",
+   "name": "Dr. Dennis Okwir",
+   "type": "GUEST",
+   "x": "https://x.com/dennisokwir",
+   "post": "1994824044114272401"
+  },
+  {
+   "key": "fatir",
+   "name": "Fatir Muzaaya",
+   "type": "GUEST",
+   "post": "2105502092357939671"
+  },
+  {
+   "key": "farid",
+   "name": "Farid Karama",
+   "type": "GUEST",
+   "organization": "Executive Director, Africa Agribusiness Academy",
+   "post": "1068895333713944576"
+  }
+ ],
+ "leadership": [
+  {
+   "person": "baguma",
+   "role": "President",
+   "year": "2014-2015",
+   "verification": "NEEDS_VERIFICATION",
+   "post": "1068703764448780289",
+   "highlights": "Posts call him \"All star President\" (June 2016) and \"past president\" (Dec 2018) but don't give his year. 2014-15 is inferred: Julius Ssekajja was installed as 3rd president in June 2016, and Eric Byenkya was IPP in Nov 2016. Please confirm."
+  },
+  {
+   "person": "ssekajja",
+   "role": "President",
+   "year": "2016-2017",
+   "verification": "VERIFIED",
+   "post": "736490911346139137",
+   "highlights": "Installed as the club's 3rd president on 10 June 2016 at Nommo Gallery, Nakasero."
+  },
+  {
+   "person": "ssekajja",
+   "role": "Immediate Past President",
+   "year": "2017-2018",
+   "verification": "VERIFIED",
+   "post": "892021436914814976"
+  },
+  {
+   "person": "younis",
+   "role": "Vice President",
+   "year": "2016-2017",
+   "verification": "VERIFIED",
+   "post": "863090337228754947",
+   "highlights": "Received the club's Rotaract Image award at DCA 92 in Arusha (May 2017)."
+  },
+  {
+   "person": "salma",
+   "role": "Secretary",
+   "year": "2016-2017",
+   "verification": "VERIFIED",
+   "post": "792318100238729219",
+   "customTitle": "Club Secretary"
+  },
+  {
+   "person": "sharon",
+   "role": "President",
+   "year": "2017-2018",
+   "verification": "VERIFIED",
+   "post": "883621714315411457",
+   "customTitle": "President (\"Mission Green President\")",
+   "highlights": "Introduced as the new president on 8 July 2017."
+  },
+  {
+   "person": "bright",
+   "role": "President",
+   "year": "2018-2019",
+   "verification": "VERIFIED",
+   "post": "1041566394503102464",
+   "customTitle": "President (\"Inspirational President\")",
+   "highlights": "Full name to be confirmed; the club's posts use his handle @Rctbright."
+  },
+  {
+   "person": "younis",
+   "role": "President",
+   "year": "2019-2020",
+   "verification": "NEEDS_VERIFICATION",
+   "post": "1219135351136169985",
+   "highlights": "In Jan 2020 the club said \"our Connecting President\" would give a Digital Marketing talk; the matching flyer names Younis Sebaggala. Please confirm."
+  },
+  {
+   "person": "alex",
+   "role": "Vice President",
+   "year": "2019-2020",
+   "verification": "VERIFIED",
+   "post": "1219135351136169985",
+   "customTitle": "Vice President (\"Connecting Vice President\")"
+  },
+  {
+   "person": "alex",
+   "role": "President",
+   "year": "2020-2021",
+   "verification": "VERIFIED",
+   "post": "1272469428840660992",
+   "highlights": "6th president. Installed over Zoom on 19 June 2020; guest of honour @Comrade_Otoa. His year started the club's adoption of Malwa Umea Primary School in Kakindu."
+  },
+  {
+   "person": "clare",
+   "role": "President",
+   "year": "2021-2022",
+   "verification": "VERIFIED",
+   "post": "1393435936206241792",
+   "highlights": "7th president. Installed on 15 May 2021 at Hotel Triangle (poolside), with the Clerk to Parliament, Jane Lubowa Kibirige, as chief guest and PDG Emmanuel Katongole as guest of honour. Phase I of #KANOs4Kakindu was handed over in her year."
+  },
+  {
+   "person": "carolyne",
+   "role": "Community Service Director",
+   "year": "2021-2022",
+   "verification": "NEEDS_VERIFICATION",
+   "post": "1439920287626186760",
+   "customTitle": "Project Chair, #KANOs4Kakindu",
+   "highlights": "The Sept 2021 handover invitation lists her as Project Chair."
+  },
+  {
+   "person": "pascal",
+   "role": "President",
+   "year": "2022-2023",
+   "verification": "VERIFIED",
+   "post": "1506537044868227077",
+   "highlights": "8th president. Installed on 7 May 2022 at Hotel Triangle, Buganda Road. Drew the technical drawings for the Kakindu classroom blocks with a fellow member."
+  },
+  {
+   "person": "sylivia",
+   "role": "Community Service Director",
+   "year": "2022-2023",
+   "verification": "VERIFIED",
+   "post": "1549030514711044098",
+   "customTitle": "Community Service Chair"
+  },
+  {
+   "person": "carolyne",
+   "role": "President",
+   "year": "2023-2024",
+   "verification": "VERIFIED",
+   "post": "1635180195060793344",
+   "highlights": "9th president. Installed on 20 May 2023 at Protea Hotel."
+  },
+  {
+   "person": "edwin",
+   "role": "President",
+   "year": "2024-2025",
+   "verification": "VERIFIED",
+   "post": "1748622658688663842",
+   "highlights": "10th president. Installed on 18 May 2024 at Hotel Triangle, Buganda Road. The club won the Club Excellence Award for RY 2024-25."
+  },
+  {
+   "person": "carolyne",
+   "role": "Immediate Past President",
+   "year": "2024-2025",
+   "verification": "VERIFIED",
+   "post": "1900226599590781174"
+  },
+  {
+   "person": "rogers",
+   "role": "President",
+   "year": "2025-2026",
+   "verification": "VERIFIED",
+   "post": "1732713294773797166",
+   "highlights": "11th president (installation themed Arabian Nights). Announced as President Nominee for 2025/26 in Dec 2023."
+  },
+  {
+   "person": "rogers",
+   "role": "Immediate Past President",
+   "year": "2026-2027",
+   "verification": "VERIFIED",
+   "post": "2103685744506060947"
+  },
+  {
+   "person": "ezekiel",
+   "role": "President",
+   "year": "2026-2027",
+   "verification": "VERIFIED",
+   "post": "2051632181370302491",
+   "highlights": "12th president. Installed on 9 May 2026 at Hotel Triangle, Buganda Road; unveiled his Impact Board and officers on 10 April 2026."
+  },
+  {
+   "person": "katende",
+   "role": "President-Elect",
+   "year": "2026-2027",
+   "verification": "VERIFIED",
+   "post": "2079844947981676644"
+  },
+  {
+   "person": "mike_sebalu",
+   "role": "District Governor",
+   "year": "2022-2023",
+   "verification": "VERIFIED",
+   "post": "1590999883271770112"
+  },
+  {
+   "person": "sarah_owembabazi",
+   "role": "District Rotaract Representative",
+   "year": "2022-2023",
+   "verification": "VERIFIED",
+   "post": "1590996629343309824"
+  }
+ ],
+ "organizations": [
+  {
+   "name": "Malwa Umea Primary School",
+   "type": "SCHOOL",
+   "description": "A Universal Primary Education school in Kakindu, Mityana District (P.O. Box 34, Mwera). The school the club adopted in 2020."
+  },
+  {
+   "name": "Enjuba",
+   "type": "NGO",
+   "website": "https://x.com/enjuba1",
+   "description": "Donated over 1,000 reading books to the Kakindu school library and partnered on the 2021 Kakindu Community Reading Day."
+  },
+  {
+   "name": "Abacus Pharma",
+   "type": "CORPORATE",
+   "website": "https://x.com/AbacusPharmaLtd",
+   "description": "Sponsored the medication for the 2021 malaria testing and treatment day in Kakindu."
+  },
+  {
+   "name": "Malaria Partners International",
+   "type": "NGO"
+  },
+  {
+   "name": "Malaria Partners Uganda",
+   "type": "NGO",
+   "website": "https://x.com/MPUganda"
+  },
+  {
+   "name": "Movit Products",
+   "type": "CORPORATE",
+   "website": "https://x.com/MovitProductsUg",
+   "description": "Its MD handed over the first renovated classroom block in Kakindu (Sept 2021)."
+  },
+  {
+   "name": "Ministry of Health Uganda",
+   "type": "GOVERNMENT",
+   "website": "https://x.com/MinofHealthUG"
+  },
+  {
+   "name": "Dunwell Dry Cleaners",
+   "type": "CORPORATE",
+   "website": "https://x.com/dunwelldryclean"
+  },
+  {
+   "name": "PHD Modelers",
+   "type": "CORPORATE",
+   "website": "https://x.com/PHDmodelers"
+  },
+  {
+   "name": "The Innovation Village",
+   "type": "CORPORATE"
+  },
+  {
+   "name": "Qipads",
+   "type": "CORPORATE",
+   "website": "https://x.com/PadsQi",
+   "description": "Supplied sanitary towels for girls and women at Malwa Umea Primary School (March 2024)."
+  },
+  {
+   "name": "Rotary Club of Madras",
+   "type": "ROTARY_CLUB",
+   "description": "District 3234, India. Global grant partner (US$35,000) for digital literacy in three schools under BELEP."
+  },
+  {
+   "name": "Rotary Club of Del Mar",
+   "type": "ROTARY_CLUB",
+   "website": "https://x.com/DelMarRotary",
+   "description": "California, USA. PDG Phillipe Lamoise visited ahead of Kakindu Phase 4 (Feb 2024)."
+  },
+  {
+   "name": "JMS Uganda",
+   "type": "CORPORATE",
+   "website": "https://x.com/JMSUganda"
+  },
+  {
+   "name": "Roofings Group",
+   "type": "CORPORATE",
+   "website": "https://x.com/RoofingsGroupUG",
+   "description": "Sponsored Kakindu Phase 5 and provided tree seedlings."
+  },
+  {
+   "name": "Marcdon Concepts",
+   "type": "CORPORATE",
+   "website": "https://x.com/MarcdonConcepts"
+  },
+  {
+   "name": "Sumz Snacks",
+   "type": "CORPORATE",
+   "website": "https://x.com/sumz_snacks"
+  },
+  {
+   "name": "Yoo Prints",
+   "type": "CORPORATE",
+   "website": "https://x.com/yooprintsltd"
+  },
+  {
+   "name": "Rotaract Club of Mulago",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RotaractMulago"
+  },
+  {
+   "name": "Rotary Club of Kampala Springs",
+   "type": "ROTARY_CLUB"
+  },
+  {
+   "name": "Rotaract Club of Bwebajja",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RAC_Bwebajja"
+  },
+  {
+   "name": "Pilgrim Africa",
+   "type": "NGO",
+   "website": "https://x.com/pilgrimafrica"
+  },
+  {
+   "name": "Rotaract Club of Bunga",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/racbunga"
+  },
+  {
+   "name": "Rotaract Club of Mildmay Institute of Health Sciences",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/Rotaractmild"
+  },
+  {
+   "name": "Rotaract Club of Kyengera",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RctKyengera"
+  },
+  {
+   "name": "Pearl Generation Uganda",
+   "type": "NGO",
+   "website": "https://x.com/PGUganda"
+  },
+  {
+   "name": "Rotaract Club of Kigali City",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RCkigalicity"
+  },
+  {
+   "name": "Little Winnie Foundation",
+   "type": "NGO",
+   "website": "https://x.com/LittleWinnieFo2"
+  }
+ ],
+ "projects": [
+  {
+   "slug": "kanos-4-kakindu",
+   "title": "#KANOs4Kakindu",
+   "tagline": "The club's flagship project: adopting a whole community in Kakindu, Mityana, across Rotary's areas of focus.",
+   "summary": "Since 2020 the club has worked with Malwa Umea Primary School and the Kakindu community in Mityana District: renovating and building classroom blocks, stocking a library, harvesting rainwater, fighting malaria, running medical camps, planting trees and supporting girls and boys to stay in school.",
+   "status": "ONGOING",
+   "featured": true,
+   "startDate": "2020-10-04",
+   "year": "2020-2021",
+   "lead": null,
+   "locationName": "Malwa Umea Primary School, Kakindu, Mityana District",
+   "beneficiaries": "Pupils and teachers of Malwa Umea Primary School and the Kakindu community",
+   "cover": "Ex-3DE-WEA4BKzt",
+   "need": "Malwa Umea is a Universal Primary Education school in Kakindu, Mityana District. When the club's technical team assessed it in October 2020, its classroom blocks were old and run down. The club later named the needs it set out to meet: decent classrooms, books and a library, clean water, protection from malaria, health care, and support for girls and boys to stay in school.",
+   "idea": "Adopt one community and address several of Rotary's areas of focus in one place, phase by phase. The club calls it its signature project, \"where we adopted an entire community to address Rotary 7 areas of focus\" (Carolyne Bavuga, Aug 2024). The club's link with Kakindu goes back to a medical camp it held there in April 2016.",
+   "beginning": "Members Pascal Ongom and a fellow member drew the technical drawings. The club raised money with the Jungle Rumble fundraiser (Nov 2020) and project days, and in March 2021 members renovated the first three-classroom block: re-screeding floors, refurbishing walls and splash aprons, replacing wooden openings with metal ones, painting blackboards and adding rainwater harvesting.",
+   "impact": "Phase I was handed over on 25 September 2021, the same day the club launched #KANOsAgainstMalaria. Since then: 400 mosquito nets (Nov 2021), a 10,000-litre water tank (Mar 2022), a library stocked with over 1,000 books from Enjuba and launched by DG Mike Sebalu (Nov 2022), exam support for candidates (Oct 2023), a multipurpose hall under construction and the C2F malaria programme (Mar 2024), and a newly built classroom block handed over with the launch of the Girl Child Initiative (Sept 2025).",
+   "today": "The club is completing the multipurpose building at Malwa Umea Primary School and plans youth skilling and stronger community health programmes (club thread, March 2025). It announced a US$35,000 global grant with the Rotary Club of Madras (D3234) for digital literacy in three schools under BELEP (Nov 2024). In September 2026 the project reached Kiyoganyi Health Centre III in Mityana North, where a new solar system was commissioned.",
+   "quote": "Each child with a book to aid in learning shall better the education standards of these kids.",
+   "quoteAttribution": "Rotaract Club of Kampala North, on X, March 2021",
+   "post": "1899865487271440587",
+   "partners": [
+    {
+     "org": "Malwa Umea Primary School",
+     "role": "Partner school"
+    },
+    {
+     "org": "Rotary Club of Kampala North",
+     "role": "Mother club"
+    },
+    {
+     "org": "Enjuba",
+     "role": "Books & reading day"
+    },
+    {
+     "org": "Abacus Pharma",
+     "role": "Malaria medication (2021)"
+    },
+    {
+     "org": "Rotary Club of Muyenga",
+     "role": "Mosquito nets (2021)"
+    },
+    {
+     "org": "Malaria Partners International",
+     "role": "Malaria programme"
+    },
+    {
+     "org": "Malaria Partners Uganda",
+     "role": "Malaria programme"
+    },
+    {
+     "org": "Movit Products",
+     "role": "Sponsor"
+    },
+    {
+     "org": "Ministry of Health Uganda",
+     "role": "Partner (2022)"
+    },
+    {
+     "org": "Dunwell Dry Cleaners",
+     "role": "Sponsor (2022)"
+    },
+    {
+     "org": "PHD Modelers",
+     "role": "Sponsor (2022)"
+    },
+    {
+     "org": "The Innovation Village",
+     "role": "Partner (2021)"
+    },
+    {
+     "org": "Qipads",
+     "role": "Sanitary towels (2024)"
+    },
+    {
+     "org": "Rotary Club of Madras",
+     "role": "Global grant partner"
+    },
+    {
+     "org": "JMS Uganda",
+     "role": "Health partner (2025)"
+    },
+    {
+     "org": "Roofings Group",
+     "role": "Sponsor & tree seedlings (2025)"
+    },
+    {
+     "org": "Marcdon Concepts",
+     "role": "Branding & printing (2025)"
+    },
+    {
+     "org": "Sumz Snacks",
+     "role": "Sponsor (2025)"
+    },
+    {
+     "org": "Yoo Prints",
+     "role": "Sponsor (2025)"
+    },
+    {
+     "org": "Rotaract Club of Mulago",
+     "role": "Supporting club (2025)"
+    },
+    {
+     "org": "Rotary Club of Kampala Springs",
+     "role": "Solar commissioning partner (2026)"
+    },
+    {
+     "org": "Rotaract Club of Bwebajja",
+     "role": "Supporting club (2026)"
+    },
+    {
+     "org": "Rotaract E-Club of Kampala North",
+     "role": "Supporting club (2026)"
+    }
+   ],
+   "metrics": [
+    {
+     "label": "Mosquito nets distributed",
+     "value": 400,
+     "unit": "nets",
+     "impactKey": "mosquito_nets",
+     "date": "2021-11-13",
+     "post": "1459454842355789824"
+    },
+    {
+     "label": "Water tank installed",
+     "value": 10000,
+     "unit": "litres",
+     "impactKey": "water_storage_litres",
+     "date": "2022-03-19",
+     "post": "1506882223819177985"
+    },
+    {
+     "label": "Library books received from Enjuba",
+     "value": 1050,
+     "unit": "books",
+     "impactKey": "books_donated",
+     "date": "2022-07-18",
+     "post": "1549030514711044098"
+    },
+    {
+     "label": "Classroom blocks handed over",
+     "value": 2,
+     "unit": "blocks",
+     "impactKey": "classroom_blocks",
+     "date": "2025-09-20",
+     "post": "1974672312969355689"
+    },
+    {
+     "label": "Global grant for digital literacy (with RC Madras)",
+     "value": 35000,
+     "unit": "USD",
+     "impactKey": "grants_usd",
+     "date": "2024-11-30",
+     "post": "1862853894386110676"
+    },
+    {
+     "label": "Schools in the digital literacy grant",
+     "value": 3,
+     "unit": "schools",
+     "date": "2024-11-30",
+     "post": "1862853894386110676",
+     "showInImpact": false
+    }
+   ],
+   "milestones": [
+    {
+     "date": "2016-04-01",
+     "dateLabel": "April 2016",
+     "title": "A medical camp in Kakindu",
+     "description": "The club's 2016 newsletter recalls a medical camp in Kakindu, Mityana, in April 2016, describing it as the club's signature project, with drugs issued to the sick.",
+     "stage": "NEED",
+     "post": "792318100238729219",
+     "image": "Cv7hChaWEAEc1Qu",
+     "verification": "VERIFIED"
+    },
+    {
+     "date": "2020-10-04",
+     "title": "Technical team assesses Malwa Umea Primary School",
+     "description": "\"ADOPT-KAKINDU PROJECT\": the club's technical team visited the school as part of the project assessment.",
+     "stage": "NEED",
+     "post": "1312703112872951808",
+     "image": "Ejeog29XgAcF1zE",
+     "people": [
+      "alex",
+      "pascal"
+     ]
+    },
+    {
+     "date": "2020-11-20",
+     "dateLabel": "20–21 Nov 2020",
+     "title": "Jungle Rumble fundraiser",
+     "description": "A \"lockdown escape\" weekend at Roots Retreat & Camping Site (treasure hunt, canoeing, forest walk, camp fire) to raise funds for the project.",
+     "stage": "FUNDRAISING",
+     "post": "1324242222250971137",
+     "image": "EmCnRJtXEAAAErY"
+    },
+    {
+     "date": "2021-03-20",
+     "title": "Project day: renovating the three-classroom block",
+     "description": "Floors re-screeded, splash aprons, interior and exterior walls refurbished, wooden openings replaced with metal, blackboards painted and a water harvesting system added. The day opened with a talk on menstrual hygiene.",
+     "stage": "IMPLEMENTATION",
+     "post": "1373261570986414081",
+     "image": "Ew7OAN-W8AMEGFd"
+    },
+    {
+     "date": "2021-03-20",
+     "title": "Books for every child, fruit trees for the school",
+     "description": "Every child received a book, paid for by donors, and members planted fruit trees around the school.",
+     "stage": "IMPLEMENTATION",
+     "post": "1375114711826579457",
+     "image": "ExVjfIQWQAcNV8z"
+    },
+    {
+     "date": "2021-04-17",
+     "dateLabel": "April 2021",
+     "title": "Kakindu Community Reading Day",
+     "description": "Members represented the club at a community reading day with partners Enjuba.",
+     "stage": "PARTNERSHIP",
+     "post": "1384836654314270721",
+     "image": "EzfstsAX0AMUmcs"
+    },
+    {
+     "date": "2021-09-25",
+     "title": "Phase I handed over; #KANOsAgainstMalaria launched",
+     "description": "The finished classroom block was handed over to the school and community by the MD of Movit Products. The club launched its malaria programme with mass testing and treatment (medication sponsored by Abacus Pharma) and broke ground on Phase II, replacing the old building in frames 1–3.",
+     "stage": "COMPLETION",
+     "post": "1441751051925925889",
+     "image": "FAIgeelWYAAidHc",
+     "people": [
+      "carolyne"
+     ]
+    },
+    {
+     "date": "2021-11-13",
+     "title": "400 mosquito nets distributed",
+     "description": "Nets sponsored by the Rotary Club of Muyenga were distributed to the Kakindu community.",
+     "stage": "IMPACT",
+     "post": "1459454842355789824",
+     "image": "FEEGbbsWQAEqO2g"
+    },
+    {
+     "date": "2022-03-19",
+     "title": "A 10,000-litre water tank and supplies for mothers",
+     "description": "The club commissioned a 10,000-litre rainwater tank (chief guest: DRR Mukasa, with Rotarian Chris Kayongo) and donated delivery items to the community health centre so mothers would no longer pay UGX 30,000 to be attended to.",
+     "stage": "IMPLEMENTATION",
+     "post": "1506882223819177985",
+     "image": "FOmFY4cXEAEQWT8"
+    },
+    {
+     "date": "2022-07-18",
+     "title": "1,050 books received from Enjuba",
+     "description": "Community Service Chair Sylivia Kitty received 1,050 books for the planned community-school library.",
+     "stage": "PARTNERSHIP",
+     "post": "1549030514711044098",
+     "image": "FX9DB0nWAAAs1o6",
+     "people": [
+      "sylivia"
+     ]
+    },
+    {
+     "date": "2022-11-11",
+     "title": "Library launched by DG Mike Sebalu",
+     "description": "District Governor Mike Kennedy Sebalu, with DRR Sarah Owembabazi, launched the fully stocked library at Malwa Umea Primary School and recognised the club with a certificate of appreciation for its contribution to BELEP.",
+     "stage": "MILESTONE",
+     "post": "1590999883271770112",
+     "image": "FhRd8VnWIAIAmtu",
+     "people": [
+      "mike_sebalu",
+      "sarah_owembabazi"
+     ]
+    },
+    {
+     "date": "2023-10-19",
+     "title": "Supporting exam candidates",
+     "description": "Led by President Carolyne Bavuga, members gave each candidate a success card and a mathematical set, and committed to pay S.1–S.4 fees for pupils who score first grades (aggregates 4–12).",
+     "stage": "UPDATE",
+     "post": "1714970282308276678",
+     "image": "F8zMW54XEAE5qO5",
+     "people": [
+      "carolyne"
+     ]
+    },
+    {
+     "date": "2024-03-16",
+     "title": "Phase 4: hall design, C2F and a medical camp",
+     "description": "Guest of honour PDG Ken Mugisha planted trees, launched the C2F malaria programme and unveiled the 3D impression of the multipurpose hall, already under construction. Sanitary towels from Qipads were given to women and pupils, and LC1 chairman James Bukenya welcomed the club.",
+     "stage": "MILESTONE",
+     "post": "1768944501471498373",
+     "image": "GIyNmKiWMAAEsHv",
+     "people": [
+      "ken_mugisha",
+      "carolyne"
+     ]
+    },
+    {
+     "date": "2024-11-30",
+     "title": "Speech Day and a US$35,000 global grant",
+     "description": "At the school's Speech Day the club announced a US$35,000 global grant with the Rotary Club of Madras (D3234) to boost digital literacy in three schools under BELEP.",
+     "stage": "PARTNERSHIP",
+     "post": "1862853894386110676",
+     "image": "GdovuSqWUAAPcyl"
+    },
+    {
+     "date": "2025-03-15",
+     "title": "Phase 5",
+     "description": "The fifth project day, covered by UBC TV and NBS TV, with sponsors including Roofings Group (who also gave tree seedlings), JMS Uganda, Marcdon Concepts, Sumz Snacks, Yoo Prints and the Rotaract Club of Mulago. Members laid bricks for the multipurpose building.",
+     "stage": "MILESTONE",
+     "post": "1901643055532265587",
+     "image": "GmF0FoDbcAANGzB",
+     "people": [
+      "carolyne"
+     ]
+    },
+    {
+     "date": "2025-09-20",
+     "title": "Phase 6: a new classroom block and the Girl Child Initiative",
+     "description": "The club handed over a newly built classroom block, launched the Girl Child Initiative, ran a free medical camp and planted trees.",
+     "stage": "COMPLETION",
+     "post": "1974672312969355689",
+     "image": "G1R0m3wXsAAOaho",
+     "people": []
+    },
+    {
+     "date": "2026-09-19",
+     "title": "Solar commissioning at Kiyoganyi Health Centre III",
+     "description": "With the Rotary Club of Kampala Springs, Rotaract Bwebajja and E-KANOs, the club commissioned a solar system at Mboona Kiyoganyi Health Unit in Mityana District to keep critical services running, and turned the day into a medical camp with eye tests, baby weighing and tree planting.",
+     "stage": "MILESTONE",
+     "post": "2103677238138851657",
+     "image": "HTHDRvnXYAAKzuE",
+     "people": [
+      "rogers"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "united-against-malaria",
+   "title": "United Against Malaria",
+   "tagline": "Medical camps, mosquito nets and net-use training in Mityana North.",
+   "summary": "A malaria project in Mityana North that grew out of #KANOsAgainstMalaria, run with Malaria Partners Uganda, Malaria Partners International and Pilgrim Africa.",
+   "status": "ONGOING",
+   "startDate": "2025-08-09",
+   "year": "2025-2026",
+   "locationName": "Mityana North, Mityana District",
+   "cover": "GyEXcuQW8AElan2",
+   "need": "Malaria remains one of the biggest health threats in Mityana. The club's malaria work began in Kakindu in 2021 with mass testing, treatment and 400 nets.",
+   "beginning": "The project was launched on 9 August 2025 with its first phase in Mityana North, in partnership with Malaria Partners Uganda, Malaria Partners International, Pilgrim Africa, Rotaract Bwebajja and the Rotary Club of Kampala North.",
+   "impact": "Over 500 community members attended the first medical camp and received free blood tests, treatment, counselling and mosquito nets. Members trained families on how to use nets properly.",
+   "today": "In March 2026 the club returned to Mityana for a second phase with fumigation suits, treated nets and mama kits.",
+   "post": "1954869630196998226",
+   "partners": [
+    {
+     "org": "Malaria Partners Uganda",
+     "role": "Partner"
+    },
+    {
+     "org": "Malaria Partners International",
+     "role": "Partner"
+    },
+    {
+     "org": "Pilgrim Africa",
+     "role": "Partner"
+    },
+    {
+     "org": "Rotaract Club of Bwebajja",
+     "role": "Supporting club"
+    },
+    {
+     "org": "Rotary Club of Kampala North",
+     "role": "Mother club"
+    }
+   ],
+   "metrics": [
+    {
+     "label": "People at the first medical camp",
+     "value": 500,
+     "unit": "people",
+     "impactKey": "people_reached_health",
+     "date": "2025-08-09",
+     "post": "1954869630196998226"
+    }
+   ],
+   "milestones": [
+    {
+     "date": "2025-08-09",
+     "title": "Launch and phase 1 in Mityana North",
+     "description": "Sensitisation, a medical camp and net distribution. Over 500 people received free blood tests, treatment, counselling and mosquito nets.",
+     "stage": "IMPLEMENTATION",
+     "post": "1954869630196998226",
+     "image": "GyEXcuQW8AElan2"
+    },
+    {
+     "date": "2025-08-09",
+     "title": "Training families to use nets",
+     "description": "Members trained community members on how to use mosquito nets effectively.",
+     "stage": "IMPACT",
+     "post": "1957362197866188910",
+     "image": "GynydutXYAAoSlO"
+    },
+    {
+     "date": "2026-03-07",
+     "title": "Phase 2: fumigation, treated nets and mama kits",
+     "description": "The club went back to Mityana with fumigation suits, treated nets and mama kits.",
+     "stage": "IMPLEMENTATION",
+     "post": "2032783500655374663",
+     "image": "HDXlwVaaMAA9rNp",
+     "people": []
+    }
+   ]
+  },
+  {
+   "slug": "little-miracles-big-impact",
+   "title": "Little Miracles, Big Impact",
+   "tagline": "A child immunisation drive that moves from community to community in Kampala.",
+   "summary": "A phased immunisation drive bringing vaccines, health education, blood pressure screening and family planning consultations closer to families in Kampala's communities.",
+   "status": "ONGOING",
+   "startDate": "2025-11-29",
+   "year": "2025-2026",
+   "locationName": "Butabika, Namuwongo and Kinawataka, Kampala",
+   "cover": "HEe1ztxW8AAgrW5",
+   "need": "Many families find it hard to reach routine immunisation. The drive takes vaccines to where they live.",
+   "beginning": "Phase 1 was held at Butabika Hospital Village on 29 November 2025, led by Chief Immuniser Dr. Dennis Okwir.",
+   "impact": "Phase 2 at Butabika Sports Arena (February 2026) added health education for caregivers. Phase 3 in Namuwongo B Village (21 March 2026), with the Rotaract clubs of Bunga and Mildmay, offered immunisation, blood pressure screening and family planning consultations in one place.",
+   "today": "Phase 4 was announced for Kinawataka (May 2026). \"More phases ahead.\"",
+   "post": "2037797282851020925",
+   "partners": [
+    {
+     "org": "Rotaract Club of Bunga",
+     "role": "Co-host, phase 3"
+    },
+    {
+     "org": "Rotaract Club of Mildmay Institute of Health Sciences",
+     "role": "Co-host, phase 3"
+    }
+   ],
+   "metrics": [],
+   "milestones": [
+    {
+     "date": "2025-11-29",
+     "title": "Phase 1: Butabika Hospital Village",
+     "description": "Essential vaccines brought closer to families, led by Chief Immuniser Dr. Dennis Okwir.",
+     "stage": "IMPLEMENTATION",
+     "post": "1994822058799485355",
+     "image": "G68IDutXYAA-2KR",
+     "people": [
+      "dennis_okwir"
+     ]
+    },
+    {
+     "date": "2026-02-21",
+     "dateLabel": "February 2026",
+     "title": "Phase 2: Butabika Sports Arena",
+     "description": "Immunisation plus health education for families and caregivers.",
+     "stage": "IMPLEMENTATION",
+     "post": "2025848311886819657",
+     "image": "HB1CSZmXoAAYqRp"
+    },
+    {
+     "date": "2026-03-21",
+     "title": "Phase 3: Namuwongo B Village",
+     "description": "With Rotaract Bunga and Rotaract Mildmay: stations for immunisation, blood pressure screening and family planning consultations.",
+     "stage": "IMPLEMENTATION",
+     "post": "2037797282851020925",
+     "image": "HEe1ztxW8AAgrW5",
+     "people": []
+    },
+    {
+     "date": "2026-05-01",
+     "title": "Phase 4 announced for Kinawataka",
+     "description": "The club announced phase 4 of the drive in Kinawataka.",
+     "stage": "UPDATE",
+     "post": "2049753689204666377",
+     "image": "HHIv_UEWkAAhzu0"
+    }
+   ]
+  },
+  {
+   "slug": "give-blood-save-life-2018",
+   "title": "#GiveBloodSaveLife on World AIDS Day",
+   "tagline": "Blood donation, HIV and Hepatitis B testing near Wankulukuku Stadium, 1 December 2018.",
+   "summary": "On World AIDS Day 2018, which was also the club's fourth charter anniversary, members ran a blood donation drive with HIV and Hepatitis B testing, partnering with Pearl Generation Uganda and joined by members of Rotaract Kigali City.",
+   "status": "COMPLETED",
+   "startDate": "2018-12-01",
+   "year": "2018-2019",
+   "locationName": "Opposite Wankulukuku Stadium, Kampala",
+   "cover": "DtUeePUXoAA-OPH",
+   "beginning": "December is Rotary's Disease Prevention and Treatment month. The club marked the 30th World AIDS Day with a blood drive and testing, led by Community Service Director @DdeLuwe.",
+   "impact": "Members and guests donated blood, youths were tested for HIV and Hepatitis B and learned how to protect themselves, and past president Baguma Solomon joined the drive.",
+   "post": "1068794677619539968",
+   "partners": [
+    {
+     "org": "Pearl Generation Uganda",
+     "role": "Partner"
+    },
+    {
+     "org": "Rotaract Club of Kigali City",
+     "role": "Visiting club"
+    }
+   ],
+   "metrics": [],
+   "milestones": [
+    {
+     "date": "2018-12-01",
+     "title": "Blood drive and testing",
+     "description": "Blood donation with HIV and Hepatitis B testing near Wankulukuku Stadium.",
+     "stage": "IMPLEMENTATION",
+     "post": "1068808056836886528",
+     "image": "DtUrA_SWsAEycaB",
+     "people": [
+      "baguma"
+     ]
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "slug": "rotary-cancer-run-2016",
+   "title": "Team KANOs at the Rotary Cancer Run",
+   "date": "2016-08-28",
+   "venue": "Kololo Ceremonial Grounds",
+   "type": "FUNDRAISER",
+   "organizer": "Rotary District 9213",
+   "description": "#TeamKanos ran the 2016 Rotary Cancer Run (\"Run for Hope\"), where members met DG Jayesh H Asher.",
+   "post": "769826868736434176",
+   "cover": "Cqn0xvrWcAAOWWi"
+  },
+  {
+   "slug": "3rd-installation-2016",
+   "title": "3rd Presidential Installation",
+   "date": "2016-06-10",
+   "start": "17:30",
+   "venue": "Nommo Gallery, Nakasero (next to State House)",
+   "type": "INSTALLATION",
+   "description": "Installation of Rtr. Julius Ssekajja (\"Ssekalio\") as the club's 3rd president.",
+   "post": "736490911346139137",
+   "cover": "CjiKj-YWYAASQpt",
+   "people": [
+    "ssekajja",
+    "baguma"
+   ]
+  },
+  {
+   "slug": "kanos-hospitality-2018",
+   "title": "#KANOsHospitality camping weekend",
+   "date": "2018-11-03",
+   "endDate": "2018-11-04",
+   "venue": "Mukono",
+   "type": "SOCIAL",
+   "description": "A camping weekend of networking, entertainment, games, a food bazaar and a community clean-up, run by Buddy Group Galilee.",
+   "post": "1056544283514298369",
+   "cover": "DqmZahHWwAAvaUW"
+  },
+  {
+   "slug": "kanos-at-4-2018",
+   "title": "#KANOsAt4: 4th charter anniversary",
+   "date": "2018-12-01",
+   "type": "SOCIAL",
+   "description": "The club's charter night, with guest of honour Farid Karama, Executive Director of the Africa Agribusiness Academy.",
+   "post": "1068921260678307840",
+   "cover": "DtWRcNlW0AAYTtm",
+   "people": [
+    "farid"
+   ]
+  },
+  {
+   "slug": "kanos-meetup-forty-gift-exchange-2018",
+   "title": "#KANOsMeetUp: FORTY gift exchange",
+   "date": "2018-12-21",
+   "type": "FELLOWSHIP",
+   "description": "The end-of-year fellowship and gift exchange.",
+   "post": "1076150493251072002",
+   "cover": "Du9BKfKXgAQeABc"
+  },
+  {
+   "slug": "6th-installation-2020",
+   "title": "6th Presidential Installation (on Zoom)",
+   "date": "2020-06-19",
+   "start": "14:00",
+   "onlineUrl": null,
+   "venue": "Online (Zoom)",
+   "type": "INSTALLATION",
+   "description": "Installation of Alex Niyonzima as the club's 6th president, held online during the COVID-19 lockdown. Guest of honour: @Comrade_Otoa.",
+   "post": "1272469428840660992",
+   "cover": "Eai3AVwWoAAaDu2",
+   "people": [
+    "alex"
+   ]
+  },
+  {
+   "slug": "jungle-rumble-fundraiser-2020",
+   "title": "KANOs Jungle Rumble Fundraiser",
+   "date": "2020-11-20",
+   "endDate": "2020-11-21",
+   "venue": "Roots Retreat & Camping Site",
+   "type": "FUNDRAISER",
+   "project": "kanos-4-kakindu",
+   "description": "A \"lockdown escape edition\" fundraiser for #KANOs4Kakindu: treasure hunt, canoeing, brain games, forest walk, bike racing, fishing and a camp fire.",
+   "post": "1324242222250971137",
+   "cover": "EmCnRJtXEAAAErY"
+  },
+  {
+   "slug": "7th-installation-2021",
+   "title": "7th Presidential Installation: poolside luncheon",
+   "date": "2021-05-15",
+   "start": "13:00",
+   "venue": "Hotel Triangle (poolside)",
+   "type": "INSTALLATION",
+   "description": "Installation of Clare Umutesi Ahebwa. Chief guest: Jane Lubowa Kibirige, Clerk to Parliament. Guest of honour: PDG Emmanuel Katongole.",
+   "post": "1393435936206241792",
+   "cover": "E1Z6ksaXEAAfRA0",
+   "people": [
+    "clare"
+   ]
+  },
+  {
+   "slug": "kakindu-phase-1-handover-2021",
+   "title": "#KANOs4Kakindu Phase I handover & malaria project launch",
+   "date": "2021-09-25",
+   "venue": "Malwa Umea Primary School, Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "Handover of the renovated classroom block and launch of #KANOsAgainstMalaria with Abacus Pharma, the Rotary Club of Muyenga, Movit Products and Malaria Partners International.",
+   "post": "1439920287626186760",
+   "cover": "FAIgeelWYAAidHc",
+   "people": [
+    "carolyne"
+   ]
+  },
+  {
+   "slug": "kakindu-project-day-2022-03",
+   "title": "#KANOs4Kakindu project day",
+   "date": "2022-03-19",
+   "venue": "Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "Water tank commissioning and maternal health donations, followed by an after-party at Forest Park Buloba.",
+   "post": "1505071879480037376",
+   "cover": "FOmFY4cXEAEQWT8"
+  },
+  {
+   "slug": "8th-installation-2022",
+   "title": "8th Presidential Installation",
+   "date": "2022-05-07",
+   "start": "14:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "INSTALLATION",
+   "description": "Installation of Pascal Ongom.",
+   "post": "1506537044868227077",
+   "cover": "FOhLBvaXMAYin5E",
+   "people": [
+    "pascal"
+   ]
+  },
+  {
+   "slug": "kakindu-library-launch-2022",
+   "title": "Kakindu library launch with DG Mike Sebalu",
+   "date": "2022-11-11",
+   "venue": "Malwa Umea Primary School, Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "District Governor Mike Kennedy Sebalu launched the school library, stocked with over 1,000 books from Enjuba, and recognised the club for its BELEP work. Afterwards: Forest Park Buloba.",
+   "post": "1590999883271770112",
+   "cover": "FhRd8VnWIAIAmtu",
+   "people": [
+    "mike_sebalu",
+    "sarah_owembabazi"
+   ]
+  },
+  {
+   "slug": "kanos-at-8-2022",
+   "title": "#KANOsAt8: 8th charter anniversary",
+   "date": "2022-12-01",
+   "type": "SOCIAL",
+   "description": "Eight years of the club, with basic education and literacy at Kakindu as a highlight.",
+   "post": "1598528439585218561",
+   "cover": "Fi6ujVmXgAYedPh"
+  },
+  {
+   "slug": "9th-installation-2023",
+   "title": "9th Presidential Installation",
+   "date": "2023-05-20",
+   "venue": "Protea Hotel",
+   "type": "INSTALLATION",
+   "description": "Installation of Carolyne Bavuga.",
+   "post": "1635180195060793344",
+   "cover": "FrFTtOWWAAQSVoA",
+   "people": [
+    "carolyne"
+   ]
+  },
+  {
+   "slug": "kakindu-phase-4-2024",
+   "title": "#KANOs4Kakindu Phase 4",
+   "date": "2024-03-16",
+   "venue": "Malwa Umea Primary School, Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "3D hall impressions, the C2F programme, KANOsAgainstMalaria 2, tree planting, peace advocacy and a medical camp. Guest of honour: PDG Ken Mugisha.",
+   "post": "1759150867138130315",
+   "cover": "GIxxCdmXcAA0nBr",
+   "people": [
+    "ken_mugisha",
+    "carolyne"
+   ]
+  },
+  {
+   "slug": "10th-installation-2024",
+   "title": "10th Presidential Installation",
+   "date": "2024-05-18",
+   "start": "15:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "INSTALLATION",
+   "description": "Installation of Edwin Muyunga. Dress code: Wakanda Haute Couture.",
+   "post": "1757286422313095661",
+   "cover": "GGMirSGXkAU5yB7",
+   "people": [
+    "edwin"
+   ]
+  },
+  {
+   "slug": "sanitation-waste-management-talk-2025",
+   "title": "Fellowship: Sanitation & Waste Management for Community Wellbeing",
+   "date": "2025-03-14",
+   "start": "18:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "FELLOWSHIP",
+   "description": "With HCP @AccramNsubuga. Buddy group in charge: Mapeera.",
+   "post": "1899759496655778135",
+   "cover": "Gl1NLzcW8AAjf8z"
+  },
+  {
+   "slug": "kakindu-phase-5-2025",
+   "title": "#KANOs4Kakindu Phase 5",
+   "date": "2025-03-15",
+   "venue": "Malwa Umea Primary School, Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "The fifth project day, covered by UBC TV and NBS TV.",
+   "post": "1900932708156797260",
+   "cover": "GmF0FoDbcAANGzB",
+   "people": [
+    "edwin"
+   ]
+  },
+  {
+   "slug": "seven-days-of-service-day-7-2025",
+   "title": "Seven Days of Service, Day 7: trees and waste management",
+   "date": "2025-07-07",
+   "start": "15:00",
+   "venue": "Mpererwe COU Primary School",
+   "type": "SERVICE_PROJECT",
+   "description": "Tree planting and a waste management training with the Rotaract Club of Kyengera, for Rotary's area of focus on supporting the environment.",
+   "post": "1937843039063425053",
+   "cover": "GuSZ90oXcAAd8wz"
+  },
+  {
+   "slug": "drr-abesage-visit-2025",
+   "title": "DRR Abesage Nahabwe visits KANOs",
+   "date": "2025-07-18",
+   "type": "OFFICIAL_VISIT",
+   "venue": "Hotel Triangle, Buganda Road",
+   "organizer": "Rotaract District 9213",
+   "description": "The District Rotaract Representative's visit began with a board meeting on the club's current state and future plans. During the visit the club presented a UGX 10,000,000 cheque to The Rotary Foundation.",
+   "post": "1947980340162707459",
+   "cover": "GwidxOsXgAE-Blv",
+   "people": [
+    "abesage",
+    "rogers"
+   ]
+  },
+  {
+   "slug": "united-against-malaria-launch-2025",
+   "title": "United Against Malaria: launch & phase 1",
+   "date": "2025-08-09",
+   "start": "07:00",
+   "venue": "Mityana North (departure from the National Theatre)",
+   "type": "SERVICE_PROJECT",
+   "project": "united-against-malaria",
+   "description": "Launch of the United Against Malaria project with Malaria Partners Uganda, Malaria Partners International and Pilgrim Africa.",
+   "post": "1954869630196998226",
+   "cover": "Gw67FvbW8AAZbVy"
+  },
+  {
+   "slug": "co-curricular-activities-talk-2025",
+   "title": "Fellowship: Co-curricular activities in education",
+   "date": "2025-09-12",
+   "start": "18:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "FELLOWSHIP",
+   "description": "Anita Desley Ariho on \"The Involvement of Co-Curricular Activities in Education\". Gazaland Buddy Group in charge.",
+   "post": "1965678318059237499",
+   "cover": "G0d-ANHWsAAttbW"
+  },
+  {
+   "slug": "kakindu-phase-6-2025",
+   "title": "#KANOs4Kakindu Phase 6",
+   "date": "2025-09-20",
+   "venue": "Malwa Umea Primary School, Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "Classroom block handover, the Girl Child Initiative launch, a free medical camp and tree planting.",
+   "post": "1969327167134732445",
+   "cover": "G1R0m3wXsAAOaho",
+   "people": []
+  },
+  {
+   "slug": "immunization-drive-phase-1-2025",
+   "title": "Immunisation drive, phase 1",
+   "date": "2025-11-29",
+   "venue": "Butabika Hospital Village",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "little-miracles-big-impact",
+   "description": "First phase of the child immunisation drive.",
+   "post": "1994822058799485355",
+   "cover": "G68IDutXYAA-2KR",
+   "people": [
+    "dennis_okwir"
+   ]
+  },
+  {
+   "slug": "united-against-malaria-phase-2-2026",
+   "title": "United Against Malaria: phase 2",
+   "date": "2026-03-07",
+   "venue": "Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "united-against-malaria",
+   "description": "Fumigation, treated nets and mama kits in Mityana.",
+   "post": "2032783500655374663",
+   "cover": "HDXlwVaaMAA9rNp"
+  },
+  {
+   "slug": "immunization-drive-phase-3-2026",
+   "title": "Little Miracles, Big Impact: phase 3",
+   "date": "2026-03-21",
+   "start": "08:00",
+   "venue": "Namuwongo B Village",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "little-miracles-big-impact",
+   "description": "Child immunisation, blood pressure screening and family planning, with the Rotaract clubs of Bunga and Mildmay. Chief immuniser: Rtn Ronald Mulindwa, Polio Plus Chair D9213 (per the flyer).",
+   "post": "2034555520934199580",
+   "cover": "HDwxc0iXgAAQEro"
+  },
+  {
+   "slug": "impact-board-unveiling-2026",
+   "title": "Unveiling the 2026–27 Impact Board",
+   "date": "2026-04-10",
+   "start": "18:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "FELLOWSHIP",
+   "description": "President-Elect Ezekiel Kiggundu unveiled his Impact Board and officers.",
+   "post": "2042880009723957471",
+   "cover": "HFnEiEfXMAAN5gZ",
+   "people": [
+    "ezekiel"
+   ]
+  },
+  {
+   "slug": "vocational-service-award-2026",
+   "title": "KANOs Vocational Service Award & guests' Hot Seat",
+   "date": "2026-05-08",
+   "start": "18:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "FELLOWSHIP",
+   "description": "The club presented its Vocational Service Award to Winnie Nabukeera of the Little Winnie Foundation, and inducted new members.",
+   "post": "2052792153051369700",
+   "cover": "HHz7kVkXAAMw-w9",
+   "people": [
+    "winnie"
+   ]
+  },
+  {
+   "slug": "12th-installation-2026",
+   "title": "12th Presidential Installation",
+   "date": "2026-05-09",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "INSTALLATION",
+   "description": "Installation of Ezekiel Kiggundu. Dress code: Modern Empire Silhouette. DJ Guanz on the decks.",
+   "post": "2051632181370302491",
+   "cover": "HHjclnpXIAMdib0",
+   "people": [
+    "ezekiel",
+    "rogers"
+   ]
+  },
+  {
+   "slug": "end-of-year-awards-2026",
+   "title": "KANOs End of Year Awards",
+   "date": "2026-06-28",
+   "venue": "Hotel Port Harbor, Kirinya",
+   "type": "SOCIAL",
+   "description": "Recognising excellence as the 2025–26 Rotary year closed.",
+   "post": "2065651447165763902",
+   "cover": "HKqrCi1WYAAYnfH"
+  },
+  {
+   "slug": "mabirizi-brunch-and-bloom-2026",
+   "title": "Mabirizi Annual Brunch and Bloom",
+   "date": "2026-07-11",
+   "dateNote": "posted",
+   "type": "SOCIAL",
+   "description": "The annual brunch, with guests from the Rotaract Club of Rubaga.",
+   "post": "2075888650299068592",
+   "cover": "HM8JlYTWYAAZz0h"
+  },
+  {
+   "slug": "kanos-mentorship-series-2026-09",
+   "title": "KANOs Mentorship Series: resource documents and websites",
+   "date": "2026-09-16",
+   "start": "20:00",
+   "venue": "Online (Google Meet)",
+   "type": "PROFESSIONAL_DEVELOPMENT",
+   "description": "@MarkTusiime on resource documents, websites and how to use them effectively.",
+   "post": "2100086021513748826",
+   "cover": "HSUBGjeXcAAGKua"
+  },
+  {
+   "slug": "kiyoganyi-solar-commissioning-2026",
+   "title": "Solar commissioning & medical camp, Kiyoganyi Health Centre III",
+   "date": "2026-09-19",
+   "venue": "Kiyoganyi Health Centre III, Mityana North",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "With the Rotary Club of Kampala Springs, Rotaract Bwebajja and E-KANOs: solar commissioning, a medical camp with eye tests, baby weighing and tree planting.",
+   "post": "2103677238138851657",
+   "cover": "HTHDRvnXYAAKzuE",
+   "people": [
+    "rogers"
+   ]
+  },
+  {
+   "slug": "kb-night-2026",
+   "title": "KB Night at Red Basket",
+   "date": "2026-09-25",
+   "start": "18:00",
+   "venue": "Red Basket",
+   "type": "SOCIAL",
+   "description": "Fellowship night hosted by Buddy Group Mapeera.",
+   "post": "2101974307584794687",
+   "cover": "HSu2e3mX0AArO22"
+  },
+  {
+   "slug": "youth-opportunity-talk-fatir-muzaaya-2026",
+   "title": "Making It in Uganda Today: Youth, Opportunity and the Economics of Survival",
+   "date": "2026-10-02",
+   "start": "18:00",
+   "venue": "Hotel Triangle, Buganda Road",
+   "type": "PROFESSIONAL_DEVELOPMENT",
+   "description": "A conversation with Fatir Muzaaya.",
+   "post": "2105502092357939671",
+   "cover": "HTg-_XTWUAASa2R",
+   "people": [
+    "fatir"
+   ]
+  },
+  {
+   "slug": "kanos-retreat-mbale-2026",
+   "title": "KANOs Retreat, Mbale",
+   "date": "2026-10-09",
+   "endDate": "2026-10-10",
+   "venue": "Mbale",
+   "type": "SOCIAL",
+   "description": "Friday afternoon (9 Oct): a field learning visit to discover manufacturing practices and meet professionals. Saturday (10 Oct), 7 PM to midnight: Oldies Night at PAG Waneloba's residence, dress code 90s retro.",
+   "post": "2103119349246521813",
+   "cover": "HS_H5eJWgAAU5y5"
+  }
+ ],
+ "visits": [
+  {
+   "visitorName": "Abesage Nahabwe",
+   "visitorTitle": "District Rotaract Representative",
+   "person": "abesage",
+   "date": "2025-07-18",
+   "venue": "Hotel Triangle, Buganda Road",
+   "status": "COMPLETED",
+   "event": "drr-abesage-visit-2025",
+   "summary": "DRR Abesage Nahabwe's visit to KANOs began with a board meeting on the club's current state and future plans, followed by fellowship with members.",
+   "post": "1947980340162707459"
+  }
+ ],
+ "achievements": [
+  {
+   "title": "Rotaract Image club award, DCA 92 (Arusha)",
+   "date": "2017-05-12",
+   "year": "2016-2017",
+   "description": "The club received a #RotaractImage award at the 92nd District Conference & Assembly in Arusha, Tanzania; Vice President Younis Sebaggala handed it over at Rotaract UICT's takeover.",
+   "post": "863090337228754947",
+   "image": "C_pQEsXW0Ac2U8b"
+  },
+  {
+   "title": "Certificate of appreciation from DG Mike Sebalu for BELEP",
+   "date": "2022-11-11",
+   "year": "2022-2023",
+   "description": "District Governor Mike Kennedy Sebalu recognised the club's contribution to the Basic Education and Literacy Enhancement Program (BELEP) in D9213 at the Kakindu library launch.",
+   "post": "1591081191364517889",
+   "image": "FhSn5qQXEAApQs_",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "title": "Corporate Membership Engagement Award, RY 2024–25",
+   "date": "2025-04-11",
+   "year": "2024-2025",
+   "description": "Received at the 100th District Conference (#100ThDISCON), Rotaract District 9213.",
+   "post": "1910757053074641038",
+   "image": "GoRfYjeWgAEQ87h",
+   "featured": true
+  },
+  {
+   "title": "Runner-up, Membership Extension Award (Tier 2), RY 2024–25",
+   "date": "2025-04-11",
+   "year": "2024-2025",
+   "description": "Received at the 100th District Conference (#100ThDISCON), Rotaract District 9213.",
+   "post": "1910757433376714953",
+   "image": "GoRfvpiXYAAiNCw"
+  },
+  {
+   "title": "Rotary Club Excellence Award, RY 2024–25",
+   "date": "2025-08-21",
+   "year": "2024-2025",
+   "description": "A Rotary International citation signed by RI President Stephanie A. Urchick and Trustee Chair Mark Daniel Maloney, for \"fostering a positive experience for our members and upholding the values of Rotary\".",
+   "post": "1958570686928306317",
+   "image": "Gy49pndW0AEyNeR",
+   "featured": true
+  },
+  {
+   "title": "Sharon Tumushabe becomes a Paul Harris Fellow",
+   "date": "2021-02-08",
+   "year": "2020-2021",
+   "person": "sharon",
+   "description": "The club's Mission Green President attained Paul Harris Fellow status (US$1,000 or more given to The Rotary Foundation).",
+   "post": "1358804923987742720",
+   "image": "Ettx0qCXMAMzbxJ"
+  }
+ ],
+ "history": [
+  {
+   "date": "2016-04-01",
+   "dateLabel": "April 2016",
+   "title": "First visit to Kakindu",
+   "kind": "PROJECT",
+   "description": "The club holds a medical camp in Kakindu, Mityana, which its newsletter calls its signature project. Four years later it returns to adopt the whole community.",
+   "post": "792318100238729219",
+   "image": "Cv7hChaWEAEc1Qu",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2016-06-10",
+   "title": "Julius Ssekajja installed as 3rd president",
+   "kind": "PRESIDENT",
+   "description": "The installation is held at Nommo Gallery, next to State House.",
+   "post": "736490911346139137",
+   "image": "CjiKj-YWYAASQpt",
+   "people": [
+    "ssekajja"
+   ]
+  },
+  {
+   "date": "2017-05-12",
+   "title": "Rotaract Image award at DCA 92",
+   "kind": "AWARD",
+   "description": "The club brings home a Rotaract Image award from the District Conference & Assembly in Arusha, Tanzania.",
+   "post": "863090337228754947",
+   "image": "C_pQEsXW0Ac2U8b"
+  },
+  {
+   "date": "2017-07-08",
+   "title": "Sharon Tumushabe, the \"Mission Green President\"",
+   "kind": "PRESIDENT",
+   "description": "The club introduces its new president for 2017–18.",
+   "post": "883621714315411457",
+   "image": "DENBM5gXYAAuRsC",
+   "people": [
+    "sharon"
+   ]
+  },
+  {
+   "date": "2018-12-01",
+   "title": "Four years old, and giving blood",
+   "kind": "MOMENT",
+   "description": "On World AIDS Day the club runs a blood drive with HIV and Hepatitis B testing, then celebrates its fourth charter night (#KANOsAt4).",
+   "post": "1068921260678307840",
+   "image": "DtWRcNlW0AAYTtm",
+   "projects": [
+    "give-blood-save-life-2018"
+   ]
+  },
+  {
+   "date": "2020-06-19",
+   "title": "An installation on Zoom",
+   "kind": "PRESIDENT",
+   "description": "During the COVID-19 lockdown, Alex Niyonzima is installed online as the 6th president.",
+   "post": "1272469428840660992",
+   "image": "EYmkhi8WoAAm-Gg",
+   "people": [
+    "alex"
+   ]
+  },
+  {
+   "date": "2020-10-04",
+   "title": "Adopting Kakindu",
+   "kind": "PROJECT",
+   "description": "The technical team assesses Malwa Umea Primary School and #KANOs4Kakindu begins.",
+   "post": "1312703112872951808",
+   "image": "Ejeog29XgAcF1zE",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2021-09-25",
+   "title": "The first classroom block is handed over",
+   "kind": "PROJECT",
+   "description": "Phase I of #KANOs4Kakindu is complete, and #KANOsAgainstMalaria is launched the same day.",
+   "post": "1441751051925925889",
+   "image": "FAIgeelWYAAidHc",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2022-11-11",
+   "title": "A library for Kakindu",
+   "kind": "PROJECT",
+   "description": "DG Mike Sebalu launches the school library, stocked with over 1,000 books from Enjuba.",
+   "post": "1590999883271770112",
+   "image": "FhRd8VnWIAIAmtu",
+   "projects": [
+    "kanos-4-kakindu"
+   ],
+   "people": [
+    "mike_sebalu"
+   ]
+  },
+  {
+   "date": "2024-11-30",
+   "title": "A US$35,000 global grant",
+   "kind": "PARTNERSHIP",
+   "description": "With the Rotary Club of Madras (D3234), for digital literacy in three schools under BELEP.",
+   "post": "1862853894386110676",
+   "image": "GdovuSqWUAAPcyl",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2025-08-21",
+   "title": "Club Excellence Award",
+   "kind": "AWARD",
+   "description": "Rotary International recognises the club's 2024–25 year with the Club Excellence Award, after district awards for membership engagement earlier in the year.",
+   "post": "1958570686928306317",
+   "image": "Gy49pndW0AEyNeR",
+   "people": [
+    "edwin"
+   ]
+  },
+  {
+   "date": "2025-11-29",
+   "title": "Little Miracles, Big Impact",
+   "kind": "INITIATIVE",
+   "description": "The club starts a child immunisation drive in Kampala's communities.",
+   "post": "1994822058799485355",
+   "image": "G68IDutXYAA-2KR",
+   "projects": [
+    "little-miracles-big-impact"
+   ]
+  },
+  {
+   "date": "2026-05-09",
+   "title": "The 12th installation",
+   "kind": "PRESIDENT",
+   "description": "Ezekiel Kiggundu is installed as the club's 12th president at Hotel Triangle.",
+   "post": "2051632181370302491",
+   "image": "HHjclnpXIAMdib0",
+   "people": [
+    "ezekiel"
+   ]
+  },
+  {
+   "date": "2026-09-19",
+   "title": "Lighting up Kiyoganyi Health Centre III",
+   "kind": "PROJECT",
+   "description": "Solar power for a health centre in Mityana North, and a full day of free health services.",
+   "post": "2103677238138851657",
+   "image": "HTHDRvnXYAAKzuE",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  }
+ ],
+ "albums": [
+  {
+   "slug": "kakindu-assessment-2020",
+   "title": "Assessing Malwa Umea Primary School",
+   "date": "2020-10-04",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "Ejeog29XgAcF1zE",
+     "post": "1312703112872951808",
+     "phase": "BEFORE",
+     "caption": "Malwa Umea Primary School at the time of the club's assessment, October 2020."
+    },
+    {
+     "id": "Ejeog3AXgAAv3oy",
+     "post": "1312703112872951808",
+     "phase": "BEFORE",
+     "caption": "The technical team measures up the site."
+    },
+    {
+     "id": "Ejeog27WkAANddg",
+     "post": "1312703112872951808",
+     "phase": "BEFORE"
+    },
+    {
+     "id": "Ejeog28XkAEkn_h",
+     "post": "1312703112872951808",
+     "phase": "BEFORE"
+    }
+   ]
+  },
+  {
+   "slug": "jungle-rumble-2020",
+   "title": "Jungle Rumble Fundraiser",
+   "date": "2020-11-20",
+   "category": "FELLOWSHIP",
+   "project": "kanos-4-kakindu",
+   "event": "jungle-rumble-fundraiser-2020",
+   "images": [
+    {
+     "id": "EmCnRJtXEAAAErY",
+     "post": "1324242222250971137",
+     "caption": "Jungle Rumble Fundraiser poster, November 2020."
+    },
+    {
+     "id": "EnVTaC4XMAAJulW",
+     "post": "1330060988423561222",
+     "caption": "Live from the Jungle Rumble."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-project-day-march-2021",
+   "title": "Kakindu project day, March 2021",
+   "date": "2021-03-20",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "Ew7OAN-W8AMEGFd",
+     "post": "1373261570986414081",
+     "phase": "DURING",
+     "caption": "The three-classroom block during refurbishment."
+    },
+    {
+     "id": "Ew7OAYxWEAYEUYv",
+     "post": "1373261570986414081",
+     "phase": "DURING"
+    },
+    {
+     "id": "Ew7OAdIWEAQdj4F",
+     "post": "1373261570986414081",
+     "phase": "DURING"
+    },
+    {
+     "id": "Ew7OAnBWEAEHXwf",
+     "post": "1373261570986414081",
+     "phase": "DURING"
+    },
+    {
+     "id": "Ew6Xf7YWgAImhqs",
+     "post": "1373201528664813569",
+     "phase": "DURING",
+     "caption": "Members paint blackboards in Block 3."
+    },
+    {
+     "id": "Ew6Xf7hW8AEP7B1",
+     "post": "1373201528664813569",
+     "phase": "DURING"
+    },
+    {
+     "id": "Ew6PmxPXIAAGgpV",
+     "post": "1373192854596694020",
+     "caption": "A talk on menstrual hygiene opens the day."
+    },
+    {
+     "id": "Ew_DR6wWYAIJYNp",
+     "post": "1373531139579777024",
+     "caption": "Technical drawings of the building, prepared by club members."
+    },
+    {
+     "id": "ExVjfIQWQAcNV8z",
+     "post": "1375114711826579457",
+     "caption": "Every child received a book."
+    },
+    {
+     "id": "ExVjf-sXEAMQPfC",
+     "post": "1375114711826579457"
+    },
+    {
+     "id": "ExVnc9mWEAApE0N",
+     "post": "1375119102575050760",
+     "caption": "Planting fruit trees around the school."
+    },
+    {
+     "id": "ExVneY8XMAAs6_y",
+     "post": "1375119102575050760"
+    },
+    {
+     "id": "ExVlOk_WUAQ39qO",
+     "post": "1375116624282402819",
+     "caption": "The members who got their hands dirty."
+    },
+    {
+     "id": "Ex-3DE-WEA4BKzt",
+     "post": "1378021745899233280",
+     "caption": "Together we celebrate: pupils and members at Malwa Umea."
+    },
+    {
+     "id": "EyTfE5eWQAASBsK",
+     "post": "1379472673688932356",
+     "caption": "Together we connect."
+    },
+    {
+     "id": "EzBKDvcW8AUlWpi",
+     "post": "1382686547305201666",
+     "caption": "Mentorship sessions with pupils."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-reading-day-2021",
+   "title": "Kakindu Community Reading Day",
+   "date": "2021-04-17",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "EzfstsAX0AMUmcs",
+     "post": "1384836654314270721",
+     "caption": "The KANOs team with Enjuba at the reading day."
+    },
+    {
+     "id": "EzfN8_JXEAUYzrC",
+     "post": "1384801874512068609",
+     "caption": "Pupils reading together."
+    },
+    {
+     "id": "EzfN8_PXMAAnR5u",
+     "post": "1384801874512068609"
+    },
+    {
+     "id": "EzfFOUJWYAA7duF",
+     "post": "1384792273498558464",
+     "caption": "Parents engaged in their children's learning."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-phase-1-handover-2021",
+   "title": "Phase I handover & malaria launch",
+   "date": "2021-09-25",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-1-handover-2021",
+   "images": [
+    {
+     "id": "E_uf1r0XsAUTpsO",
+     "post": "1439920287626186760",
+     "caption": "Invitation to the Phase I handover and malaria project launch."
+    },
+    {
+     "id": "E_4QCNbUYAMA29u",
+     "post": "1440606622632398854",
+     "phase": "AFTER",
+     "caption": "The finished classroom block, September 2021."
+    },
+    {
+     "id": "E_4QCNaUcAIR1eJ",
+     "post": "1440606622632398854",
+     "phase": "AFTER"
+    },
+    {
+     "id": "FABoSHLVgAwzGfu",
+     "post": "1441266577387646979",
+     "phase": "AFTER",
+     "caption": "Ready for handover."
+    },
+    {
+     "id": "FABoSHNVIAUt9xc",
+     "post": "1441266577387646979",
+     "phase": "AFTER"
+    },
+    {
+     "id": "FAEYkF-VQAk8uLp",
+     "post": "1441460428794580994",
+     "caption": "On the billboards."
+    },
+    {
+     "id": "FAIgeelWYAAidHc",
+     "post": "1441751051925925889",
+     "caption": "The block is officially handed over to the school and community."
+    },
+    {
+     "id": "FAIgefEUcAQf8Ul",
+     "post": "1441751051925925889"
+    },
+    {
+     "id": "FAIgerTXMAExMtU",
+     "post": "1441751051925925889"
+    },
+    {
+     "id": "FAISQo8WQAUm3gB",
+     "post": "1441735048261029890",
+     "caption": "Malaria testing in Kakindu."
+    },
+    {
+     "id": "FAISQo_X0AAidXq",
+     "post": "1441735048261029890"
+    },
+    {
+     "id": "FAIUvWwXsAknKpD",
+     "post": "1441737793521205257",
+     "caption": "#KANOsAgainstMalaria is launched."
+    },
+    {
+     "id": "FAIUvXOVIAUimGz",
+     "post": "1441737793521205257"
+    },
+    {
+     "id": "FAJUeE3VQAQ9W-w",
+     "post": "1441807766524469250",
+     "caption": "Phase II begins."
+    },
+    {
+     "id": "FAJUeEWXsAIeHJk",
+     "post": "1441807766524469250"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-mosquito-nets-2021",
+   "title": "400 nets for Kakindu",
+   "date": "2021-11-13",
+   "category": "COMMUNITY_SERVICE",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "FEEGbbsWQAEqO2g",
+     "post": "1459454842355789824",
+     "caption": "Distributing 400 mosquito nets sponsored by the Rotary Club of Muyenga."
+    },
+    {
+     "id": "FEEGbbtXEAAsyW8",
+     "post": "1459454842355789824"
+    },
+    {
+     "id": "FEEGbbyWYAQFiGY",
+     "post": "1459454842355789824"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-water-tank-2022",
+   "title": "Water for Kakindu",
+   "date": "2022-03-19",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-project-day-2022-03",
+   "images": [
+    {
+     "id": "FNu0Fi6XMAQ8H31",
+     "post": "1502992970584317958",
+     "caption": "Project day invitation, March 2022."
+    },
+    {
+     "id": "FMByO7mXsAQrlHZ",
+     "post": "1495320711975604226",
+     "caption": "The community service committee in Kakindu ahead of the project day."
+    },
+    {
+     "id": "FN31S-DXIAM7TYk",
+     "post": "1503627638685982723",
+     "phase": "AFTER",
+     "caption": "Frame one transformed into frames 3 and 4."
+    },
+    {
+     "id": "FN31S-DWQAM-9n1",
+     "post": "1503627638685982723",
+     "phase": "AFTER"
+    },
+    {
+     "id": "FOMW4zGXEAcV3_C",
+     "post": "1505071879480037376",
+     "caption": "Project day with sponsors and partners."
+    },
+    {
+     "id": "FOmFY4cXEAEQWT8",
+     "post": "1506882223819177985",
+     "caption": "The 10,000-litre rainwater tank, commissioned with DRR Mukasa."
+    },
+    {
+     "id": "FOmFY4dXoAMCST9",
+     "post": "1506882223819177985"
+    },
+    {
+     "id": "FOmFbC9XMAMzvK8",
+     "post": "1506882292081471491",
+     "caption": "Delivery supplies donated to the community health centre."
+    },
+    {
+     "id": "FOmFbGnWQAQzO10",
+     "post": "1506882292081471491"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-library-2022",
+   "title": "A library for Malwa Umea",
+   "date": "2022-11-11",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-library-launch-2022",
+   "images": [
+    {
+     "id": "FX9DB0nWAAAs1o6",
+     "post": "1549030514711044098",
+     "caption": "Receiving 1,050 books from Enjuba, July 2022."
+    },
+    {
+     "id": "FX9DB0oWAAMX1nH",
+     "post": "1549030514711044098"
+    },
+    {
+     "id": "FYMypBqXoAUnp-X",
+     "post": "1550138408382627841",
+     "caption": "A joint tour to plan the community-school library."
+    },
+    {
+     "id": "FeYhiaYaYAI-Tx1",
+     "post": "1577985608756117507",
+     "caption": "Back to Kakindu: invitation."
+    },
+    {
+     "id": "FhRa_S_WYAEYiBE",
+     "post": "1590996629343309824",
+     "caption": "DG Mike Sebalu and DRR Sarah Owembabazi arrive at the school."
+    },
+    {
+     "id": "FhRa_S8XgAAyZjR",
+     "post": "1590996629343309824"
+    },
+    {
+     "id": "FhRd8VnWIAIAmtu",
+     "post": "1590999883271770112",
+     "caption": "The DG officially launches the library."
+    },
+    {
+     "id": "FhRd8WAXEAQeK6L",
+     "post": "1590999883271770112"
+    },
+    {
+     "id": "FhRd8VoXoAErHXH",
+     "post": "1590999883271770112"
+    },
+    {
+     "id": "FhSPPCcWYAABJAi",
+     "post": "1591054086073618439",
+     "caption": "The head teacher thanks KANOs."
+    },
+    {
+     "id": "FhSV4RVWYAETiBp",
+     "post": "1591061394136633347",
+     "caption": "The DG's message on BELEP."
+    },
+    {
+     "id": "FhSn5qQXEAApQs_",
+     "post": "1591081191364517889",
+     "caption": "A certificate of appreciation for the club's BELEP work."
+    },
+    {
+     "id": "FhSn5qWWQAAnIuR",
+     "post": "1591081191364517889"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-candidates-2023",
+   "title": "Success cards for candidates",
+   "date": "2023-10-19",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "F8zMW54XEAE5qO5",
+     "post": "1714970282308276678",
+     "caption": "Members visit the candidates of Malwa Umea Primary School."
+    },
+    {
+     "id": "F8zMXVKXMAAjY69",
+     "post": "1714970282308276678"
+    },
+    {
+     "id": "F8zManBXEAAx83A",
+     "post": "1714970348716744740",
+     "caption": "Encouraging the pupils to revise."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-phase-4-2024",
+   "title": "#KANOs4Kakindu Phase 4",
+   "date": "2024-03-16",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-4-2024",
+   "images": [
+    {
+     "id": "GGnCXSnXQAAJLH4",
+     "post": "1759150867138130315",
+     "caption": "Phase 4 programme."
+    },
+    {
+     "id": "GFj4OD8X0AAXx1q",
+     "post": "1754426305230094355",
+     "caption": "Visitors from the Rotary Club of Del Mar, California, February 2024."
+    },
+    {
+     "id": "GIcaoUOWUAEfDfc",
+     "post": "1767410732318990590",
+     "phase": "DURING",
+     "caption": "Construction in full swing."
+    },
+    {
+     "id": "GIxxCdmXcAA0nBr",
+     "post": "1768913137258942593",
+     "caption": "PDG Ken Mugisha plants a tree (#MissionGreen)."
+    },
+    {
+     "id": "GIxxCdkXoAANK-1",
+     "post": "1768913137258942593"
+    },
+    {
+     "id": "GIx0_7_WoAAT1D9",
+     "post": "1768917502073983110",
+     "caption": "LC1 chairman James Bukenya welcomes the club."
+    },
+    {
+     "id": "GIx4vEJWoAEzTZO",
+     "post": "1768921527049679019",
+     "caption": "Carolyne Bavuga gives an overview of the project."
+    },
+    {
+     "id": "GIyA78AWAAAgGEF",
+     "post": "1768930547827359955",
+     "caption": "PDG Ken Mugisha on the fight against malaria."
+    },
+    {
+     "id": "GIyF5c7XYAA26ku",
+     "post": "1768936057096085921",
+     "caption": "The C2F programme is launched."
+    },
+    {
+     "id": "GIyNmKiWMAAEsHv",
+     "post": "1768944501471498373",
+     "caption": "Unveiling the 3D impression of the multipurpose hall."
+    },
+    {
+     "id": "GIyNmKkXMAAgK8W",
+     "post": "1768944501471498373"
+    },
+    {
+     "id": "GIy6eVpW8AA9NdB",
+     "post": "1768993814947955124",
+     "caption": "Sanitary towels from Qipads for women and pupils."
+    },
+    {
+     "id": "GIy6eVpXUAAvuLE",
+     "post": "1768993814947955124"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-speech-day-2024",
+   "title": "Malwa Umea Speech Day 2024",
+   "date": "2024-11-30",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "GdovuSqWUAAPcyl",
+     "post": "1862853894386110676",
+     "caption": "At Malwa Umea's Speech Day, November 2024."
+    },
+    {
+     "id": "GdovuSoWEAADLEQ",
+     "post": "1862853894386110676"
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-phase-5-2025",
+   "title": "#KANOs4Kakindu Phase 5",
+   "date": "2025-03-15",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-5-2025",
+   "images": [
+    {
+     "id": "GmF0FoDbcAANGzB",
+     "post": "1900932708156797260",
+     "caption": "Laying bricks for the multipurpose building, Phase 5.",
+     "phase": "DURING"
+    },
+    {
+     "id": "Gl2tlffWwAA3U4D",
+     "post": "1899865487271440587",
+     "phase": "CURRENT",
+     "caption": "#KANOs4Kakindu, the club's flagship project."
+    },
+    {
+     "id": "Gl2tlfeWIAAKWCt",
+     "post": "1899865487271440587",
+     "phase": "CURRENT"
+    },
+    {
+     "id": "Gl2t14iXgAAkiE_",
+     "post": "1899865869829779697",
+     "phase": "CURRENT",
+     "caption": "Clean water: the 10,000-litre tank and rainwater harvesting."
+    },
+    {
+     "id": "Gl2t-FkWAAAC7mT",
+     "post": "1899865915056935094",
+     "caption": "Peace and community development dialogues."
+    },
+    {
+     "id": "Gl2uAo6WsAAl_g5",
+     "post": "1899865954625962321",
+     "caption": "Design of the multipurpose building the club is completing."
+    },
+    {
+     "id": "Gl-liNJXsAAjtTK",
+     "post": "1900419592414969885",
+     "caption": "Live on UBC TV."
+    },
+    {
+     "id": "GmF0FpjaYAAgpQo",
+     "post": "1900932708156797260",
+     "caption": "Certificate of appreciation to Roofings Group for sponsoring Phase 5."
+    },
+    {
+     "id": "GmF0FpVasAAmCMr",
+     "post": "1900932708156797260"
+    },
+    {
+     "id": "GmP-Rd7WkAAlDwB",
+     "post": "1901643055532265587",
+     "caption": "Thank you to the partners and sponsors."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-phase-6-2025",
+   "title": "#KANOs4Kakindu Phase 6",
+   "date": "2025-09-20",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-6-2025",
+   "images": [
+    {
+     "id": "G1R0m3wXsAAOaho",
+     "post": "1969327167134732445",
+     "phase": "CURRENT",
+     "caption": "Pupils outside the classroom block handed over in Phase 6."
+    },
+    {
+     "id": "GyoQVkxWkAEnY95",
+     "post": "1957396248488493286",
+     "caption": "Phase 6 invitation."
+    },
+    {
+     "id": "G1R0m36WoAAcw7u",
+     "post": "1969327167134732445",
+     "phase": "CURRENT",
+     "caption": "Giving back through healthcare, education, empowerment and conservation."
+    },
+    {
+     "id": "G1R0m39WgAAC-Ro",
+     "post": "1969327167134732445"
+    },
+    {
+     "id": "G1R3zY0XQAEFB8g",
+     "post": "1969340361051906428",
+     "caption": "Partners in service."
+    },
+    {
+     "id": "G1R30BEXMAE-Nv8",
+     "post": "1969340361051906428"
+    },
+    {
+     "id": "G1ry1x2WYAAHNEe",
+     "post": "1971451622896320824",
+     "caption": "Free health care for the community."
+    },
+    {
+     "id": "G1ry1x8W8AAVpJl",
+     "post": "1971451622896320824"
+    }
+   ]
+  },
+  {
+   "slug": "kiyoganyi-solar-2026",
+   "title": "Kiyoganyi Health Centre III",
+   "date": "2026-09-19",
+   "category": "COMMUNITY_SERVICE",
+   "project": "kanos-4-kakindu",
+   "event": "kiyoganyi-solar-commissioning-2026",
+   "images": [
+    {
+     "id": "HRQ8vhhb0AAWeMi",
+     "post": "2095366523409899694",
+     "caption": "Lighting lives, nurturing health, growing communities."
+    },
+    {
+     "id": "HSkgw_6XgAAqAgg",
+     "post": "2101246745996935203",
+     "caption": "IPP Rogers Waneloba opens the medical camp."
+    },
+    {
+     "id": "HTHDRvnXYAAKzuE",
+     "post": "2103677238138851657",
+     "caption": "A solar commissioning that became a full day of service."
+    },
+    {
+     "id": "HTHFhzMXgAAe0k2",
+     "post": "2103679740221460579",
+     "caption": "Eye tests with trial frames."
+    },
+    {
+     "id": "HTHFi7jXMAALyBo",
+     "post": "2103679740221460579"
+    },
+    {
+     "id": "HTHG82BXwAEebEQ",
+     "post": "2103681307666509965",
+     "caption": "Weighing babies."
+    },
+    {
+     "id": "HTHIXm8WQAEGLKo",
+     "post": "2103682898637271332",
+     "caption": "Planting trees around the compound."
+    },
+    {
+     "id": "HTHIY-kWcAAobwn",
+     "post": "2103682898637271332"
+    },
+    {
+     "id": "HTHK99WWcAANqUp",
+     "post": "2103685744506060947",
+     "caption": "A walkthrough of the new solar system."
+    },
+    {
+     "id": "HTHK_ImW0AAIYaH",
+     "post": "2103685744506060947"
+    },
+    {
+     "id": "HTHNhMgWQAAzxct",
+     "post": "2103688525904310561",
+     "caption": "Thank you, Mityana."
+    }
+   ]
+  },
+  {
+   "slug": "united-against-malaria-2025",
+   "title": "United Against Malaria",
+   "date": "2025-08-09",
+   "category": "COMMUNITY_SERVICE",
+   "project": "united-against-malaria",
+   "event": "united-against-malaria-launch-2025",
+   "images": [
+    {
+     "id": "Gw67FvbW8AAZbVy",
+     "post": "1953975204775854448",
+     "caption": "United Against Malaria launch poster."
+    },
+    {
+     "id": "GyEXcuQW8AElan2",
+     "post": "1954869630196998226",
+     "caption": "Health for all: over 500 people at the medical camp."
+    },
+    {
+     "id": "GyEXcuFWAAA18aG",
+     "post": "1954869630196998226"
+    },
+    {
+     "id": "GyEXct-WAAAH2vr",
+     "post": "1954869630196998226"
+    },
+    {
+     "id": "GyEZHSKXwAAGh59",
+     "post": "1954871418060984638",
+     "caption": "Launching the project in Mityana North."
+    },
+    {
+     "id": "GyEZHSHXwAAS1Fi",
+     "post": "1954871418060984638"
+    },
+    {
+     "id": "GynydutXYAAoSlO",
+     "post": "1957362197866188910",
+     "caption": "Training families to use mosquito nets."
+    },
+    {
+     "id": "GynydvGXkAApMMg",
+     "post": "1957362197866188910"
+    },
+    {
+     "id": "HDXlwVaaMAA9rNp",
+     "post": "2032783500655374663",
+     "caption": "Phase 2 in Mityana, March 2026."
+    },
+    {
+     "id": "HDXlwU6WsAAG11w",
+     "post": "2032783500655374663"
+    }
+   ]
+  },
+  {
+   "slug": "immunization-drive",
+   "title": "Little Miracles, Big Impact",
+   "date": "2025-11-29",
+   "category": "COMMUNITY_SERVICE",
+   "project": "little-miracles-big-impact",
+   "images": [
+    {
+     "id": "G68IDutXYAA-2KR",
+     "post": "1994822058799485355",
+     "caption": "Phase 1 at Butabika Hospital Village."
+    },
+    {
+     "id": "G68IDumXYAAjxEB",
+     "post": "1994822058799485355"
+    },
+    {
+     "id": "G68Iw8QWQAA5Shn",
+     "post": "1994824044114272401",
+     "caption": "Chief Immuniser Dr. Dennis Okwir at work."
+    },
+    {
+     "id": "G68Iw8XXIAAm5kv",
+     "post": "1994824044114272401"
+    },
+    {
+     "id": "HB1CSZmXoAAYqRp",
+     "post": "2025848311886819657",
+     "caption": "Phase 2 at Butabika Sports Arena."
+    },
+    {
+     "id": "HB1CSZlX0AA2Nmy",
+     "post": "2025848311886819657"
+    },
+    {
+     "id": "HB1DDL8W4AAorT2",
+     "post": "2025849149745222011",
+     "caption": "Health education for caregivers."
+    },
+    {
+     "id": "HDwxc0iXgAAQEro",
+     "post": "2034555520934199580",
+     "caption": "Phase 3 poster."
+    },
+    {
+     "id": "HEe1yHpXcAAJlYw",
+     "post": "2037797250693292487",
+     "caption": "Phase 3 in Namuwongo B Village."
+    },
+    {
+     "id": "HEe1ztxW8AAgrW5",
+     "post": "2037797282851020925",
+     "caption": "Vaccines, volunteers and a community that came ready."
+    },
+    {
+     "id": "HEe1z8jacAEC0Id",
+     "post": "2037797282851020925"
+    },
+    {
+     "id": "HEe1_h-aoAAYTgv",
+     "post": "2037797495141531921",
+     "caption": "Not all service looks glamorous."
+    },
+    {
+     "id": "HEe2CPKXYAAlp6N",
+     "post": "2037797532043010462",
+     "caption": "Phase 3. Done. Hearts full."
+    },
+    {
+     "id": "HEe2CURbkAA4Pnm",
+     "post": "2037797532043010462"
+    },
+    {
+     "id": "HHIv_UEWkAAhzu0",
+     "post": "2049753689204666377",
+     "caption": "Phase 4: Kinawataka."
+    }
+   ]
+  },
+  {
+   "slug": "give-blood-save-life-2018",
+   "title": "#GiveBloodSaveLife 2018",
+   "date": "2018-12-01",
+   "category": "COMMUNITY_SERVICE",
+   "project": "give-blood-save-life-2018",
+   "images": [
+    {
+     "id": "DtTHOYxWsAAflzR",
+     "post": "1068703754558586880",
+     "caption": "December: Disease Prevention and Treatment month."
+    },
+    {
+     "id": "DtTISXvXcAAYR3n",
+     "post": "1068703764448780289"
+    },
+    {
+     "id": "DtUL4rRXcAAeLhO",
+     "post": "1068774343474405376",
+     "caption": "A visiting Rotaractor from Kyambogo donates blood."
+    },
+    {
+     "id": "DtUeePUXoAA-OPH",
+     "post": "1068794677619539968",
+     "caption": "With Pearl Generation Uganda and Rotaract Kigali City."
+    },
+    {
+     "id": "DtUrA_SWsAEycaB",
+     "post": "1068808056836886528",
+     "caption": "Talking to youths about HIV prevention."
+    },
+    {
+     "id": "DtUrDZtXcAAZNN3",
+     "post": "1068808056836886528"
+    }
+   ]
+  },
+  {
+   "slug": "charter-anniversaries",
+   "title": "Charter anniversaries",
+   "date": "2018-12-01",
+   "category": "FELLOWSHIP",
+   "images": [
+    {
+     "id": "DtV5luuWwAAULPd",
+     "post": "1068895333713944576",
+     "caption": "#KANOsAt4: guest of honour Farid Karama at the high table."
+    },
+    {
+     "id": "DtWRcNlW0AAYTtm",
+     "post": "1068921260678307840",
+     "caption": "Cutting the cake at the fourth charter night, 2018."
+    },
+    {
+     "id": "DvaLYupX0AAOsXE",
+     "post": "1078212828920770560"
+    },
+    {
+     "id": "DvaLu0IX0AAdv8d",
+     "post": "1078212833958129664"
+    },
+    {
+     "id": "DvaL8btXcAAGYTO",
+     "post": "1078212833958129664"
+    },
+    {
+     "id": "Fi6ujVmXgAYedPh",
+     "post": "1598528439585218561",
+     "caption": "#KANOsAt8, 2022."
+    },
+    {
+     "id": "Fi6uncFXgAwPhWh",
+     "post": "1598528439585218561"
+    }
+   ]
+  },
+  {
+   "slug": "presidential-installations",
+   "title": "Presidential installations",
+   "date": "2016-06-10",
+   "category": "INSTALLATION",
+   "images": [
+    {
+     "id": "CjiKj-YWYAASQpt",
+     "post": "736490911346139137",
+     "caption": "3rd installation invitation: Rtr. Julius Ssekajja, 10 June 2016."
+    },
+    {
+     "id": "DENBM5gXYAAuRsC",
+     "post": "883621714315411457",
+     "caption": "Introducing the new president, July 2017."
+    },
+    {
+     "id": "DnRi_LFW0AYn0Ra",
+     "post": "1041566394503102464",
+     "caption": "President Bright, September 2018."
+    },
+    {
+     "id": "EYmkhi8WoAAm-Gg",
+     "post": "1263722070506188800",
+     "caption": "President-Elect Alex Niyonzima, May 2020."
+    },
+    {
+     "id": "EaIxREvXgAEsDVY",
+     "post": "1270632228536672261",
+     "caption": "Ask the President-Elect, June 2020."
+    },
+    {
+     "id": "Eai3AVwWoAAaDu2",
+     "post": "1272469428840660992",
+     "caption": "The 6th installation, on Zoom."
+    },
+    {
+     "id": "EyeNYilXEAEWk6E",
+     "post": "1380227279431827457",
+     "caption": "President-Elect Clare Umutesi Ahebwa, April 2021."
+    },
+    {
+     "id": "E1Z6ksaXEAAfRA0",
+     "post": "1393435936206241792",
+     "caption": "The 7th installation."
+    },
+    {
+     "id": "E5MYliHWEAIzHz8",
+     "post": "1410498152092819456",
+     "caption": "Happy new Rotary year from President Clare Ahebwa, 1 July 2021."
+    },
+    {
+     "id": "FOhLBvaXMAYin5E",
+     "post": "1506537044868227077",
+     "caption": "The 8th installation: Pascal Ongom."
+    },
+    {
+     "id": "FrFTtOWWAAQSVoA",
+     "post": "1635180195060793344",
+     "caption": "The 9th installation: Carolyne Bavuga."
+    },
+    {
+     "id": "GAvVjVGXUAAedj5",
+     "post": "1732713294773797166",
+     "caption": "President Nominee 2025/26: Rogers Waneloba."
+    },
+    {
+     "id": "GERa95vXIAAHcSH",
+     "post": "1748622658688663842",
+     "caption": "The 10th installation: Edwin Muyunga."
+    },
+    {
+     "id": "GGMirSGXkAU5yB7",
+     "post": "1757286422313095661"
+    },
+    {
+     "id": "HHjcWJOXoAIykiz",
+     "post": "2051631959915266541",
+     "caption": "The 11th installation: Arabian Nights."
+    },
+    {
+     "id": "HHjclnpXIAMdib0",
+     "post": "2051632181370302491",
+     "caption": "The 12th installation: President-Elect Ezekiel Kiggundu."
+    },
+    {
+     "id": "HHjcltBWYAEVdy4",
+     "post": "2051632181370302491"
+    }
+   ]
+  },
+  {
+   "slug": "club-life",
+   "title": "Club life",
+   "date": "2016-08-24",
+   "category": "FELLOWSHIP",
+   "images": [
+    {
+     "id": "Cqn0xvrWcAAOWWi",
+     "post": "768414380958547968",
+     "caption": "#TeamKanos gets ready for the 2016 Rotary Cancer Run."
+    },
+    {
+     "id": "Cq75cFtWEAAnXic",
+     "post": "769826868736434176",
+     "caption": "With DG Jayesh H Asher at the Rotary Cancer Run."
+    },
+    {
+     "id": "Cv7hChaWEAEc1Qu",
+     "post": "792318100238729219",
+     "caption": "#KanosNewsletter: \"Rotary My Family\", by the club secretary, 2016."
+    },
+    {
+     "id": "C_pQEsXW0Ac2U8b",
+     "post": "863090337228754947",
+     "caption": "Handing over the Rotaract Image award from DCA 92."
+    },
+    {
+     "id": "DqmZahHWwAAvaUW",
+     "post": "1056544283514298369",
+     "caption": "#KANOsHospitality, November 2018."
+    },
+    {
+     "id": "Du8zDRPX4AEjkCA",
+     "post": "1076134998602907649",
+     "caption": "#KANOsMeetUp, December 2018."
+    },
+    {
+     "id": "Du9BKfKXgAQeABc",
+     "post": "1076150493251072002"
+    },
+    {
+     "id": "EOs9H2ZUEAA2yue",
+     "post": "1219135351136169985",
+     "caption": "Members give PLD talks at other clubs, January 2020."
+    },
+    {
+     "id": "EOs9IhKVAAEPoJw",
+     "post": "1219135351136169985"
+    },
+    {
+     "id": "Ettx0qCXMAMzbxJ",
+     "post": "1358804923987742720",
+     "caption": "Sharon Tumushabe becomes a Paul Harris Fellow, February 2021."
+    },
+    {
+     "id": "FCdEX8oXoAYW8wj",
+     "post": "1452204592310243336",
+     "caption": "World Polio Day at Rotary Mukono Hospital, 2021."
+    },
+    {
+     "id": "Gap3vHWWYAAhB6C",
+     "post": "1849422255551291857",
+     "caption": "World Polio Day 2024."
+    },
+    {
+     "id": "Gl1NLzcW8AAjf8z",
+     "post": "1899759496655778135"
+    },
+    {
+     "id": "GoRfYjeWgAEQ87h",
+     "post": "1910757053074641038",
+     "caption": "Corporate Membership Engagement Award, RY 2024–25."
+    },
+    {
+     "id": "GoRfvpiXYAAiNCw",
+     "post": "1910757433376714953",
+     "caption": "Runner-up, Membership Extension Award (Tier 2), RY 2024–25."
+    },
+    {
+     "id": "GuSZ90oXcAAd8wz",
+     "post": "1937843039063425053",
+     "caption": "Seven Days of Service, day 7."
+    },
+    {
+     "id": "GwidxOsXgAE-Blv",
+     "post": "1947980340162707459",
+     "caption": "DRR Abesage Nahabwe's visit begins with a board meeting."
+    },
+    {
+     "id": "GwidxOvWEAIIsh3",
+     "post": "1947980340162707459"
+    },
+    {
+     "id": "Gy49pndW0AEyNeR",
+     "post": "1958570686928306317",
+     "caption": "Club Excellence Award, RY 2024–25."
+    },
+    {
+     "id": "G0d-ANHWsAAttbW",
+     "post": "1965678318059237499"
+    },
+    {
+     "id": "G4sBlScW4AAwhOO",
+     "post": "1984687182687142190",
+     "caption": "Celebrating the charter of the Rotaract E-Club of Kampala North (E-KANOs)."
+    },
+    {
+     "id": "HFnEiEfXMAAN5gZ",
+     "post": "2042880009723957471",
+     "caption": "Unveiling the 2026–27 Impact Board."
+    },
+    {
+     "id": "HFnEiEgXcAA2DfS",
+     "post": "2042880009723957471"
+    },
+    {
+     "id": "HHX-ntWawAAKAOr",
+     "post": "2050825199398862938",
+     "caption": "New inductees, May 2026."
+    },
+    {
+     "id": "HHz7kVkXAAMw-w9",
+     "post": "2052792153051369700",
+     "caption": "Winnie Nabukeera receives the KANOs Vocational Service Award."
+    },
+    {
+     "id": "HHz7kVlWgAAjVvp",
+     "post": "2052792153051369700"
+    },
+    {
+     "id": "HH0AXNXW0AENsw2",
+     "post": "2052797415560819048"
+    },
+    {
+     "id": "HKqrCi1WYAAYnfH",
+     "post": "2065651447165763902"
+    },
+    {
+     "id": "HM8JlYTWYAAZz0h",
+     "post": "2075888650299068592",
+     "caption": "Mabirizi Annual Brunch and Bloom, July 2026."
+    },
+    {
+     "id": "HM8JnPYW4AAnI2t",
+     "post": "2075888650299068592"
+    },
+    {
+     "id": "HNU7qn3W8AAUF_5",
+     "post": "2077632490194313556",
+     "caption": "Presenting a UGX 10 million cheque to The Rotary Foundation during the DRR's visit."
+    },
+    {
+     "id": "HNU7rodWUAAbDlT",
+     "post": "2077632490194313556"
+    },
+    {
+     "id": "HSUBGjeXcAAGKua",
+     "post": "2100086021513748826"
+    },
+    {
+     "id": "HSu2e3mX0AArO22",
+     "post": "2101974307584794687"
+    },
+    {
+     "id": "HS_H5eJWgAAU5y5",
+     "post": "2103119349246521813",
+     "caption": "KANOs Retreat in Mbale: field learning visit."
+    },
+    {
+     "id": "HS9K5rkXYAA2t5R",
+     "post": "2102981915540132053",
+     "caption": "KANOs Retreat in Mbale: Oldies Night."
+    },
+    {
+     "id": "HTg-_XTWUAASa2R",
+     "post": "2105502092357939671"
+    },
+    {
+     "id": "HThU9sbWEAAxewc",
+     "post": "2105526252928987178",
+     "caption": "Kirabo Jael, guest of the month for September 2026."
+    }
+   ]
+  }
+ ],
+ "posts": [
+  {
+   "id": "736490911346139137",
+   "date": "2016-05-28T09:34:00Z",
+   "text": "All roads have been cleaned just for All star President @ssekalio gets installed on 10th June 2016.",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "3rd-installation-2016"
+  },
+  {
+   "id": "769826868736434176",
+   "date": "2016-08-28T09:20:00Z",
+   "text": "#TeamKanos @dorah_kamugisha & Liz @RotaryCancerRun with DG Jayesh H Asher #RotaryCR16",
+   "category": "EVENT",
+   "event": "rotary-cancer-run-2016"
+  },
+  {
+   "id": "792318100238729219",
+   "date": "2016-10-29T10:52:00Z",
+   "text": "#KanosNewsletter @Rotary My Family by our Club CEO @dnsalma",
+   "category": "ANNOUNCEMENT",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "863090337228754947",
+   "date": "2017-05-12T17:55:00Z",
+   "text": "Our Vice President @Younisebz handed over the #RotaractImage club Award received during #DCA92 in Arusha Tanzania to @rctuict President",
+   "category": "ACHIEVEMENT"
+  },
+  {
+   "id": "883621714315411457",
+   "date": "2017-07-08T09:40:00Z",
+   "text": "We introduce to you the new President. MGP @ShanTushabe. We wish you the best and a lovely #Rotary18.",
+   "category": "LEADERSHIP_UPDATE"
+  },
+  {
+   "id": "1041566394503102464",
+   "date": "2018-09-17T05:55:00Z",
+   "text": "Congratulations to our Inspirational President @Rctbright. Our President on Saturday went on one knee to propose to his love of life Berna Bethany. We wish them all the best.",
+   "category": "MEMBER_SPOTLIGHT"
+  },
+  {
+   "id": "1056544283514298369",
+   "date": "2018-10-28T13:52:00Z",
+   "text": "The long awaited #KANOsHospitality powered by Buddy Group Galilee headed by @RoyBecky has been approved. You're all invited to bond with us.",
+   "category": "EVENT",
+   "event": "kanos-hospitality-2018"
+  },
+  {
+   "id": "1068794677619539968",
+   "date": "2018-12-01T09:11:00Z",
+   "text": "@kanosug partnering with @PGUganda to save lives in Uganda. We are delighted to be joined by members from @RCkigalicity. #GiveBloodSaveLife #KnowYourStatus #WorldAIDSDay #PG4Youth",
+   "category": "COMMUNITY_SERVICE",
+   "project": "give-blood-save-life-2018"
+  },
+  {
+   "id": "1068921260678307840",
+   "date": "2018-12-01T17:34:00Z",
+   "text": "Congratulations to us from on wards and upwards. A million thanks to all club members and guests that have blessed us with your presence today evening. #KANOsAT4",
+   "category": "FELLOWSHIP",
+   "event": "kanos-at-4-2018"
+  },
+  {
+   "id": "1272469428840660992",
+   "date": "2020-06-15T10:02:00Z",
+   "text": "Do zoom in this Friday as we witness the Installation of our esteemed 6th President @AlexNiyonzima at 14:00 EAT. Our Guest of honor shall be @Comrade_Otoa #6thKANOsInstallation",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "6th-installation-2020"
+  },
+  {
+   "id": "1312703112872951808",
+   "date": "2020-10-04T10:36:00Z",
+   "text": "ADOPT-KAKINDU PROJECT. KANOs Technical team today visited Malwa Umea Primary School as part of the project assessment, thanks to @AlexNiyonzima @SanSaWajja @AggieNims @pascalongom @Nankya5 @vicentkatungi for the work done #KANOS4KAKINDU",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1324242222250971137",
+   "date": "2020-11-05T06:48:00Z",
+   "text": "One day to go! The Jungle Rumble early bird registration will be closing in the next few hours. Secure your #JungleRF20 ticket now. Join us as we raise funds for the #KANOs4Kakindu project in style.",
+   "category": "EVENT",
+   "event": "jungle-rumble-fundraiser-2020"
+  },
+  {
+   "id": "1373261570986414081",
+   "date": "2021-03-20T13:14:00Z",
+   "text": "A sneak peek at the three classroom block that has undergone floor re-screeding, refurbishment of the splash aprons, interior and exterior wall surfaces. Works happening include replacement of all wooden openings to metal, addition of a water harvesting system #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1375114711826579457",
+   "date": "2021-03-25T15:57:00Z",
+   "text": "Each child with a book to aid in learning shall better the education standards of these kids. Thank you to all that donated money to buy books. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1375119102575050760",
+   "date": "2021-03-25T16:15:00Z",
+   "text": "We planted fruit trees around the school so that in future the school going pupils can have a bite but also as a remembrance for KANOs. We shall plant the trees wherever we shall go. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1384836654314270721",
+   "date": "2021-04-21T11:49:00Z",
+   "text": "A lot of thanks to the KANOs team that represented us at the Kakindu Community Reading day, a big thanks to our partners @enjuba1 who played a major role in making this day a success #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1393435936206241792",
+   "date": "2021-05-15T05:19:00Z",
+   "text": "No more bells ringing. It's done. Nothing can stop us now! Ladies and gentlemen it's our installation date. The event shall be graced by @EmKatongole and Clerk to @Parliament_Ug. #7thKANOsInstallation",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "7th-installation-2021"
+  },
+  {
+   "id": "1426790870582444033",
+   "date": "2021-08-15T06:20:00Z",
+   "text": "The #KANOs4Kakindu project phase one of construction and renovation of classroom block at 80% now. Thank you to all who have supported the cause. We look forward to handing over a fully furnished block by end of September 2021.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1441751051925925889",
+   "date": "2021-09-25T13:06:00Z",
+   "text": "The classroom block has been officially handed over to the community and school by the @MovitProductsUg MD. We look forward to partnering in the project extensively. #KANOsAgainstMalaria #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-1-handover-2021"
+  },
+  {
+   "id": "1441807766524469250",
+   "date": "2021-09-25T16:52:00Z",
+   "text": "We as well launched the starting of phase II of the construction project where the old building in Frame 1-3 will be demolished and replaced with frame 4. #KANOs4Kakindu #KANOsAgainstMalaria",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-1-handover-2021"
+  },
+  {
+   "id": "1459454842355789824",
+   "date": "2021-11-13T09:35:00Z",
+   "text": "400 nets are being distributed to the Kakindu community, a big step in the #KANOsAgainstMalaria project, nets that were sponsored by our partners @RCMuyenga #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1506882223819177985",
+   "date": "2022-03-24T06:34:00Z",
+   "text": "Over the weekend, we commissioned a 10k litre water tank in Kakindu for rain water harvest as a first measure to address the water scarcity challenges. The chief guest was DRR @_Mukasa and Rotarian @chris_kayongo. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-project-day-2022-03"
+  },
+  {
+   "id": "1506882292081471491",
+   "date": "2022-03-24T06:35:00Z",
+   "text": "To address the issue of maternal and child death related issues, we donated sorted items to the community health centre to help in the delivery of mothers. These are to be given out free instead of the 30,000 mothers have been paying to be attended to. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-project-day-2022-03"
+  },
+  {
+   "id": "1506537044868227077",
+   "date": "2022-03-23T07:43:00Z",
+   "text": "We would like to invite you to our biggest event of the year: the 8th KANOs presidential installation that will take place on 7th May 2022, 2pm at Hotel Triangle, Buganda Rd. #The8thKANOsInstallation",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "8th-installation-2022"
+  },
+  {
+   "id": "1549030514711044098",
+   "date": "2022-07-18T13:57:00Z",
+   "text": "Today afternoon our club community service chair @SyliviaKitty was delighted to receive the 1050 books from @enjuba1 towards our #KANOs4Kakindu. We continue to thank Enjuba for the loving heart towards humanity!",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1551594470977769472",
+   "date": "2022-07-25T15:45:00Z",
+   "text": "Thank you President for hosting us home and giving us a chance to showcase our #KANOs4Kakindu project. We hope to do amazing things with our mother club @rckampalanorth in this amazing #ImagineRotary year. #RotaryKlaNorthMeets",
+   "category": "FELLOWSHIP",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1590999883271770112",
+   "date": "2022-11-11T09:28:00Z",
+   "text": "The moment we've all been waiting for! Our amazing DG @mikesebaluken officially launched the school library, where with the help of @enjuba1, stocked the library with over 1000 reading books for pupils! #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-library-launch-2022"
+  },
+  {
+   "id": "1591081191364517889",
+   "date": "2022-11-11T14:51:00Z",
+   "text": "Winding up the #KANOs4Kakindu project with an after project at Forest Park Buloba, to celebrate this milestone where the guest of honor @mikesebaluken has recognized KANOs with a certificate of appreciation for contributions towards @RotaryBelep for D9213 #ImagineRotary",
+   "category": "ACHIEVEMENT",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-library-launch-2022"
+  },
+  {
+   "id": "1598528439585218561",
+   "date": "2022-12-02T04:04:00Z",
+   "text": "In the 8 years, we have prioritized empowering the young generation under basic education and literacy at our project of #KANOs4Kakindu where we recently handed over a fully stocked library at Malwa Umea P/S which was presided over by our DG @mikesebaluken. We are #KANOsAt8",
+   "category": "FELLOWSHIP",
+   "event": "kanos-at-8-2022"
+  },
+  {
+   "id": "1635180195060793344",
+   "date": "2023-03-13T07:25:00Z",
+   "text": "Ladies and gentlemen, friends and partners, we introduce to you our #9ThKANOsInstallation of our Hopeful President @CarolyneBavuga. Please mark the date & venue: the 20th of May at Protea Hotel!",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "9th-installation-2023"
+  },
+  {
+   "id": "1714970282308276678",
+   "date": "2023-10-19T11:42:00Z",
+   "text": "Members of our club, led by President @CarolyneBavuga visited the candidates of Malwa Umea Primary School, in Kakindu, to wish them success in their exams. They gave each pupil a success card and mathematical set to get them ready for exams. #KANOs4Kakindu #KANOsCreatingHope",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1732713294773797166",
+   "date": "2023-12-07T10:46:00Z",
+   "text": "Ladies and gentlemen, it is our pleasure to introduce the President Nominee for the Rotary term 2025/26, Mr. @wanelobarogers, also known as Raj. An accomplished accountant and law student, he serves as the managing partner at @Winterdalep.",
+   "category": "LEADERSHIP_UPDATE"
+  },
+  {
+   "id": "1748622658688663842",
+   "date": "2024-01-20T08:25:00Z",
+   "text": "Ladies and gentlemen, mark your calendars for May 18, 2024: a historic day as we install our 10th President, @EdwinMuyunga. #10thKANOsInstallation",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "10th-installation-2024"
+  },
+  {
+   "id": "1768944501471498373",
+   "date": "2024-03-16T10:16:00Z",
+   "text": "We're also privileged to have our Guest of Honor, @DGKenMugisha, unveil the 3D impression of the multipurpose hall, which is already under construction. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-4-2024"
+  },
+  {
+   "id": "1768936057096085921",
+   "date": "2024-03-16T09:43:00Z",
+   "text": "Our Guest of Honor has officially launched the C2F program. In his message during the launch, he stressed that the program is aimed at supporting communities through school, emphasizing that the fight against malaria starts with us. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-4-2024"
+  },
+  {
+   "id": "1768993814947955124",
+   "date": "2024-03-16T13:32:00Z",
+   "text": "Empowering women starts with health and dignity. With support from @PadsQi, we've distributed sanitary towels to women and pupils at Malwa Umea Primary School. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-4-2024"
+  },
+  {
+   "id": "1825773405947232473",
+   "date": "2024-08-20T05:54:00Z",
+   "text": "We do projects within our communities, we've around 6 projects running concurrently as KANOs. Our signature project as KANOs is #KANOs4Kakindu where we adopted an entire community to address Rotary 7 areas of focus. ~ @CarolyneBavuga #ItsTimeToJoinRotaract",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1862853894386110676",
+   "date": "2024-11-30T13:39:00Z",
+   "text": "Honored to participate in Malwa UMEA's Speech Day! We're grateful for the school's recognition of our support. We're excited to advance our community project, a $35,000 global grant with Rotary Club Madras (D3234), boosting digital literacy in 3 schools under BELEP #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1899865487271440587",
+   "date": "2025-03-12T16:50:00Z",
+   "text": "#KANOs4Kakindu is our flagship project dedicated to uplifting the Kakindu community in Mityana District. From enhancing education and health to ensuring clean water and fostering peace, we're committed to making a lasting impact.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1899865954625962321",
+   "date": "2025-03-12T16:51:00Z",
+   "text": "Future plans: complete the multipurpose building at Malwa UMEA Primary School; launch youth skilling and empowerment programs; enhance community health programs to ensure sustainable well-being. #KANOs4Kakindu",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1901643055532265587",
+   "date": "2025-03-17T14:33:00Z",
+   "text": "A huge THANK YOU to our incredible partners & sponsors for making #KANOs4Kakindu a success! Your support is transforming lives & empowering communities.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-5-2025"
+  },
+  {
+   "id": "1910757053074641038",
+   "date": "2025-04-11T18:09:00Z",
+   "text": "ENGAGEMENT EXCELLENCE! Our club is thrilled to receive the Corporate Membership Engagement Award for the Rotary year 24/25! Thank you to our members and partners for their collaboration and support! #100ThDISCON",
+   "category": "ACHIEVEMENT"
+  },
+  {
+   "id": "1947980340162707459",
+   "date": "2025-07-23T11:21:00Z",
+   "text": "On Friday 18th July we were privileged to host the DRR @AbesageN to our club. We started off the visit with a board meeting where we had a wonderful discussion about the club's current state and future plans. #KANOsMeetUp",
+   "category": "EVENT",
+   "event": "drr-abesage-visit-2025"
+  },
+  {
+   "id": "1954869630196998226",
+   "date": "2025-08-11T11:36:00Z",
+   "text": "Health for all. Over 500 community members attended our medical camp, receiving free blood tests, treatment, counselling, and mosquito nets. A healthier community is a stronger community. #UnitedAgainstMalaria #KANOsAgainstMalaria",
+   "category": "COMMUNITY_SERVICE",
+   "project": "united-against-malaria",
+   "event": "united-against-malaria-launch-2025"
+  },
+  {
+   "id": "1958570686928306317",
+   "date": "2025-08-21T16:43:00Z",
+   "text": "Huge congratulations to us! We're thrilled to have achieved the prestigious Club Excellence Award for the RY 24/25! This recognition reflects our commitment to fostering a positive experience for our members and upholding the values of Rotary.",
+   "category": "ACHIEVEMENT"
+  },
+  {
+   "id": "1974672312969355689",
+   "date": "2025-10-05T03:05:00Z",
+   "text": "On 20th September, the #KANOs4Kakindu project Phase 6 brought hope and impact to Malwa UMEA P/S. We launched the Girl Child Initiative to empower young girls, offered free medical services to the community, planted trees for a greener tomorrow, and handed over a newly built classroom block.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kakindu-phase-6-2025",
+   "image": "G1R0m3wXsAAOaho"
+  },
+  {
+   "id": "1984687182687142190",
+   "date": "2025-11-01T18:21:00Z",
+   "text": "Drumrolls for the newest President on the block! Congratulations Charter President @salimatusaba on your installation and the entire @ekampalanorth. #EKANOsInstallation25 #EKANOsCharter",
+   "category": "FELLOWSHIP"
+  },
+  {
+   "id": "1994824044114272401",
+   "date": "2025-11-29T17:41:00Z",
+   "text": "Our heartfelt gratitude to our Chief Immunizer, Dr. @dennisokwir, for his leadership, professionalism, and commitment to community health. Your guidance and dedication were instrumental in the success of today's immunization drive.",
+   "category": "COMMUNITY_SERVICE",
+   "project": "little-miracles-big-impact",
+   "event": "immunization-drive-phase-1-2025"
+  },
+  {
+   "id": "2032783500655374663",
+   "date": "2026-03-14T11:38:00Z",
+   "text": "Last Saturday, we didn't just show up. We showed out. Rotaract Kampala North headed to Mityana and we came with fumigation suits, treated nets, mama kits, and a mission. This is what United Against Malaria looks like in action. #UnitedAgainstMalaria",
+   "category": "COMMUNITY_SERVICE",
+   "project": "united-against-malaria",
+   "event": "united-against-malaria-phase-2-2026"
+  },
+  {
+   "id": "2037797282851020925",
+   "date": "2026-03-28T07:41:00Z",
+   "text": "Vaccines. Volunteers. A community that came ready. The Rotaract Club of Kampala North set up stations for immunization, blood pressure screening, and family planning consultations all in one place. This is what service looks like in action.",
+   "category": "COMMUNITY_SERVICE",
+   "project": "little-miracles-big-impact",
+   "event": "immunization-drive-phase-3-2026"
+  },
+  {
+   "id": "2042880009723957471",
+   "date": "2026-04-11T08:18:00Z",
+   "text": "Thank you to each & everyone that joined us yesterday for our fellowship as our President Elect @19StMunian was unveiling the impact board & officers, see y'all again soon. #KANOsMeetUp",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "impact-board-unveiling-2026"
+  },
+  {
+   "id": "2051631959915266541",
+   "date": "2026-05-05T11:55:00Z",
+   "text": "Before we step into the 12th, let's remember the magic of the 11th. The 11th KANOs Presidential Installation was an Arabian Nights theme, Rotaractors dressed to the nines, and a club that showed up in full force.",
+   "category": "LEADERSHIP_UPDATE"
+  },
+  {
+   "id": "2051632181370302491",
+   "date": "2026-05-05T11:56:00Z",
+   "text": "The 11th was unforgettable. But the 12th? We're just getting started. Same club. Same heart. New chapter. See you at the 12th KANOs Installation of PE @19StMunian #12ThKANOsInstallation",
+   "category": "LEADERSHIP_UPDATE",
+   "event": "12th-installation-2026"
+  },
+  {
+   "id": "2052792153051369700",
+   "date": "2026-05-08T16:46:00Z",
+   "text": "Congratulations to @Nabukeerawinni4 of @LittleWinnieFo2 on receiving the KANOs Vocational Service Award. Your work speaks louder than any award ever could. #KANOsMeetUp",
+   "category": "ACHIEVEMENT",
+   "event": "vocational-service-award-2026"
+  },
+  {
+   "id": "2077632490194313556",
+   "date": "2026-07-16T05:52:00Z",
+   "text": "A look back at the visit of our Immediate Past DRR @AbesageN to KANOs #KANOsTBT",
+   "category": "EVENT",
+   "event": "drr-abesage-visit-2025"
+  },
+  {
+   "id": "2103677238138851657",
+   "date": "2026-09-26T02:45:00Z",
+   "text": "It started as a solar commissioning. It became a full day of service. Rotary Kampala Springs + Rotaract Kampala North + Rotaract Bwebajja and E-KANOs at Mboona Kiyoganyi Health Unit, Mityana District #KANOs4Kakindu #CommunityImpact",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kiyoganyi-solar-commissioning-2026"
+  },
+  {
+   "id": "2103685744506060947",
+   "date": "2026-09-26T03:19:00Z",
+   "text": "During the solar commissioning at Kiyoganyi, Immediate Past President @wanelobarogers provided a comprehensive walkthrough of the newly installed system's operational design and purpose. At its core, this project was executed to ensure uninterrupted, critical infrastructure.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu",
+   "event": "kiyoganyi-solar-commissioning-2026"
+  },
+  {
+   "id": "2103119349246521813",
+   "date": "2026-09-24T13:48:00Z",
+   "text": "Step out with us for an engaging field learning experience where we will discover manufacturing practices, connect with professionals, and broaden our career horizons in Mbale. Mark your calendars for Friday afternoon on October 9th! #KANOsRetreat",
+   "category": "EVENT",
+   "event": "kanos-retreat-mbale-2026"
+  },
+  {
+   "id": "2105502092357939671",
+   "date": "2026-10-01T03:36:00Z",
+   "text": "Join us for an engaging conversation on \"Making It in Uganda Today: Youth, Opportunity and the Economics of Survival\" featuring Fatir Muzaaya. Friday, 2 October 2026, 6:00 PM, Hotel Triangle, Kampala.",
+   "category": "EVENT",
+   "event": "youth-opportunity-talk-fatir-muzaaya-2026"
+  },
+  {
+   "id": "2105526252928987178",
+   "date": "2026-10-01T05:12:00Z",
+   "text": "Congratulations to you @KiraboJael72957 on being recognized as the guest of the month of September. Your commitment and consistency in participating in club activities and meetings have truly stood out.",
+   "category": "MEMBER_SPOTLIGHT"
+  }
+ ]
+}

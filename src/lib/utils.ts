@@ -56,9 +56,24 @@ export function initials(name: string) {
     .join("");
 }
 
+/**
+ * Public base URL from APP_URL. Tolerates a missing scheme ("example.org"), quotes,
+ * whitespace and trailing slashes; never throws (a bad value used to crash every page).
+ */
+export function baseUrl() {
+  const raw = (process.env.APP_URL || "").trim().replace(/^["']|["']$/g, "");
+  if (!raw) return "http://localhost:3000";
+  try {
+    const u = new URL(/^https?:\/\//i.test(raw) ? raw : `http://${raw}`);
+    if (!u.hostname) throw new Error("no host");
+    return u.origin;
+  } catch {
+    return "http://localhost:3000";
+  }
+}
+
 export function absoluteUrl(path = "/") {
-  const base = (process.env.APP_URL || "http://localhost:3000").replace(/\/$/, "");
-  return base + (path.startsWith("/") ? path : "/" + path);
+  return baseUrl() + (path.startsWith("/") ? path : "/" + path);
 }
 
 /** Dice coefficient on character bigrams — used for duplicate detection. */

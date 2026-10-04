@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import type { Role } from "@prisma/client";
 import { db } from "./db";
 import { rolesFor, type Area } from "./rbac";
+import { baseUrl } from "./utils";
 
 export const SESSION_COOKIE = "kn_session";
 const SESSION_DAYS = 180; // members stay signed in on their phone so QR scans are instant
@@ -31,7 +32,7 @@ export async function createSession(userId: string) {
   jar.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production" && (process.env.APP_URL || "").startsWith("https"),
+    secure: process.env.NODE_ENV === "production" && baseUrl().startsWith("https"),
     path: "/",
     expires: expiresAt,
   });
