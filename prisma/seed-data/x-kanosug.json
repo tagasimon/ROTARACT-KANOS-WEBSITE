@@ -1,6 +1,6 @@
 {
- "version": 1,
- "collected_at": "2026-10-04T00:00:00Z",
+ "version": 2,
+ "collected_at": "2026-10-04T15:00:00Z",
  "account": "https://x.com/kanosug",
  "method": "Read in a logged-in browser from the club's own X account (@kanosug) via X search (from:kanosug ...). Text is the club's own wording; dates are the post dates (UTC). Images are the photos attached to those posts, saved at 1600px in prisma/seed-data/x-media/<media id>.webp.",
  "corrections": {
@@ -20,7 +20,7 @@
    "name": "Baguma Solomon",
    "x": "https://x.com/bagumasolomon",
    "post": "1068703764448780289",
-   "note": "Called \"past president Baguma Solomon\" and a newly made Paul Harris Fellow in Dec 2018."
+   "note": "Called \"past president Baguma Solomon\" in December 2018, when he had just become a Paul Harris Fellow. His year isn't stated. Not the same person as Bright Baguma (president 2018–19)."
   },
   {
    "key": "ssekajja",
@@ -29,61 +29,70 @@
    "honorific": "Rtr.",
    "x": "https://x.com/ssekalio",
    "post": "736490911346139137",
-   "note": "Installed as the club's 3rd president on 10 June 2016 (invitation: \"Rtr. Julius Ssekajja, a.k.a Ssekalio\")."
+   "note": "Installed as the club's 3rd president on 10 June 2016 (invitation: \"Rtr. Julius Ssekajja, a.k.a Ssekalio\").",
+   "photo": "CjiKj-YWYAASQpt~p"
   },
   {
    "key": "sharon",
    "name": "Sharon Tumushabe",
    "x": "https://x.com/SharonTumushabe",
    "post": "883621714315411457",
-   "note": "Introduced as the new president (\"MGP\") on 8 July 2017; called \"our Mission Green President\" when she became a Paul Harris Fellow in Feb 2021."
+   "note": "Introduced as the new president (\"MGP\") on 8 July 2017; called \"our Mission Green President\" when she became a Paul Harris Fellow in Feb 2021.",
+   "photo": "DENBM5gXYAAuRsC~p"
   },
   {
    "key": "bright",
-   "name": "Bright",
+   "name": "Bright Baguma",
    "x": "https://x.com/Rctbright",
-   "post": "1041566394503102464",
-   "note": "Called \"our Inspirational President @Rctbright\" in Sept 2018 (2018-19 RI theme: Be the Inspiration). Full name not stated in the posts."
+   "post": "987596739417903104",
+   "note": "Installed as president on 18 May 2018 at Nommo Gallery (the club's cake read \"KANOs 4th Installation\"). Called the club's \"Inspirational President\" in 2018–19 and its Club Trainer in 2019.",
+   "existing": "bright",
+   "photo": "DbSl-6OW0AEOvHW~p"
   },
   {
    "key": "younis",
    "name": "Younis Sebaggala",
    "x": "https://x.com/Younisebz",
    "post": "736478613801951233",
-   "note": "PR and Vice President Elect (May 2016), Vice President (May 2017), PLD Chair (2018)."
+   "note": "PR and Vice President Elect (May 2016), Vice President (May 2017), PLD Chair (2018).",
+   "photo": "Dn1m_eNX0AAaMMg~p"
   },
   {
    "key": "alex",
    "name": "Alex Niyonzima",
    "x": "https://x.com/AlexNiyonzima",
    "post": "1272469428840660992",
-   "photo": "EYmkhi8WoAAm-Gg"
+   "photo": "EYmkhi8WoAAm-Gg~p"
   },
   {
    "key": "clare",
    "existing": "clare-ahebwa",
    "name": "Clare Umutesi Ahebwa",
    "x": "https://x.com/ClareUmutesi",
-   "post": "1393435936206241792"
+   "post": "1393435936206241792",
+   "photo": "EyeNYilXEAEWk6E~p"
   },
   {
    "key": "pascal",
    "existing": "pascal-ongom",
    "name": "Pascal Ongom",
    "x": "https://x.com/pascalongom",
-   "post": "1506537044868227077"
+   "post": "1506537044868227077",
+   "photo": "FOhLBvaXMAYin5E~p"
   },
   {
    "key": "carolyne",
    "name": "Carolyne Bavuga",
    "x": "https://x.com/CarolyneBavuga",
-   "post": "1635180195060793344"
+   "post": "1635180195060793344",
+   "photo": "Fx15HPdWIAI_pA-~p"
   },
   {
    "key": "edwin",
    "name": "Edwin Muyunga",
    "x": "https://x.com/EdwinMuyunga",
-   "post": "1748622658688663842"
+   "post": "1748622658688663842",
+   "photo": "GGMirSGXkAU5yB7~p"
   },
   {
    "key": "rogers",
@@ -92,21 +101,27 @@
    "x": "https://x.com/wanelobarogers",
    "post": "1732713294773797166",
    "professionalTitle": "Accountant; managing partner",
-   "note": "Also known as Raj. Introduced in Dec 2023 as \"an accomplished accountant and law student\" and managing partner at Winterdale."
+   "note": "Also known as Raj. Introduced in Dec 2023 as \"an accomplished accountant and law student\" and managing partner at Winterdale.",
+   "photo": "GAvVjVGXUAAedj5~p"
   },
   {
    "key": "ezekiel",
    "existing": "ezekiel-kiggundu",
    "name": "Ezekiel Kiggundu",
    "x": "https://x.com/19StMunian",
-   "post": "2051632181370302491"
+   "post": "2051632181370302491",
+   "photo": "G_KNxarX0AAub3h~p"
   },
   {
    "key": "katende",
-   "name": "Dr. Katende",
+   "name": "Fredrick Katende",
    "x": "https://x.com/Katendefredi",
    "post": "2079844947981676644",
-   "note": "Called \"our President-Elect, Dr. @Katendefredi\" in July 2026. Full name not stated in the post."
+   "note": "President-Elect 2026–27. A medical practitioner (IHK hospital, per a July 2026 talk flyer).",
+   "existing": "dr-katende",
+   "honorific": "Dr.",
+   "professionalTitle": "Medical practitioner",
+   "photo": "HN0X82CXEAAUHhy~p"
   },
   {
    "key": "sylivia",
@@ -181,6 +196,30 @@
    "type": "GUEST",
    "organization": "Executive Director, Africa Agribusiness Academy",
    "post": "1068895333713944576"
+  },
+  {
+   "key": "john_birungi",
+   "name": "John Birungi",
+   "x": "https://x.com/jb_birungi",
+   "post": "1904507821871210967"
+  },
+  {
+   "key": "kitakule",
+   "existing": "geoffrey-martin-kitakule",
+   "name": "Geoffrey Martin Kitakule",
+   "type": "DISTRICT_LEADER",
+   "x": "https://x.com/GKitakule",
+   "post": "1974672312969355689",
+   "keepName": true
+  },
+  {
+   "key": "simeo",
+   "existing": "ssebukulu-simeo",
+   "name": "Ssebukulu Simeo",
+   "type": "DISTRICT_LEADER",
+   "x": "https://x.com/SimeoSsebukulu",
+   "post": "1832425596334244185",
+   "keepName": true
   }
  ],
  "leadership": [
@@ -190,7 +229,7 @@
    "year": "2014-2015",
    "verification": "NEEDS_VERIFICATION",
    "post": "1068703764448780289",
-   "highlights": "Posts call him \"All star President\" (June 2016) and \"past president\" (Dec 2018) but don't give his year. 2014-15 is inferred: Julius Ssekajja was installed as 3rd president in June 2016, and Eric Byenkya was IPP in Nov 2016. Please confirm."
+   "highlights": "Called \"past president Baguma Solomon\" in December 2018 but his year isn't stated. 2014–15 is a best guess from the order of later presidents. Please confirm."
   },
   {
    "person": "ssekajja",
@@ -198,7 +237,7 @@
    "year": "2016-2017",
    "verification": "VERIFIED",
    "post": "736490911346139137",
-   "highlights": "Installed as the club's 3rd president on 10 June 2016 at Nommo Gallery, Nakasero."
+   "highlights": "Installed on 10 June 2016 at Nommo Gallery, Nakasero. The 2016 invitation calls him the club's \"3rd Club President\"; the club's later installations are numbered differently (4th in 2018, 5th in 2019)."
   },
   {
    "person": "ssekajja",
@@ -230,24 +269,25 @@
    "verification": "VERIFIED",
    "post": "883621714315411457",
    "customTitle": "President (\"Mission Green President\")",
-   "highlights": "Introduced as the new president on 8 July 2017."
+   "highlights": "Introduced as the new president on 8 July 2017. Called Immediate Past President once Bright Baguma was installed in May 2018."
   },
   {
    "person": "bright",
    "role": "President",
    "year": "2018-2019",
    "verification": "VERIFIED",
-   "post": "1041566394503102464",
+   "post": "987596739417903104",
    "customTitle": "President (\"Inspirational President\")",
-   "highlights": "Full name to be confirmed; the club's posts use his handle @Rctbright."
+   "highlights": "Installed on 18 May 2018 at Nommo Gallery, Nakasero; the cake read \"KANOs 4th Installation\". His year included the 2018 blood drive and the club's fourth charter night, and the club won the DCA attendance award in 2019."
   },
   {
    "person": "younis",
    "role": "President",
    "year": "2019-2020",
-   "verification": "NEEDS_VERIFICATION",
-   "post": "1219135351136169985",
-   "highlights": "In Jan 2020 the club said \"our Connecting President\" would give a Digital Marketing talk; the matching flyer names Younis Sebaggala. Please confirm."
+   "verification": "VERIFIED",
+   "post": "1110415916339220480",
+   "highlights": "Installed in May 2019; the club's invitation calls him its 5th President. Led the club to the first I Am For Peace project in Rwanda (Feb 2020) and planted trees at Kalinzu Forest with the Rotaract Earth Initiative (Sept 2019).",
+   "customTitle": "President (\"Connecting President\")"
   },
   {
    "person": "alex",
@@ -364,6 +404,57 @@
    "year": "2022-2023",
    "verification": "VERIFIED",
    "post": "1590996629343309824"
+  },
+  {
+   "person": "sharon",
+   "role": "Immediate Past President",
+   "year": "2018-2019",
+   "verification": "VERIFIED",
+   "post": "999878090615599104"
+  },
+  {
+   "person": "bright",
+   "role": "Community Service Director",
+   "year": "2016-2017",
+   "verification": "VERIFIED",
+   "post": "844781230121934848",
+   "highlights": "Led the Kakindu Medical Camp in March 2017 (\"Kakindu Medical Camp 2017 by Baguma Bright, Community Service Director\")."
+  },
+  {
+   "person": "bright",
+   "role": "Immediate Past President",
+   "year": "2019-2020",
+   "verification": "VERIFIED",
+   "post": "1147883258560094214"
+  },
+  {
+   "person": "younis",
+   "role": "Professional Development Director",
+   "year": "2018-2019",
+   "verification": "VERIFIED",
+   "post": "1044104872583417856",
+   "customTitle": "Professional Leadership & Development Director"
+  },
+  {
+   "person": "john_birungi",
+   "role": "Community Service Director",
+   "year": "2024-2025",
+   "verification": "VERIFIED",
+   "post": "1904507821871210967"
+  },
+  {
+   "person": "kitakule",
+   "role": "District Governor",
+   "year": "2025-2026",
+   "verification": "VERIFIED",
+   "post": "1974672312969355689"
+  },
+  {
+   "person": "simeo",
+   "role": "District Rotaract Representative",
+   "year": "2024-2025",
+   "verification": "VERIFIED",
+   "post": "1832425596334244185"
   }
  ],
  "organizations": [
@@ -503,31 +594,111 @@
   {
    "name": "Rotaract Club of Kigali City",
    "type": "ROTARACT_CLUB",
-   "website": "https://x.com/RCkigalicity"
+   "website": "https://x.com/RCkigalicity",
+   "description": "Rwanda (District 9150). Co-founder of the I Am For Peace project; visited KANOs in 2018."
   },
   {
    "name": "Little Winnie Foundation",
    "type": "NGO",
    "website": "https://x.com/LittleWinnieFo2"
+  },
+  {
+   "name": "Mildmay Uganda",
+   "type": "NGO",
+   "website": "https://x.com/MildmayUganda",
+   "description": "Supported HIV testing with pre- and post-test counselling in Kakindu."
+  },
+  {
+   "name": "Greenhill Interact Club",
+   "type": "SCHOOL",
+   "website": "https://x.com/GreenhillUg",
+   "description": "Interact club whose students joined the 2018 Kakindu project; host of the 2025 Annual Interact Symposium."
+  },
+  {
+   "name": "Rotaract Club of Nairobi Parklands",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/rcnparklands",
+   "description": "Kenya (District 9212). Co-founder of the I Am For Peace project; host of the 2022 edition."
+  },
+  {
+   "name": "MovingAds Uganda",
+   "type": "CORPORATE",
+   "website": "https://x.com/movingadsuganda",
+   "description": "Gold corporate sponsor of I Am For Peace 2023."
+  },
+  {
+   "name": "Treepz",
+   "type": "CORPORATE",
+   "website": "https://x.com/TreepzUg",
+   "description": "Partner of I Am For Peace 2023."
+  },
+  {
+   "name": "Rotary Club of Abuja Maitama",
+   "type": "ROTARY_CLUB",
+   "website": "https://x.com/RCMaitama",
+   "description": "Nigeria (District 9125). Partner of I Am For Peace 2023."
+  },
+  {
+   "name": "Rotary Club of Kira",
+   "type": "ROTARY_CLUB",
+   "website": "https://x.com/rckira1",
+   "description": "Partner of I Am For Peace 2023."
+  },
+  {
+   "name": "Rotary Peace Centre, Makerere University",
+   "type": "SCHOOL",
+   "description": "Venue of the I Am For Peace 2023 conference."
+  },
+  {
+   "name": "Rotaract Club of Kampala South",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RctKampalaSouth"
+  },
+  {
+   "name": "Rotaract Club of Kampala City",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RotaractKlaCity"
+  },
+  {
+   "name": "Rotaract Club of Bukoto",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RACBukoto"
+  },
+  {
+   "name": "National Forestry Authority",
+   "type": "GOVERNMENT",
+   "website": "https://x.com/NFAUG",
+   "description": "Guided the 2024 #GoGreen4Jojo tree planting in the Sango Bay region."
+  },
+  {
+   "name": "Rotaract Earth Initiative",
+   "type": "ROTARACT_DISTRICT",
+   "website": "https://x.com/EarthRotaract",
+   "description": "Organiser of REI19, a tree-planting project at Kalinzu Forest, Bushenyi."
+  },
+  {
+   "name": "Rotaract Club of Kibuli",
+   "type": "ROTARACT_CLUB",
+   "website": "https://x.com/RotaractKibuli"
   }
  ],
  "projects": [
   {
    "slug": "kanos-4-kakindu",
    "title": "#KANOs4Kakindu",
-   "tagline": "The club's flagship project: adopting a whole community in Kakindu, Mityana, across Rotary's areas of focus.",
-   "summary": "Since 2020 the club has worked with Malwa Umea Primary School and the Kakindu community in Mityana District: renovating and building classroom blocks, stocking a library, harvesting rainwater, fighting malaria, running medical camps, planting trees and supporting girls and boys to stay in school.",
+   "tagline": "Since 2015 the club has kept going back to one community, Kakindu in Mityana District, with classrooms, a library, clean water, malaria care and medical camps.",
+   "summary": "The club's relationship with Kakindu began with a fundraiser in December 2015 and yearly medical camps from 2016. In 2020 the club adopted Malwa Umea Primary School and the surrounding community, and has since renovated three classroom blocks, built a new one, stocked a library, harvested rainwater, fought malaria, run medical camps, planted trees and supported girls and boys to stay in school.",
    "status": "ONGOING",
    "featured": true,
-   "startDate": "2020-10-04",
-   "year": "2020-2021",
+   "startDate": "2015-12-04",
+   "year": "2015-2016",
    "lead": null,
    "locationName": "Malwa Umea Primary School, Kakindu, Mityana District",
    "beneficiaries": "Pupils and teachers of Malwa Umea Primary School and the Kakindu community",
    "cover": "Ex-3DE-WEA4BKzt",
-   "need": "Malwa Umea is a Universal Primary Education school in Kakindu, Mityana District. When the club's technical team assessed it in October 2020, its classroom blocks were old and run down. The club later named the needs it set out to meet: decent classrooms, books and a library, clean water, protection from malaria, health care, and support for girls and boys to stay in school.",
-   "idea": "Adopt one community and address several of Rotary's areas of focus in one place, phase by phase. The club calls it its signature project, \"where we adopted an entire community to address Rotary 7 areas of focus\" (Carolyne Bavuga, Aug 2024). The club's link with Kakindu goes back to a medical camp it held there in April 2016.",
-   "beginning": "Members Pascal Ongom and a fellow member drew the technical drawings. The club raised money with the Jungle Rumble fundraiser (Nov 2020) and project days, and in March 2021 members renovated the first three-classroom block: re-screeding floors, refurbishing walls and splash aprons, replacing wooden openings with metal ones, painting blackboards and adding rainwater harvesting.",
+   "need": "Malwa Umea is a Universal Primary Education school in Kakindu, Mityana District. When the club's technical team assessed it in October 2020, its classroom blocks were old and run down, and the district's education inspectors later flagged the old multipurpose block as unsafe for learners. The community also faced water shortages, malaria and costs for mothers giving birth: the club noted mothers were paying UGX 30,000 to be attended to.",
+   "idea": "Adopt one community and address several of Rotary's areas of focus in one place, phase by phase, \"moving away from conventional handouts\" (club post, Nov 2023). The club calls it its signature project, \"where we adopted an entire community to address Rotary 7 areas of focus\" (Carolyne Bavuga, Aug 2024).",
+   "beginning": "The club first raised money for \"our Kakindu project\" at its first birthday in December 2015, and ran medical camps in Kakindu in 2016 and 2017 (the 2017 camp was billed as \"season 3\"). In 2020 members assessed Malwa Umea Primary School; Pascal Ongom and a fellow member drew the technical drawings, the Jungle Rumble fundraiser raised money, and in March 2021 members renovated the first three-classroom block.",
    "impact": "Phase I was handed over on 25 September 2021, the same day the club launched #KANOsAgainstMalaria. Since then: 400 mosquito nets (Nov 2021), a 10,000-litre water tank (Mar 2022), a library stocked with over 1,000 books from Enjuba and launched by DG Mike Sebalu (Nov 2022), exam support for candidates (Oct 2023), a multipurpose hall under construction and the C2F malaria programme (Mar 2024), and a newly built classroom block handed over with the launch of the Girl Child Initiative (Sept 2025).",
    "today": "The club is completing the multipurpose building at Malwa Umea Primary School and plans youth skilling and stronger community health programmes (club thread, March 2025). It announced a US$35,000 global grant with the Rotary Club of Madras (D3234) for digital literacy in three schools under BELEP (Nov 2024). In September 2026 the project reached Kiyoganyi Health Centre III in Mityana North, where a new solar system was commissioned.",
    "quote": "Each child with a book to aid in learning shall better the education standards of these kids.",
@@ -625,6 +796,14 @@
     {
      "org": "Rotaract E-Club of Kampala North",
      "role": "Supporting club (2026)"
+    },
+    {
+     "org": "Mildmay Uganda",
+     "role": "HIV testing & counselling"
+    },
+    {
+     "org": "Greenhill Interact Club",
+     "role": "Volunteers (2018)"
     }
    ],
    "metrics": [
@@ -653,12 +832,13 @@
      "post": "1549030514711044098"
     },
     {
-     "label": "Classroom blocks handed over",
-     "value": 2,
+     "label": "Classroom blocks renovated or built",
+     "value": 4,
      "unit": "blocks",
      "impactKey": "classroom_blocks",
      "date": "2025-09-20",
-     "post": "1974672312969355689"
+     "post": "1974672312969355689",
+     "replaces": "Classroom blocks handed over"
     },
     {
      "label": "Global grant for digital literacy (with RC Madras)",
@@ -678,6 +858,91 @@
     }
    ],
    "milestones": [
+    {
+     "date": "2015-12-04",
+     "title": "First fundraiser for the Kakindu project",
+     "description": "At its first birthday (#KANOS@1) the club held a fundraiser for its Kakindu project.",
+     "stage": "FUNDRAISING",
+     "post": "672814087705862145",
+     "image": "CVZQ0WMWEAAFBaz"
+    },
+    {
+     "date": "2016-04-16",
+     "title": "#KakinduCSR16 with the mother club",
+     "description": "Members served the Kakindu community, joined by the Rotary Club of Kampala North's youth chair.",
+     "stage": "IMPLEMENTATION",
+     "post": "721336769627734016",
+     "image": "CgKz82QWcAAslxc"
+    },
+    {
+     "date": "2016-11-26",
+     "title": "Jungle Rumble fundraiser for the medical camp",
+     "description": "#JRFR16 at Roots Retreat, Kitende: fishing, forest walk and football challenges to raise money for the Kakindu medical camp.",
+     "stage": "FUNDRAISING",
+     "post": "798088929983332352",
+     "image": "CxNhnmEW8AAXC3f"
+    },
+    {
+     "date": "2017-03-24",
+     "dateLabel": "24–26 March 2017",
+     "title": "Kakindu Medical Camp, season 3",
+     "description": "A three-day medical camp in Kakindu, Mityana, led by Community Service Director Bright Baguma.",
+     "stage": "IMPLEMENTATION",
+     "post": "844781230121934848",
+     "image": "C7lEBWoV4AAW9MU",
+     "people": [
+      "bright"
+     ]
+    },
+    {
+     "date": "2018-04-14",
+     "title": "#KakinduCSR18 with Rotary and Interact partners",
+     "description": "The annual signature project returned to Kakindu with the Rotary Club of Kampala North, the Rotary Club of Muyenga and students from Greenhill's Interact club.",
+     "stage": "IMPLEMENTATION",
+     "post": "985107167987544068",
+     "image": "DavNrskWAAA-loq",
+     "people": [
+      "sharon"
+     ]
+    },
+    {
+     "date": "2023-08-09",
+     "title": "Needs assessment and the Boy Child Uplifting Program",
+     "description": "Experts led a needs assessment at the school, and the club started its Boy Child Uplifting Program with conversations about the challenges boys face.",
+     "stage": "NEED",
+     "post": "1689309322872770560",
+     "image": "F3Gh18lXoAIFp4y",
+     "people": [
+      "carolyne"
+     ]
+    },
+    {
+     "date": "2023-11-24",
+     "dateLabel": "By November 2023",
+     "title": "Three classroom blocks renovated",
+     "description": "Marking nine years of service, the club showed the blocks before and after: three renovated classroom blocks delivered so far.",
+     "stage": "IMPACT",
+     "post": "1728010138097684746",
+     "image": "F_sgCJYWkAAIw3n"
+    },
+    {
+     "date": "2023-11-24",
+     "dateLabel": "By November 2023",
+     "title": "HIV testing with Mildmay Uganda",
+     "description": "As part of the malaria work in Bufuuma, Kakindu sub-parish, Mildmay Uganda supported HIV testing with pre- and post-test counselling.",
+     "stage": "IMPLEMENTATION",
+     "post": "1728010232377319777",
+     "image": "F_sgITpXkAATBqx"
+    },
+    {
+     "date": "2023-11-24",
+     "dateLabel": "November 2023",
+     "title": "Phase 4: rebuilding the multipurpose block",
+     "description": "District education inspectors had flagged the old multipurpose block as unsafe for learners. Phase 4 reconstructs and redesigns it.",
+     "stage": "PLANNING",
+     "post": "1728010263972995104",
+     "image": "F_sgLI6XQAAysb4"
+    },
     {
      "date": "2016-04-01",
      "dateLabel": "April 2016",
@@ -817,7 +1082,7 @@
     },
     {
      "date": "2025-03-15",
-     "title": "Phase 5",
+     "title": "Phase 5: bricks for the multipurpose building",
      "description": "The fifth project day, covered by UBC TV and NBS TV, with sponsors including Roofings Group (who also gave tree seedlings), JMS Uganda, Marcdon Concepts, Sumz Snacks, Yoo Prints and the Rotaract Club of Mulago. Members laid bricks for the multipurpose building.",
      "stage": "MILESTONE",
      "post": "1901643055532265587",
@@ -845,6 +1110,33 @@
      "people": [
       "rogers"
      ]
+    }
+   ],
+   "focusAreas": [
+    "Basic education and literacy",
+    "Disease prevention and treatment",
+    "Water, sanitation and hygiene",
+    "Maternal and child health",
+    "Peacebuilding and conflict prevention",
+    "Protecting the environment"
+   ],
+   "supportNeeds": "These are the next steps the club has named publicly (March 2025 and November 2023):\n\n- **Finish the multipurpose building** at Malwa Umea Primary School. It replaces a block the district education inspectors flagged as unsafe, and has been under construction since 2024.\n- **Youth skilling and empowerment** programmes for young people in the community (planned).\n- **Community health**: medical camps, malaria testing and nets, and the Child to Family (C2F) programme with Malaria Partners Uganda.\n- **Digital literacy** in three schools, through the US$35,000 global grant with the Rotary Club of Madras.\n\nEvery phase so far has also run on in-kind support: books, tree seedlings, medicines, sanitary towels, branding and printing, and transport. Ask the club for the current budget for any of these.",
+   "milestoneUpdates": [
+    {
+     "title": "400 mosquito nets distributed",
+     "description": "Nets sponsored by the Rotary Club of Muyenga were distributed to the Kakindu community. The malaria project closed by commissioning indoor residual spraying and equipping village health teams with testing kits and anti-malarials.",
+     "post": "1458274891199918081"
+    },
+    {
+     "title": "Phase 6: a new classroom block and the Girl Child Initiative",
+     "description": "The club handed over a newly built classroom block, launched the Girl Child Initiative, ran a free medical camp and planted trees. District Governor Geoffrey Kitakule joined the day.",
+     "addPeople": [
+      "kitakule"
+     ]
+    },
+    {
+     "title": "Phase 5",
+     "rename": "Phase 5: bricks for the multipurpose building"
     }
    ]
   },
@@ -921,7 +1213,12 @@
      "image": "HDXlwVaaMAA9rNp",
      "people": []
     }
-   ]
+   ],
+   "focusAreas": [
+    "Disease prevention and treatment",
+    "Maternal and child health"
+   ],
+   "supportNeeds": "The club has said it will return for further phases in Mityana North. Each phase needs medical supplies and nets, fumigation, mama kits, transport and volunteer health workers."
   },
   {
    "slug": "little-miracles-big-impact",
@@ -987,43 +1284,320 @@
      "post": "2049753689204666377",
      "image": "HHIv_UEWkAAhzu0"
     }
+   ],
+   "focusAreas": [
+    "Maternal and child health",
+    "Disease prevention and treatment"
+   ],
+   "supportNeeds": "Each phase brings vaccines, blood pressure screening and family planning consultations to a new community. Support with health-worker time, supplies, transport and refreshments for families helps the next phase happen."
+  },
+  {
+   "slug": "i-am-for-peace",
+   "title": "I Am For Peace",
+   "tagline": "An international peace project with Rotaract clubs in Rwanda and Kenya, held each February in a different country.",
+   "summary": "Created with the Rotaract Club of Kigali City (Rwanda) and the Rotaract Club of Nairobi Parklands (Kenya). The clubs take turns to host: refugees at Gashora Transit Centre, Rwanda (2020); a rescue centre in Kitengela, Kenya (2022); and a peace conference at Makerere University plus a project in Nakivale refugee settlement, hosted by Kampala North (2023).",
+   "status": "COMPLETED",
+   "startDate": "2020-02-22",
+   "year": "2019-2020",
+   "locationName": "Rwanda, Kenya and Uganda",
+   "cover": "ERr8Py-X0AAYLRV",
+   "focusAreas": [
+    "Peacebuilding and conflict prevention"
+   ],
+   "need": "Young people living through displacement and conflict need practical help and people who listen. In 2020 the project's first phase supported refugees from Libya who had recently been settled at the Gashora Transit Centre in Bugesera District, Rwanda.",
+   "idea": "Three Rotaract clubs in three countries agreed on \"a continued rotational peace project drive every February among the three clubs\", sharing conflict-resolution skills and creating awareness of how youth can contribute to peace.",
+   "beginning": "On 22 February 2020 members travelled to Gashora with Kigali City and Nairobi Parklands for Umuganda (community clean-up and tree planting), a peace workshop on Rotary's pillars of peace, games with the residents, and a handover of hygiene donations.",
+   "impact": "The 2020 project won the club first runner-up in the district's International Service Award. The 2022 edition, hosted in Kitengela, Kenya, raised awareness about female genital mutilation and early child marriage. In February 2023 Kampala North hosted the third edition: a peace conference at Makerere University with keynote speaker Milton Nyamadzawo of the Institute for Economics and Peace, then two days in Nakivale refugee settlement, Isingiro District.",
+   "today": "Three editions have been held: Rwanda 2020, Kenya 2022 and Uganda 2023. A pilot visit to Nakivale in August 2022, with Rotaract Kawempe and Rotaract Nakawa MUBS, prepared the Uganda edition.",
+   "post": "1229376812238745602",
+   "partners": [
+    {
+     "org": "Rotaract Club of Kigali City",
+     "role": "Co-founder"
+    },
+    {
+     "org": "Rotaract Club of Nairobi Parklands",
+     "role": "Co-founder, 2022 host"
+    },
+    {
+     "org": "MovingAds Uganda",
+     "role": "Gold sponsor (2023)"
+    },
+    {
+     "org": "Treepz",
+     "role": "Partner (2023)"
+    },
+    {
+     "org": "Rotary Club of Abuja Maitama",
+     "role": "Partner (2023)"
+    },
+    {
+     "org": "Rotary Club of Kira",
+     "role": "Partner (2023)"
+    },
+    {
+     "org": "Rotary Peace Centre, Makerere University",
+     "role": "Conference venue (2023)"
+    }
+   ],
+   "metrics": [
+    {
+     "label": "International editions",
+     "value": 3,
+     "unit": "editions",
+     "date": "2023-02-12",
+     "post": "1624273243694592001",
+     "showInImpact": false
+    },
+    {
+     "label": "Countries",
+     "value": 3,
+     "unit": "countries",
+     "date": "2023-02-12",
+     "post": "1572478631556878337",
+     "showInImpact": false
+    }
+   ],
+   "milestones": [
+    {
+     "date": "2020-02-17",
+     "title": "Three clubs, one peace project",
+     "description": "Kampala North, Kigali City and Nairobi Parklands announced the first phase: sensitisation on peace and how youth can contribute, with refugees at Gashora Transit Centre.",
+     "stage": "IDEA",
+     "post": "1229376812238745602",
+     "image": "EQ-fqXrW4AAW4gQ"
+    },
+    {
+     "date": "2020-02-22",
+     "title": "Gashora Transit Centre, Rwanda",
+     "description": "Umuganda clean-up and tree planting, a peace workshop, games with refugees, and hygiene donations handed to the centre.",
+     "stage": "IMPLEMENTATION",
+     "post": "1232575825574318080",
+     "image": "ERr8Py-X0AAYLRV",
+     "people": [
+      "younis",
+      "alex"
+     ]
+    },
+    {
+     "date": "2020-06-01",
+     "title": "District International Service Award: first runner-up",
+     "description": "The project won the club first runner-up in the district's International Service Award.",
+     "stage": "IMPACT",
+     "post": "1267378011051036672",
+     "image": "EZahktTXgAAUi1Z"
+    },
+    {
+     "date": "2022-03-04",
+     "dateLabel": "March 2022",
+     "title": "Kitengela, Kenya",
+     "description": "The second edition, hosted by Nairobi Parklands at Prudence Rescue Centre, Kitengela, raised awareness about FGM and early child marriage.",
+     "stage": "IMPLEMENTATION",
+     "post": "1499692381888733185",
+     "image": "FM_6Q5uXEAAwPwK"
+    },
+    {
+     "date": "2022-08-06",
+     "title": "Pilot visit to Nakivale",
+     "description": "Led by President Pascal Ongom and the club's Peace Chair, the team joined Rotaract Kawempe and Rotaract Nakawa MUBS in Nakivale, as a pilot for the Uganda edition.",
+     "stage": "PLANNING",
+     "post": "1555872577893158913",
+     "image": "FZeR0FLWAAAhDeA",
+     "people": [
+      "pascal"
+     ]
+    },
+    {
+     "date": "2023-02-10",
+     "title": "Peace conference at Makerere University",
+     "description": "A tour of the Rotary Peace Centre, then talks from peace fellows Milton Nyamadzawo and Patience Rusare at the CEDAT conference hall, in person and online.",
+     "stage": "IMPLEMENTATION",
+     "post": "1623950331099901952",
+     "image": "FoluMQ8WcAAFxPt"
+    },
+    {
+     "date": "2023-02-11",
+     "dateLabel": "11–12 Feb 2023",
+     "title": "Nakivale refugee settlement",
+     "description": "A tour of a children's play park under construction, and a football match with the host community that ended 1–1.",
+     "stage": "IMPLEMENTATION",
+     "post": "1627555336499392513",
+     "image": "FpY7FhtXwAAXu_a"
+    }
    ]
   },
   {
-   "slug": "give-blood-save-life-2018",
-   "title": "#GiveBloodSaveLife on World AIDS Day",
-   "tagline": "Blood donation, HIV and Hepatitis B testing near Wankulukuku Stadium, 1 December 2018.",
-   "summary": "On World AIDS Day 2018, which was also the club's fourth charter anniversary, members ran a blood donation drive with HIV and Hepatitis B testing, partnering with Pearl Generation Uganda and joined by members of Rotaract Kigali City.",
+   "slug": "a-drop-for-a-life",
+   "title": "A Drop for a Life",
+   "tagline": "Blood donation drives with partner Rotaract clubs across Kampala.",
+   "summary": "Since the club's first blood drive on World AIDS Day 2018, members have run drives with partner clubs at busy points in Kampala, from Nakivubo Mews to Bwaise and Nateete.",
    "status": "COMPLETED",
    "startDate": "2018-12-01",
    "year": "2018-2019",
-   "locationName": "Opposite Wankulukuku Stadium, Kampala",
-   "cover": "DtUeePUXoAA-OPH",
-   "beginning": "December is Rotary's Disease Prevention and Treatment month. The club marked the 30th World AIDS Day with a blood drive and testing, led by Community Service Director @DdeLuwe.",
-   "impact": "Members and guests donated blood, youths were tested for HIV and Hepatitis B and learned how to protect themselves, and past president Baguma Solomon joined the drive.",
-   "post": "1068794677619539968",
+   "locationName": "Kampala",
+   "cover": "Fc2V6PXWQAEvNDo",
+   "focusAreas": [
+    "Disease prevention and treatment"
+   ],
+   "need": "Hospitals depend on regular blood donors. \"Do not let the blood center run dry,\" the club wrote at its first drive in 2018.",
+   "beginning": "The first drive, #GiveBloodSaveLife, ran on 1 December 2018 near Wankulukuku Stadium, with HIV and Hepatitis B testing.",
+   "impact": "Later drives under the name A Drop for a Life ran with partner Rotaract clubs in September 2022 (daily target: 200 units), December 2022 and August 2023. Members also donated through the Rotaract Ladies Initiative in 2020.",
+   "post": "1571076694785789956",
    "partners": [
     {
+     "org": "Rotaract Club of Kampala South",
+     "role": "Partner club"
+    },
+    {
+     "org": "Rotaract Club of Kampala City",
+     "role": "Partner club"
+    },
+    {
+     "org": "Rotaract Club of Bukoto",
+     "role": "Partner club"
+    },
+    {
      "org": "Pearl Generation Uganda",
-     "role": "Partner"
+     "role": "Partner (2018)"
     },
     {
      "org": "Rotaract Club of Kigali City",
-     "role": "Visiting club"
+     "role": "Visiting club (2018)"
     }
    ],
    "metrics": [],
    "milestones": [
     {
      "date": "2018-12-01",
-     "title": "Blood drive and testing",
-     "description": "Blood donation with HIV and Hepatitis B testing near Wankulukuku Stadium.",
+     "title": "#GiveBloodSaveLife on World AIDS Day",
+     "description": "The first drive, on World AIDS Day and the club's fourth charter anniversary, near Wankulukuku Stadium: blood donation with HIV and Hepatitis B testing, with Pearl Generation Uganda and visiting members of Rotaract Kigali City. Past president Baguma Solomon joined the drive.",
      "stage": "IMPLEMENTATION",
-     "post": "1068808056836886528",
-     "image": "DtUrA_SWsAEycaB",
+     "post": "1068794677619539968",
+     "image": "DtUeePUXoAA-OPH",
      "people": [
       "baguma"
      ]
+    },
+    {
+     "date": "2020-09-20",
+     "title": "Donating with the Rotaract Ladies Initiative",
+     "description": "Members, led by the club's ROLI chair, took part in the district blood donation activity.",
+     "stage": "IMPLEMENTATION",
+     "post": "1307665173927407616",
+     "image": "EiXCh7FWoAAO79y"
+    },
+    {
+     "date": "2022-09-17",
+     "title": "Nakivubo Mews and Mega Standard",
+     "description": "A day-long drive downtown with a daily target of 200 units.",
+     "stage": "IMPLEMENTATION",
+     "post": "1571076694785789956",
+     "image": "Fc2V6PXWQAEvNDo"
+    },
+    {
+     "date": "2022-12-10",
+     "title": "Watoto Church Downtown and Nakivubo Mews",
+     "description": "With Rotaract Kampala South, Kampala City and Bukoto.",
+     "stage": "IMPLEMENTATION",
+     "post": "1600388805868982273",
+     "image": "FjW2R-2XEAMwnEH"
+    },
+    {
+     "date": "2023-08-12",
+     "title": "Bwaise and Nateete",
+     "description": "Drives at DTB Bwaise, Victory School of Beauty and City Complex, Nateete, with partner Rotaract clubs.",
+     "stage": "IMPLEMENTATION",
+     "post": "1689899388766765056",
+     "image": "F3AWLVbW0AExNYZ"
+    }
+   ]
+  },
+  {
+   "slug": "mission-green",
+   "title": "Mission Green and #GoGreen4Jojo",
+   "tagline": "Tree planting from Kalinzu Forest to Kisoro, Sango Bay and Kakindu.",
+   "summary": "The club's environment work: planting trees wherever it serves, and since 2024 doing it in memory of Josephine Charlotte Namatovu (\"Jojo\"), the member who chaired its 2019 Rotaract Earth Initiative team and died in December 2019.",
+   "status": "ONGOING",
+   "startDate": "2019-09-28",
+   "year": "2019-2020",
+   "locationName": "Bushenyi, Kisoro, Lwengo, Mityana and Kampala",
+   "cover": "Gw642sSXcAAJI-6",
+   "focusAreas": [
+    "Protecting the environment"
+   ],
+   "idea": "\"We shall plant the trees wherever we shall go,\" the club wrote after planting fruit trees at Malwa Umea Primary School in 2021. In October 2022 it launched the Mission Go Green campaign for environmental conservation.",
+   "beginning": "In September 2019 members planted trees at Kalinzu Forest in Bushenyi with the Rotaract Earth Initiative (REI19), led by the club's REI19 chair, Josephine Charlotte Namatovu.",
+   "impact": "#GoGreen4Jojo has planted trees in Kisoro (January 2024) and in the Sango Bay region with the National Forestry Authority (September 2024), where the club also gave seedlings to Nkoni Catholic Church. In July 2025, at a joint project with the Rotary Club of Kampala Springs, every child planted a tree and gave it a name. Trees are also planted at every Kakindu project day.",
+   "post": "1750465818230411348",
+   "partners": [
+    {
+     "org": "Rotaract Earth Initiative",
+     "role": "REI19 host"
+    },
+    {
+     "org": "National Forestry Authority",
+     "role": "Technical guidance (2024)"
+    },
+    {
+     "org": "Rotary Club of Kampala Springs",
+     "role": "Joint project (2025)"
+    },
+    {
+     "org": "Roofings Group",
+     "role": "Tree seedlings (2025)"
+    }
+   ],
+   "metrics": [],
+   "milestones": [
+    {
+     "date": "2019-09-28",
+     "title": "Kalinzu Forest with the Rotaract Earth Initiative",
+     "description": "Members planted trees at Kalinzu Forest, Bushenyi, and received a certificate of appreciation from the Rotaract Earth Initiative.",
+     "stage": "IMPLEMENTATION",
+     "post": "1177934399649792001",
+     "image": "EFjdCVCW4AAVqyS",
+     "people": [
+      "younis",
+      "bright"
+     ]
+    },
+    {
+     "date": "2021-03-20",
+     "title": "Fruit trees at Malwa Umea",
+     "description": "Fruit trees planted around the school so pupils can one day eat from them.",
+     "stage": "IMPLEMENTATION",
+     "post": "1375119102575050760",
+     "image": "ExVnc9mWEAApE0N"
+    },
+    {
+     "date": "2024-01-28",
+     "title": "#GoGreen4Jojo in Kisoro",
+     "description": "During the club retreat in Kisoro, members planted trees in memory of Josephine Charlotte Namatovu.",
+     "stage": "IMPLEMENTATION",
+     "post": "1750465818230411348",
+     "image": "GErnYNuW4AAeTPK",
+     "people": [
+      "edwin"
+     ]
+    },
+    {
+     "date": "2024-09-22",
+     "title": "Sango Bay with the National Forestry Authority",
+     "description": "NFA's range manager for the Sango Bay region walked members through the species they planted to honour Jojo's legacy; seedlings went to Nkoni Catholic Church too.",
+     "stage": "IMPLEMENTATION",
+     "post": "1837746827346493648",
+     "image": "GYD8-cVXsAA5ysm",
+     "people": [
+      "edwin"
+     ]
+    },
+    {
+     "date": "2025-07-26",
+     "title": "Every child names a tree",
+     "description": "A joint project with the Rotary Club of Kampala Springs where each child planted a tree and named it.",
+     "stage": "IMPACT",
+     "post": "1949698954741817537",
+     "image": "Gw642sSXcAAJI-6"
     }
    ]
   }
@@ -1478,6 +2052,266 @@
    "description": "Friday afternoon (9 Oct): a field learning visit to discover manufacturing practices and meet professionals. Saturday (10 Oct), 7 PM to midnight: Oldies Night at PAG Waneloba's residence, dress code 90s retro.",
    "post": "2103119349246521813",
    "cover": "HS_H5eJWgAAU5y5"
+  },
+  {
+   "slug": "kanos-at-1-fundraiser-2015",
+   "title": "#KANOS@1: first-birthday fundraiser for Kakindu",
+   "date": "2015-12-04",
+   "type": "FUNDRAISER",
+   "project": "kanos-4-kakindu",
+   "description": "The club marked its first year with a fundraiser for its Kakindu project.",
+   "post": "672814087705862145",
+   "cover": "CVZQ0WMWEAAFBaz"
+  },
+  {
+   "slug": "kakindu-csr-2016",
+   "title": "#KakinduCSR16",
+   "date": "2016-04-16",
+   "venue": "Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "Community service in Kakindu with the Rotary Club of Kampala North's youth chair.",
+   "post": "721336769627734016",
+   "cover": "CgKz82QWcAAslxc"
+  },
+  {
+   "slug": "jungle-rumble-fundraiser-2016",
+   "title": "Jungle Rumble Fundraiser 2016",
+   "date": "2016-11-26",
+   "start": "08:00",
+   "venue": "Roots Retreat & Camping Site, Kitende",
+   "type": "FUNDRAISER",
+   "project": "kanos-4-kakindu",
+   "description": "Fishing, forest walk, jungle chef and football challenges to raise money for the Kakindu medical camp.",
+   "post": "798088929983332352",
+   "cover": "CxNhnmEW8AAXC3f"
+  },
+  {
+   "slug": "kakindu-medical-camp-2017",
+   "title": "Kakindu Medical Camp 2017 (season 3)",
+   "date": "2017-03-24",
+   "endDate": "2017-03-26",
+   "venue": "Kakindu, Mityana",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "kanos-4-kakindu",
+   "description": "A three-day medical camp led by Community Service Director Bright Baguma.",
+   "post": "844781230121934848",
+   "cover": "C7lEBWoV4AAW9MU",
+   "people": [
+    "bright"
+   ]
+  },
+  {
+   "slug": "kakindu-csr-2018",
+   "title": "#KakinduCSR18",
+   "date": "2018-04-14",
+   "venue": "Kakindu, Mityana",
+   "type": "SERVICE_PROJECT",
+   "project": "kanos-4-kakindu",
+   "description": "The annual signature project, with the Rotary Clubs of Kampala North and Muyenga and Greenhill's Interact club.",
+   "post": "985107167987544068",
+   "cover": "DavNrskWAAA-loq"
+  },
+  {
+   "slug": "bright-baguma-installation-2018",
+   "title": "Presidential installation of Bright Baguma",
+   "date": "2018-05-18",
+   "start": "18:00",
+   "venue": "Nommo Gallery, Nakasero",
+   "type": "INSTALLATION",
+   "description": "Installation fellowship for President-Elect Bright Baguma; the cake read \"KANOs 4th Installation\".",
+   "post": "997778155527196674",
+   "cover": "DbSl-6OW0AEOvHW",
+   "people": [
+    "bright",
+    "sharon"
+   ]
+  },
+  {
+   "slug": "5th-installation-2019",
+   "title": "5th KANOs Installation: Younis Sebaggala",
+   "date": "2019-05-17",
+   "type": "INSTALLATION",
+   "description": "Installation of Younis Sebaggala as the club's 5th President.",
+   "post": "1129346666170130434",
+   "cover": "Dn1m_eNX0AAaMMg",
+   "people": [
+    "younis"
+   ]
+  },
+  {
+   "slug": "kibuli-mtoto-2019",
+   "title": "#KibuliMtoto19 with Rotaract Kibuli",
+   "date": "2019-09-21",
+   "venue": "Abubakar Swidiq Secondary School, Kyanja",
+   "type": "SERVICE_PROJECT",
+   "description": "Members joined the second phase of Rotaract Kibuli's WASH, literacy and peace project.",
+   "post": "1175317133435310085",
+   "cover": "EE-QinFXsAAt3eF"
+  },
+  {
+   "slug": "rei19-kalinzu-2019",
+   "title": "REI19: tree planting at Kalinzu Forest",
+   "date": "2019-09-27",
+   "endDate": "2019-09-29",
+   "venue": "Bushenyi",
+   "type": "SERVICE_PROJECT",
+   "project": "mission-green",
+   "description": "The Rotaract Earth Initiative's 2019 project; the club's team was led by its REI19 chair, Josephine Charlotte Namatovu.",
+   "post": "1177934399649792001",
+   "cover": "EFjdCVCW4AAVqyS",
+   "people": [
+    "younis"
+   ]
+  },
+  {
+   "slug": "i-am-for-peace-2020",
+   "title": "I Am For Peace 2020: Gashora Transit Centre",
+   "date": "2020-02-22",
+   "venue": "Gashora Transit Centre, Bugesera, Rwanda",
+   "type": "INTERNATIONAL",
+   "project": "i-am-for-peace",
+   "description": "With Rotaract Kigali City and Rotaract Nairobi Parklands: Umuganda, a peace workshop, games and donations for refugees.",
+   "post": "1231023613903503360",
+   "cover": "ERr8Py-X0AAYLRV",
+   "people": [
+    "younis",
+    "alex"
+   ]
+  },
+  {
+   "slug": "a-drop-for-a-life-2022-09",
+   "title": "A Drop for a Life blood drive",
+   "date": "2022-09-17",
+   "start": "08:00",
+   "venue": "Nakivubo Mews and Mega Standard police post, Kampala",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "a-drop-for-a-life",
+   "description": "Blood donation drive with a daily target of 200 units.",
+   "post": "1571065248588627968",
+   "cover": "Fc2LfU6XEAYSkbm"
+  },
+  {
+   "slug": "i-am-for-peace-2023-launch",
+   "title": "Launch of I Am For Peace 2023",
+   "date": "2022-10-14",
+   "start": "18:00",
+   "venue": "Sheraton Kampala Hotel",
+   "type": "INTERNATIONAL",
+   "project": "i-am-for-peace",
+   "description": "Official launch of the third edition, to be hosted in Uganda.",
+   "post": "1579356392598966272",
+   "cover": "FesAQKkWYAAc8kP"
+  },
+  {
+   "slug": "a-drop-for-a-life-2022-12",
+   "title": "A Drop for a Life blood drive",
+   "date": "2022-12-10",
+   "venue": "Watoto Church Downtown and Nakivubo Mews, Kampala",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "a-drop-for-a-life",
+   "description": "With Rotaract Kampala South, Kampala City and Bukoto.",
+   "post": "1600388805868982273",
+   "cover": "FjW2R-2XEAMwnEH"
+  },
+  {
+   "slug": "i-am-for-peace-2023",
+   "title": "I Am For Peace 2023: conference and Nakivale project",
+   "date": "2023-02-10",
+   "endDate": "2023-02-12",
+   "venue": "Makerere University, then Nakivale refugee settlement, Isingiro",
+   "type": "INTERNATIONAL",
+   "project": "i-am-for-peace",
+   "description": "Hosted by Kampala North with Kigali City and Nairobi Parklands.",
+   "post": "1623950331099901952",
+   "cover": "FoluMQ8WcAAFxPt",
+   "people": [
+    "pascal"
+   ]
+  },
+  {
+   "slug": "a-drop-for-a-life-2023-08",
+   "title": "A Drop for a Life blood drive",
+   "date": "2023-08-12",
+   "start": "08:00",
+   "venue": "DTB Bwaise; Victory School of Beauty and City Complex, Nateete",
+   "type": "COMMUNITY_OUTREACH",
+   "project": "a-drop-for-a-life",
+   "description": "Blood drive with partner Rotaract clubs.",
+   "post": "1688874252039020544",
+   "cover": "F3AWLVbW0AExNYZ"
+  },
+  {
+   "slug": "kanos-at-9-2023",
+   "title": "#KANOsAt9: ninth charter anniversary",
+   "date": "2023-12-01",
+   "type": "SOCIAL",
+   "description": "Nine years of service, fellowship and fun.",
+   "post": "1728747334761173252",
+   "cover": "F_2-iLKWwAAThtZ"
+  },
+  {
+   "slug": "gogreen4jojo-kisoro-2024",
+   "title": "#GoGreen4Jojo tree planting, Kisoro",
+   "date": "2024-01-28",
+   "start": "08:00",
+   "venue": "Kisoro town",
+   "type": "SERVICE_PROJECT",
+   "project": "mission-green",
+   "description": "Tree planting during the club retreat, in memory of Josephine Charlotte Namatovu.",
+   "post": "1750465818230411348",
+   "cover": "GErnYNuW4AAeTPK"
+  },
+  {
+   "slug": "drr-simeo-ssebukulu-visit-2024",
+   "title": "DRR Simeo Ssebukulu's official visit",
+   "date": "2024-09-13",
+   "start": "17:00",
+   "venue": "Protea Hotel, Kololo",
+   "type": "OFFICIAL_VISIT",
+   "organizer": "Rotaract District 9213",
+   "description": "Club status report and the District Rotaract Representative's address.",
+   "post": "1832425596334244185",
+   "cover": "GW4VW-zWgAAZz6W",
+   "people": [
+    "simeo",
+    "edwin"
+   ]
+  },
+  {
+   "slug": "gogreen4jojo-sango-bay-2024",
+   "title": "#GoGreen4Jojo, Sango Bay region",
+   "date": "2024-09-21",
+   "endDate": "2024-09-22",
+   "venue": "Lwengo and the Sango Bay region",
+   "type": "SERVICE_PROJECT",
+   "project": "mission-green",
+   "description": "A memorial mass for Jojo, then tree planting with the National Forestry Authority.",
+   "post": "1837746686384373834",
+   "cover": "GYD7827WsAAeLxz",
+   "people": [
+    "edwin"
+   ]
+  },
+  {
+   "slug": "interact-symposium-2025",
+   "title": "Annual Interact Symposium",
+   "date": "2025-03-01",
+   "venue": "Greenhill",
+   "type": "LEADERSHIP",
+   "description": "A day of discussions and networking with Interact (school) clubs.",
+   "post": "1891853234873970761",
+   "cover": "GkE2fDQWsAAt2Fb"
+  },
+  {
+   "slug": "tree-planting-kampala-springs-2025",
+   "title": "Joint tree planting with the Rotary Club of Kampala Springs",
+   "date": "2025-07-26",
+   "type": "SERVICE_PROJECT",
+   "project": "mission-green",
+   "description": "Every child planted a tree and gave it a name.",
+   "post": "1949698954741817537",
+   "cover": "Gw642sSXcAAJI-6"
   }
  ],
  "visits": [
@@ -1491,6 +2325,17 @@
    "event": "drr-abesage-visit-2025",
    "summary": "DRR Abesage Nahabwe's visit to KANOs began with a board meeting on the club's current state and future plans, followed by fellowship with members.",
    "post": "1947980340162707459"
+  },
+  {
+   "visitorName": "Ssebukulu Simeo",
+   "visitorTitle": "District Rotaract Representative",
+   "person": "simeo",
+   "date": "2024-09-13",
+   "venue": "Protea Hotel, Kololo",
+   "status": "COMPLETED",
+   "event": "drr-simeo-ssebukulu-visit-2024",
+   "summary": "The DRR's official visit to KANOs, with a club status report and the DRR's address.",
+   "post": "1832425596334244185"
   }
  ],
  "achievements": [
@@ -1545,6 +2390,42 @@
    "description": "The club's Mission Green President attained Paul Harris Fellow status (US$1,000 or more given to The Rotary Foundation).",
    "post": "1358804923987742720",
    "image": "Ettx0qCXMAMzbxJ"
+  },
+  {
+   "title": "Rotaractor of the Year 2017: Younis Sebaggala",
+   "date": "2017-07-01",
+   "year": "2016-2017",
+   "person": "younis",
+   "description": "The club called him its \"Past Vice President & Rotaractor of the Year award winner 2017\".",
+   "post": "1013976532103155714"
+  },
+  {
+   "title": "DCA Attendance award, District Conference & Assembly 2019",
+   "date": "2019-04-27",
+   "year": "2018-2019",
+   "description": "Awarded for the biggest delegation at DCA 94. The award was signed by Augustine Mwombeki, District Rotaract Representative 2018–19.",
+   "post": "1122157576085544960",
+   "image": "D5K0Xb-WwAA9taC",
+   "featured": true
+  },
+  {
+   "title": "Certificate of appreciation, Rotaract Earth Initiative (REI19)",
+   "date": "2019-09-29",
+   "year": "2019-2020",
+   "description": "For the club's part in tree planting at Kalinzu Forest, Bushenyi.",
+   "post": "1178208826404814848",
+   "image": "EFnWqlkWkAERo37",
+   "project": "mission-green"
+  },
+  {
+   "title": "First runner-up, District International Service Award 2020",
+   "date": "2020-06-01",
+   "year": "2019-2020",
+   "description": "For the I Am For Peace 2020 project with Rotaract Kigali City and Rotaract Nairobi Parklands.",
+   "post": "1267378011051036672",
+   "image": "EZahktTXgAAUi1Z",
+   "project": "i-am-for-peace",
+   "featured": true
   }
  ],
  "history": [
@@ -1701,6 +2582,111 @@
    "image": "HTHDRvnXYAAKzuE",
    "projects": [
     "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2015-12-04",
+   "title": "One year old, and raising money for Kakindu",
+   "kind": "PROJECT",
+   "description": "At its first birthday the club holds a fundraiser for its Kakindu project. It has gone back to Kakindu ever since.",
+   "post": "672814087705862145",
+   "image": "CVZQ0WMWEAAFBaz",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2017-03-24",
+   "title": "Kakindu Medical Camp, season 3",
+   "kind": "PROJECT",
+   "description": "A three-day medical camp in Mityana, led by Community Service Director Bright Baguma.",
+   "post": "844781230121934848",
+   "image": "C7lEBWoV4AAW9MU",
+   "projects": [
+    "kanos-4-kakindu"
+   ],
+   "people": [
+    "bright"
+   ]
+  },
+  {
+   "date": "2018-05-18",
+   "title": "Bright Baguma installed",
+   "kind": "PRESIDENT",
+   "description": "The \"KANOs 4th Installation\" at Nommo Gallery, Nakasero.",
+   "post": "997778155527196674",
+   "image": "DdjR4xRX4AAC-fr",
+   "people": [
+    "bright"
+   ]
+  },
+  {
+   "date": "2019-04-27",
+   "title": "The biggest delegation at the district conference",
+   "kind": "AWARD",
+   "description": "The club wins the DCA attendance award at DCA 94.",
+   "post": "1122157576085544960",
+   "image": "D5K0Xb-WwAA9taC"
+  },
+  {
+   "date": "2019-05-17",
+   "title": "Younis Sebaggala, the 5th President",
+   "kind": "PRESIDENT",
+   "description": "The 2019–20 \"Connecting President\" is installed.",
+   "post": "1110415916339220480",
+   "image": "Dn1m_eNX0AAaMMg",
+   "people": [
+    "younis"
+   ]
+  },
+  {
+   "date": "2020-02-22",
+   "title": "I Am For Peace, Rwanda",
+   "kind": "PARTNERSHIP",
+   "description": "With Rotaract clubs from Kigali and Nairobi, members serve refugees at Gashora Transit Centre. The project later wins a district International Service Award (first runner-up).",
+   "post": "1232575825574318080",
+   "image": "ERr8Py-X0AAYLRV",
+   "projects": [
+    "i-am-for-peace"
+   ],
+   "people": [
+    "younis"
+   ]
+  },
+  {
+   "date": "2023-02-10",
+   "title": "Hosting the peace conference",
+   "kind": "EVENT",
+   "description": "Kampala North hosts the third I Am For Peace: a conference at Makerere University and two days in Nakivale refugee settlement.",
+   "post": "1623950331099901952",
+   "image": "FoluMQ8WcAAFxPt",
+   "projects": [
+    "i-am-for-peace"
+   ],
+   "people": [
+    "pascal"
+   ]
+  },
+  {
+   "date": "2023-11-24",
+   "title": "Nine years: three classroom blocks renovated",
+   "kind": "MOMENT",
+   "description": "Kakindu's renovated classroom blocks, shown before and after as the club turns nine.",
+   "post": "1728010138097684746",
+   "image": "F_sgCJYWkAAIw3n",
+   "projects": [
+    "kanos-4-kakindu"
+   ]
+  },
+  {
+   "date": "2024-01-28",
+   "title": "#GoGreen4Jojo",
+   "kind": "INITIATIVE",
+   "description": "The club plants trees in memory of Josephine Charlotte Namatovu, starting in Kisoro.",
+   "post": "1750465818230411348",
+   "image": "GErnYNuW4AAeTPK",
+   "projects": [
+    "mission-green"
    ]
   }
  ],
@@ -2524,10 +3510,10 @@
   },
   {
    "slug": "give-blood-save-life-2018",
-   "title": "#GiveBloodSaveLife 2018",
+   "title": "#GiveBloodSaveLife, World AIDS Day 2018",
    "date": "2018-12-01",
    "category": "COMMUNITY_SERVICE",
-   "project": "give-blood-save-life-2018",
+   "project": "a-drop-for-a-life",
    "images": [
     {
      "id": "DtTHOYxWsAAflzR",
@@ -2872,6 +3858,382 @@
      "caption": "Kirabo Jael, guest of the month for September 2026."
     }
    ]
+  },
+  {
+   "slug": "kakindu-early-years",
+   "title": "Kakindu: the early years (2015–2018)",
+   "date": "2015-12-04",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "CVZQ0WMWEAAFBaz",
+     "post": "672814087705862145",
+     "caption": "#KANOS@1: the first fundraiser for the Kakindu project, December 2015."
+    },
+    {
+     "id": "CVZQ0aAW4AAG82l",
+     "post": "672814087705862145"
+    },
+    {
+     "id": "CgKz82QWcAAslxc",
+     "post": "721336769627734016",
+     "caption": "#KakinduCSR16 in Kakindu, April 2016."
+    },
+    {
+     "id": "CxNhnmEW8AAXC3f",
+     "post": "798088929983332352",
+     "caption": "Jungle Rumble Fundraiser poster, November 2016."
+    },
+    {
+     "id": "C67WMOzWkAA40qZ",
+     "post": "841845797511663616",
+     "caption": "Members registering patients at the 2016 Kakindu Medical Camp."
+    },
+    {
+     "id": "C7lEBWoV4AAW9MU",
+     "post": "844781230121934848",
+     "caption": "Kakindu Medical Camp, season 3: 24–26 March 2017."
+    },
+    {
+     "id": "C72QsMvW4AEEjcF",
+     "post": "845991421844828160",
+     "caption": "Lunch break at the 2017 medical camp."
+    },
+    {
+     "id": "DauauxvWsAE2gKK",
+     "post": "985051766986297344",
+     "caption": "On the bus to #KakinduCSR18, April 2018."
+    },
+    {
+     "id": "DaubCBBW4AA58Pp",
+     "post": "985051766986297344"
+    },
+    {
+     "id": "DavNrskWAAA-loq",
+     "post": "985107167987544068",
+     "caption": "#KakinduCSR18 with Rotary and Interact partners."
+    },
+    {
+     "id": "DavNrs0X4AAyi_h",
+     "post": "985107167987544068"
+    },
+    {
+     "id": "De1hjiJW0AASq6E",
+     "post": "1003565826778296320",
+     "caption": "Certificates for the Greenhill Interact students who joined #KakinduCSR18."
+    }
+   ]
+  },
+  {
+   "slug": "kakindu-before-after",
+   "title": "Kakindu: before and after",
+   "date": "2023-11-24",
+   "category": "PROJECT",
+   "project": "kanos-4-kakindu",
+   "images": [
+    {
+     "id": "F_sgCI6XkAAiFLz",
+     "post": "1728010138097684746",
+     "phase": "BEFORE",
+     "caption": "Before renovation: a classroom block at Malwa Umea Primary School."
+    },
+    {
+     "id": "F_sgCJJXQAE1E4X",
+     "post": "1728010138097684746",
+     "phase": "BEFORE",
+     "caption": "Before renovation."
+    },
+    {
+     "id": "F_sgCJYWkAAIw3n",
+     "post": "1728010138097684746",
+     "phase": "AFTER",
+     "caption": "After renovation: the classroom blocks today."
+    },
+    {
+     "id": "F_sgCJfWgAAH06B",
+     "post": "1728010138097684746",
+     "phase": "AFTER",
+     "caption": "After renovation."
+    },
+    {
+     "id": "F_sgLI6XQAAysb4",
+     "post": "1728010263972995104",
+     "phase": "BEFORE",
+     "caption": "The old multipurpose block that inspectors flagged as unsafe."
+    },
+    {
+     "id": "F_sgLI7XQAAY1FF",
+     "post": "1728010263972995104",
+     "phase": "BEFORE",
+     "caption": "Inside the old multipurpose block."
+    },
+    {
+     "id": "F_sgEfcXgAAyTjv",
+     "post": "1728010203122040971",
+     "caption": "Pupils in the library stocked with Enjuba's books."
+    },
+    {
+     "id": "FhRgJJ4X0AM0-Hv",
+     "post": "1591002295055310849",
+     "caption": "Reading time with the District Governor after the library launch, November 2022."
+    },
+    {
+     "id": "F_sgITpXkAATBqx",
+     "post": "1728010232377319777",
+     "caption": "HIV testing and counselling in Kakindu with Mildmay Uganda."
+    },
+    {
+     "id": "F3Gh18lXoAIFp4y",
+     "post": "1689309322872770560",
+     "caption": "The Boy Child Uplifting Program, August 2023."
+    },
+    {
+     "id": "F3Gh18kWIAAMs0H",
+     "post": "1689309322872770560"
+    }
+   ]
+  },
+  {
+   "slug": "i-am-for-peace",
+   "title": "I Am For Peace",
+   "date": "2020-02-22",
+   "category": "COMMUNITY_SERVICE",
+   "project": "i-am-for-peace",
+   "images": [
+    {
+     "id": "EQ-fqXrW4AAW4gQ",
+     "post": "1229376812238745602",
+     "caption": "I Am For Peace 2020: three clubs, three countries."
+    },
+    {
+     "id": "ERr8Py-X0AAYLRV",
+     "post": "1232575825574318080",
+     "caption": "Handing over donations at Gashora Transit Centre, Rwanda."
+    },
+    {
+     "id": "ERrw2CkXsAAte5V",
+     "post": "1232564032554569728",
+     "caption": "Umuganda: tree planting at Gashora."
+    },
+    {
+     "id": "ERr1TACWsAAC-bO",
+     "post": "1232567169441026048",
+     "caption": "President Younis Sebaggala plants a tree with Rwanda's police."
+    },
+    {
+     "id": "ERr_19hWAAAAib7",
+     "post": "1232580044469481474",
+     "caption": "Games with refugees at Gashora."
+    },
+    {
+     "id": "ERsDYhFW4AQ-lwD",
+     "post": "1232584849082474496",
+     "caption": "Peace starts with a smile."
+    },
+    {
+     "id": "EZahktTXgAAUi1Z",
+     "post": "1267378011051036672",
+     "caption": "First runner-up, District International Service Award 2020."
+    },
+    {
+     "id": "FM_6Q5uXEAAwPwK",
+     "post": "1499692381888733185",
+     "caption": "I Am For Peace 2022, Kitengela, Kenya."
+    },
+    {
+     "id": "FZeR0FLWAAAhDeA",
+     "post": "1555872577893158913",
+     "caption": "Pilot visit to Nakivale, August 2022."
+    },
+    {
+     "id": "FesAQKkWYAAc8kP",
+     "post": "1579356392598966272",
+     "caption": "Launch of the 2023 edition at Sheraton Kampala."
+    },
+    {
+     "id": "FoHeaxfaUAAL_M-",
+     "post": "1621821911314440193",
+     "caption": "MovingAds Uganda, gold corporate sponsor."
+    },
+    {
+     "id": "FoluMQ8WcAAFxPt",
+     "post": "1623950331099901952",
+     "caption": "The conference begins at the Rotary Peace Centre, Makerere University."
+    },
+    {
+     "id": "FomkjJvXsAAUBXv",
+     "post": "1624010077328797696",
+     "caption": "Peace fellows speak at the CEDAT conference hall."
+    },
+    {
+     "id": "FoqTyx5acAE3eUw",
+     "post": "1624273243694592001",
+     "caption": "On the road to Nakivale."
+    },
+    {
+     "id": "FpY2l6aWcAEgw37",
+     "post": "1627548386416115712",
+     "caption": "A stop at the Equator."
+    },
+    {
+     "id": "FpY4kkAXoAAa5eD",
+     "post": "1627555326017867776",
+     "caption": "The children's play park under construction in Nakivale."
+    },
+    {
+     "id": "FpY7FhtXwAAXu_a",
+     "post": "1627555336499392513",
+     "caption": "Football with the host community: 1–1."
+    }
+   ]
+  },
+  {
+   "slug": "a-drop-for-a-life",
+   "title": "A Drop for a Life",
+   "date": "2022-09-17",
+   "category": "COMMUNITY_SERVICE",
+   "project": "a-drop-for-a-life",
+   "images": [
+    {
+     "id": "EiXCh7FWoAAO79y",
+     "post": "1307665173927407616",
+     "caption": "Donating with the Rotaract Ladies Initiative, 2020."
+    },
+    {
+     "id": "Fc2LfU6XEAYSkbm",
+     "post": "1571065248588627968",
+     "caption": "A Drop for a Life, 17 September 2022."
+    },
+    {
+     "id": "Fc2V6PXWQAEvNDo",
+     "post": "1571076694785789956",
+     "caption": "Donors at Nakivubo Mews."
+    },
+    {
+     "id": "Fc2V6PeWQAEW_bI",
+     "post": "1571076694785789956"
+    },
+    {
+     "id": "FjW2R-2XEAMwnEH",
+     "post": "1600388805868982273",
+     "caption": "A Drop for a Life, 10 December 2022."
+    },
+    {
+     "id": "F3AWLVbW0AExNYZ",
+     "post": "1688874252039020544",
+     "caption": "A Drop for a Life, 12 August 2023."
+    },
+    {
+     "id": "Fi60S22XoAEMwoC",
+     "post": "1598528492148166656",
+     "caption": "Blood donation and polio work, from the club's eighth-birthday thread."
+    }
+   ]
+  },
+  {
+   "slug": "mission-green",
+   "title": "Mission Green and #GoGreen4Jojo",
+   "date": "2019-09-28",
+   "category": "COMMUNITY_SERVICE",
+   "project": "mission-green",
+   "images": [
+    {
+     "id": "EFh8KpDWoAIBpzy",
+     "post": "1177827867805278208",
+     "caption": "Ready to plant at Kalinzu Forest, REI19."
+    },
+    {
+     "id": "EFjdCVCW4AAVqyS",
+     "post": "1177934399649792001",
+     "caption": "Planting trees at Kalinzu Forest, Bushenyi, September 2019."
+    },
+    {
+     "id": "EFjdDPyW4AACAre",
+     "post": "1177934399649792001"
+    },
+    {
+     "id": "EFnWqlkWkAERo37",
+     "post": "1178208826404814848",
+     "caption": "The Rotaract Earth Initiative's certificate of appreciation."
+    },
+    {
+     "id": "GErnYNuW4AAeTPK",
+     "post": "1750465818230411348",
+     "caption": "#GoGreen4Jojo in Kisoro, January 2024."
+    },
+    {
+     "id": "GEwBk-RXoAAdlyc",
+     "post": "1750776136672379041",
+     "caption": "Setting off for Kisoro."
+    },
+    {
+     "id": "GYD7827WsAAeLxz",
+     "post": "1837746686384373834",
+     "caption": "NFA's range manager for Sango Bay explains the seedlings."
+    },
+    {
+     "id": "GYD8-cVXsAA5ysm",
+     "post": "1837746827346493648",
+     "caption": "Seedlings for Nkoni Catholic Church."
+    },
+    {
+     "id": "GYD9Q_qXYAAqQjE",
+     "post": "1837747155643117723",
+     "caption": "Closing the #GoGreen4Jojo day, September 2024."
+    },
+    {
+     "id": "GvQZ-MhW4AAwGTk",
+     "post": "1942205906646688041",
+     "caption": "Seven Days of Service at Mpererwe COU Primary School, July 2025."
+    },
+    {
+     "id": "Gw642sSXcAAJI-6",
+     "post": "1949698954741817537",
+     "caption": "Every child planted a tree and named it, July 2025."
+    },
+    {
+     "id": "Gw642sRXMAAznD_",
+     "post": "1949698954741817537"
+    }
+   ]
+  },
+  {
+   "slug": "installations-2018-2019",
+   "title": "Installations 2018 and 2019",
+   "date": "2018-05-18",
+   "category": "INSTALLATION",
+   "images": [
+    {
+     "id": "DbSl-6OW0AEOvHW",
+     "post": "987596739417903104",
+     "caption": "Installation fellowship for President-Elect Bright Baguma, 18 May 2018."
+    },
+    {
+     "id": "DdjR4xRX4AAC-fr",
+     "post": "997778155527196674",
+     "caption": "\"KANOs 4th Installation\"."
+    },
+    {
+     "id": "DdjR5qsXUAAw3yb",
+     "post": "997778155527196674"
+    },
+    {
+     "id": "Dn1m_eNX0AAaMMg",
+     "post": "1044104872583417856",
+     "caption": "Younis Sebaggala, PLD Director 2018–19 and President 2019–20."
+    },
+    {
+     "id": "D58W81MW4AAQwi5",
+     "post": "1125643704298016768",
+     "caption": "President-Elect Younis Sebaggala at the first Rotary UN Day in Africa, 2019."
+    },
+    {
+     "id": "D5K0Xb-WwAA9taC",
+     "post": "1122157576085544960",
+     "caption": "The DCA attendance award, 2019."
+    }
+   ]
   }
  ],
  "posts": [
@@ -2926,7 +4288,7 @@
    "date": "2018-12-01T09:11:00Z",
    "text": "@kanosug partnering with @PGUganda to save lives in Uganda. We are delighted to be joined by members from @RCkigalicity. #GiveBloodSaveLife #KnowYourStatus #WorldAIDSDay #PG4Youth",
    "category": "COMMUNITY_SERVICE",
-   "project": "give-blood-save-life-2018"
+   "project": "a-drop-for-a-life"
   },
   {
    "id": "1068921260678307840",
@@ -3303,6 +4665,94 @@
    "date": "2026-10-01T05:12:00Z",
    "text": "Congratulations to you @KiraboJael72957 on being recognized as the guest of the month of September. Your commitment and consistency in participating in club activities and meetings have truly stood out.",
    "category": "MEMBER_SPOTLIGHT"
+  },
+  {
+   "id": "672814087705862145",
+   "date": "2015-12-04T16:25:00Z",
+   "text": "#KANOS@1 Fundraiser for #Kanosug #Kakindu Project",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "798088929983332352",
+   "date": "2016-11-14T09:03:00Z",
+   "text": "The #JRFR16 fundraiser is aiming at raising money for the Kakindu medical camp in Mityana.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1003565826778296320",
+   "date": "2018-06-04T09:15:00Z",
+   "text": "It was of great joy to have presented the certificates of participation to the students of the interact club of @GreenhillUg who joined us during the annual signature project #KakinduCSR18.",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1122157576085544960",
+   "date": "2019-04-27T15:16:00Z",
+   "text": "Our attendance at the #DCA94 didn't go unnoticed. We managed to scoop the award for having the biggest number at this year's District Conference Assembly.",
+   "category": "ACHIEVEMENT"
+  },
+  {
+   "id": "1232575825574318080",
+   "date": "2020-02-26T07:59:00Z",
+   "text": "Right after Connecting President @Younisebz's talk about the 8 @Rotary Pillars of #Peace, together with @RCkigalicity and @rcnparklands family we handed over the donations to the in-charge at Gashora Transit Centre. #Iam4Peace20",
+   "category": "COMMUNITY_SERVICE",
+   "project": "i-am-for-peace"
+  },
+  {
+   "id": "1267378011051036672",
+   "date": "2020-06-01T08:50:00Z",
+   "text": "#Iam4peace20 Project in partnership with @RCkigalicity & @rcnparklands won us a First runners Up International Service Award this year. #PeopleOfAction",
+   "category": "ACHIEVEMENT",
+   "project": "i-am-for-peace"
+  },
+  {
+   "id": "1728010138097684746",
+   "date": "2023-11-24T11:18:00Z",
+   "text": "As of now, we've so far delivered three newly renovated classroom blocks, a significant step to enhance education in Kakindu community! Frames 1 and 2 capture the condition before the renovation, while Frames 3 and 4 showcase the transformation after the renovation. #KANOsAt9",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1728010263972995104",
+   "date": "2023-11-24T11:18:00Z",
+   "text": "We are currently in Phase 4 of the KANOs4Kakindu Project, focused on reconstructing and redesigning a multipurpose block at Malwa UMEA Primary School, addressing safety issues for learners identified during quality assurance inspections by the Ministry of Education and Sports in the district. #KANOsAt9",
+   "category": "PROJECT_UPDATE",
+   "project": "kanos-4-kakindu"
+  },
+  {
+   "id": "1837746827346493648",
+   "date": "2024-09-22T06:52:00Z",
+   "text": "Building on our commitment to environmental stewardship, we also presented Nkoni Catholic Church with tree seedlings as part of #GoGreen4Jojo.",
+   "category": "COMMUNITY_SERVICE",
+   "project": "mission-green"
+  },
+  {
+   "id": "1949698954741817537",
+   "date": "2025-07-28T05:10:00Z",
+   "text": "On Saturday 26th July, we had a joint project with @KlaSpringers where we planted more than just trees, but planted hope. Every child planted a tree and gave it a name.",
+   "category": "COMMUNITY_SERVICE",
+   "project": "mission-green"
   }
- ]
+ ],
+ "projectUpdates": [
+  {
+   "slug": "kigezi-new-year-retreat-2022",
+   "focusAreas": [
+    "Protecting the environment"
+   ]
+  },
+  {
+   "slug": "jrfr16-fundraiser",
+   "mergeInto": "kanos-4-kakindu"
+  },
+  {
+   "slug": "give-blood-save-life-2018",
+   "mergeInto": "a-drop-for-a-life"
+  }
+ ],
+ "yearCovers": {
+  "2015-2016": "CVZQ0WMWEAAFBaz"
+ }
 }

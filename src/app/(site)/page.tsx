@@ -285,6 +285,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ───────── SUPPORT ───────── */}
+      <section className="bg-cranberry text-paper">
+        <div className="container-x grid gap-8 py-16 sm:py-20 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-8">
+            <p className="eyebrow mb-4 text-paper/70">For sponsors, donors and partners</p>
+            <h2 className="text-4xl font-bold leading-[1.06] sm:text-6xl">Help us finish what we started.</h2>
+            <p className="mt-5 max-w-2xl font-serif text-xl text-paper/85">Every president, every project and every result since 2014, laid out in one place, with the next steps that need support.</p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
+            <Link href="/support" className="btn bg-paper text-cranberry hover:bg-gold hover:text-fg">Why support us <ArrowUpRight className="size-4" aria-hidden /></Link>
+            <Link href="/support#talk" className="btn-ghost-light">Talk to us</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ───────── WHAT'S HAPPENING ───────── */}
       <section className="container-x py-20 sm:py-28">
         <SectionHead index="06" eyebrow="What's happening" title="Come through." intro="Club meetings and Rotary-family events, each labelled with who's organising it." href="/events" hrefLabel="Full calendar" />
@@ -378,7 +393,7 @@ export default async function HomePage() {
               ["Attend an event", "/get-involved?type=ATTEND"],
               ["Volunteer", "/get-involved?type=VOLUNTEER"],
               ["Partner with us", "/get-involved?type=PARTNER"],
-              ["Support a project", "/get-involved?type=SUPPORT_PROJECT"],
+              ["Support a project", "/support"],
             ].map(([l, h]) => (
               <Link key={h} href={h} className="group flex items-center justify-between rounded-sm border border-fg/20 bg-paper px-5 py-4 font-semibold transition-colors hover:border-royal hover:bg-royal hover:text-paper">
                 {l} <ArrowUpRight className="size-4" aria-hidden />

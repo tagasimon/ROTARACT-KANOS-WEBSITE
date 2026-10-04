@@ -17,7 +17,8 @@ export type FieldType =
   | "email"
   | "slug"
   | "pin"
-  | "readonly";
+  | "readonly"
+  | "multiselect";
 
 export type Field = {
   name: string;
@@ -81,6 +82,17 @@ export const E = {
   inquiryStatus: ["NEW", "IN_PROGRESS", "CLOSED"],
   inquiryType: ["ATTEND", "VOLUNTEER", "PARTNER", "SUPPORT_PROJECT", "JOIN", "CONTACT"],
 } as const;
+
+/** Rotary International's seven areas of focus. */
+export const FOCUS_AREAS = [
+  "Peacebuilding and conflict prevention",
+  "Disease prevention and treatment",
+  "Water, sanitation and hygiene",
+  "Maternal and child health",
+  "Basic education and literacy",
+  "Community economic development",
+  "Protecting the environment",
+] as const;
 
 // ── common relation shortcuts ──
 const R = {
@@ -253,6 +265,11 @@ export const RESOURCES: Resource[] = [
       { ...R.committee, group: "Place & people", width: "half" },
       { ...R.year, group: "Place & people", help: "Auto-filled from the start date if left empty." },
       { name: "featured", label: "Feature on the homepage (Project Journey)", type: "boolean", group: "Place & people" },
+      { name: "focusAreas", label: "Rotary areas of focus", type: "multiselect", options: FOCUS_AREAS, group: "For sponsors & donors" },
+      { name: "supportNeeds", label: "What support would help now", type: "markdown", group: "For sponsors & donors", help: "Shown on the Support page and the project page. Only list real, current needs." },
+      { name: "fundingGoal", label: "Funding goal", type: "number", group: "For sponsors & donors", width: "third", help: "Leave empty if there's no agreed budget." },
+      { name: "fundingRaised", label: "Raised so far", type: "number", group: "For sponsors & donors", width: "third" },
+      { name: "fundingCurrency", label: "Currency", type: "text", group: "For sponsors & donors", width: "third", default: "UGX" },
       ...seo,
     ],
   },

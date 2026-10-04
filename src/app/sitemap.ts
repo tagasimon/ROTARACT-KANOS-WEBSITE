@@ -5,7 +5,7 @@ import { absoluteUrl } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const statics = ["/", "/about", "/projects", "/people", "/skills", "/leadership", "/leadership/past-presidents", "/years", "/events", "/district", "/stories", "/memories", "/videos", "/achievements", "/get-involved"];
+  const statics = ["/", "/about", "/projects", "/people", "/skills", "/leadership", "/leadership/past-presidents", "/years", "/events", "/district", "/stories", "/memories", "/videos", "/achievements", "/get-involved", "/support"];
   try {
     const [projects, people, events, stories, years, albums] = await Promise.all([
       db.project.findMany({ where: { publishStatus: "PUBLISHED" }, select: { slug: true, updatedAt: true } }),

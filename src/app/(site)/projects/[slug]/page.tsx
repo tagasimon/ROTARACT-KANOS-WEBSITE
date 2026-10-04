@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowUpRight, Calendar, FileText, MapPin } from "lucide-react";
 import { db } from "@/lib/db";
 import { publicProject, personCardSelect, eventCardInclude } from "@/lib/queries";
@@ -63,11 +63,19 @@ const CHAPTERS = [
   ["partners", "The partners"],
   ["impact", "The impact"],
   ["today", "Today"],
+  ["support", "Support it"],
 ] as const;
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const p = await load((await params).slug);
-  if (!p) notFound();
+  const slug = (await params).slug;
+  const p = await load(slug);
+  if (!p) {
+    // Projects folded into a bigger one keep working links.
+    const r = await db.siteSetting.findUnique({ where: { key: "projectRedirects" } });
+    const to = (r?.value as Record<string, string> | null)?.[slug];
+    if (to && to !== slug) permanentRedirect(`/projects/${to}`);
+    notFound();
+  }
 
   const president = p.yearId
     ? await db.leadershipAssignment.findFirst({ where: { yearId: p.yearId, role: { slug: "president" }, person: { isPublic: true } }, include: { person: { select: personCardSelect } } })
@@ -75,8 +83,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   const phases = { BEFORE: [] as typeof p.media, DURING: [] as typeof p.media, AFTER: [] as typeof p.media, CURRENT: [] as typeof p.media };
   for (const m of p.media) if (m.phase) phases[m.phase].push(m);
-  const before = phases.BEFORE[0];
-  const after = phases.CURRENT[0] || phases.AFTER[0];
+  // Prefer a before/after pair taken from the same post (same building, same angle).
+  const paired = phases.BEFORE.map((b) => ({ b, a: [...phases.AFTER, ...phases.CURRENT].find((x) => x.sourceUrl && x.sourceUrl === b.sourceUrl) })).find((x) => x.a);
+  const before = paired?.b || phases.BEFORE[0];
+  const after = paired?.a || phases.CURRENT[0] || phases.AFTER[0];
   const hasThenNow = p.media.some((m) => m.phase);
   const gallery = p.media.filter((m) => m.kind === "IMAGE" && !m.phase);
   const videos = p.media.filter((m) => m.kind === "VIDEO");
@@ -93,6 +103,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     p.partners.length && "partners",
     (p.impact || p.metrics.length || p.achievements.length) && "impact",
     (p.today || latest) && "today",
+    p.supportNeeds && p.status !== "COMPLETED" && "support",
   ].filter(Boolean) as string[]);
 
   return (
@@ -140,6 +151,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             ))}
           </dl>
+          {p.focusAreas.length > 0 && (
+            <ul className="rise rise-4 mt-6 flex flex-wrap gap-2" aria-label="Rotary areas of focus">
+              {p.focusAreas.map((a) => <li key={a}><Link href={`/projects?focus=${encodeURIComponent(a)}`} className="inline-block rounded-full border border-paper/30 px-3 py-1 text-xs font-semibold text-paper/90 hover:border-gold hover:text-gold">{a}</Link></li>)}
+            </ul>
+          )}
         </div>
       </header>
 
@@ -329,6 +345,29 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <MapEmbed lat={p.latitude} lng={p.longitude} label={p.locationName || p.title} zoom={0.08} className="h-full" />
             </div>
           )}
+        </section>
+      )}
+
+      {/* SUPPORT */}
+      {p.supportNeeds && p.status !== "COMPLETED" && (
+        <section id="support" className="scroll-mt-28 bg-gold py-16 sm:py-20">
+          <div className="container-x grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="eyebrow mb-4 text-fg/70">Support this project</p>
+              <h2 className="text-4xl font-bold leading-tight sm:text-5xl">What would help next.</h2>
+              {p.fundingGoal ? (
+                <p className="mt-6 font-display text-2xl font-bold">
+                  {p.fundingCurrency || "UGX"} {fmtNumber(p.fundingGoal)} goal
+                  {p.fundingRaised != null && <span className="block text-base font-semibold">{p.fundingCurrency || "UGX"} {fmtNumber(p.fundingRaised)} raised so far</span>}
+                </p>
+              ) : null}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/support#talk" className="btn-ink">Talk to us about supporting it</Link>
+                <Link href="/support" className="btn border border-fg/30 hover:bg-fg/5">Why support us</Link>
+              </div>
+            </div>
+            <div className="prose-ed max-w-none text-fg lg:col-span-7 [&_strong]:text-fg" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.supportNeeds) }} />
+          </div>
         </section>
       )}
 

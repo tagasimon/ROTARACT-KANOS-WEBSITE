@@ -81,9 +81,12 @@ const snowflakeDate = (id: string) => new Date(Number((BigInt(id) >> 22n) + 1288
 const mediaIds = new Map<string, string>(); // x media id → Media.id
 let newPhotos = 0;
 
+/** "<media id>~p" is a portrait cropped from that photo (stored next to it as <id>~p.webp). */
+const mediaUrl = (id: string) => (id.endsWith("~p") ? `${imgRef(id.slice(0, -2))}#portrait` : imgRef(id));
+
 async function ensureMedia(id: string, link: Partial<Prisma.MediaUncheckedCreateInput> = {}) {
   if (mediaIds.has(id)) return mediaIds.get(id)!;
-  const existing = await db.media.findFirst({ where: { url: imgRef(id) }, select: { id: true } });
+  const existing = await db.media.findFirst({ where: { url: mediaUrl(id) }, select: { id: true } });
   if (existing) {
     mediaIds.set(id, existing.id);
     return existing.id;
@@ -101,33 +104,33 @@ async function ensureMedia(id: string, link: Partial<Prisma.MediaUncheckedCreate
     for (const [name, w] of Object.entries(WIDTHS)) {
       if (width && width < w && name !== "sm") continue;
       const buf = name === "lg" ? input : await sharp(input).resize({ width: w, withoutEnlargement: true }).webp({ quality: 76 }).toBuffer();
-      const key = `images/x/${id}-${name}.webp`;
+      const key = `images/x/${id.replace("~", "-")}-${name}.webp`;
       await putFile(key, buf, "image/webp");
       variants[name] = key;
     }
   } else {
-    const key = `images/x/${id}-lg.webp`;
+    const key = `images/x/${id.replace("~", "-")}-lg.webp`;
     await putFile(key, input, "image/webp");
     variants.lg = key;
   }
-  const info = imgInfo.get(id);
+  const info = imgInfo.get(id) || imgInfo.get(id.replace(/~p$/, ""));
   const post = info?.post;
   const date = post ? postDate.get(post) || snowflakeDate(post) : null;
   const m = await db.media.create({
     data: {
       kind: "IMAGE",
       provider: "UPLOAD",
-      url: imgRef(id), // stable identity; the page serves the stored variants
+      url: mediaUrl(id), // stable identity; the page serves the stored variants
       storageKey: variants.lg || variants.md || variants.sm,
       variants,
       mimeType: "image/webp",
       width,
       height,
-      caption: info?.caption || null,
+      caption: id.endsWith("~p") ? null : info?.caption || null,
       alt: info?.caption?.replace(/\.$/, "") || "Photo from Rotaract Club of Kampala North on X",
       credit: "Rotaract Club of Kampala North (@kanosug)",
       date,
-      phase: info?.phase || null,
+      phase: id.endsWith("~p") ? null : info?.phase || null,
       yearId: date ? yearIds[rotaryYearOf(date)] || null : null,
       source: SOURCE,
       sourceUrl: post ? postUrl(post) : X.account,
@@ -184,7 +187,7 @@ async function main() {
   }
 
   // ── people ──
-  for (const p of X.people as { key: string; existing?: string; name: string; honorific?: string; x?: string; type?: Prisma.PersonCreateInput["type"]; organization?: string; professionalTitle?: string; post: string; note?: string; photo?: string }[]) {
+  for (const p of X.people as { key: string; existing?: string; name: string; honorific?: string; x?: string; type?: Prisma.PersonCreateInput["type"]; organization?: string; professionalTitle?: string; post: string; note?: string; photo?: string; keepName?: boolean }[]) {
     let row = p.existing ? await db.person.findUnique({ where: { slug: p.existing } }) : null;
     if (!row) row = await db.person.findUnique({ where: { slug: slugify(p.name) } });
     if (!row) {
@@ -198,9 +201,11 @@ async function main() {
           organization: p.organization || null,
           professionalTitle: p.professionalTitle || null,
           seoDescription: p.note || null,
-          ...prov(p.post, p.name === "Bright" || p.name === "Dr. Katende" || p.key === "baguma" ? "NEEDS_VERIFICATION" : "VERIFIED"),
+          ...prov(p.post, p.key === "baguma" ? "NEEDS_VERIFICATION" : "VERIFIED"),
         },
       });
+    } else if (upgrade && p.keepName) {
+      row = await db.person.update({ where: { id: row.id }, data: { x: row.x || p.x || null } });
     } else if (upgrade) {
       const newSlug = slugify(p.name);
       const slugFree = newSlug === row.slug || !(await db.person.findUnique({ where: { slug: newSlug } }));
@@ -213,14 +218,19 @@ async function main() {
           x: row.x || p.x || null,
           professionalTitle: row.professionalTitle || p.professionalTitle || null,
           organization: row.organization || p.organization || null,
+          seoDescription: p.note ?? row.seoDescription,
           ...(row.verification !== "VERIFIED" && p.key !== "baguma" ? { verification: "VERIFIED", source: SOURCE, sourceUrl: postUrl(p.post), sourceType: "CLUB_SOCIAL", lastCheckedAt: COLLECTED } : {}),
         },
       });
     }
     personIds[p.key] = row.id;
-    if (p.photo && !row.photoId) {
-      const mid = await ensureMedia(p.photo);
-      if (mid) await db.person.update({ where: { id: row.id }, data: { photoId: mid } });
+    if (p.photo) {
+      // Set the photo if there is none, or replace one this import set earlier (never an admin's upload).
+      const current = row.photoId ? await db.media.findUnique({ where: { id: row.photoId }, select: { source: true, url: true } }) : null;
+      if (!current || (current.source === SOURCE && current.url !== mediaUrl(p.photo))) {
+        const mid = await ensureMedia(p.photo, { alt: p.name });
+        if (mid) await db.person.update({ where: { id: row.id }, data: { photoId: mid } });
+      }
     }
   }
 
@@ -271,9 +281,29 @@ async function main() {
           startDate: start,
           locationName: p.locationName || null,
           beneficiaries: p.beneficiaries || null,
+          focusAreas: p.focusAreas || [],
+          supportNeeds: p.supportNeeds || null,
           yearId: yearIds[p.year] || null,
           seoDescription: p.summary.slice(0, 158),
           ...prov(p.post),
+        },
+      });
+    } else if (upgrade) {
+      // Refresh the narrative from the latest curated data (only when the data version changes).
+      proj = await db.project.update({
+        where: { id: proj.id },
+        data: {
+          tagline: p.tagline,
+          summary: p.summary,
+          need: p.need || proj.need,
+          idea: p.idea || proj.idea,
+          beginning: p.beginning || proj.beginning,
+          impact: p.impact || proj.impact,
+          today: p.today || proj.today,
+          startDate: start,
+          yearId: yearIds[p.year] || proj.yearId,
+          focusAreas: p.focusAreas?.length ? p.focusAreas : proj.focusAreas,
+          supportNeeds: p.supportNeeds ?? proj.supportNeeds,
         },
       });
     }
@@ -282,8 +312,16 @@ async function main() {
       const mid = await ensureMedia(p.cover, { projectId: proj.id });
       if (mid) await db.project.update({ where: { id: proj.id }, data: { coverId: mid } });
     }
-    if (!(await db.projectMilestone.count({ where: { projectId: proj.id, source: SOURCE } }))) {
-      for (const [i, m] of (p.milestones as MS[]).entries()) {
+    // Renamed milestones keep their record (and links); rename before matching by title.
+    for (const mu of (p.milestoneUpdates || []) as { title: string; rename?: string }[]) {
+      if (!upgrade || !mu.rename) continue;
+      await db.projectMilestone.updateMany({ where: { projectId: proj.id, title: mu.title }, data: { title: mu.rename } });
+    }
+    {
+      const have = new Set((await db.projectMilestone.findMany({ where: { projectId: proj.id }, select: { title: true } })).map((m) => m.title));
+      const sorted = [...(p.milestones as MS[])].sort((a, b) => a.date.localeCompare(b.date));
+      for (const [i, m] of sorted.entries()) {
+        if (have.has(m.title)) continue;
         const d = day(m.date);
         const imageId = m.image ? await ensureMedia(m.image, { projectId: proj.id }) : null;
         await db.projectMilestone.create({
@@ -303,8 +341,28 @@ async function main() {
         });
       }
     }
-    if (!(await db.projectMetric.count({ where: { projectId: proj.id, source: SOURCE } }))) {
-      for (const [i, m] of (p.metrics as { label: string; value: number; unit?: string; impactKey?: string; date?: string; post: string; showInImpact?: boolean }[]).entries()) {
+    for (const mu of (p.milestoneUpdates || []) as { title: string; description?: string; post?: string; addPeople?: string[] }[]) {
+      if (!upgrade) break;
+      const ms = await db.projectMilestone.findFirst({ where: { projectId: proj.id, title: mu.title } });
+      if (!ms) continue;
+      await db.projectMilestone.update({
+        where: { id: ms.id },
+        data: {
+          description: mu.description ?? ms.description,
+          ...(mu.post ? { sourceUrl: postUrl(mu.post) } : {}),
+          ...(mu.addPeople?.length ? { people: { connect: mu.addPeople.filter((k) => personIds[k]).map((k) => ({ id: personIds[k] })) } } : {}),
+        },
+      });
+    }
+    {
+      const metrics = await db.projectMetric.findMany({ where: { projectId: proj.id }, select: { id: true, label: true } });
+      for (const [i, m] of (p.metrics as { label: string; value: number; unit?: string; impactKey?: string; date?: string; post: string; showInImpact?: boolean; replaces?: string }[]).entries()) {
+        if (metrics.some((x) => x.label === m.label)) continue;
+        const old = m.replaces ? metrics.find((x) => x.label === m.replaces) : null;
+        if (old) {
+          await db.projectMetric.update({ where: { id: old.id }, data: { label: m.label, value: m.value, unit: m.unit || null, date: m.date ? day(m.date) : null, sourceUrl: postUrl(m.post) } });
+          continue;
+        }
         await db.projectMetric.create({
           data: { projectId: proj.id, label: m.label, value: m.value, unit: m.unit || null, impactKey: m.impactKey || null, date: m.date ? day(m.date) : null, showInImpact: m.showInImpact ?? !!m.impactKey, sortOrder: i, source: SOURCE, sourceUrl: postUrl(m.post), verification: "VERIFIED" },
         });
@@ -319,6 +377,56 @@ async function main() {
         create: { projectId: proj.id, organizationId, role: pt.role, sourceUrl: postUrl(p.post), verification: "VERIFIED" },
       });
     }
+  }
+  const redirects: Record<string, string> = {};
+  for (const u of (X.projectUpdates || []) as { slug: string; mergeInto?: string; title?: string; tagline?: string; summary?: string; startDate?: string; cover?: string; post?: string; focusAreas?: string[]; verification?: Verification }[]) {
+    if (!upgrade) break;
+    const proj = await db.project.findUnique({ where: { slug: u.slug } });
+    if (!proj) continue;
+    if (u.mergeInto) {
+      // A one-day activity that belongs to a bigger project: its photos, posts and partners
+      // move to that project, the old page is archived (never deleted) and its URL redirects.
+      const into = await db.project.findUnique({ where: { slug: u.mergeInto } });
+      if (!into) continue;
+      redirects[u.slug] = u.mergeInto;
+      if (proj.publishStatus === "ARCHIVED") continue;
+      const move = { where: { projectId: proj.id }, data: { projectId: into.id } };
+      await db.media.updateMany(move);
+      await db.event.updateMany(move);
+      await db.story.updateMany(move);
+      await db.socialPost.updateMany(move);
+      await db.photoAlbum.updateMany(move);
+      await db.document.updateMany(move);
+      await db.achievement.updateMany(move);
+      await db.inquiry.updateMany(move);
+      const intoOrgs = new Set((await db.projectPartner.findMany({ where: { projectId: into.id }, select: { organizationId: true } })).map((x) => x.organizationId));
+      for (const pp of await db.projectPartner.findMany({ where: { projectId: proj.id }, select: { organizationId: true } })) {
+        if (intoOrgs.has(pp.organizationId)) continue;
+        await db.projectPartner.updateMany({ where: { projectId: proj.id, organizationId: pp.organizationId }, data: { projectId: into.id } });
+      }
+      await db.project.update({ where: { id: proj.id }, data: { publishStatus: "ARCHIVED", featured: false } });
+      console.log(`  merged project ${u.slug} into ${u.mergeInto}`);
+      continue;
+    }
+    const coverId = u.cover && !proj.coverId ? await ensureMedia(u.cover, { projectId: proj.id }) : null;
+    await db.project.update({
+      where: { id: proj.id },
+      data: {
+        ...(u.title ? { title: u.title } : {}),
+        ...(u.tagline ? { tagline: u.tagline } : {}),
+        ...(u.summary ? { summary: u.summary, seoDescription: u.summary.slice(0, 158) } : {}),
+        ...(u.startDate ? { startDate: day(u.startDate) } : {}),
+        ...(u.focusAreas ? { focusAreas: u.focusAreas } : {}),
+        ...(coverId ? { coverId } : {}),
+        ...(u.post ? { source: SOURCE, sourceUrl: postUrl(u.post), sourceType: "CLUB_SOCIAL", lastCheckedAt: COLLECTED } : {}),
+        ...(u.verification ? { verification: u.verification } : {}),
+      },
+    });
+  }
+  if (Object.keys(redirects).length) {
+    const cur = await db.siteSetting.findUnique({ where: { key: "projectRedirects" } });
+    const value = { ...((cur?.value || {}) as Record<string, string>), ...redirects };
+    await db.siteSetting.upsert({ where: { key: "projectRedirects" }, update: { value }, create: { key: "projectRedirects", value } });
   }
   if (upgrade) {
     // The flagship project leads the home page; the 2022 retreat stays in the archive.
@@ -488,6 +596,7 @@ async function main() {
     "2020-2021": "Ex-3DE-WEA4BKzt", "2021-2022": "E_4QCNbUYAMA29u", "2022-2023": "FhRd8VnWIAIAmtu", "2023-2024": "F8zMW54XEAE5qO5",
     "2024-2025": "GIyNmKiWMAAEsHv", "2025-2026": "GyEXcuQW8AElan2", "2026-2027": "HTHDRvnXYAAKzuE",
   };
+  Object.assign(yearCovers, X.yearCovers || {});
   for (const y of years) {
     if (y.coverId || !yearCovers[y.slug]) continue;
     const mid = await ensureMedia(yearCovers[y.slug]);

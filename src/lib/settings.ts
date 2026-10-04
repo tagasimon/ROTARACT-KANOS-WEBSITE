@@ -28,6 +28,8 @@ export type SiteSettings = {
   socials: { x: string; instagram: string; facebook: string; linkedin: string; youtube: string; tiktok: string };
   sponsorNote: string;
   joinIntro: string;
+  /** Support page: how to give (bank / mobile money / Rotary Foundation). Markdown, entered by an admin. */
+  donationInstructions: string;
   attendanceFollowUpThreshold: number; // % below which a member needs follow-up
 };
 
@@ -59,6 +61,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   sponsorNote: "",
   joinIntro:
     "Rotaract membership is not an online sign-up. Come to a Friday fellowship, meet the club, and we'll walk you through how joining works.",
+  donationInstructions: "",
   attendanceFollowUpThreshold: 50,
 };
 

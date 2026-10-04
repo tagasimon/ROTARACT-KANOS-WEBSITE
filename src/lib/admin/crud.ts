@@ -121,6 +121,11 @@ export async function saveRow(r: Resource, id: string | null, fd: FormData, user
         if (f.required && !v) throw new ValidationError(`${f.label} is required`);
         data[f.name] = v || null;
         break;
+      case "multiselect": {
+        const vals = fd.getAll(f.name).map(String).filter((x) => !f.options || (f.options as readonly string[]).includes(x));
+        data[f.name] = vals;
+        break;
+      }
       case "relations": {
         const ids = fd.getAll(f.name).map(String).filter(Boolean);
         data[f.name] = isCreate ? { connect: ids.map((x) => ({ id: x })) } : { set: ids.map((x) => ({ id: x })) };

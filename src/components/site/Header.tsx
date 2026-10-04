@@ -19,18 +19,14 @@ export const NAV = [
 ];
 
 /**
- * Typographic club lockup in brand type and colour (Rotaract in Cranberry, club name in Royal Blue).
- * When an admin uploads the club's official Rotaract signature in Settings, that image is used instead.
+ * The club's Rotaract signature (cranberry on light backgrounds, white on dark ones).
+ * An admin can replace it by uploading a logo in Settings.
  */
 export function Wordmark({ name, light, logoSrc }: { name: string; light?: boolean; logoSrc?: string | null }) {
-  if (logoSrc)
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={logoSrc} alt={`Rotaract Club of ${name}`} className={`h-10 w-auto ${light ? "rounded bg-white p-1.5" : ""}`} />;
+  const src = logoSrc && !light ? logoSrc : light ? "/brand/rotaract-kampala-north-white.png" : "/brand/rotaract-kampala-north.png";
   return (
-    <span className="flex flex-col leading-none">
-      <span className={`font-display text-[1.6rem] font-bold tracking-tight ${light ? "text-white" : "text-cranberry"}`}>Rotaract</span>
-      <span className={`font-cond mt-0.5 text-[0.72rem] font-bold uppercase tracking-[0.08em] ${light ? "text-gold" : "text-royal"}`}>Club of {name}</span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={`Rotaract Club of ${name}`} width={442} height={100} className={light ? "h-12 w-auto" : "h-9 w-auto sm:h-10"} />
   );
 }
 
@@ -43,13 +39,13 @@ export async function SiteHeader() {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-royal focus:px-4 focus:py-2 focus:text-paper">
         Skip to content
       </a>
-      <div className="container-x flex h-16 items-center justify-between gap-6">
+      <div className="container-x flex h-16 items-center justify-between gap-4">
         <Link href="/" aria-label={`${s.clubName} — home`}>
           <Wordmark name={s.shortName} logoSrc={mediaSrc(logo, "sm")} />
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="rounded-full px-3 py-2 text-[0.95rem] font-semibold text-royal transition-colors hover:bg-royal/5">
+            <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-full px-2.5 py-2 text-[0.92rem] font-semibold text-royal transition-colors hover:bg-royal/5 2xl:px-3">
               {n.label}
             </Link>
           ))}
@@ -63,12 +59,15 @@ export async function SiteHeader() {
               {isAdmin ? "Admin" : "My account"}
             </Link>
           ) : (
-            <Link href="/login" className="hidden text-sm font-medium text-fg/70 hover:text-fg sm:inline">
-              Member sign in
+            <Link href="/login" className="hidden whitespace-nowrap text-sm font-medium text-fg/70 hover:text-fg sm:inline">
+              Sign in
             </Link>
           )}
-          <Link href="/get-involved" className="btn-primary btn-sm hidden md:inline-flex">
+          <Link href="/get-involved" className="hidden whitespace-nowrap text-sm font-semibold text-royal hover:text-azure lg:inline xl:hidden 2xl:inline">
             Get involved
+          </Link>
+          <Link href="/support" className="btn-primary btn-sm hidden whitespace-nowrap md:inline-flex">
+            Support us
           </Link>
           <MobileNav items={NAV} signedIn={!!user} isAdmin={!!isAdmin} />
         </div>

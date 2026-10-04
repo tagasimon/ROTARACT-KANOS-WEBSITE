@@ -48,6 +48,7 @@ export async function saveSettings(fd: FormData) {
     socials: { x: str("x"), instagram: str("instagram"), facebook: str("facebook"), linkedin: str("linkedin"), youtube: str("youtube"), tiktok: str("tiktok") },
     sponsorNote: str("sponsorNote"),
     joinIntro: str("joinIntro"),
+    donationInstructions: str("donationInstructions"),
     attendanceFollowUpThreshold: Number(str("attendanceFollowUpThreshold") || 50),
   };
   await db.siteSetting.upsert({ where: { key: "site" }, create: { key: "site", value: next as unknown as Prisma.InputJsonValue }, update: { value: next as unknown as Prisma.InputJsonValue } });

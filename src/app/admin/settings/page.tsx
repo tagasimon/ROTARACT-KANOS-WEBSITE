@@ -57,6 +57,14 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           </div>
           <A n="joinIntro" l="Joining explanation (Get involved)" v={s.joinIntro} /><T n="tagline" l="Tagline" v={s.tagline} />
         </fieldset>
+        <fieldset className="card grid gap-4 p-6">
+          <legend className="sr-only">Support page</legend><p className="text-xs font-bold uppercase tracking-[0.16em] text-cranberry">Support page (sponsors &amp; donors)</p>
+          <div className="field">
+            <label htmlFor="donationInstructions" className="label">How to give</label>
+            <textarea id="donationInstructions" name="donationInstructions" rows={6} defaultValue={s.donationInstructions} className="input font-cond text-sm" placeholder={"Markdown. For example:\n**Bank:** …\n**Mobile money:** … (name on the account)\nPlease only add details the club treasurer has approved."} />
+            <span className="text-xs text-stone">Shown on /support. Leave empty to ask donors to contact the club instead. Project needs and funding goals are set on each project.</span>
+          </div>
+        </fieldset>
         <fieldset className="card grid gap-4 p-6 sm:grid-cols-2">
           <legend className="sr-only">Meetings</legend><p className="text-xs font-bold uppercase tracking-[0.16em] text-cranberry sm:col-span-2">Weekly meeting</p>
           <T n="meetingDay" l="Day" v={s.meetingDay} help="e.g. Friday" /><T n="meetingTime" l="Time" v={s.meetingTime} help="e.g. 6:00 PM" />

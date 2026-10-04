@@ -22,7 +22,7 @@ export function SectionHead({
   className?: string;
 }) {
   return (
-    <div className={cn("mb-10 grid gap-6 md:mb-14 md:grid-cols-12 md:items-end", className)}>
+    <div className={cn("section-head mb-10 grid gap-6 md:mb-14 md:grid-cols-12 md:items-end", className)}>
       <div className="md:col-span-8">
         <p className={cn("eyebrow mb-4 flex items-center gap-3", dark && "text-paper/60")}>
           {index && <span className={cn("font-cond text-cranberry", dark && "text-gold")}>{index}</span>}

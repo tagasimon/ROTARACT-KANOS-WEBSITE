@@ -524,6 +524,12 @@ model Project {
   latitude         Float?
   longitude        Float?
   beneficiaries    String?
+  // For sponsors & donors
+  focusAreas       String[]      @default([]) // Rotary areas of focus
+  supportNeeds     String? // markdown: what support would let the project go further
+  fundingGoal      Float?
+  fundingRaised    Float?
+  fundingCurrency  String?       @default("UGX")
   coverId          String?
   cover            Media?        @relation("ProjectCover", fields: [coverId], references: [id], onDelete: SetNull)
   featured         Boolean       @default(false)

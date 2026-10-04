@@ -41,6 +41,7 @@ export function MobileNav({ items, signedIn, isAdmin }: { items: { href: string;
               </Link>
             ))}
             <div className="mt-8 grid gap-3">
+              <Link href="/support" className="btn bg-gold text-fg">Support our work</Link>
               <Link href="/get-involved" className="btn-primary">Get involved</Link>
               <Link href="/search" className="btn-ghost-light">Search the archive</Link>
               <Link href={signedIn ? (isAdmin ? "/admin" : "/account") : "/login"} className="btn-ghost-light">

@@ -83,6 +83,19 @@ function Input({ f, v, options, row, images }: { f: Field; v: unknown; options: 
           {options.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
       );
+    case "multiselect": {
+      const sel = new Set((v as string[]) || []);
+      return (
+        <div id={f.name} className="grid gap-2 sm:grid-cols-2">
+          {f.options!.map((o) => (
+            <label key={o} className="flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm">
+              <input type="checkbox" name={f.name} value={o} defaultChecked={sel.has(o)} className="accent-[var(--color-cranberry)]" />
+              {o}
+            </label>
+          ))}
+        </div>
+      );
+    }
     case "relations": {
       const sel = ((row?.[f.name] as { id: string }[]) || []).map((x) => x.id);
       return <MultiPicker name={f.name} options={options} selected={sel} label={f.label} />;

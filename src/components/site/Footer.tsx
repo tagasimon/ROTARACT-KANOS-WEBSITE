@@ -24,7 +24,7 @@ export async function SiteFooter() {
           <div>
             <p className="eyebrow mb-4 text-paper/50">Explore</p>
             <ul className="space-y-2 text-sm text-paper/80">
-              {[["/about", "Our story"], ["/projects", "Projects"], ["/people", "People"], ["/skills", "Skills directory"], ["/achievements", "Achievements"], ["/memories", "Memories"], ["/years", "Year archive"]].map(([h, l]) => (
+              {[["/support", "Support our work"], ["/about", "Our story"], ["/projects", "Projects"], ["/leadership/past-presidents", "Past presidents"], ["/people", "People"], ["/skills", "Skills directory"], ["/achievements", "Achievements"], ["/memories", "Memories"], ["/years", "Year archive"]].map(([h, l]) => (
                 <li key={h}><Link href={h} className="hover:text-paper hover:underline">{l}</Link></li>
               ))}
             </ul>
