@@ -65,6 +65,15 @@ RotaractYear ─┬─ LeadershipAssignment ── Person ── Member (private
 
 Every researched or imported record keeps its provenance: `source`, `sourceUrl`, `sourceType`, `externalId`, `discoveredAt` / `importedAt`, `lastCheckedAt`, `verification` (`VERIFIED`, `NEEDS_VERIFICATION`, `CONFLICTING`, `UNVERIFIED`), `verifiedAt` and `verifiedById`. Anything not yet verified shows a dashed "Needs verification" or "Sources conflict" tag on the public site. Records are filed into a Rotaract year (1 July – 30 June) automatically from their date.
 
+## Fundraising campaigns
+
+**Admin → Fundraising campaigns** holds appeals such as *Save Dr. Fredrick Katende*. Each has a story, a target, an optional amount raised and one official donation link. The Donate button always opens that link, and the site never collects money itself.
+
+- **Amount raised** is typed in by an admin. Set **Amount correct as of** each time, and the page shows that date. Leave the amount empty to show the target alone.
+- **Feature on the homepage** puts the campaign in a band under the hero.
+- To finish a campaign, set **Campaign status** to *Goal reached* or *Closed* (the page stays up with a thank-you and no Donate button), or set **Publication** to *Archived* to take the page down.
+- **Updates** (open a campaign, then *Updates*) are short dated notes shown on the campaign page.
+
 ## Roles
 
 | Role | Can do |

@@ -229,6 +229,12 @@ enum CheckInMethod {
   MANUAL
 }
 
+enum CampaignStatus {
+  ACTIVE
+  GOAL_REACHED
+  CLOSED
+}
+
 enum InquiryType {
   ATTEND
   VOLUNTEER
@@ -917,6 +923,7 @@ model Media {
   albumCovers     PhotoAlbum[]       @relation("AlbumCover")
   achievementImgs Achievement[]      @relation("AchievementImage")
   historyImages   HistoryEntry[]     @relation("HistoryImage")
+  campaignImages  Campaign[]         @relation("CampaignImage")
 
   @@index([albumId])
   @@index([projectId])
@@ -1106,6 +1113,59 @@ model AttendanceRecord {
   @@unique([sessionId, memberId])
   @@index([memberId])
   @@map("attendance_records")
+}
+
+// ───────────────────────── fundraising campaigns ─────────────────────────
+
+/// A fundraising appeal with one official donation link (e.g. a GoFundMe page).
+/// Amounts are entered by an admin; `raisedAsOf` says when they were last checked.
+model Campaign {
+  id             String           @id @default(cuid())
+  title          String
+  slug           String           @unique
+  tagline        String?
+  summary        String?
+  story          String? // markdown
+  beneficiary    String?
+  imageId        String?
+  image          Media?           @relation("CampaignImage", fields: [imageId], references: [id], onDelete: SetNull)
+  goalAmount     Float?
+  raisedAmount   Float?
+  currency       String           @default("UGX")
+  raisedAsOf     DateTime?
+  donateUrl      String?
+  donateLabel    String?
+  howToGive      String? // markdown; only instructions the organisers have approved
+  status         CampaignStatus   @default(ACTIVE)
+  featured       Boolean          @default(false)
+  startDate      DateTime?
+  endDate        DateTime?
+  publishStatus  PublishStatus    @default(DRAFT)
+  source         String?
+  sourceUrl      String?
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  updates        CampaignUpdate[]
+
+  @@index([publishStatus, featured])
+  @@map("campaigns")
+}
+
+model CampaignUpdate {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  title      String
+  body       String?
+  date       DateTime @default(now())
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([campaignId, date])
+  @@map("campaign_updates")
 }
 
 // ───────────────────────── misc ─────────────────────────

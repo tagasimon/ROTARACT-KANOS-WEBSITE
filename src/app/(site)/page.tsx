@@ -23,6 +23,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { JsonLd } from "@/components/site/JsonLd";
 import { absoluteUrl, cn, fmtDate, fmtNumber, fmtTime, humanize, initials, truncate } from "@/lib/utils";
 import { mediaSrc } from "@/lib/media";
+import { getFeaturedCampaign } from "@/lib/campaigns";
+import { CampaignFeature } from "@/components/site/Campaign";
 
 const JOURNEY: { key: string; label: string }[] = [
   { key: "NEED", label: "Need" },
@@ -36,7 +38,7 @@ const JOURNEY: { key: string; label: string }[] = [
 ];
 
 export default async function HomePage() {
-  const [s, year, snap, impact] = await Promise.all([getSettings(), getCurrentYear(), getSnapshot(), getImpact()]);
+  const [s, year, snap, impact, campaign] = await Promise.all([getSettings(), getCurrentYear(), getSnapshot(), getImpact(), getFeaturedCampaign()]);
   const today = startOfToday();
 
   const [heroMedia, history, currentProjects, featured, leaders, skills, achievements, upcoming, nextVisit, districtEvents, socialPosts, stories] =
@@ -141,6 +143,10 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+
+      {/* ───────── FEATURED FUNDRAISING CAMPAIGN ───────── */}
+      {campaign && <CampaignFeature c={campaign} />}
 
       {/* ───────── OUR STORY ───────── */}
       <section className="container-x py-20 sm:py-28">
