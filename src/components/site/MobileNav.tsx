@@ -15,7 +15,7 @@ export function MobileNav({ items, signedIn, isAdmin }: { items: { href: string;
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
   return (
-    <div className="xl:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}

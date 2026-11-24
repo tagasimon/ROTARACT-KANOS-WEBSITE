@@ -13,8 +13,13 @@ export const NAV = [
   { href: "/people", label: "People" },
   { href: "/leadership", label: "Leadership" },
   { href: "/events", label: "What's On" },
-  { href: "/district", label: "District" },
+];
+
+/** Shown in the mobile menu (and the footer), below the main items. */
+export const NAV_MORE = [
   { href: "/stories", label: "Stories" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/district", label: "District" },
   { href: "/years", label: "Archive" },
 ];
 
@@ -43,7 +48,7 @@ export async function SiteHeader() {
         <Link href="/" aria-label={`${s.clubName} — home`}>
           <Wordmark name={s.shortName} logoSrc={mediaSrc(logo, "sm")} />
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-full px-2.5 py-2 text-[0.92rem] font-semibold text-royal transition-colors hover:bg-royal/5 2xl:px-3">
               {n.label}
@@ -63,13 +68,13 @@ export async function SiteHeader() {
               Sign in
             </Link>
           )}
-          <Link href="/get-involved" className="hidden whitespace-nowrap text-sm font-semibold text-royal hover:text-azure lg:inline xl:hidden 2xl:inline">
-            Get involved
+          <Link href="/get-involved?type=JOIN" className="hidden whitespace-nowrap px-1 text-sm font-semibold text-royal hover:text-azure xl:inline">
+            Join us
           </Link>
           <Link href="/support" className="btn-primary btn-sm hidden whitespace-nowrap md:inline-flex">
             Support us
           </Link>
-          <MobileNav items={NAV} signedIn={!!user} isAdmin={!!isAdmin} />
+          <MobileNav items={[{ href: "/", label: "Home" }, ...NAV, ...NAV_MORE]} signedIn={!!user} isAdmin={!!isAdmin} />
         </div>
       </div>
     </header>
