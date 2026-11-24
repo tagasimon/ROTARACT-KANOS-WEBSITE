@@ -65,6 +65,10 @@ RotaractYear ─┬─ LeadershipAssignment ── Person ── Member (private
 
 Every researched or imported record keeps its provenance: `source`, `sourceUrl`, `sourceType`, `externalId`, `discoveredAt` / `importedAt`, `lastCheckedAt`, `verification` (`VERIFIED`, `NEEDS_VERIFICATION`, `CONFLICTING`, `UNVERIFIED`), `verifiedAt` and `verifiedById`. Anything not yet verified shows a dashed "Needs verification" or "Sources conflict" tag on the public site. Records are filed into a Rotaract year (1 July – 30 June) automatically from their date.
 
+## Before & after comparisons
+
+Open a project in the admin area and choose **Before & after** to add a draggable comparison: upload a Before and an After photo (and optionally a During photo for three stages), with labels, dates and a caption. A project can have several, shown in the order of their **Order on the page** number. Visitors drag on the photo, use the arrow keys, or open it full screen. Projects with no comparison set up still show a slider built from photos tagged with a Then → Now phase.
+
 ## Fundraising campaigns
 
 **Admin → Fundraising campaigns** holds appeals such as *Save Dr. Fredrick Katende*. Each has a story, a target, an optional amount raised and one official donation link. The Donate button always opens that link, and the site never collects money itself.

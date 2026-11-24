@@ -81,14 +81,3 @@ export const getOpenNeeds = cache(async () =>
   }),
 );
 
-/** A before/after pair for a project, preferring two photos from the same post. */
-export async function getBeforeAfter(projectId: string) {
-  const media = await db.media.findMany({ where: { projectId, phase: { not: null } }, orderBy: [{ date: "desc" }, { sortOrder: "asc" }] });
-  const befores = media.filter((m) => m.phase === "BEFORE");
-  const afters = media.filter((m) => m.phase === "AFTER" || m.phase === "CURRENT");
-  for (const b of befores) {
-    const a = afters.find((x) => x.sourceUrl && x.sourceUrl === b.sourceUrl);
-    if (a) return { before: b, after: a };
-  }
-  return befores[0] && afters[0] ? { before: befores[befores.length - 1], after: afters[0] } : null;
-}

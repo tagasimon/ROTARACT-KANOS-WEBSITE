@@ -567,6 +567,7 @@ model Project {
   events       Event[]
   stories      Story[]
   media        Media[]             @relation("MediaProject")
+  comparisons  ProjectComparison[]
   albums       PhotoAlbum[]
   documents    Document[]
   achievements Achievement[]
@@ -610,6 +611,35 @@ model ProjectMilestone {
 
   @@index([projectId, date])
   @@map("project_milestones")
+}
+
+/// A draggable before/after comparison on a project page. "During" is optional and
+/// adds a middle stage. A project can have several; sortOrder sets their order.
+model ProjectComparison {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String?
+  caption     String?
+  beforeId    String?
+  before      Media?    @relation("ComparisonBefore", fields: [beforeId], references: [id], onDelete: SetNull)
+  duringId    String?
+  during      Media?    @relation("ComparisonDuring", fields: [duringId], references: [id], onDelete: SetNull)
+  afterId     String?
+  after       Media?    @relation("ComparisonAfter", fields: [afterId], references: [id], onDelete: SetNull)
+  beforeLabel String    @default("Before")
+  duringLabel String    @default("During")
+  afterLabel  String    @default("After")
+  beforeDate  DateTime?
+  duringDate  DateTime?
+  afterDate   DateTime?
+  sortOrder   Int       @default(0)
+  published   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([projectId, sortOrder])
+  @@map("project_comparisons")
 }
 
 model ProjectMetric {
@@ -924,6 +954,9 @@ model Media {
   achievementImgs Achievement[]      @relation("AchievementImage")
   historyImages   HistoryEntry[]     @relation("HistoryImage")
   campaignImages  Campaign[]         @relation("CampaignImage")
+  comparisonBefore ProjectComparison[] @relation("ComparisonBefore")
+  comparisonDuring ProjectComparison[] @relation("ComparisonDuring")
+  comparisonAfter  ProjectComparison[] @relation("ComparisonAfter")
 
   @@index([albumId])
   @@index([projectId])

@@ -4,13 +4,14 @@ import { ArrowRight, ArrowUpRight, Check, ExternalLink } from "lucide-react";
 import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
 import { getImpact, getSnapshot, publicProject } from "@/lib/queries";
-import { getBeforeAfter, getFocusCoverage, getOpenNeeds, getPartnerGroups, getTrackRecord } from "@/lib/donor";
+import { getFocusCoverage, getOpenNeeds, getPartnerGroups, getTrackRecord } from "@/lib/donor";
 import { mediaSrc } from "@/lib/media";
 import { renderMarkdown } from "@/lib/markdown";
 import { absoluteUrl, cn, fmtDate, fmtNumber, initials } from "@/lib/utils";
 import { Img, Monogram } from "@/components/site/Img";
 import { SectionHead } from "@/components/site/Section";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { getComparisons } from "@/lib/comparisons";
 import { VerificationBadge } from "@/components/site/Badges";
 import { PrintButton } from "@/components/site/PrintButton";
 import { InquiryForm } from "../get-involved/InquiryForm";
@@ -69,7 +70,7 @@ export default async function SupportPage() {
     db.leadershipAssignment.count({ where: { role: { slug: "president" } } }),
     db.project.findMany({ where: { ...publicProject, status: { not: "COMPLETED" } }, select: { id: true, title: true }, orderBy: { title: "asc" } }),
   ]);
-  const pair = flagship ? await getBeforeAfter(flagship.id) : null;
+  const pair = flagship ? (await getComparisons(flagship.id))[0] ?? null : null;
   const firstFlagship = flagship?.milestones.find((m) => m.date)?.date ?? flagship?.startDate ?? null;
   const flagshipSince = firstFlagship ? new Date(firstFlagship).getUTCFullYear() : null;
   const flagshipYears = flagshipSince ? new Date().getUTCFullYear() - flagshipSince : null;
@@ -81,7 +82,7 @@ export default async function SupportPage() {
     byYear.set(y, [...(byYear.get(y) || []), { title: m.title }]);
   }
   // One photo per era of the flagship, so a sponsor sees the same community across the years.
-  const withPhotos = (flagship?.milestones || []).filter((m) => m.date && m.image && m.image.id !== pair?.before.id && m.image.id !== pair?.after.id);
+  const withPhotos = (flagship?.milestones || []).filter((m) => m.date && m.image && !pair?.mediaIds.includes(m.image.id));
   const photoYears = [...new Set(withPhotos.map((m) => new Date(m.date!).getUTCFullYear()))];
   const pick = photoYears.length <= 3 ? photoYears : [photoYears[0], photoYears[Math.floor(photoYears.length / 2)], photoYears[photoYears.length - 1]];
   const strip = pick.map((y) => withPhotos.find((m) => new Date(m.date!).getUTCFullYear() === y)!).filter(Boolean);
@@ -160,13 +161,7 @@ export default async function SupportPage() {
           <div className="grid gap-12 lg:grid-cols-12 print:grid-cols-12 print:gap-8">
             <div className="lg:col-span-7 print:col-span-7">
               {pair ? (
-                <figure className="print-avoid">
-                  <BeforeAfter before={mediaSrc(pair.before, "lg")!} after={mediaSrc(pair.after, "lg")!} beforeLabel="Before" afterLabel="After" alt={flagship.title} />
-                  <figcaption className="mt-2 text-sm text-stone">
-                    Drag to compare. {pair.after.caption || pair.before.caption}
-                    {pair.after.sourceUrl && <> <a href={pair.after.sourceUrl} target="_blank" rel="noopener noreferrer" className="link-u">Source</a></>}
-                  </figcaption>
-                </figure>
+                <BeforeAfter stages={pair.stages} alt={pair.title || flagship.title} caption={pair.caption} sourceUrl={pair.sourceUrl} />
               ) : (
                 <div className="aspect-[16/10] overflow-hidden rounded-sm bg-royal"><Img media={flagship.cover} alt={flagship.title} className="size-full" /></div>
               )}

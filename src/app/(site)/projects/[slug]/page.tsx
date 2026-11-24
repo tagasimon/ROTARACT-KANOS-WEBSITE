@@ -12,6 +12,7 @@ import { OrganizerTag, SourceNote, StatusPill, VerificationBadge } from "@/compo
 import { EventRow, PersonCard, StoryCard } from "@/components/site/Cards";
 import { Timeline } from "@/components/site/Timeline";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { getComparisons } from "@/lib/comparisons";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { JsonLd } from "@/components/site/JsonLd";
 import { Reveal } from "@/components/site/Reveal";
@@ -83,11 +84,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   const phases = { BEFORE: [] as typeof p.media, DURING: [] as typeof p.media, AFTER: [] as typeof p.media, CURRENT: [] as typeof p.media };
   for (const m of p.media) if (m.phase) phases[m.phase].push(m);
-  // Prefer a before/after pair taken from the same post (same building, same angle).
-  const paired = phases.BEFORE.map((b) => ({ b, a: [...phases.AFTER, ...phases.CURRENT].find((x) => x.sourceUrl && x.sourceUrl === b.sourceUrl) })).find((x) => x.a);
-  const before = paired?.b || phases.BEFORE[0];
-  const after = paired?.a || phases.CURRENT[0] || phases.AFTER[0];
-  const hasThenNow = p.media.some((m) => m.phase);
+  const comparisons = await getComparisons(p.id);
+  const hasPhasePhotos = p.media.some((m) => m.phase);
+  const hasThenNow = hasPhasePhotos || comparisons.length > 0;
   const gallery = p.media.filter((m) => m.kind === "IMAGE" && !m.phase);
   const videos = p.media.filter((m) => m.kind === "VIDEO");
   const latest = [...p.milestones].reverse().find((m) => m.date);
@@ -241,7 +240,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <section id="then-now" className="container-x scroll-mt-28 py-20 sm:py-28">
           <p className="eyebrow mb-4">Then → Now</p>
           <h2 className="mb-10 text-5xl font-bold">What changed, in pictures.</h2>
-          {before && after && <BeforeAfter before={mediaSrc(before, "lg")!} after={mediaSrc(after, "lg")!} beforeLabel="Before" afterLabel={after.phase === "CURRENT" ? "Now" : "After"} alt={p.title} />}
+          {comparisons.length > 0 && (
+            <div className="space-y-14">
+              {comparisons.map((c) => <BeforeAfter key={c.id} stages={c.stages} alt={c.title || p.title} title={c.title} caption={c.caption} sourceUrl={c.sourceUrl} />)}
+            </div>
+          )}
+          {hasPhasePhotos && (
           <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {(["BEFORE", "DURING", "AFTER", "CURRENT"] as const).map((ph) => (
               <figure key={ph}>
@@ -256,6 +260,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </figure>
             ))}
           </div>
+          )}
         </section>
       )}
 

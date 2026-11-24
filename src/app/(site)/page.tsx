@@ -24,6 +24,8 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { absoluteUrl, cn, fmtDate, fmtNumber, fmtTime, humanize, initials, truncate } from "@/lib/utils";
 import { mediaSrc } from "@/lib/media";
 import { getFeaturedCampaign } from "@/lib/campaigns";
+import { getComparisons } from "@/lib/comparisons";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { CampaignFeature } from "@/components/site/Campaign";
 
 const JOURNEY: { key: string; label: string }[] = [
@@ -71,6 +73,7 @@ export default async function HomePage() {
   const foundedYear = snap.founded ? snap.founded.getUTCFullYear() : null;
   const president = leaders.find((l) => l.role.slug === "president");
   const stageSet = new Set(featured?.milestones.map((m) => m.stage));
+  const featuredCompare = featured ? (await getComparisons(featured.id))[0] ?? null : null;
 
   return (
     <>
@@ -203,9 +206,15 @@ export default async function HomePage() {
             </ol>
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-7">
-                <div className="aspect-[16/10] overflow-hidden rounded-sm">
-                  <Img media={featured.cover} alt={featured.title} sizes="(min-width:1024px) 55vw, 100vw" className="size-full" fallback={<Monogram text={initials(featured.title)} dark className="size-full" />} />
-                </div>
+                {featuredCompare ? (
+                  <div className="[&_figcaption]:text-paper/70 [&_figcaption_span]:text-paper">
+                    <BeforeAfter stages={featuredCompare.stages} alt={featured.title} caption={featuredCompare.caption} />
+                  </div>
+                ) : (
+                  <div className="aspect-[16/10] overflow-hidden rounded-sm">
+                    <Img media={featured.cover} alt={featured.title} sizes="(min-width:1024px) 55vw, 100vw" className="size-full" fallback={<Monogram text={initials(featured.title)} dark className="size-full" />} />
+                  </div>
+                )}
               </div>
               <div className="lg:col-span-5">
                 {featured.need && (
