@@ -108,8 +108,8 @@ export default async function HomePage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={heroSrc} alt={heroMedia?.alt || ""} fetchPriority="high" className="absolute inset-0 size-full object-cover" />
             {/* Dark at the bottom where the words sit, clear at the top so the photo reads as a photo. */}
-            <div className="absolute inset-0 bg-gradient-to-t from-royal via-royal/70 to-royal/10" aria-hidden />
-            <div className="absolute inset-0 bg-gradient-to-r from-royal/60 to-transparent" aria-hidden />
+            <div className="absolute inset-0 bg-gradient-to-t from-royal via-royal/45 to-transparent" aria-hidden />
+            <div className="absolute inset-0 bg-gradient-to-r from-royal/55 via-royal/15 to-transparent" aria-hidden />
           </>
         )}
         {!heroSrc && foundedYear && (
@@ -378,7 +378,7 @@ export default async function HomePage() {
         {stories.length || socialPosts.length ? (
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {stories.map((st) => <StoryCard key={st.slug} s={st} />)}
-            {socialPosts.slice(0, Math.max(0, 3 - stories.length) + 1).map((p) => (
+            {socialPosts.slice(0, Math.max(0, 3 - stories.length)).map((p) => (
               <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col justify-between rounded-sm border border-line bg-white p-6 transition-colors hover:border-royal">
                 <div>
                   <p className="eyebrow"><span className="text-cranberry">{humanize(p.platform)}</span>{p.postedAt && <> · {fmtDate(p.postedAt, { day: "numeric", month: "short", year: "numeric" })}</>}</p>

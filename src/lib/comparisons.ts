@@ -48,5 +48,7 @@ export async function getComparisons(projectId: string): Promise<Comparison[]> {
   }
   if (!before || !after) return [];
   const stages = [stage(before, "Before"), stage(after, after.phase === "CURRENT" ? "Now" : "After")].filter((x): x is CompareStage => !!x);
+  // Photos from one post share its date, which says nothing about when each was taken.
+  if (stages.length === 2 && stages[0].date === stages[1].date) for (const st of stages) delete st.date;
   return stages.length === 2 ? [{ id: `phase-${before.id}`, caption: after.caption || before.caption, sourceUrl: after.sourceUrl, stages, mediaIds: [before.id, after.id] }] : [];
 }
