@@ -229,6 +229,11 @@ enum CheckInMethod {
   MANUAL
 }
 
+enum BusinessKind {
+  MEMBER_BUSINESS
+  CORPORATE_MEMBER
+}
+
 enum CampaignStatus {
   ACTIVE
   GOAL_REACHED
@@ -372,6 +377,7 @@ model Person {
   districtVisits       DistrictVisit[]
   history              HistoryEntry[]         @relation("HistoryPeople")
   committeeMemberships CommitteeMembership[]
+  businesses           Business[]
 
   @@index([name])
   @@index([type])
@@ -954,6 +960,8 @@ model Media {
   achievementImgs Achievement[]      @relation("AchievementImage")
   historyImages   HistoryEntry[]     @relation("HistoryImage")
   campaignImages  Campaign[]         @relation("CampaignImage")
+  businessLogos   Business[]         @relation("BusinessLogo")
+  businessCovers  Business[]         @relation("BusinessCover")
   comparisonBefore ProjectComparison[] @relation("ComparisonBefore")
   comparisonDuring ProjectComparison[] @relation("ComparisonDuring")
   comparisonAfter  ProjectComparison[] @relation("ComparisonAfter")
@@ -1146,6 +1154,45 @@ model AttendanceRecord {
   @@unique([sessionId, memberId])
   @@index([memberId])
   @@map("attendance_records")
+}
+
+// ───────────────────────── member businesses ─────────────────────────
+
+/// A business or professional practice run by a member, or a corporate member of the club.
+/// Everything here is public once published; private contact details stay on Member.
+model Business {
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  kind          BusinessKind  @default(MEMBER_BUSINESS)
+  category      String?
+  tagline       String?
+  description   String?
+  services      String? // one per line
+  logoId        String?
+  logo          Media?        @relation("BusinessLogo", fields: [logoId], references: [id], onDelete: SetNull)
+  coverId       String?
+  cover         Media?        @relation("BusinessCover", fields: [coverId], references: [id], onDelete: SetNull)
+  location      String?
+  website       String?
+  contactUrl    String?
+  linkedin      String?
+  x             String?
+  instagram     String?
+  facebook      String?
+  ownerId       String?
+  owner         Person?       @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ownerRole     String?
+  memberSince   DateTime?
+  featured      Boolean       @default(false)
+  sortOrder     Int           @default(0)
+  publishStatus PublishStatus @default(DRAFT)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([publishStatus, kind])
+  @@index([category])
+  @@map("businesses")
 }
 
 // ───────────────────────── fundraising campaigns ─────────────────────────

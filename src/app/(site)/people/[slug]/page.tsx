@@ -11,6 +11,7 @@ import { Img, Monogram } from "@/components/site/Img";
 import { SourceNote, VerificationBadge } from "@/components/site/Badges";
 import { EventRow, ProjectCard, StoryCard } from "@/components/site/Cards";
 import { JsonLd } from "@/components/site/JsonLd";
+import { BusinessCard } from "@/components/site/BusinessCard";
 
 async function load(slug: string) {
   return db.person.findFirst({
@@ -26,6 +27,7 @@ async function load(slug: string) {
       stories: { where: { publishStatus: "PUBLISHED" }, include: { cover: true }, orderBy: { publishedAt: "desc" }, take: 6 },
       achievements: { where: { publishStatus: "PUBLISHED" }, orderBy: { date: "desc" } },
       milestones: { include: { project: { select: { slug: true, title: true } } }, orderBy: { date: "desc" }, take: 10 },
+      businesses: { where: { publishStatus: "PUBLISHED" }, include: { logo: true, owner: { select: { slug: true, name: true, honorific: true, isPublic: true } } }, orderBy: { name: "asc" } },
     },
   });
 }
@@ -119,6 +121,13 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
             <div className="prose-ed max-w-none" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.bio) }} />
           ) : (
             <p className="font-serif text-xl text-stone">No biography has been added yet.</p>
+          )}
+
+          {p.businesses.length > 0 && (
+            <section className="mt-16">
+              <h2 className="mb-6 text-3xl font-bold">{p.businesses.length === 1 ? "Business" : "Businesses"}</h2>
+              <ul className="grid gap-5 sm:grid-cols-2">{p.businesses.map((b) => <li key={b.id}><BusinessCard b={b} /></li>)}</ul>
+            </section>
           )}
 
           {projects.length > 0 && (

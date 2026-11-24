@@ -24,6 +24,8 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { absoluteUrl, cn, fmtDate, fmtNumber, fmtTime, humanize, initials, truncate } from "@/lib/utils";
 import { mediaSrc } from "@/lib/media";
 import { getFeaturedCampaign } from "@/lib/campaigns";
+import { businessCardInclude, publicBusiness } from "@/lib/businesses";
+import { BusinessCard } from "@/components/site/BusinessCard";
 import { getComparisons } from "@/lib/comparisons";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { CampaignFeature } from "@/components/site/Campaign";
@@ -83,6 +85,10 @@ export default async function HomePage() {
   const foundedYear = snap.founded ? snap.founded.getUTCFullYear() : null;
   const president = leaders.find((l) => l.role.slug === "president");
   const stageSet = new Set(featured?.milestones.map((m) => m.stage));
+  const [businesses, businessCount] = await Promise.all([
+    db.business.findMany({ where: publicBusiness, include: businessCardInclude, orderBy: [{ featured: "desc" }, { sortOrder: "asc" }, { name: "asc" }], take: 3 }),
+    db.business.count({ where: publicBusiness }),
+  ]);
   const featuredCompare = featured ? (await getComparisons(featured.id))[0] ?? null : null;
 
   return (
@@ -311,6 +317,16 @@ export default async function HomePage() {
           </div>
         )}
       </section>
+
+      {/* ───────── MEMBERS AND THEIR BUSINESSES (only once there is something to show) ───────── */}
+      {businesses.length > 0 && (
+        <section className="border-t border-line">
+          <div className="container-x py-20 sm:py-28">
+            <SectionHead eyebrow="Our members and their businesses" title={<>Work with the people<br className="hidden sm:block" /> behind the club.</>} intro="Founders, professionals and corporate members you can hire, buy from or partner with." href="/businesses" hrefLabel={businessCount > 3 ? `All ${businessCount} listings` : "The directory"} />
+            <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{businesses.map((b) => <li key={b.id}><BusinessCard b={b} /></li>)}</ul>
+          </div>
+        </section>
+      )}
 
       {/* ───────── WHAT'S HAPPENING ───────── */}
       <section className="bg-paper-2">

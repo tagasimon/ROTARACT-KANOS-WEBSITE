@@ -17,6 +17,7 @@ export const NAV = [
 
 /** Shown in the mobile menu (and the footer), below the main items. */
 export const NAV_MORE = [
+  { href: "/businesses", label: "Member Businesses" },
   { href: "/stories", label: "Stories" },
   { href: "/achievements", label: "Achievements" },
   { href: "/district", label: "District" },
