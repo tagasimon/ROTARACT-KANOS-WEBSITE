@@ -1,4 +1,5 @@
 import type { Area } from "@/lib/rbac";
+import { BUSINESS_CATEGORIES } from "@/lib/businesses";
 
 export type FieldType =
   | "text"
@@ -56,13 +57,17 @@ export type Resource = {
   slugFrom?: string;
   yearFrom?: string; // auto-assign yearId from this date field
   description?: string;
+  /** Reached from its parent record, so it is left out of the admin menu. */
+  navHidden?: boolean;
+  /** A purpose-built list page that replaces the generic one. */
+  listHref?: string;
 };
 
 // ── enum option lists (mirror prisma enums) ──
 export const E = {
   verification: ["VERIFIED", "NEEDS_VERIFICATION", "CONFLICTING", "UNVERIFIED"],
   publish: ["DRAFT", "IN_REVIEW", "PUBLISHED", "REJECTED", "ARCHIVED"],
-  memberStatus: ["ACTIVE", "ALUMNI", "INACTIVE", "HONORARY", "PENDING"],
+  memberStatus: ["ACTIVE", "PENDING", "INACTIVE", "ALUMNI", "HONORARY", "ARCHIVED"],
   personType: ["MEMBER", "ROTARIAN", "DISTRICT_LEADER", "PARTNER_CONTACT", "COMMUNITY_LEADER", "GUEST", "OTHER"],
   orgType: ["ROTARACT_CLUB", "ROTARY_CLUB", "ROTARACT_DISTRICT", "ROTARY_DISTRICT", "ROTARY_INTERNATIONAL", "NGO", "CORPORATE", "GOVERNMENT", "SCHOOL", "COMMUNITY", "MEDIA", "OTHER"],
   roleCategory: ["BOARD", "COMMITTEE_CHAIR", "DISTRICT", "OTHER"],
@@ -81,7 +86,7 @@ export const E = {
   feedTrust: ["TRUSTED", "REVIEW"],
   inquiryStatus: ["NEW", "IN_PROGRESS", "CLOSED"],
   businessKind: ["MEMBER_BUSINESS", "CORPORATE_MEMBER"],
-  businessCategory: ["Accounting & tax", "Agriculture & food", "Architecture & construction", "Arts & crafts", "Consulting", "Creative, media & design", "Education & training", "Engineering", "Events & hospitality", "Fashion & beauty", "Financial services & insurance", "Health & wellness", "Legal services", "Logistics & transport", "Manufacturing", "Marketing & communications", "Non-profit", "Real estate", "Retail & e-commerce", "Technology & software", "Travel & tourism", "Other"],
+  businessCategory: BUSINESS_CATEGORIES,
   campaignStatus: ["ACTIVE", "GOAL_REACHED", "CLOSED"],
   inquiryType: ["ATTEND", "VOLUNTEER", "PARTNER", "SUPPORT_PROJECT", "JOIN", "CONTACT"],
 } as const;
@@ -121,7 +126,7 @@ export const RESOURCES: Resource[] = [
     titleField: "name", searchFields: ["name", "professionalTitle", "organization"], orderBy: { name: "asc" },
     listFields: [{ name: "name", label: "Name" }, { name: "type", label: "Type", type: "enum" }, { name: "isPublic", label: "Public", type: "bool" }, { name: "verification", label: "Verification", type: "enum" }],
     provenance: true, slugFrom: "name",
-    publicPath: (r) => (r.isPublic ? `/people/${r.slug}` : null),
+    publicPath: (r) => `/people/${r.slug}`,
     description: "Public profiles: members, district leaders, Rotarians, partners and guests. Private member data lives under Members.",
     fields: [
       { name: "name", label: "Full name", type: "text", required: true, width: "half" },
@@ -145,7 +150,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "members", model: "member", label: "Members", singular: "Member", area: "members", group: "People",
+    key: "members", listHref: "/admin/members", model: "member", label: "Members", singular: "Member", area: "members", group: "People",
     titleField: "memberNumber", searchFields: ["memberNumber", "email", "phone"], orderBy: { memberNumber: "asc" },
     listFields: [{ name: "memberNumber", label: "Member ID" }, { name: "person", label: "Name", type: "rel", rel: "name" }, { name: "status", label: "Status", type: "enum" }, { name: "membershipDate", label: "Joined", type: "date" }],
     description: "Private membership records (contact details, member ID, PIN). Never shown publicly. Leave Person empty and enter a name to create a profile automatically.",
@@ -153,7 +158,7 @@ export const RESOURCES: Resource[] = [
       { name: "personId", label: "Person (public profile)", type: "relation", relation: { model: "person", label: "name", orderBy: { name: "asc" } }, help: "Pick an existing profile, or leave empty and fill “New person name”." },
       { name: "__newPersonName", label: "New person name", type: "text", help: "Creates a public profile (hidden until you publish it) if no person is selected." },
       { name: "memberNumber", label: "Member ID", type: "text", required: true, width: "half", help: "e.g. KN-0001" },
-      { name: "status", label: "Status", type: "select", options: E.memberStatus, default: "ACTIVE", width: "half" },
+      { name: "status", label: "Status", type: "select", options: E.memberStatus, default: "ACTIVE", width: "half", help: "Alumni: former members you keep in touch with. Archived: hidden from the members list (nothing is deleted)." },
       { name: "email", label: "Email (private)", type: "email", width: "half" },
       { name: "phone", label: "Phone (private)", type: "text", width: "half" },
       { name: "membershipDate", label: "Membership date", type: "date", width: "half" },
@@ -182,7 +187,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "committee-members", model: "committeeMembership", label: "Committee members", singular: "Committee membership", area: "people", group: "People",
+    key: "committee-members", navHidden: true, model: "committeeMembership", label: "Committee members", singular: "Committee membership", area: "people", group: "People",
     titleField: "role", searchFields: ["role"], orderBy: { committeeId: "asc" },
     listFields: [{ name: "committee", label: "Committee", type: "rel", rel: "name" }, { name: "person", label: "Person", type: "rel", rel: "name" }, { name: "year", label: "Year", type: "rel", rel: "label" }, { name: "role", label: "Role" }],
     fields: [R.committee, R.person, R.year, { name: "role", label: "Role", type: "text", help: "Member, Co-chair…" }],
@@ -278,7 +283,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "milestones", model: "projectMilestone", label: "Project milestones", singular: "Milestone", area: "content", group: "Projects",
+    key: "milestones", navHidden: true, model: "projectMilestone", label: "Project milestones", singular: "Milestone", area: "content", group: "Projects",
     titleField: "title", searchFields: ["title", "description"], orderBy: [{ date: "desc" }],
     listFields: [{ name: "project", label: "Project", type: "rel", rel: "title" }, { name: "date", label: "Date", type: "date" }, { name: "title", label: "Milestone" }, { name: "stage", label: "Stage", type: "enum" }, { name: "verification", label: "Verification", type: "enum" }],
     provenance: true, yearFrom: "date",
@@ -299,7 +304,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "comparisons", model: "projectComparison", label: "Before & after", singular: "Before & after comparison", area: "content", group: "Projects",
+    key: "comparisons", navHidden: true, model: "projectComparison", label: "Before & after", singular: "Before & after comparison", area: "content", group: "Projects",
     titleField: "title", searchFields: ["title", "caption"], orderBy: [{ projectId: "asc" }, { sortOrder: "asc" }],
     listFields: [{ name: "project", label: "Project", type: "rel", rel: "title" }, { name: "title", label: "Comparison" }, { name: "sortOrder", label: "Order" }, { name: "published", label: "Shown", type: "bool" }],
     description: "Draggable before-and-after photos on a project page. For the best effect, use two photos of the same place taken from the same spot. Add a “During” photo to show three stages. Lower order numbers come first.",
@@ -321,7 +326,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "metrics", model: "projectMetric", label: "Project metrics", singular: "Metric", area: "content", group: "Projects",
+    key: "metrics", navHidden: true, model: "projectMetric", label: "Project metrics", singular: "Metric", area: "content", group: "Projects",
     titleField: "label", searchFields: ["label", "impactKey"], orderBy: { projectId: "asc" },
     listFields: [{ name: "project", label: "Project", type: "rel", rel: "title" }, { name: "label", label: "Metric" }, { name: "value", label: "Value" }, { name: "unit", label: "Unit" }, { name: "verification", label: "Verification", type: "enum" }],
     description: "Use the same impact key (e.g. trees_planted, beneficiaries, funds_raised_ugx, volunteer_hours) across projects to sum club-wide totals on Our Impact.",
@@ -339,13 +344,13 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "partners", model: "projectPartner", label: "Project partners", singular: "Partner", area: "content", group: "Projects",
+    key: "partners", navHidden: true, model: "projectPartner", label: "Project partners", singular: "Partner", area: "content", group: "Projects",
     titleField: "role", searchFields: ["role", "description"], orderBy: { projectId: "asc" },
     listFields: [{ name: "project", label: "Project", type: "rel", rel: "title" }, { name: "organization", label: "Organization", type: "rel", rel: "name" }, { name: "role", label: "Role" }],
     fields: [{ ...R.project, required: true }, { ...R.org, required: true }, { name: "role", label: "Role", type: "text", help: "Sponsor, Supporting Rotary club, Community partner…" }, { name: "description", label: "Description", type: "textarea" }, { name: "sourceUrl", label: "Source URL", type: "url" }, { name: "verification", label: "Verification", type: "select", options: E.verification, default: "NEEDS_VERIFICATION" }],
   },
   {
-    key: "team", model: "projectTeamMember", label: "Project team", singular: "Team member", area: "content", group: "Projects",
+    key: "team", navHidden: true, model: "projectTeamMember", label: "Project team", singular: "Team member", area: "content", group: "Projects",
     titleField: "role", searchFields: ["role"], orderBy: { sortOrder: "asc" },
     listFields: [{ name: "project", label: "Project", type: "rel", rel: "title" }, { name: "person", label: "Person", type: "rel", rel: "name" }, { name: "role", label: "Role" }],
     fields: [{ ...R.project, required: true }, { ...R.person, required: true }, { name: "role", label: "Role", type: "text", default: "Rotaractor", help: "Project committee, Community leader, Supporting Rotarian, Donor…" }, { name: "sortOrder", label: "Sort order", type: "number", default: 0 }],
@@ -536,7 +541,7 @@ export const RESOURCES: Resource[] = [
     titleField: "name", searchFields: ["name", "category", "description", "services"], orderBy: [{ featured: "desc" }, { name: "asc" }],
     listFields: [{ name: "name", label: "Business" }, { name: "kind", label: "Type", type: "enum" }, { name: "category", label: "Category" }, { name: "owner", label: "Member", type: "rel", rel: "name" }, { name: "publishStatus", label: "Published", type: "enum" }],
     publish: true, slugFrom: "name",
-    publicPath: (r) => (r.publishStatus === "PUBLISHED" ? `/businesses/${r.slug}` : null),
+    publicPath: (r) => `/businesses/${r.slug}`,
     description: "Businesses and practices run by members, and the club's corporate members. Everything on this form is shown publicly once published, so only enter details the member has agreed to share. New entries start as drafts.",
     fields: [
       { name: "name", label: "Business name", type: "text", required: true, width: "half" },
@@ -569,7 +574,7 @@ export const RESOURCES: Resource[] = [
     titleField: "title", searchFields: ["title", "beneficiary", "summary"], orderBy: [{ featured: "desc" }, { updatedAt: "desc" }],
     listFields: [{ name: "title", label: "Campaign" }, { name: "status", label: "Status", type: "enum" }, { name: "featured", label: "On homepage", type: "bool" }, { name: "raisedAsOf", label: "Amount updated", type: "date" }, { name: "publishStatus", label: "Published", type: "enum" }],
     publish: true, slugFrom: "title",
-    publicPath: (r) => (r.publishStatus === "PUBLISHED" ? `/campaigns/${r.slug}` : null),
+    publicPath: (r) => `/campaigns/${r.slug}`,
     description: "Appeals with one official donation link. Update “Amount raised” here whenever the fundraising page changes: the site shows the date you last updated it. To end a campaign, set Status to Closed (the page stays up with a thank-you) or Publication to Archived (the page is removed).",
     children: [{ resource: "campaign-updates", fk: "campaignId", label: "Updates" }],
     fields: [
@@ -597,7 +602,7 @@ export const RESOURCES: Resource[] = [
     ],
   },
   {
-    key: "campaign-updates", model: "campaignUpdate", label: "Campaign updates", singular: "Campaign update", area: "content", group: "Fundraising",
+    key: "campaign-updates", navHidden: true, model: "campaignUpdate", label: "Campaign updates", singular: "Campaign update", area: "content", group: "Fundraising",
     titleField: "title", searchFields: ["title", "body"], orderBy: { date: "desc" },
     listFields: [{ name: "campaign", label: "Campaign", type: "rel", rel: "title" }, { name: "date", label: "Date", type: "date" }, { name: "title", label: "Update" }, { name: "published", label: "Shown", type: "bool" }],
     description: "Short progress notes shown on a campaign page, newest first.",

@@ -52,7 +52,7 @@ export async function relationOptions(f: Field) {
   return (rows as Record<string, unknown>[]).map((x) => ({ id: String(x.id), label: String(x[f.relation!.label] ?? x.id) }));
 }
 
-async function uniqueSlug(model: string, base: string, id?: string | null) {
+export async function uniqueSlug(model: string, base: string, id?: string | null) {
   const root = slugify(base) || "item";
   let slug = root;
   for (let i = 2; i < 200; i++) {

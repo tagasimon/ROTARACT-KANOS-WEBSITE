@@ -15,3 +15,5 @@ export const KIND_LABEL = { MEMBER_BUSINESS: "Member business", CORPORATE_MEMBER
 export function servicesOf(b: { services: string | null }) {
   return (b.services || "").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
 }
+
+export const BUSINESS_CATEGORIES = ["Accounting & tax", "Agriculture & food", "Architecture & construction", "Arts & crafts", "Consulting", "Creative, media & design", "Education & training", "Engineering", "Events & hospitality", "Fashion & beauty", "Financial services & insurance", "Health & wellness", "Legal services", "Logistics & transport", "Manufacturing", "Marketing & communications", "Non-profit", "Real estate", "Retail & e-commerce", "Technology & software", "Travel & tourism", "Other"] as const;

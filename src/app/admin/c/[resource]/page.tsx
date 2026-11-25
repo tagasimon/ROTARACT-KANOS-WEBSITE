@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Plus } from "lucide-react";
 import { requireArea } from "@/lib/auth";
 import { allFields, getResource } from "@/lib/admin/resources";
@@ -24,6 +24,10 @@ export default async function ResourceList({ params, searchParams }: { params: P
   if (!r) notFound();
   await requireArea(r.area);
   const sp = await searchParams;
+  if (r.listHref) {
+    const qs = new URLSearchParams(Object.entries(sp).filter(([, v]) => typeof v === "string") as [string, string][]).toString();
+    redirect(qs ? `${r.listHref}?${qs}` : r.listHref);
+  }
   const filterable = allFields(r).filter((f) => f.type === "relation" || ["verification", "publishStatus", "status", "type", "category", "phase"].includes(f.name));
   const filters: Record<string, string> = {};
   for (const f of filterable) if (sp[f.name]) filters[f.name] = sp[f.name];

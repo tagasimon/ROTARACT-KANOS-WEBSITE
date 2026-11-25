@@ -34,9 +34,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   ];
   const resGroups = new Map<string, { href: string; label: string; badge?: number }[]>();
   for (const r of RESOURCES) {
-    if (!can(user.role, r.area)) continue;
+    if (!can(user.role, r.area) || r.navHidden) continue;
     if (!resGroups.has(r.group)) resGroups.set(r.group, []);
-    resGroups.get(r.group)!.push({ href: `/admin/c/${r.key}`, label: r.label, badge: r.key === "inquiries" ? newInquiries : undefined });
+    resGroups.get(r.group)!.push({ href: r.listHref || `/admin/c/${r.key}`, label: r.label, badge: r.key === "inquiries" ? newInquiries : undefined });
   }
   for (const [title, items] of resGroups) {
     if (title === "Media" && can(user.role, "content")) items.unshift({ href: "/admin/upload", label: "Upload photos" });

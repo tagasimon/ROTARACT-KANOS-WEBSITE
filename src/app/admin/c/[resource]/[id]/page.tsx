@@ -26,19 +26,22 @@ export default async function EditResource({ params, searchParams }: { params: P
     }),
   );
   const history = await db.auditLog.findMany({ where: { entityId: id }, include: { user: { select: { email: true } } }, orderBy: { createdAt: "desc" }, take: 8 });
-  const publicPath = r.publicPath?.(row);
+  // Unpublished items: these kinds of page can be previewed by admins; for the rest the public page won't show them.
+  const PREVIEWABLE = new Set(["projects", "stories", "events", "campaigns", "businesses", "people"]);
+  const unpublished = ("publishStatus" in row && row.publishStatus !== "PUBLISHED") || (r.key === "people" && row.isPublic === false);
+  const publicPath = unpublished && !PREVIEWABLE.has(r.key) ? null : r.publicPath?.(row);
   return (
     <>
       <Flash sp={sp} />
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow"><Link href={`/admin/c/${r.key}`} className="hover:underline">{r.label}</Link></p>
+          <p className="eyebrow"><Link href={r.listHref || `/admin/c/${r.key}`} className="hover:underline">{r.label}</Link></p>
           <h1 className="text-4xl font-bold">{rowTitle(r, row)}</h1>
         </div>
         <div className="flex flex-wrap gap-2">
           {r.key === "social" && <Link href={`/admin/convert/${id}`} className="btn-primary btn-sm">Convert post →</Link>}
           {r.key === "events" && <Link href={`/admin/attendance/sessions/new?eventId=${id}`} className="btn-ghost btn-sm">Create QR attendance session</Link>}
-          {publicPath && <Link href={publicPath} target="_blank" className="btn-ghost btn-sm">View on site <ExternalLink className="size-3.5" aria-hidden /></Link>}
+          {publicPath && <Link href={publicPath} target="_blank" className="btn-ghost btn-sm">{unpublished ? "Preview" : "View on site"} <ExternalLink className="size-3.5" aria-hidden /></Link>}
         </div>
       </div>
       {children.length > 0 && (

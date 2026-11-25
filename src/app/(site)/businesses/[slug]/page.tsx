@@ -12,11 +12,14 @@ import { Img } from "@/components/site/Img";
 import { BusinessLogo } from "@/components/site/BusinessCard";
 import { PersonCard } from "@/components/site/Cards";
 import { JsonLd } from "@/components/site/JsonLd";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 export const dynamic = "force-dynamic";
 
-function load(slug: string) {
-  return db.business.findFirst({ where: { slug, ...publicBusiness }, include: { logo: true, cover: true, owner: { select: { ...personCardSelect, isPublic: true } } } });
+async function load(slug: string) {
+  const preview = await canPreview("people");
+  return db.business.findFirst({ where: { slug, ...(preview ? {} : publicBusiness) }, include: { logo: true, cover: true, owner: { select: { ...personCardSelect, isPublic: true } } } });
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -35,6 +38,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ slug:
   const owner = b.owner?.isPublic ? b.owner : null;
   return (
     <article>
+      {b.publishStatus !== "PUBLISHED" && <PreviewBanner status={b.publishStatus} editHref={`/admin/c/businesses/${b.id}`} />}
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Organization", name: b.name, description: b.tagline || undefined, url: b.website || absoluteUrl(`/businesses/${b.slug}`), logo: mediaSrc(b.logo) ? absoluteUrl(mediaSrc(b.logo)!) : undefined, sameAs: socials.map(([, v]) => v) }} />
       <header className="bg-paper-2">
         <div className="container-x pb-12 pt-14 sm:pt-20">

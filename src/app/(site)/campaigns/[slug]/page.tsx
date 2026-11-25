@@ -9,11 +9,13 @@ import { absoluteUrl, fmtDate, truncate } from "@/lib/utils";
 import { Img } from "@/components/site/Img";
 import { CampaignProgress } from "@/components/site/Campaign";
 import { ShareButtons } from "@/components/site/ShareButtons";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const c = await getCampaign((await params).slug);
+  const c = await getCampaign((await params).slug, await canPreview("content"));
   if (!c) return {};
   const desc = c.seoDescription || c.summary || truncate(c.story, 160);
   const img = mediaSrc(c.image);
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function CampaignPage({ params }: { params: Promise<{ slug: string }> }) {
-  const c = await getCampaign((await params).slug);
+  const c = await getCampaign((await params).slug, await canPreview("content"));
   if (!c) notFound();
   const open = c.status === "ACTIVE";
   const host = hostOf(c.donateUrl);
@@ -39,6 +41,7 @@ export default async function CampaignPage({ params }: { params: Promise<{ slug:
 
   return (
     <article>
+      {c.publishStatus !== "PUBLISHED" && <PreviewBanner status={c.publishStatus} editHref={`/admin/c/campaigns/${c.id}`} />}
       <header className="bg-royal text-paper">
         <div className="container-x grid gap-10 pb-14 pt-16 sm:pb-20 sm:pt-24 lg:grid-cols-12 lg:items-end">
           <div className={c.image ? "lg:col-span-7" : "lg:col-span-9"}>

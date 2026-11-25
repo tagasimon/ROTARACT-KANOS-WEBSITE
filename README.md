@@ -65,6 +65,15 @@ RotaractYear ─┬─ LeadershipAssignment ── Person ── Member (private
 
 Every researched or imported record keeps its provenance: `source`, `sourceUrl`, `sourceType`, `externalId`, `discoveredAt` / `importedAt`, `lastCheckedAt`, `verification` (`VERIFIED`, `NEEDS_VERIFICATION`, `CONFLICTING`, `UNVERIFIED`), `verifiedAt` and `verifiedById`. Anything not yet verified shows a dashed "Needs verification" or "Sources conflict" tag on the public site. Records are filed into a Rotaract year (1 July – 30 June) automatically from their date.
 
+## Running the club from the admin area
+
+- **Dashboard** (`/admin`): quick buttons for the common jobs (add a project, member, business, event or story, update leadership, upload photos, attendance), headline numbers, a to-do list (for example business listings waiting to be published) and the current fundraising appeal.
+- **Preview before publishing:** save anything as a *Draft*, then use **Preview** on its admin page. Signed-in admins see the real page with a yellow "Preview" bar; everyone else gets "page not found" until it's published. This works for projects, stories, events, campaigns, businesses and hidden profiles.
+- **Members** (`/admin/members`): the private register, with search and status filters (Active, Pending, Inactive, Alumni, Honorary, Archived). Archiving hides a former member from the list without deleting anything.
+  - **Export CSV** downloads the current view: contact details, profession, skills, committees, this year's club role and whether the member has activated an account. The file opens cleanly in Excel (UTF-8, cells starting with = + - @ are prefixed with ' so they can't run as formulas).
+  - **Import from a spreadsheet** takes a CSV with a Name column (plus any of Member ID, Status, Email, Phone, Membership date, Profession, Organisation, Notes) and shows what will happen to every row before anything is saved. Rows are matched to existing members by Member ID, email or phone, so re-importing never duplicates anyone; a new member whose name matches exactly one existing member profile is linked to it. Members' own profile edits are never overwritten.
+- **Members manage their own listing:** under **My account → Your business listings**, a member can add or edit a business they run. New listings wait for an admin to publish them; edits to a published listing go live straight away.
+
 ## Member businesses
 
 **Admin → Member businesses** lists businesses run by members and the club's corporate members: name, logo, category, services (one per line), description, location, website, an enquiry link and social links, plus the member behind it. Listings start as drafts and appear at `/businesses` once published; visitors can search and filter by type and category. A member's public profile shows their listings, and the homepage shows up to three (featured ones first) as soon as one is published. Enter only details the member has agreed to share.

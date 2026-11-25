@@ -10,10 +10,13 @@ import { Img } from "@/components/site/Img";
 import { SourceNote, VerificationBadge } from "@/components/site/Badges";
 import { PersonCard, StoryCard } from "@/components/site/Cards";
 import { JsonLd } from "@/components/site/JsonLd";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 async function load(slug: string) {
+  const preview = await canPreview("content");
   return db.story.findFirst({
-    where: { slug, ...publicStory },
+    where: { slug, ...(preview ? {} : publicStory) },
     include: { cover: true, year: true, project: { select: { slug: true, title: true } }, event: { select: { slug: true, title: true } }, people: { where: { isPublic: true }, select: personCardSelect }, socialPost: true },
   });
 }
@@ -31,6 +34,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
   const more = await db.story.findMany({ where: { ...publicStory, id: { not: s.id }, OR: [{ projectId: s.projectId ?? undefined }, { category: s.category }] }, include: { cover: true }, orderBy: { publishedAt: "desc" }, take: 3 });
   return (
     <article>
+      {s.publishStatus !== "PUBLISHED" && <PreviewBanner status={s.publishStatus} editHref={`/admin/c/stories/${s.id}`} />}
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: s.title, datePublished: s.publishedAt?.toISOString(), dateModified: s.updatedAt.toISOString(), author: { "@type": s.authorName ? "Person" : "Organization", name: s.authorName || "Rotaract Club Kampala North" }, image: mediaSrc(s.cover) ? absoluteUrl(mediaSrc(s.cover)!) : undefined, url: absoluteUrl(`/stories/${s.slug}`) }} />
       <header className="container-x max-w-4xl pb-10 pt-16 sm:pt-24">
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-stone"><Link href="/stories" className="hover:text-fg">Stories</Link></nav>

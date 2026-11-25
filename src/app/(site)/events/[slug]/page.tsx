@@ -12,6 +12,8 @@ import { OrganizerTag, StatusPill, VerificationBadge } from "@/components/site/B
 import { PersonCard, StoryCard } from "@/components/site/Cards";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { JsonLd } from "@/components/site/JsonLd";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 async function load(slug: string) {
   const e = await db.event.findUnique({
@@ -41,10 +43,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const e = await load((await params).slug);
-  if (!e || (e.publishStatus !== "PUBLISHED" && !e.mergedInto)) notFound();
+  if (!e || (e.publishStatus !== "PUBLISHED" && !e.mergedInto && !(await canPreview("events")))) notFound();
   if (e.mergedInto) redirect(`/events/${e.mergedInto.slug}`);
   return (
     <article>
+      {e.publishStatus !== "PUBLISHED" && <PreviewBanner status={e.publishStatus} editHref={`/admin/c/events/${e.id}`} />}
       <JsonLd
         data={{
           "@context": "https://schema.org",

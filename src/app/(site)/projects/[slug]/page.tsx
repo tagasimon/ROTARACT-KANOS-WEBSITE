@@ -16,10 +16,13 @@ import { getComparisons } from "@/lib/comparisons";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { JsonLd } from "@/components/site/JsonLd";
 import { Reveal } from "@/components/site/Reveal";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 async function load(slug: string) {
+  const preview = await canPreview("content");
   return db.project.findFirst({
-    where: { slug, ...publicProject },
+    where: { slug, ...(preview ? {} : publicProject) },
     include: {
       cover: true,
       year: true,
@@ -107,6 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <article>
+      {p.publishStatus !== "PUBLISHED" && <PreviewBanner status={p.publishStatus} editHref={`/admin/c/projects/${p.id}`} />}
       <JsonLd
         data={{
           "@context": "https://schema.org",

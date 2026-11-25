@@ -12,10 +12,13 @@ import { SourceNote, VerificationBadge } from "@/components/site/Badges";
 import { EventRow, ProjectCard, StoryCard } from "@/components/site/Cards";
 import { JsonLd } from "@/components/site/JsonLd";
 import { BusinessCard } from "@/components/site/BusinessCard";
+import { canPreview } from "@/lib/preview";
+import { PreviewBanner } from "@/components/site/PreviewBanner";
 
 async function load(slug: string) {
+  const preview = await canPreview("people");
   return db.person.findFirst({
-    where: { slug, ...publicPerson },
+    where: { slug, ...(preview ? {} : publicPerson) },
     include: {
       photo: true,
       skills: { orderBy: { name: "asc" } },
@@ -63,6 +66,7 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
 
   return (
     <article>
+      {!p.isPublic && <PreviewBanner status="HIDDEN" editHref={`/admin/c/people/${p.id}`} />}
       <JsonLd
         data={{
           "@context": "https://schema.org",

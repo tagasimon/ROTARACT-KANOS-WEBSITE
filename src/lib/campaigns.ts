@@ -11,9 +11,10 @@ export function getFeaturedCampaign() {
   });
 }
 
-export function getCampaign(slug: string) {
+/** `preview`: also return an unpublished campaign (for admins checking a draft). */
+export function getCampaign(slug: string, preview = false) {
   return db.campaign.findFirst({
-    where: { slug, ...publicCampaign },
+    where: { slug, ...(preview ? {} : publicCampaign) },
     include: { image: true, updates: { where: { published: true }, orderBy: { date: "desc" } } },
   });
 }
