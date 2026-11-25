@@ -78,5 +78,6 @@ export async function requireRole(roles: Role[], next = "/admin") {
 
 export async function clientIp() {
   const h = await headers();
-  return (h.get("x-forwarded-for")?.split(",")[0] || h.get("x-real-ip") || "").trim() || null;
+  // Behind Cloudflare the visitor's address is in CF-Connecting-IP; otherwise the first X-Forwarded-For entry.
+  return (h.get("cf-connecting-ip") || h.get("x-forwarded-for")?.split(",")[0] || h.get("x-real-ip") || "").trim() || null;
 }

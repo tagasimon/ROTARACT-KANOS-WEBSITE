@@ -40,7 +40,6 @@ export default async function EditResource({ params, searchParams }: { params: P
         </div>
         <div className="flex flex-wrap gap-2">
           {r.key === "social" && <Link href={`/admin/convert/${id}`} className="btn-primary btn-sm">Convert post →</Link>}
-          {r.key === "events" && <Link href={`/admin/attendance/sessions/new?eventId=${id}`} className="btn-ghost btn-sm">Create QR attendance session</Link>}
           {publicPath && <Link href={publicPath} target="_blank" className="btn-ghost btn-sm">{unpublished ? "Preview" : "View on site"} <ExternalLink className="size-3.5" aria-hidden /></Link>}
         </div>
       </div>

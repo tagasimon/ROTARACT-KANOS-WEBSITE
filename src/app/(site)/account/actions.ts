@@ -1,7 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { hashPassword, requireUser, verifyPassword } from "@/lib/auth";
 import { saveImageUpload } from "@/lib/media";
@@ -67,15 +66,4 @@ export async function changePassword(_: FormState, fd: FormData): Promise<FormSt
   await db.user.update({ where: { id: user.id }, data: { passwordHash: await hashPassword(next) } });
   await audit(user.id, "update", "user", user.id, "Changed password");
   return { ok: "Password changed." };
-}
-
-export async function changePin(_: FormState, fd: FormData): Promise<FormState> {
-  const user = await requireUser();
-  if (!user.memberId) return { error: "No member record linked." };
-  const pin = String(fd.get("pin") || "");
-  if (!/^\d{4,8}$/.test(pin)) return { error: "PIN must be 4–8 digits." };
-  if (/^(\d)\1+$/.test(pin) || "0123456789".includes(pin)) return { error: "Choose a less guessable PIN." };
-  await db.member.update({ where: { id: user.memberId }, data: { pinHash: await bcrypt.hash(pin, 10) } });
-  await audit(user.id, "update", "member", user.memberId, "Changed PIN");
-  return { ok: "PIN updated." };
 }

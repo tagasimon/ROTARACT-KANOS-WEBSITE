@@ -162,7 +162,7 @@ export const RESOURCES: Resource[] = [
       { name: "email", label: "Email (private)", type: "email", width: "half" },
       { name: "phone", label: "Phone (private)", type: "text", width: "half" },
       { name: "membershipDate", label: "Membership date", type: "date", width: "half" },
-      { name: "__pin", label: "Set new PIN", type: "pin", width: "half", help: "4–8 digits. Members use Member ID + PIN to activate their account or check in." },
+      { name: "__pin", label: "Set new PIN", type: "pin", width: "half", help: "4–8 digits. Used once, with the Member ID, when the member activates their online account at /activate. Not needed to sign in at meetings." },
       { name: "notes", label: "Internal notes", type: "textarea" },
     ],
   },

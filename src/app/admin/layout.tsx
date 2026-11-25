@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       ],
     },
     ...(can(user.role, "attendance")
-      ? [{ title: "Attendance", items: [{ href: "/admin/attendance", label: "Attendance dashboard" }, { href: "/admin/attendance/sessions", label: "QR sessions" }, { href: "/admin/attendance/records", label: "Records & corrections" }] }]
+      ? [{ title: "Attendance", items: [{ href: "/admin/attendance", label: "Meeting sign-in" }] }]
       : []),
   ];
   const resGroups = new Map<string, { href: string; label: string; badge?: number }[]>();

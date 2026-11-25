@@ -35,8 +35,8 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
     ]).then((x) => x.reduce((a, b) => a + b, 0)),
     Promise.all([db.event.count({ where: { publishStatus: "IN_REVIEW", mergedIntoId: null } }), db.socialPost.count({ where: { publishStatus: "IN_REVIEW" } })]).then((x) => x[0] + x[1]),
     db.inquiry.findMany({ where: { status: "NEW" }, orderBy: { createdAt: "desc" }, take: 5 }),
-    db.attendanceSession.findFirst({ where: { startsAt: { lte: new Date() } }, include: { _count: { select: { records: true } } }, orderBy: { startsAt: "desc" } }),
-    db.attendanceSession.findMany({ where: { startsAt: { gte: new Date(Date.now() - 14 * 86400000) } }, include: { _count: { select: { records: true } } }, orderBy: { startsAt: "desc" }, take: 4 }),
+    db.meeting.findFirst({ include: { _count: { select: { records: true } } }, orderBy: { date: "desc" } }),
+    db.meeting.findMany({ where: { date: { gte: new Date(Date.now() - 14 * 86400000) } }, include: { _count: { select: { records: true } } }, orderBy: { date: "desc" }, take: 4 }),
     db.auditLog.findMany({ include: { user: { select: { email: true } } }, orderBy: { createdAt: "desc" }, take: 8 }),
     year ? db.leadershipAssignment.count({ where: { yearId: year.id, role: { slug: "president" } } }) : 0,
     db.business.count({ where: { publishStatus: "IN_REVIEW" } }),
@@ -68,7 +68,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
     { l: "Active projects", v: activeProjects, h: "/admin/c/projects" },
     { l: "Upcoming events", v: upcomingCount, h: "/admin/c/events" },
     { l: "Published stories", v: storiesCount, h: "/admin/c/stories", sub: latestStories[0]?.publishedAt ? `Latest ${fmtDate(latestStories[0].publishedAt, { day: "numeric", month: "short" })}` : undefined },
-    can(user.role, "attendance") && { l: "Last meeting", v: lastSession ? lastSession._count.records : "—", h: lastSession ? `/admin/attendance/sessions/${lastSession.id}` : "/admin/attendance", sub: lastSession ? fmtDate(lastSession.startsAt, { day: "numeric", month: "short" }) : "No meetings yet" },
+    can(user.role, "attendance") && { l: "Last meeting", v: lastSession ? lastSession._count.records : "—", h: lastSession ? `/admin/attendance/${lastSession.id}` : "/admin/attendance", sub: lastSession ? fmtDate(lastSession.date, { day: "numeric", month: "short" }) : "No meetings yet" },
   ].filter(Boolean) as { l: string; v: number | string; h: string; sub?: string }[];
 
   const money = campaign ? campaignProgress(campaign) : null;
@@ -144,7 +144,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
           <section className="card p-5">
             <div className="mb-3 flex justify-between"><h2 className="label">Recent attendance</h2><Link href="/admin/attendance" className="text-xs font-semibold text-cranberry">Attendance</Link></div>
             <ul className="divide-y divide-line">
-              {sessions.map((s) => <li key={s.id} className="flex justify-between gap-4 py-2"><Link href={`/admin/attendance/sessions/${s.id}`} className="font-semibold hover:text-cranberry">{s.title}</Link><span className="shrink-0 text-sm text-stone">{s._count.records} present · {fmtDate(s.startsAt, { day: "numeric", month: "short" })}</span></li>)}
+              {sessions.map((s) => <li key={s.id} className="flex justify-between gap-4 py-2"><Link href={`/admin/attendance/${s.id}`} className="font-semibold hover:text-cranberry">{s.title}</Link><span className="shrink-0 text-sm text-stone">{s._count.records} signed in · {fmtDate(s.date, { day: "numeric", month: "short" })}</span></li>)}
               {!sessions.length && <li className="py-2 text-sm text-stone">No meetings in the last two weeks.</li>}
             </ul>
           </section>

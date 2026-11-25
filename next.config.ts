@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["sharp", "exceljs", "@prisma/client"],
   experimental: { serverActions: { bodySizeLimit: "25mb" } },
+  // The old check-in addresses now lead to the one permanent sign-in page.
+  async redirects() {
+    return [
+      { source: "/check-in", destination: "/attend", permanent: false },
+      { source: "/check-in/:path*", destination: "/attend", permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

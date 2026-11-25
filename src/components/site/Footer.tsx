@@ -43,7 +43,7 @@ export async function SiteFooter() {
       <div className="border-t border-paper/10">
         <div className="container-x flex flex-col gap-2 py-6 text-xs text-paper/45 sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} {s.clubName}. Rotaract is a program of Rotary International; this is an independent club website.</p>
-          <p className="flex gap-4"><Link href="/check-in" className="hover:text-paper">Attendance check-in</Link><Link href="/login" className="hover:text-paper">Member sign in</Link></p>
+          <p className="flex gap-4"><Link href="/attend" className="hover:text-paper">Meeting sign-in</Link><Link href="/login" className="hover:text-paper">Member sign in</Link></p>
         </div>
       </div>
     </footer>

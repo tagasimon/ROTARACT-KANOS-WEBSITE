@@ -142,7 +142,7 @@ export async function getYearReport(slug: string) {
     db.photoAlbum.findMany({ where: { publishStatus: "PUBLISHED", OR: [{ yearId: year.id }, { date: range }] }, include: { cover: true, _count: { select: { media: true } } }, orderBy: { date: "asc" } }),
     db.media.findMany({ where: { kind: "IMAGE", OR: [{ yearId: year.id }, { date: range }] }, orderBy: { date: "asc" }, take: 12 }),
     db.member.count({ where: { membershipDate: range } }),
-    db.attendanceSession.findMany({ where: { OR: [{ yearId: year.id }, { startsAt: range }], countsTowardRate: true }, select: { id: true, _count: { select: { records: true } } } }),
+    db.meeting.findMany({ where: { type: "WEEKLY", date: range }, select: { id: true, _count: { select: { records: true } } } }),
     db.historyEntry.findMany({ where: { publishStatus: "PUBLISHED", OR: [{ yearId: year.id }, { date: range }] }, include: { image: true, people: { select: { slug: true, name: true } }, projects: { select: { slug: true, title: true } } }, orderBy: { date: "asc" } }),
     db.districtVisit.findMany({ where: { OR: [{ yearId: year.id }, { date: range }], status: { not: "CANCELLED" } }, orderBy: { date: "asc" } }),
   ]);

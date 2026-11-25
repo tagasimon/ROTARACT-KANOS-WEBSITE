@@ -14,7 +14,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       <div>
         <p className="eyebrow mb-4">Members & admins</p>
         <h1 className="text-6xl font-bold leading-none">Sign in.</h1>
-        <p className="mt-6 max-w-md font-serif text-xl text-stone">Sign in once on your phone and you'll stay signed in, so scanning the meeting QR code records your attendance in a second.</p>
+        <p className="mt-6 max-w-md font-serif text-xl text-stone">Sign in to update your profile, list your business and see your attendance. To sign in at a meeting, just scan the QR code: no account needed.</p>
       </div>
       <div className="rounded-sm bg-paper-2 p-6 sm:p-10">
         <LoginForm next={next} />

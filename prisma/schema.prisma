@@ -224,10 +224,27 @@ enum FeedTrust {
   REVIEW
 }
 
-enum CheckInMethod {
-  QR_ACCOUNT
-  QR_PIN
+enum MeetingType {
+  WEEKLY
+  GATHERING
+  SPECIAL
+}
+
+enum Affiliation {
+  ROTARIAN
+  ROTARACTOR
+  PROSPECT
+}
+
+enum SignInMethod {
+  QR
   MANUAL
+}
+
+enum EmailStatus {
+  SENT
+  FAILED
+  SKIPPED
 }
 
 enum BusinessKind {
@@ -271,8 +288,7 @@ model User {
   updatedAt                 DateTime            @updatedAt
   sessions                  Session[]
   auditLogs                 AuditLog[]
-  attendanceSessionsCreated AttendanceSession[]
-  attendanceAdjustments     AttendanceRecord[]  @relation("AttendanceAdjuster")
+  attendanceRecorded        AttendanceRecord[]  @relation("AttendanceRecorder")
 
   @@map("users")
 }
@@ -312,7 +328,6 @@ model RotaractYear {
   events               Event[]
   stories              Story[]
   achievements         Achievement[]
-  attendance           AttendanceSession[]
   districtVisits       DistrictVisit[]
   socialPosts          SocialPost[]
   media                Media[]                @relation("MediaYear")
@@ -752,7 +767,7 @@ model Event {
   media          Media[]             @relation("MediaEvent")
   albums         PhotoAlbum[]
   achievements   Achievement[]
-  attendance     AttendanceSession[]
+  meetings       Meeting[]
   districtVisits DistrictVisit[]
   socialPosts    SocialPost[]
 
@@ -1107,54 +1122,52 @@ model ImpactMetric {
 
 // ───────────────────────── attendance ─────────────────────────
 
-model AttendanceSession {
-  id               String             @id @default(cuid())
-  title            String
-  type             EventType          @default(CLUB_MEETING)
-  eventId          String?
-  event            Event?             @relation(fields: [eventId], references: [id], onDelete: SetNull)
-  yearId           String?
-  year             RotaractYear?      @relation(fields: [yearId], references: [id], onDelete: SetNull)
-  startsAt         DateTime
-  opensAt          DateTime
-  closesAt         DateTime
-  venue            String?
-  token            String             @unique // static URL token (QR payload)
-  secret           String // HMAC secret for rotating codes
-  rotating         Boolean            @default(false)
-  rotationSeconds  Int                @default(30)
-  ipAllowlist      String? // optional comma-separated IP prefixes (e.g. the venue Wi-Fi public IP)
-  closed           Boolean            @default(false)
-  countsTowardRate Boolean            @default(true)
-  createdById      String?
-  createdBy        User?              @relation(fields: [createdById], references: [id], onDelete: SetNull)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  records          AttendanceRecord[]
+/// One meeting per calendar day in Kampala, created by the first sign-in of that day.
+model Meeting {
+  id        String             @id @default(cuid())
+  title     String
+  type      MeetingType        @default(WEEKLY)
+  date      DateTime // start time (UTC instant)
+  day       DateTime           @unique @db.Date // the calendar day in Africa/Kampala
+  venue     String?
+  eventId   String?
+  event     Event?             @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  createdAt DateTime           @default(now())
+  records   AttendanceRecord[]
 
-  @@index([startsAt])
-  @@map("attendance_sessions")
+  @@index([date])
+  @@map("meetings")
 }
 
+/// Someone who signed in at a meeting: a member, a visiting Rotarian or Rotaractor, or a prospect.
 model AttendanceRecord {
-  id           String            @id @default(cuid())
-  sessionId    String
-  session      AttendanceSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  memberId     String
-  member       Member            @relation(fields: [memberId], references: [id], onDelete: Cascade)
-  checkedInAt  DateTime          @default(now())
-  method       CheckInMethod     @default(QR_ACCOUNT)
-  ip           String?
-  userAgent    String?
-  deviceHash   String?
-  excused      Boolean           @default(false)
-  adjustedById String?
-  adjustedBy   User?             @relation("AttendanceAdjuster", fields: [adjustedById], references: [id], onDelete: SetNull)
-  note         String?
+  id           String       @id @default(cuid())
+  meetingId    String
+  meeting      Meeting      @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  memberId     String? // linked directory member, when the email or phone matched
+  member       Member?      @relation(fields: [memberId], references: [id], onDelete: SetNull)
+  name         String
+  email        String? // lower-cased
+  phone        String? // normalised, e.g. +2567XXXXXXXX
+  isGuest      Boolean      @default(false)
+  affiliation  Affiliation?
+  clubName     String? // the visitor's club; the home club for members; empty for prospects
+  method       SignInMethod @default(QR)
+  recordedById String? // the admin who added them by hand
+  recordedBy   User?        @relation("AttendanceRecorder", fields: [recordedById], references: [id], onDelete: SetNull)
+  emailStatus  EmailStatus? // empty until a thank-you has been attempted
+  emailSentAt  DateTime?
+  emailError   String?
+  checkedInAt  DateTime     @default(now())
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 
-  @@unique([sessionId, memberId])
+  @@unique([meetingId, memberId])
+  @@index([meetingId])
+  @@index([meetingId, email])
+  @@index([meetingId, phone])
   @@index([memberId])
-  @@map("attendance_records")
+  @@map("meeting_attendance")
 }
 
 // ───────────────────────── member businesses ─────────────────────────

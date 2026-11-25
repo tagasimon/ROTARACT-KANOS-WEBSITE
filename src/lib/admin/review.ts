@@ -47,7 +47,7 @@ export async function mergeEvents(intoId: string, fromId: string) {
     db.photoAlbum.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
     db.achievement.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
     db.projectMilestone.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
-    db.attendanceSession.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
+    db.meeting.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
     db.districtVisit.updateMany({ where: { eventId: fromId }, data: { eventId: intoId } }),
     db.event.update({ where: { id: intoId }, data: { ...fill, people: { connect: from.people.map((p) => ({ id: p.id })) } } }),
     db.event.update({ where: { id: fromId }, data: { mergedIntoId: intoId, publishStatus: "ARCHIVED" } }),

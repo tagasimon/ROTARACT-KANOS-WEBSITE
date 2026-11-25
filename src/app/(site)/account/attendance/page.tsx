@@ -2,102 +2,63 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
-import { memberStats } from "@/lib/attendance";
-import { getCurrentYear } from "@/lib/years";
 import { nextRegularMeeting } from "@/lib/queries";
 import { getSettings } from "@/lib/settings";
-import { fmtDate, fmtTime, humanize } from "@/lib/utils";
+import { rotaryYearStart } from "@/lib/meeting/stats";
+import { clockTime, longDate } from "@/lib/meeting/today";
+import { fmtDate } from "@/lib/utils";
 import { Empty } from "@/components/site/Section";
 
 export const metadata: Metadata = { title: "My attendance", robots: { index: false } };
 
 export default async function MyAttendancePage() {
   const user = await requireUser("/account/attendance");
-  if (!user.memberId) return <section className="container-x py-16"><Empty title="No member record linked">Ask a club admin to link your account to your membership.</Empty></section>;
-  const [year, s] = await Promise.all([getCurrentYear(), getSettings()]);
-  const [all, thisYear, recent, upcoming] = await Promise.all([
-    memberStats({ memberIds: [user.memberId] }),
-    year ? memberStats({ memberIds: [user.memberId], from: year.startDate, to: year.endDate }) : null,
-    db.attendanceRecord.findMany({ where: { memberId: user.memberId }, include: { session: true }, orderBy: { checkedInAt: "desc" }, take: 15 }),
-    db.attendanceSession.findMany({ where: { startsAt: { gte: new Date() } }, orderBy: { startsAt: "asc" }, take: 5 }),
+  if (!user.memberId || !user.member) return <section className="container-x py-16"><Empty title="No member record linked">Ask a club admin to link your account to your membership.</Empty></section>;
+  const since = rotaryYearStart();
+  const from = user.member.membershipDate && user.member.membershipDate > since ? user.member.membershipDate : since;
+  const [s, mine, weeklyHeld, total] = await Promise.all([
+    getSettings(),
+    db.attendanceRecord.findMany({ where: { memberId: user.memberId }, include: { meeting: true }, orderBy: { checkedInAt: "desc" }, take: 20 }),
+    db.meeting.findMany({ where: { type: "WEEKLY", date: { gte: from } }, select: { id: true } }),
+    db.attendanceRecord.count({ where: { memberId: user.memberId } }),
   ]);
-  const st = all.stats.get(user.memberId)!;
-  const yr = thisYear?.stats.get(user.memberId);
-  const pct = (r: number | null | undefined) => (r == null ? "—" : `${Math.round(r * 100)}%`);
+  const heldIds = new Set(weeklyHeld.map((m) => m.id));
+  const attendedWeekly = await db.attendanceRecord.count({ where: { memberId: user.memberId, meetingId: { in: [...heldIds] } } });
+  const rate = weeklyHeld.length ? Math.round((attendedWeekly / weeklyHeld.length) * 100) : null;
   const next = nextRegularMeeting(s.meetingDay, s.meetingTime);
-  // month-by-month for this year
-  const months: { label: string; attended: number; total: number }[] = [];
-  if (year && thisYear) {
-    const rec = new Set(recent.map((r) => r.sessionId));
-    const allRecs = await db.attendanceRecord.findMany({ where: { memberId: user.memberId, session: { startsAt: { gte: year.startDate, lte: year.endDate } } }, select: { sessionId: true } });
-    allRecs.forEach((r) => rec.add(r.sessionId));
-    for (const ses of thisYear.sessions) {
-      const k = fmtDate(ses.startsAt, { month: "short" });
-      let m = months.find((x) => x.label === k);
-      if (!m) months.push((m = { label: k, attended: 0, total: 0 }));
-      m.total++;
-      if (rec.has(ses.id)) m.attended++;
-    }
-  }
   return (
     <section className="container-x py-14">
       <p className="eyebrow mb-2">Private to you</p>
       <h1 className="mb-10 text-5xl font-bold">My attendance</h1>
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-line lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-line lg:grid-cols-3">
         {[
-          ["Attendance rate", pct(st.rate), `${st.attended} of ${st.expected} meetings`],
-          [year ? `This year (${year.label})` : "This year", pct(yr?.rate), yr ? `${yr.attended} of ${yr.expected}` : ""],
-          ["Current streak", String(st.streak), `Longest: ${st.longestStreak}`],
-          ["Last attended", st.lastAttendance ? fmtDate(st.lastAttendance, { day: "numeric", month: "short" }) : "—", st.excused ? `${st.excused} excused` : ""],
-        ].map(([k, v, sub]) => (
-          <div key={k} className="bg-paper p-6">
-            <p className="eyebrow">{k}</p>
-            <p className="mt-2 font-display text-5xl font-bold tabular-nums">{v}</p>
+          ["This Rotary year", rate == null ? "—" : `${rate}%`, `${attendedWeekly} of ${weeklyHeld.length} weekly meetings`],
+          ["All meetings attended", String(total), "since sign-in records began"],
+          ["Next meeting", next ? fmtDate(next, { weekday: "short", day: "numeric", month: "short" }) : "—", `${s.meetingTime} · ${s.meetingVenue}`],
+        ].map(([l, v, sub]) => (
+          <div key={l} className="bg-white p-6">
+            <p className="eyebrow">{l}</p>
+            <p className="mt-2 font-display text-4xl font-bold">{v}</p>
             <p className="mt-1 text-sm text-stone">{sub}</p>
           </div>
         ))}
       </div>
-
-      {months.length > 0 && (
-        <div className="mt-12">
-          <h2 className="mb-4 text-xl font-bold">This year, month by month</h2>
-          <div className="flex items-end gap-2" role="img" aria-label="Monthly attendance this year">
-            {months.map((m) => (
-              <div key={m.label} className="flex flex-1 flex-col items-center gap-1">
-                <div className="flex h-32 w-full max-w-12 items-end rounded-sm bg-paper-2">
-                  <div className="w-full rounded-sm bg-cranberry" style={{ height: `${m.total ? (m.attended / m.total) * 100 : 0}%` }} />
-                </div>
-                <span className="text-xs text-stone">{m.label}</span>
-                <span className="font-cond text-xs">{m.attended}/{m.total}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <h2 className="mb-4 mt-14 text-2xl font-bold">Recent meetings</h2>
+      {mine.length ? (
+        <ul className="divide-y divide-line border-y border-line">
+          {mine.map((r) => (
+            <li key={r.id} className="flex flex-wrap justify-between gap-2 py-3">
+              <span className="font-semibold">{r.meeting.title}</span>
+              <span className="text-sm text-stone">{longDate(r.meeting.date)} · signed in {clockTime(r.checkedInAt)}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <Empty title="No sign-ins yet">Scan the QR code at the next meeting and sign in as a member.</Empty>
       )}
-
-      <div className="mt-14 grid gap-12 lg:grid-cols-2">
-        <div>
-          <h2 className="mb-4 text-xl font-bold">Recent check-ins</h2>
-          {recent.length ? (
-            <ul className="divide-y divide-line border-y border-line">
-              {recent.map((r) => (
-                <li key={r.id} className="flex justify-between gap-4 py-3">
-                  <span><strong>{r.session.title}</strong><span className="block text-xs text-stone">{humanize(r.session.type)}{r.excused && " · excused"}</span></span>
-                  <span className="text-right text-sm text-stone">{fmtDate(r.session.startsAt, { day: "numeric", month: "short", year: "numeric" })}<span className="block text-xs">{fmtTime(r.checkedInAt)}</span></span>
-                </li>
-              ))}
-            </ul>
-          ) : <Empty title="No check-ins yet">Scan the QR code at your next meeting.</Empty>}
-        </div>
-        <div>
-          <h2 className="mb-4 text-xl font-bold">Upcoming meetings</h2>
-          <ul className="divide-y divide-line border-y border-line">
-            {upcoming.map((u) => <li key={u.id} className="py-3"><strong>{u.title}</strong><span className="block text-sm text-stone">{fmtDate(u.startsAt, { weekday: "long", day: "numeric", month: "long" })}, {fmtTime(u.startsAt)}</span></li>)}
-            {!upcoming.length && next && <li className="py-3"><strong>Weekly fellowship</strong><span className="block text-sm text-stone">{fmtDate(next, { weekday: "long", day: "numeric", month: "long" })}, {s.meetingTime} · {s.meetingVenue}</span></li>}
-          </ul>
-          <Link href="/events" className="link-u mt-4 inline-block text-sm font-semibold">All events →</Link>
-        </div>
-      </div>
+      <p className="mt-6 max-w-2xl text-sm text-stone">
+        A sign-in counts as yours when you use the email address or phone number on your membership record. If one is missing, ask the club secretary to add it, or <Link href="/account" className="link-u">check your account</Link>.
+      </p>
     </section>
   );
 }

@@ -19,7 +19,7 @@ export async function runHousekeeping() {
   const user = await requireArea("events");
   const r = await housekeeping();
   await audit(user.id, "housekeeping", "system", null, JSON.stringify(r));
-  redirect(`/admin/discovery?msg=${encodeURIComponent(`Housekeeping: ${r.eventsCompleted} past events marked completed, ${r.sessionsClosed} sessions closed, current year ${r.currentYear}`)}`);
+  redirect(`/admin/discovery?msg=${encodeURIComponent(`Housekeeping: ${r.eventsCompleted} past events marked completed, current year ${r.currentYear}`)}`);
 }
 
 /** Paste an .ics file's contents manually (for calendars you can download but not subscribe to). */

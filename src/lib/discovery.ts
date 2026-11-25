@@ -242,10 +242,9 @@ export async function housekeeping() {
     await db.rotaractYear.updateMany({ where: { isCurrent: true }, data: { isCurrent: false } });
     await db.rotaractYear.update({ where: { id: cur.id }, data: { isCurrent: true } });
   }
-  const sessions = await db.attendanceSession.updateMany({ where: { closed: false, closesAt: { lt: now } }, data: { closed: true } });
   await db.session.deleteMany({ where: { expiresAt: { lt: now } } });
   await db.rateLimit.deleteMany({ where: { resetAt: { lt: now } } });
-  return { eventsCompleted: completed.count, visitsReported: visits.count, sessionsClosed: sessions.count, currentYear: b.label };
+  return { eventsCompleted: completed.count, visitsReported: visits.count, currentYear: b.label };
 }
 
 export async function runDiscovery() {

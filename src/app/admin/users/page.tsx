@@ -28,7 +28,7 @@ export default async function UsersPage({ searchParams }: { searchParams: Promis
       <p className="eyebrow">System</p>
       <h1 className="mb-2 text-4xl font-bold">Users & roles</h1>
       <div className="mb-8 grid gap-2 text-sm text-stone sm:grid-cols-2 lg:grid-cols-5">
-        {[["Super admin", "Everything, including users and settings"], ["Club admin", "Content, events, people, projects, members, attendance, settings"], ["Attendance officer", "Attendance, QR sessions, reports, member records"], ["Editor", "Stories, projects, events, media, review queue"], ["Member", "Own profile and own attendance"]].map(([r, d]) => <div key={r} className="card p-3"><p className="font-semibold text-fg">{r}</p><p className="text-xs">{d}</p></div>)}
+        {[["Super admin", "Everything, including users and settings"], ["Club admin", "Content, events, people, projects, members, attendance, settings"], ["Attendance officer", "Meeting sign-in: attendance, emails, make-up cards, exports, and member records"], ["Editor", "Stories, projects, events, media, review queue"], ["Member", "Own profile and own attendance"]].map(([r, d]) => <div key={r} className="card p-3"><p className="font-semibold text-fg">{r}</p><p className="text-xs">{d}</p></div>)}
       </div>
       <div className="card mb-8 overflow-x-auto">
         <table className="table-x">

@@ -3,7 +3,7 @@ import { getSettings } from "@/lib/settings";
 import { getCurrentUser } from "@/lib/auth";
 import { ADMIN_ROLES } from "@/lib/rbac";
 import { MobileNav } from "./MobileNav";
-import { Search } from "lucide-react";
+import { QrCode, Search } from "lucide-react";
 import { db } from "@/lib/db";
 import { mediaSrc } from "@/lib/media";
 
@@ -57,6 +57,9 @@ export async function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <Link href="/attend" aria-label="Meeting sign-in" title="Meeting sign-in" className="hidden h-10 items-center gap-1.5 rounded-full px-2.5 text-sm font-semibold text-royal hover:bg-royal/5 sm:flex">
+            <QrCode className="size-5" aria-hidden /><span className="hidden 2xl:inline">Meeting sign-in</span>
+          </Link>
           <Link href="/search" aria-label="Search" className="hidden size-10 items-center justify-center rounded-full hover:bg-royal/5 sm:flex">
             <Search className="size-5" aria-hidden />
           </Link>

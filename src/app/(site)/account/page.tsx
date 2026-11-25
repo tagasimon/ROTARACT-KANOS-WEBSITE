@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 import { ADMIN_ROLES, ROLE_LABEL } from "@/lib/rbac";
 import { logout } from "../login/actions";
-import { ProfileForm, PasswordForm, PinChangeForm } from "./Forms";
+import { ProfileForm, PasswordForm } from "./Forms";
 
 export const metadata: Metadata = { title: "My account", robots: { index: false } };
 
@@ -53,7 +53,6 @@ export default async function AccountPage() {
             </div>
           )}
           <div className="rounded-sm border border-line bg-white p-6"><h2 className="mb-4 font-bold">Password</h2><PasswordForm /></div>
-          {user.member && <div className="rounded-sm border border-line bg-white p-6"><h2 className="mb-1 font-bold">Check-in PIN</h2><p className="mb-4 text-sm text-stone">Used with your Member ID when you check in on a phone that isn't signed in.</p><PinChangeForm /></div>}
         </aside>
       </div>
     </section>

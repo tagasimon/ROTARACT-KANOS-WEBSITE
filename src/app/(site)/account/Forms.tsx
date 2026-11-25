@@ -1,6 +1,6 @@
 "use client";
 import { useActionState } from "react";
-import { updateProfile, changePassword, changePin, type FormState } from "./actions";
+import { updateProfile, changePassword, type FormState } from "./actions";
 
 function Msg({ s }: { s: FormState }) {
   if (s.error) return <p role="alert" className="rounded-sm bg-cranberry/10 px-3 py-2 text-sm font-semibold text-cranberry">{s.error}</p>;
@@ -50,17 +50,6 @@ export function PasswordForm() {
       <input name="current" type="password" autoComplete="current-password" placeholder="Current password" aria-label="Current password" className="input" required />
       <input name="next" type="password" autoComplete="new-password" placeholder="New password (8+ characters)" aria-label="New password" className="input" required minLength={8} />
       <button className="btn-ghost btn-sm justify-self-start" disabled={pending}>Change password</button>
-    </form>
-  );
-}
-
-export function PinChangeForm() {
-  const [s, action, pending] = useActionState<FormState, FormData>(changePin, {});
-  return (
-    <form action={action} className="grid gap-3">
-      <Msg s={s} />
-      <input name="pin" inputMode="numeric" pattern="\d*" maxLength={8} placeholder="New 4–8 digit PIN" aria-label="New PIN" className="input font-cond" required />
-      <button className="btn-ghost btn-sm justify-self-start" disabled={pending}>Set PIN</button>
     </form>
   );
 }
