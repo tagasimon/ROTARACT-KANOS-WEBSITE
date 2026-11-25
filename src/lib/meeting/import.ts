@@ -239,7 +239,7 @@ type Writes = {
   groups: string[];
   people: { key: string; memberId?: string; personId?: string; name: string; memberNumber: string; email: string | null; phone: string | null; status: MemberStatus; notes: string; group: string | null; update: { email?: string; phone?: string; group?: string } }[];
   meetings: { day: string; existingId?: string; create?: { title: string; type: MeetingType; date: Date; venue: string | null; eventId: string | null } }[];
-  records: { day: string; personKey: string | null; name: string; email: string | null; phone: string | null; isGuest: boolean; affiliation: Affiliation; clubName: string | null; at: Date }[];
+  records: { day: string; personKey: string | null; name: string; email: string | null; phone: string | null; isGuest: boolean; affiliation: Affiliation; clubName: string | null; group: string | null; at: Date }[];
 };
 export type ImportPlan = { error?: string; preview?: ImportPreview; writes?: Writes };
 
@@ -535,7 +535,7 @@ export async function planSignInImport(rows: string[][], opts: { now?: Date; sam
       seen.add(`${e.day}|n:${nameKey(nameOf.get(pk)!)}`);
       if (existingMeeting && existingMeeting.records.some((r) => (wp.memberId && r.memberId === wp.memberId) || (e.email && r.email?.toLowerCase() === e.email))) { already++; bump(e.day, "already"); continue; }
       const ownEmail = rowKey.get(e)!.startsWith("e:") ? e.email : null;
-      records.push({ day: e.day, personKey: pk, name: nameOf.get(pk)!, email: ownEmail, phone: e.phone, isGuest: false, affiliation: MEETING.CLUB_TYPE === "ROTARY" ? "ROTARIAN" : "ROTARACTOR", clubName: MEETING.CLUB_NAME, at: e.at });
+      records.push({ day: e.day, personKey: pk, name: nameOf.get(pk)!, email: ownEmail, phone: e.phone, isGuest: false, affiliation: MEETING.CLUB_TYPE === "ROTARY" ? "ROTARIAN" : "ROTARACTOR", clubName: MEETING.CLUB_NAME, group: canonicalGroup(e.group), at: e.at });
       bump(e.day, "members");
     } else {
       const name = tidyName(e.name);
@@ -544,7 +544,7 @@ export async function planSignInImport(rows: string[][], opts: { now?: Date; sam
       seen.add(k);
       if (existingMeeting && existingMeeting.records.some((r) => (e.email ? r.email?.toLowerCase() === e.email : nameKey(r.name) === nameKey(name)))) { already++; bump(e.day, "already"); continue; }
       const v = visitorOf(e.club);
-      records.push({ day: e.day, personKey: null, name, email: e.email, phone: e.phone, isGuest: true, affiliation: v.affiliation, clubName: v.clubName, at: e.at });
+      records.push({ day: e.day, personKey: null, name, email: e.email, phone: e.phone, isGuest: true, affiliation: v.affiliation, clubName: v.clubName, group: null, at: e.at });
       bump(e.day, "visitors");
     }
   }
@@ -662,6 +662,8 @@ export async function applySignInImport(plan: ImportPlan, userId: string) {
       isGuest: r.isGuest,
       affiliation: r.affiliation,
       clubName: r.clubName,
+      // the group on that row; groups that weren't in the preview aren't created here
+      buddyGroupId: r.group ? groupIds.get(r.group.toLowerCase()) ?? null : null,
       method: "IMPORT" as const,
       recordedById: userId,
       checkedInAt: r.at,

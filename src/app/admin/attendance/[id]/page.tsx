@@ -31,7 +31,8 @@ export default async function MeetingPage({ params, searchParams }: { params: Pr
   await requireArea("attendance");
   const { id } = await params;
   const sp = await searchParams;
-  const m = await db.meeting.findUnique({ where: { id }, include: { records: { orderBy: { checkedInAt: "asc" }, include: { recordedBy: { select: { email: true } }, member: { select: { buddyGroup: { select: { name: true } } } } } }, event: { select: { id: true, title: true } } } });
+  const m = await db.meeting.findUnique({ where: { id }, include: { records: { orderBy: { checkedInAt: "asc" }, include: { recordedBy: { select: { email: true } }, buddyGroup: { select: { name: true } }, member: { select: { buddyGroup: { select: { name: true } } } } } }, event: { select: { id: true, title: true } } } });
+  const groups = await db.buddyGroup.findMany({ select: { id: true, name: true }, orderBy: { name: "asc" } });
   if (!m) notFound();
   const c = countsOf(m.records);
   const isToday = localParts(m.date).iso === localParts().iso || m.day.toISOString().slice(0, 10) === localParts().iso;
@@ -73,7 +74,7 @@ export default async function MeetingPage({ params, searchParams }: { params: Pr
                     <tr key={r.id}>
                       <td className="font-semibold">
                         {r.memberId ? <Link href={`/admin/c/members/${r.memberId}`} className="hover:text-cranberry">{r.name}</Link> : r.name}
-                        {r.member?.buddyGroup && <span className="block text-xs font-normal text-stone">{r.member.buddyGroup.name}</span>}
+                        {!r.isGuest && (r.buddyGroup ?? r.member?.buddyGroup) && <span className="block text-xs font-normal text-stone">{(r.buddyGroup ?? r.member?.buddyGroup)!.name}</span>}
                       </td>
                       <td className="whitespace-nowrap">{r.isGuest ? TYPE[r.affiliation ?? "PROSPECT"] : TYPE.member}</td>
                       <td className="text-stone">{r.isGuest ? r.clubName || "—" : ""}</td>
@@ -134,6 +135,11 @@ export default async function MeetingPage({ params, searchParams }: { params: Pr
                 <select name="who" className="input" defaultValue="member"><option value="member">Member</option><option value="ROTARIAN">Visiting Rotarian</option><option value="ROTARACTOR">Visiting Rotaractor</option><option value="PROSPECT">Prospect (guest)</option></select>
               </label>
               <label className="field"><span className="label">Name</span><input name="name" required className="input" /></label>
+              {groups.length > 0 && (
+                <label className="field"><span className="label">Buddy group (members)</span>
+                  <select name="group" className="input" defaultValue=""><option value="">—</option>{groups.map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}</select>
+                </label>
+              )}
               <label className="field"><span className="label">Club (visitors)</span><input name="club" list="club-list" className="input" placeholder="Start typing" /></label>
               <datalist id="club-list">{CLUBS.map((cl) => <option key={cl.type + cl.name} value={cl.name} />)}</datalist>
               <label className="field"><span className="label">Email (optional)</span><input name="email" type="email" className="input" /></label>

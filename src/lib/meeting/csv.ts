@@ -14,13 +14,13 @@ const stamp = (d: Date) => {
 export async function meetingCsvRows(meetingId?: string) {
   const meetings = await db.meeting.findMany({
     where: meetingId ? { id: meetingId } : undefined,
-    include: { records: { orderBy: { checkedInAt: "asc" }, include: { member: { select: { buddyGroup: { select: { name: true } } } } } } },
+    include: { records: { orderBy: { checkedInAt: "asc" }, include: { buddyGroup: { select: { name: true } }, member: { select: { buddyGroup: { select: { name: true } } } } } } },
     orderBy: { date: "desc" },
   });
   const rows: Cell[][] = [["Date", "Meeting", "Name", "Member or visiting", "Rotarian / Rotaractor / Prospect", "Club", "Email", "Phone", "Signed in at", "How", "Buddy group"]];
   for (const m of meetings)
     for (const r of m.records)
-      rows.push([m.day.toISOString().slice(0, 10), m.title, r.name, r.isGuest ? "Visiting" : "Member", r.affiliation ? AFF[r.affiliation] : "", r.clubName, r.email, r.phone, stamp(r.checkedInAt), HOW[r.method], r.member?.buddyGroup?.name]);
+      rows.push([m.day.toISOString().slice(0, 10), m.title, r.name, r.isGuest ? "Visiting" : "Member", r.affiliation ? AFF[r.affiliation] : "", r.clubName, r.email, r.phone, stamp(r.checkedInAt), HOW[r.method], r.isGuest ? "" : (r.buddyGroup ?? r.member?.buddyGroup)?.name]);
   const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const filename = meetingId && meetings[0] ? `meeting-sign-in-${meetings[0].day.toISOString().slice(0, 10)}-${slug(meetings[0].title)}.csv` : `meeting-sign-in-all-${localParts().iso}.csv`;
   return { rows, filename, count: rows.length - 1 };

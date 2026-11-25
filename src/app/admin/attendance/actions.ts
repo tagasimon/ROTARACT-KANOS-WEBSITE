@@ -19,8 +19,9 @@ export async function addPerson(fd: FormData) {
   const f = new FormData();
   f.set("status", who === "member" ? "member" : "visiting");
   f.set("kind", who === "member" ? "" : who);
-  for (const k of ["club", "name", "email", "phone"]) f.set(k, String(fd.get(k) || ""));
-  const v = validate(readInput(f), { requireContact: false });
+  for (const k of ["club", "name", "email", "phone", "group"]) f.set(k, String(fd.get(k) || ""));
+  const groups = (await db.buddyGroup.findMany({ select: { id: true } })).map((g) => g.id);
+  const v = validate(readInput(f), { requireContact: false, groups, requireGroup: false });
   if (!v.ok) back(meetingId, v.error, true);
   const ok = v as Extract<typeof v, { ok: true }>;
   const { record, duplicate } = await recordSignIn(meetingId, ok.clean, { method: "MANUAL", recordedById: user.id });

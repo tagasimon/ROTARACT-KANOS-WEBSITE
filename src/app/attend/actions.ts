@@ -3,6 +3,7 @@ import { after } from "next/server";
 import { clientIp } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 import { MEETING } from "@/lib/meeting/config";
+import { db } from "@/lib/db";
 import { readInput, recordSignIn, validate } from "@/lib/meeting/record";
 import { clockTime, getOrCreateTodaysMeeting, longDate, previewTodaysMeeting } from "@/lib/meeting/today";
 import { emailOffReason, sendThankYou } from "@/lib/meeting/email";
@@ -28,7 +29,8 @@ export async function signIn(_: AttendState, fd: FormData): Promise<AttendState>
   if (!rl.ok) return { status: "error", error: "There have been too many sign-ins from this connection in the last hour. Please try again a little later, or ask a club officer to add you." };
 
   // 3. Validate, find today's meeting, record
-  const v = validate(input);
+  const groups = (await db.buddyGroup.findMany({ select: { id: true } })).map((g) => g.id);
+  const v = validate(input, { groups });
   if (!v.ok) return { status: "error", error: v.error };
   const meeting = await getOrCreateTodaysMeeting();
   const { record, duplicate } = await recordSignIn(meeting.id, v.clean, { method: "QR" });

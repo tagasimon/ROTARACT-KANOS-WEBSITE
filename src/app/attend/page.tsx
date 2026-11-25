@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { db } from "@/lib/db";
 import { MEETING } from "@/lib/meeting/config";
 import { meetingSettings } from "@/lib/meeting/settings";
 import { clockTime, longDate, previewTodaysMeeting } from "@/lib/meeting/today";
@@ -9,7 +10,7 @@ export const metadata: Metadata = { title: { absolute: `Meeting sign-in | ${MEET
 export const dynamic = "force-dynamic";
 
 export default async function AttendPage() {
-  const [meeting, ms] = await Promise.all([previewTodaysMeeting(), meetingSettings()]);
+  const [meeting, ms, groups] = await Promise.all([previewTodaysMeeting(), meetingSettings(), db.buddyGroup.findMany({ select: { id: true, name: true }, orderBy: [{ sortOrder: "asc" }, { name: "asc" }] })]);
   const today = longDate(new Date());
   return (
     <div className="min-h-dvh bg-paper-2">
@@ -27,7 +28,7 @@ export default async function AttendPage() {
           <p className="mt-2 text-base text-stone">{clockTime(meeting.date)}{meeting.venue ? ` · ${meeting.venue}` : ""}</p>
         )}
         <div className="mt-8">
-          <AttendForm meetingDay={ms.weekdayName} />
+          <AttendForm meetingDay={ms.weekdayName} groups={groups} />
         </div>
       </main>
     </div>

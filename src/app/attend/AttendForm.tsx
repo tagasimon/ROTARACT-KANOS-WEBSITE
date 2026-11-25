@@ -6,13 +6,15 @@ import { MEETING } from "@/lib/meeting/config";
 import { ClubPicker } from "./ClubPicker";
 import { signIn, type AttendState } from "./actions";
 
-type Saved = { status: string; kind: string; club: string; clubOther: string; name: string; email: string; phone: string };
+type Saved = { status: string; kind: string; club: string; clubOther: string; group: string; name: string; email: string; phone: string };
 const KEY = "attend-v1";
-const empty: Saved = { status: "", kind: "", club: "", clubOther: "", name: "", email: "", phone: "" };
+const empty: Saved = { status: "", kind: "", club: "", clubOther: "", group: "", name: "", email: "", phone: "" };
+/** matches NO_GROUP in lib/meeting/record */
+const NO_GROUP = "none";
 
-function Choice({ name, value, checked, onChange, children, sub }: { name: string; value: string; checked: boolean; onChange: (v: string) => void; children: React.ReactNode; sub?: string }) {
+function Choice({ name, value, checked, onChange, children, sub, compact }: { name: string; value: string; checked: boolean; onChange: (v: string) => void; children: React.ReactNode; sub?: string; compact?: boolean }) {
   return (
-    <label className={cn("flex min-h-16 cursor-pointer items-center gap-4 rounded-xl border-2 bg-white px-4 py-3 transition-colors", checked ? "border-royal bg-royal/5" : "border-fg/15 hover:border-royal/50")}>
+    <label className={cn("flex cursor-pointer items-center rounded-xl border-2 bg-white transition-colors", compact ? "min-h-14 gap-3 px-3 py-2.5" : "min-h-16 gap-4 px-4 py-3", checked ? "border-royal bg-royal/5" : "border-fg/15 hover:border-royal/50")}>
       <input type="radio" name={name} value={value} checked={checked} onChange={() => onChange(value)} className="size-5 shrink-0 accent-[var(--color-royal)]" />
       <span>
         <span className="block text-base font-semibold">{children}</span>
@@ -22,7 +24,7 @@ function Choice({ name, value, checked, onChange, children, sub }: { name: strin
   );
 }
 
-export function AttendForm({ meetingDay }: { meetingDay: string }) {
+export function AttendForm({ meetingDay, groups }: { meetingDay: string; groups: { id: string; name: string }[] }) {
   const [state, action, pending] = useActionState<AttendState, FormData>(signIn, { status: "idle" });
   const [f, setF] = useState<Saved>(empty);
   const [shown, setShown] = useState(true);
@@ -32,10 +34,16 @@ export function AttendForm({ meetingDay }: { meetingDay: string }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) setF({ ...empty, ...JSON.parse(raw) });
+      if (raw) {
+        const saved: Saved = { ...empty, ...JSON.parse(raw) };
+        // a group the club has since removed shouldn't stay selected
+        if (saved.group && saved.group !== NO_GROUP && !groups.some((g) => g.id === saved.group)) saved.group = "";
+        setF(saved);
+      }
     } catch {
       /* private mode or storage blocked: start empty */
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     if (state.status === "ok") setShown(true);
@@ -88,6 +96,18 @@ export function AttendForm({ meetingDay }: { meetingDay: string }) {
         <Choice name="status" value="member" checked={f.status === "member"} onChange={set("status")}>Yes, I&rsquo;m a member</Choice>
         <Choice name="status" value="visiting" checked={visiting} onChange={set("status")}>No, I am visiting</Choice>
       </fieldset>
+
+      {f.status === "member" && groups.length > 0 && (
+        <fieldset className="grid gap-3">
+          <legend className="mb-3 text-lg font-bold">Your buddy group</legend>
+          <div className="grid grid-cols-2 gap-3">
+            {groups.map((g) => (
+              <Choice key={g.id} name="group" value={g.id} checked={f.group === g.id} onChange={set("group")} compact>{g.name}</Choice>
+            ))}
+          </div>
+          <Choice name="group" value={NO_GROUP} checked={f.group === NO_GROUP} onChange={set("group")} compact>I&rsquo;m not in a buddy group yet</Choice>
+        </fieldset>
+      )}
 
       {visiting && (
         <fieldset className="grid gap-3">
