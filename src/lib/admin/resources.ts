@@ -152,7 +152,7 @@ export const RESOURCES: Resource[] = [
   {
     key: "members", listHref: "/admin/members", model: "member", label: "Members", singular: "Member", area: "members", group: "People",
     titleField: "memberNumber", searchFields: ["memberNumber", "email", "phone"], orderBy: { memberNumber: "asc" },
-    listFields: [{ name: "memberNumber", label: "Member ID" }, { name: "person", label: "Name", type: "rel", rel: "name" }, { name: "status", label: "Status", type: "enum" }, { name: "membershipDate", label: "Joined", type: "date" }],
+    listFields: [{ name: "memberNumber", label: "Member ID" }, { name: "person", label: "Name", type: "rel", rel: "name" }, { name: "status", label: "Status", type: "enum" }, { name: "buddyGroup", label: "Buddy group", type: "rel", rel: "name" }, { name: "membershipDate", label: "Joined", type: "date" }],
     description: "Private membership records (contact details, member ID, PIN). Never shown publicly. Leave Person empty and enter a name to create a profile automatically.",
     fields: [
       { name: "personId", label: "Person (public profile)", type: "relation", relation: { model: "person", label: "name", orderBy: { name: "asc" } }, help: "Pick an existing profile, or leave empty and fill “New person name”." },
@@ -161,9 +161,20 @@ export const RESOURCES: Resource[] = [
       { name: "status", label: "Status", type: "select", options: E.memberStatus, default: "ACTIVE", width: "half", help: "Alumni: former members you keep in touch with. Archived: hidden from the members list (nothing is deleted)." },
       { name: "email", label: "Email (private)", type: "email", width: "half" },
       { name: "phone", label: "Phone (private)", type: "text", width: "half" },
+      { name: "buddyGroupId", label: "Buddy group", type: "relation", relation: { model: "buddyGroup", label: "name", orderBy: { name: "asc" } }, width: "half", help: "Add or rename groups under People → Buddy groups." },
       { name: "membershipDate", label: "Membership date", type: "date", width: "half" },
       { name: "__pin", label: "Set new PIN", type: "pin", width: "half", help: "4–8 digits. Used once, with the Member ID, when the member activates their online account at /activate. Not needed to sign in at meetings." },
       { name: "notes", label: "Internal notes", type: "textarea" },
+    ],
+  },
+  {
+    key: "buddy-groups", model: "buddyGroup", label: "Buddy groups", singular: "Buddy group", area: "members", group: "People",
+    titleField: "name", searchFields: ["name"], orderBy: { name: "asc" },
+    listFields: [{ name: "name", label: "Buddy group" }, { name: "description", label: "Description" }],
+    description: "Small groups inside the club. Each member can belong to one; set it on the member's record. Private: not shown on the website.",
+    fields: [
+      { name: "name", label: "Name", type: "text", required: true },
+      { name: "description", label: "Description", type: "textarea", help: "Optional: leader, meeting point, anything the club wants to note." },
     ],
   },
   {

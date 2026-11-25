@@ -61,7 +61,7 @@ export async function guestsByClub(scope: "year" | "all") {
 export async function memberRates() {
   const since = rotaryYearStart();
   const [members, weekly, attended] = await Promise.all([
-    db.member.findMany({ where: { status: { in: ["ACTIVE", "PENDING"] } }, select: { id: true, memberNumber: true, membershipDate: true, person: { select: { name: true } } }, orderBy: { person: { name: "asc" } } }),
+    db.member.findMany({ where: { status: { in: ["ACTIVE", "PENDING"] } }, select: { id: true, memberNumber: true, membershipDate: true, person: { select: { name: true } }, buddyGroup: { select: { id: true, name: true } } }, orderBy: { person: { name: "asc" } } }),
     db.meeting.findMany({ where: { type: "WEEKLY", date: { gte: since } }, select: { id: true, date: true } }),
     db.attendanceRecord.findMany({ where: { memberId: { not: null }, meeting: { date: { gte: since } } }, select: { memberId: true, meetingId: true, meeting: { select: { date: true, type: true } } } }),
   ]);
@@ -72,6 +72,22 @@ export async function memberRates() {
     const mine = attended.filter((a) => a.memberId === m.id);
     const weeklyAttended = new Set(mine.filter((a) => weeklyIds.has(a.meetingId)).map((a) => a.meetingId)).size;
     const last = mine.reduce<Date | null>((d, a) => (!d || a.meeting.date > d ? a.meeting.date : d), null);
-    return { id: m.id, name: m.person.name, memberNumber: m.memberNumber, attended: weeklyAttended, expected, rate: expected ? Math.round((weeklyAttended / expected) * 100) : null, last };
+    return { id: m.id, name: m.person.name, memberNumber: m.memberNumber, group: m.buddyGroup?.name ?? null, groupId: m.buddyGroup?.id ?? null, attended: weeklyAttended, expected, rate: expected ? Math.round((weeklyAttended / expected) * 100) : null, last };
   });
+}
+
+/** Members' weekly attendance this Rotary year, added up per buddy group (best first). */
+export function ratesByGroup(rates: Awaited<ReturnType<typeof memberRates>>) {
+  const groups = new Map<string, { group: string; groupId: string | null; members: number; attended: number; expected: number }>();
+  for (const r of rates) {
+    const key = r.groupId ?? "";
+    const g = groups.get(key) || { group: r.group ?? "No buddy group", groupId: r.groupId, members: 0, attended: 0, expected: 0 };
+    g.members++;
+    g.attended += r.attended;
+    g.expected += r.expected;
+    groups.set(key, g);
+  }
+  return [...groups.entries()]
+    .map(([key, g]) => ({ ...g, none: !key, rate: g.expected ? Math.round((g.attended / g.expected) * 100) : null }))
+    .sort((a, b) => Number(a.none) - Number(b.none) || (b.rate ?? -1) - (a.rate ?? -1) || a.group.localeCompare(b.group));
 }

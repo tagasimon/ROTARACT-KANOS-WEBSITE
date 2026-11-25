@@ -239,6 +239,7 @@ enum Affiliation {
 enum SignInMethod {
   QR
   MANUAL
+  IMPORT // brought in from the old sign-in records; never emailed
 }
 
 enum EmailStatus {
@@ -276,19 +277,19 @@ enum InquiryStatus {
 // ───────────────────────── auth ─────────────────────────
 
 model User {
-  id                        String              @id @default(cuid())
-  email                     String              @unique
-  passwordHash              String
-  role                      Role                @default(MEMBER)
-  active                    Boolean             @default(true)
-  memberId                  String?             @unique
-  member                    Member?             @relation(fields: [memberId], references: [id], onDelete: SetNull)
-  lastLoginAt               DateTime?
-  createdAt                 DateTime            @default(now())
-  updatedAt                 DateTime            @updatedAt
-  sessions                  Session[]
-  auditLogs                 AuditLog[]
-  attendanceRecorded        AttendanceRecord[]  @relation("AttendanceRecorder")
+  id                 String             @id @default(cuid())
+  email              String             @unique
+  passwordHash       String
+  role               Role               @default(MEMBER)
+  active             Boolean            @default(true)
+  memberId           String?            @unique
+  member             Member?            @relation(fields: [memberId], references: [id], onDelete: SetNull)
+  lastLoginAt        DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  sessions           Session[]
+  auditLogs          AuditLog[]
+  attendanceRecorded AttendanceRecord[] @relation("AttendanceRecorder")
 
   @@map("users")
 }
@@ -411,6 +412,8 @@ model Member {
   pinHash        String?
   membershipDate DateTime?
   status         MemberStatus @default(ACTIVE)
+  buddyGroupId   String?
+  buddyGroup     BuddyGroup?  @relation(fields: [buddyGroupId], references: [id], onDelete: SetNull)
   notes          String?
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
@@ -419,7 +422,21 @@ model Member {
   attendance AttendanceRecord[]
 
   @@index([status])
+  @@index([buddyGroupId])
   @@map("members")
+}
+
+/// A small group inside the club that members belong to (Galiraaya, Mapeera …). Private: not shown on the public site.
+model BuddyGroup {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  members     Member[]
+
+  @@map("buddy_groups")
 }
 
 model Skill {
@@ -764,7 +781,7 @@ model Event {
   sources        EventSource[]
   milestones     ProjectMilestone[]
   stories        Story[]
-  media          Media[]             @relation("MediaEvent")
+  media          Media[]            @relation("MediaEvent")
   albums         PhotoAlbum[]
   achievements   Achievement[]
   meetings       Meeting[]
@@ -964,20 +981,20 @@ model Media {
   updatedAt    DateTime      @updatedAt
 
   // back-relations for covers/photos
-  yearCovers      RotaractYear[]     @relation("YearCover")
-  personPhotos    Person[]           @relation("PersonPhoto")
-  orgLogos        Organization[]     @relation("OrgLogo")
-  projectCovers   Project[]          @relation("ProjectCover")
-  milestoneImages ProjectMilestone[] @relation("MilestoneImage")
-  eventCovers     Event[]            @relation("EventCover")
-  storyCovers     Story[]            @relation("StoryCover")
-  socialImages    SocialPost[]       @relation("SocialImage")
-  albumCovers     PhotoAlbum[]       @relation("AlbumCover")
-  achievementImgs Achievement[]      @relation("AchievementImage")
-  historyImages   HistoryEntry[]     @relation("HistoryImage")
-  campaignImages  Campaign[]         @relation("CampaignImage")
-  businessLogos   Business[]         @relation("BusinessLogo")
-  businessCovers  Business[]         @relation("BusinessCover")
+  yearCovers       RotaractYear[]      @relation("YearCover")
+  personPhotos     Person[]            @relation("PersonPhoto")
+  orgLogos         Organization[]      @relation("OrgLogo")
+  projectCovers    Project[]           @relation("ProjectCover")
+  milestoneImages  ProjectMilestone[]  @relation("MilestoneImage")
+  eventCovers      Event[]             @relation("EventCover")
+  storyCovers      Story[]             @relation("StoryCover")
+  socialImages     SocialPost[]        @relation("SocialImage")
+  albumCovers      PhotoAlbum[]        @relation("AlbumCover")
+  achievementImgs  Achievement[]       @relation("AchievementImage")
+  historyImages    HistoryEntry[]      @relation("HistoryImage")
+  campaignImages   Campaign[]          @relation("CampaignImage")
+  businessLogos    Business[]          @relation("BusinessLogo")
+  businessCovers   Business[]          @relation("BusinessCover")
   comparisonBefore ProjectComparison[] @relation("ComparisonBefore")
   comparisonDuring ProjectComparison[] @relation("ComparisonDuring")
   comparisonAfter  ProjectComparison[] @relation("ComparisonAfter")

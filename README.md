@@ -70,9 +70,10 @@ Every researched or imported record keeps its provenance: `source`, `sourceUrl`,
 
 - **Dashboard** (`/admin`): quick buttons for the common jobs (add a project, member, business, event or story, update leadership, upload photos, attendance), headline numbers, a to-do list (for example business listings waiting to be published) and the current fundraising appeal.
 - **Preview before publishing:** save anything as a *Draft*, then use **Preview** on its admin page. Signed-in admins see the real page with a yellow "Preview" bar; everyone else gets "page not found" until it's published. This works for projects, stories, events, campaigns, businesses and hidden profiles.
-- **Members** (`/admin/members`): the private register, with search and status filters (Active, Pending, Inactive, Alumni, Honorary, Archived). Archiving hides a former member from the list without deleting anything.
+- **Members** (`/admin/members`): the private register, with search, status filters (Active, Pending, Inactive, Alumni, Honorary, Archived) and a buddy group filter. Archiving hides a former member from the list without deleting anything.
+- **Buddy groups** (People → Buddy groups): the small groups inside the club (Galiraaya, Mapeera …). Each member belongs to one, set on their record or through a spreadsheet import. Groups are private: members see their own on My account, and the website never shows them.
   - **Export CSV** downloads the current view: contact details, profession, skills, committees, this year's club role and whether the member has activated an account. The file opens cleanly in Excel (UTF-8, cells starting with = + - @ are prefixed with ' so they can't run as formulas).
-  - **Import from a spreadsheet** takes a CSV with a Name column (plus any of Member ID, Status, Email, Phone, Membership date, Profession, Organisation, Notes) and shows what will happen to every row before anything is saved. Rows are matched to existing members by Member ID, email or phone, so re-importing never duplicates anyone; a new member whose name matches exactly one existing member profile is linked to it. Members' own profile edits are never overwritten.
+  - **Import from a spreadsheet** takes a CSV with a Name column (plus any of Member ID, Status, Buddy group, Email, Phone, Membership date, Profession, Organisation, Notes; a buddy group the club doesn't have yet is created) and shows what will happen to every row before anything is saved. Rows are matched to existing members by Member ID, email or phone, so re-importing never duplicates anyone; a new member whose name matches exactly one existing member profile is linked to it. Members' own profile edits are never overwritten.
 - **Members manage their own listing:** under **My account → Your business listings**, a member can add or edit a business they run. New listings wait for an admin to publish them; edits to a published listing go live straight away.
 
 ## Member businesses
@@ -108,7 +109,7 @@ Open a project in the admin area and choose **Before & after** to add a draggabl
 - Signing in twice updates the same line instead of adding another. A member is matched to the register by email or phone.
 - The meeting's page refreshes itself during the meeting. From there you can **Add someone** by hand (for people without a phone), remove a line, preview each person's email, download a visitor's make-up card, send or re-send an email, and **Send pending** emails.
 
-**Reports:** the overview shows attendance over time, visiting clubs (this Rotary year or all time), and each member's attendance at weekly meetings this Rotary year. **Download CSV** exports one meeting or all of them, and opens cleanly in Excel. Every change, email and export is recorded in the audit log.
+**Reports:** the overview shows attendance over time, visiting clubs (this Rotary year or all time), each buddy group's attendance, and each member's attendance at weekly meetings this Rotary year. **Download CSV** exports one meeting or all of them, and opens cleanly in Excel. Every change, email and export is recorded in the audit log.
 
 **Thank-you emails** go out through [Resend](https://resend.com) a few seconds after someone signs in, with replies going to hello@kanosug.org. Members get a thank-you, visitors a thank-you with their make-up card attached, and prospective members a welcome with the next club event. Each line shows *Sent*, *Failed* (with Resend's reason) or *Not sent* (emails are off). Set these in Coolify, never in the repository:
 
@@ -120,6 +121,12 @@ Open a project in the admin area and choose **Before & after** to add a draggabl
 | `RESEND_API_URL` | Testing only: send to a mock server instead of Resend. Leave unset in production. |
 
 To test emails safely, sign in as a visitor with the address `delivered@resend.dev` (Resend accepts it without sending it to a real person), check the line says *Sent* and the email appears in the Resend dashboard, then remove that line.
+
+**Importing old sign-ins:** **Import old sign-ins** (on the Meeting sign-in page) reads the old attendance sheet as .xlsx or CSV: Name, Email, Is club member, Club name, Buddy group, Date, and phone numbers (a column without a heading is fine). GPS and visit counts are ignored.
+- It makes one meeting per day (a sign-in after midnight counts for the evening before) and reuses days that already have a meeting.
+- Members are matched to the register by email, phone, an address they've signed in with before, or exact name, and mistyped emails for the same person (`@gmail.con`, `@mail.com`) are merged. Anyone not in the register is added with a hidden profile, their buddy group, and *Active* if they signed in this Rotary year (*Inactive* otherwise).
+- The preview shows every member, meeting and skipped row before anything is saved, and flags look-alike names (tick *Same person* to merge them).
+- Imported sign-ins are marked *Imported* and never get thank-you emails. Importing the same or a fuller file again only adds what's new.
 
 **Abuse protection:** each network address can make 120 sign-ins an hour (the venue Wi-Fi puts everyone behind one address), and a hidden field catches bots.
 

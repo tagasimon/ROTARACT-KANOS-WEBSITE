@@ -10,16 +10,17 @@ export const metadata: Metadata = { title: "My account", robots: { index: false 
 
 export default async function AccountPage() {
   const user = await requireUser("/account");
-  const [person, skills, businesses] = await Promise.all([
+  const [person, skills, businesses, group] = await Promise.all([
     user.member ? db.person.findUnique({ where: { id: user.member.personId }, include: { skills: { select: { id: true } } } }) : null,
     db.skill.findMany({ orderBy: { name: "asc" }, select: { id: true, name: true } }),
     user.member ? db.business.findMany({ where: { ownerId: user.member.personId }, select: { id: true, name: true, publishStatus: true }, orderBy: { name: "asc" } }) : [],
+    user.member?.buddyGroupId ? db.buddyGroup.findUnique({ where: { id: user.member.buddyGroupId }, select: { name: true } }) : null,
   ]);
   return (
     <section className="container-x py-14">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="eyebrow mb-2">{ROLE_LABEL[user.role]}{user.member && ` · ${user.member.memberNumber}`}</p>
+          <p className="eyebrow mb-2">{ROLE_LABEL[user.role]}{user.member && ` · ${user.member.memberNumber}`}{group && ` · ${group.name} buddy group`}</p>
           <h1 className="text-5xl font-bold">{person?.name || user.email}</h1>
         </div>
         <div className="flex flex-wrap gap-2">

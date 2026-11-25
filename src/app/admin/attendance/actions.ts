@@ -46,14 +46,14 @@ export async function sendOne(fd: FormData) {
   if (!r) redirect("/admin/attendance");
   const result = await sendThankYou(id, { again });
   await audit(user.id, "email", "attendance", id, `${again ? "Sent again" : "Sent"} thank-you to ${r.name}: ${result}`, { meetingId: r.meetingId });
-  const msg = { SENT: `Email sent to ${r.name}.`, FAILED: `The email to ${r.name} failed. See the reason in the table.`, SKIPPED: "Emails are off, so nothing was sent.", NO_EMAIL: `${r.name} has no email address.`, ALREADY_SENT: `${r.name} already has their email.`, NOT_FOUND: "That sign-in no longer exists." }[result];
-  back(r.meetingId, msg, result === "FAILED" || result === "SKIPPED");
+  const msg = { SENT: `Email sent to ${r.name}.`, FAILED: `The email to ${r.name} failed. See the reason in the table.`, SKIPPED: "Emails are off, so nothing was sent.", NO_EMAIL: `${r.name} has no email address.`, ALREADY_SENT: `${r.name} already has their email.`, NOT_FOUND: "That sign-in no longer exists.", IMPORTED: "Imported sign-ins don't get thank-you emails." }[result];
+  back(r.meetingId, msg, result === "FAILED" || result === "SKIPPED" || result === "IMPORTED");
 }
 
 export async function sendPending(fd: FormData) {
   const user = await requireArea("attendance");
   const meetingId = String(fd.get("meetingId") || "");
-  const pending = await db.attendanceRecord.findMany({ where: { meetingId, email: { not: null }, OR: [{ emailStatus: null }, { emailStatus: { not: "SENT" } }] }, select: { id: true } });
+  const pending = await db.attendanceRecord.findMany({ where: { meetingId, email: { not: null }, method: { not: "IMPORT" }, OR: [{ emailStatus: null }, { emailStatus: { not: "SENT" } }] }, select: { id: true } });
   const results: Record<string, number> = {};
   for (const p of pending) {
     const r = await sendThankYou(p.id);

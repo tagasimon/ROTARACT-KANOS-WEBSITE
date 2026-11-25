@@ -10,7 +10,7 @@ export async function GET(req: Request) {
   const user = await getCurrentUser();
   if (!user || !can(user.role, "members")) return new Response("Not allowed", { status: 403 });
   const url = new URL(req.url);
-  const filter = { q: url.searchParams.get("q") || undefined, status: url.searchParams.get("status") || undefined };
+  const filter = { q: url.searchParams.get("q") || undefined, status: url.searchParams.get("status") || undefined, group: url.searchParams.get("group") || undefined };
   const rows = await memberCsvRows(filter);
   await audit(user.id, "export", "member", null, `Exported ${rows.length - 1} members`, filter);
   const date = new Date().toISOString().slice(0, 10);

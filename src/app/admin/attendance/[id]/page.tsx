@@ -17,8 +17,9 @@ export const metadata = { title: "Meeting" };
 
 const TYPE = { member: "Member", ROTARIAN: "Visiting Rotarian", ROTARACTOR: "Visiting Rotaractor", PROSPECT: "Prospect" } as const;
 
-function EmailPill({ r }: { r: { email: string | null; emailStatus: string | null; emailSentAt: Date | null; emailError: string | null } }) {
+function EmailPill({ r }: { r: { email: string | null; emailStatus: string | null; emailSentAt: Date | null; emailError: string | null; method: string } }) {
   const base = "inline-block whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold";
+  if (r.method === "IMPORT") return <span className={cn(base, "bg-fg/5 text-stone")} title="Brought in from the old sign-in sheet. No email is sent.">Imported</span>;
   if (!r.email) return <span className={cn(base, "bg-fg/5 text-stone")}>No email</span>;
   if (r.emailStatus === "SENT") return <span className={cn(base, "bg-grass/15")}>Sent {r.emailSentAt ? clockTime(r.emailSentAt) : ""}</span>;
   if (r.emailStatus === "FAILED") return <span className={cn(base, "bg-cranberry/10 text-cranberry")} title={r.emailError || undefined}>Failed<span className="block max-w-56 whitespace-normal font-normal">{r.emailError}</span></span>;
@@ -30,11 +31,11 @@ export default async function MeetingPage({ params, searchParams }: { params: Pr
   await requireArea("attendance");
   const { id } = await params;
   const sp = await searchParams;
-  const m = await db.meeting.findUnique({ where: { id }, include: { records: { orderBy: { checkedInAt: "asc" }, include: { recordedBy: { select: { email: true } } } }, event: { select: { id: true, title: true } } } });
+  const m = await db.meeting.findUnique({ where: { id }, include: { records: { orderBy: { checkedInAt: "asc" }, include: { recordedBy: { select: { email: true } }, member: { select: { buddyGroup: { select: { name: true } } } } } }, event: { select: { id: true, title: true } } } });
   if (!m) notFound();
   const c = countsOf(m.records);
   const isToday = localParts(m.date).iso === localParts().iso || m.day.toISOString().slice(0, 10) === localParts().iso;
-  const pending = m.records.filter((r) => r.email && r.emailStatus !== "SENT").length;
+  const pending = m.records.filter((r) => r.email && r.method !== "IMPORT" && r.emailStatus !== "SENT").length;
   const visitingClubs = [...new Map(m.records.filter((r) => r.isGuest && r.affiliation !== "PROSPECT" && r.clubName).map((r) => {
     const listed = findClub(r.clubName!, r.affiliation === "ROTARIAN" ? "ROTARY" : "ROTARACT");
     return [listed?.name ?? r.clubName!, { name: listed?.name ?? r.clubName!, listed: !!listed }] as const;
@@ -70,23 +71,26 @@ export default async function MeetingPage({ params, searchParams }: { params: Pr
                   const v = variantOf(r);
                   return (
                     <tr key={r.id}>
-                      <td className="font-semibold">{r.memberId ? <Link href={`/admin/c/members/${r.memberId}`} className="hover:text-cranberry">{r.name}</Link> : r.name}</td>
+                      <td className="font-semibold">
+                        {r.memberId ? <Link href={`/admin/c/members/${r.memberId}`} className="hover:text-cranberry">{r.name}</Link> : r.name}
+                        {r.member?.buddyGroup && <span className="block text-xs font-normal text-stone">{r.member.buddyGroup.name}</span>}
+                      </td>
                       <td className="whitespace-nowrap">{r.isGuest ? TYPE[r.affiliation ?? "PROSPECT"] : TYPE.member}</td>
                       <td className="text-stone">{r.isGuest ? r.clubName || "—" : ""}</td>
                       <td className="break-all">{r.email || <span className="text-stone">—</span>}</td>
                       <td className="whitespace-nowrap">{r.phone || <span className="text-stone">—</span>}</td>
-                      <td className="whitespace-nowrap text-stone">{clockTime(r.checkedInAt)}{r.method === "MANUAL" && <span className="block text-xs" title={r.recordedBy?.email}>added</span>}</td>
+                      <td className="whitespace-nowrap text-stone">{clockTime(r.checkedInAt)}{r.method === "MANUAL" && <span className="block text-xs" title={r.recordedBy?.email}>added</span>}{r.method === "IMPORT" && <span className="block text-xs">imported</span>}</td>
                       <td><EmailPill r={r} /></td>
                       <td>
                         <div className="flex min-w-40 flex-col items-start gap-1.5 text-sm">
-                          {r.email && (
+                          {r.email && r.method !== "IMPORT" && (
                             <form action={sendOne}>
                               <input type="hidden" name="id" value={r.id} />
                               <input type="hidden" name="again" value={r.emailStatus === "SENT" ? "1" : "0"} />
                               <Pending className="font-semibold text-royal hover:underline" pendingText="Sending…">{r.emailStatus === "SENT" ? "Send again" : "Send now"}</Pending>
                             </form>
                           )}
-                          {r.email && <a href={`/admin/attendance/record/${r.id}/email`} target="_blank" className="font-semibold text-royal hover:underline">Preview email</a>}
+                          {r.email && r.method !== "IMPORT" && <a href={`/admin/attendance/record/${r.id}/email`} target="_blank" className="font-semibold text-royal hover:underline">Preview email</a>}
                           {v === "visitor" && <a href={`/admin/attendance/record/${r.id}/card`} target="_blank" className="font-semibold text-royal hover:underline">Make-up card (PDF)</a>}
                           <form action={removeRecord}>
                             <input type="hidden" name="id" value={r.id} />

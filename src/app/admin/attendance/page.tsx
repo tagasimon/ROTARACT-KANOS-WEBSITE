@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Download, Printer } from "lucide-react";
+import { Download, Printer, Upload } from "lucide-react";
 import { requireArea } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
 import { emailOffReason } from "@/lib/meeting/email";
 import { MEETING } from "@/lib/meeting/config";
-import { guestsByClub, meetingsWithCounts, memberRates, rotaryYearStart } from "@/lib/meeting/stats";
+import { guestsByClub, meetingsWithCounts, memberRates, ratesByGroup, rotaryYearStart } from "@/lib/meeting/stats";
 import { clockTime, localParts } from "@/lib/meeting/today";
 import { qrSvg, signInUrl } from "@/lib/qr";
 import { cn, fmtDate } from "@/lib/utils";
@@ -56,6 +56,8 @@ export default async function AttendanceOverview({ searchParams }: { searchParam
   const url = signInUrl();
   const weeklyThisYear = meetings.filter((m) => m.type === "WEEKLY" && m.date >= rotaryYearStart()).length;
   const threshold = s.attendanceFollowUpThreshold || 50;
+  const groups = ratesByGroup(rates);
+  const showGroups = groups.some((g) => !g.none);
 
   return (
     <>
@@ -129,17 +131,40 @@ export default async function AttendanceOverview({ searchParams }: { searchParam
         )}
       </section>
 
+      {weeklyThisYear > 0 && showGroups && (
+        <section className="card mb-6 p-5">
+          <h2 className="label mb-1">Buddy groups this Rotary year</h2>
+          <p className="mb-3 text-xs text-stone">Weekly meetings attended by each group&rsquo;s active and pending members, out of the meetings they could have attended.</p>
+          <div className="overflow-x-auto">
+            <table className="table-x">
+              <thead><tr><th>Buddy group</th><th>Members</th><th>Attended</th><th>Rate</th></tr></thead>
+              <tbody>
+                {groups.map((g) => (
+                  <tr key={g.group} className={cn(g.none && "text-stone")}>
+                    <td className="font-semibold">{g.none ? g.group : <Link href={`/admin/members?group=${g.groupId}`} className="hover:text-cranberry">{g.group}</Link>}</td>
+                    <td className="tabular-nums">{g.members}</td>
+                    <td className="tabular-nums">{g.attended} of {g.expected}</td>
+                    <td className="font-semibold tabular-nums">{g.rate == null ? "—" : `${g.rate}%`}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
       {weeklyThisYear > 0 && rates.length > 0 && (
         <section className="card mb-6 p-5">
           <h2 className="label mb-1">Members&rsquo; attendance this Rotary year</h2>
           <p className="mb-3 text-xs text-stone">Weekly meetings attended out of those held since 1 July (or since the member joined). Below {threshold}% is highlighted. Only members whose sign-in matched their email or phone are counted.</p>
           <div className="max-h-96 overflow-auto">
             <table className="table-x">
-              <thead className="sticky top-0 bg-white"><tr><th>Member</th><th>Attended</th><th>Rate</th><th>Last attended</th></tr></thead>
+              <thead className="sticky top-0 bg-white"><tr><th>Member</th>{showGroups && <th>Buddy group</th>}<th>Attended</th><th>Rate</th><th>Last attended</th></tr></thead>
               <tbody>
                 {rates.map((r) => (
                   <tr key={r.id} className={cn(r.rate != null && r.rate < threshold && "bg-gold/10")}>
                     <td><Link href={`/admin/c/members/${r.id}`} className="font-semibold hover:text-cranberry">{r.name}</Link><span className="block font-cond text-xs text-stone">{r.memberNumber}</span></td>
+                    {showGroups && <td className="text-stone">{r.group || "—"}</td>}
                     <td className="tabular-nums">{r.attended} of {r.expected}</td>
                     <td className="tabular-nums font-semibold">{r.rate == null ? "—" : `${r.rate}%`}</td>
                     <td className="text-stone">{r.last ? day(r.last) : "—"}</td>
@@ -154,7 +179,10 @@ export default async function AttendanceOverview({ searchParams }: { searchParam
       <section className="card p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <h2 className="label">Meetings</h2>
-          {meetings.length > 0 && <a href="/admin/attendance/export" className="btn-ghost btn-sm bg-white"><Download className="size-4" aria-hidden /> Download all (CSV)</a>}
+          <div className="flex flex-wrap gap-2">
+            <Link href="/admin/attendance/import" className="btn-ghost btn-sm bg-white"><Upload className="size-4" aria-hidden /> Import old sign-ins</Link>
+            {meetings.length > 0 && <a href="/admin/attendance/export" className="btn-ghost btn-sm bg-white"><Download className="size-4" aria-hidden /> Download all (CSV)</a>}
+          </div>
         </div>
         {meetings.length ? (
           <div className="overflow-x-auto">

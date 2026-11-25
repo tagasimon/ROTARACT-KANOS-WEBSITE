@@ -16,11 +16,15 @@ const TONE: Record<MemberStatus, string> = {
 export default async function MembersPage({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
   await requireArea("members");
   const sp = await searchParams;
-  const filter = { q: sp.q, status: sp.status };
-  const [members, counts] = await Promise.all([listMembers(filter), db.member.groupBy({ by: ["status"], _count: true })]);
+  const filter = { q: sp.q, status: sp.status, group: sp.group };
+  const [members, counts, groups] = await Promise.all([
+    listMembers(filter),
+    db.member.groupBy({ by: ["status"], _count: true }),
+    db.buddyGroup.findMany({ orderBy: { name: "asc" }, select: { id: true, name: true, _count: { select: { members: { where: { status: { not: "ARCHIVED" } } } } } } }),
+  ]);
   const count = (s?: MemberStatus) => (s ? counts.find((c) => c.status === s)?._count || 0 : counts.filter((c) => c.status !== "ARCHIVED").reduce((a, c) => a + c._count, 0));
   const qs = (o: Record<string, string | undefined>) => {
-    const p = new URLSearchParams(Object.entries({ q: sp.q, status: sp.status, ...o }).filter(([, v]) => !!v) as [string, string][]).toString();
+    const p = new URLSearchParams(Object.entries({ q: sp.q, status: sp.status, group: sp.group, ...o }).filter(([, v]) => !!v) as [string, string][]).toString();
     return p ? `?${p}` : "";
   };
   const pill = (on: boolean) => cn("inline-flex min-h-9 items-center gap-1.5 rounded-full border px-3 text-sm font-semibold", on ? "border-royal bg-royal text-paper" : "border-fg/20 bg-white hover:border-royal");
@@ -41,10 +45,20 @@ export default async function MembersPage({ searchParams }: { searchParams: Prom
         </div>
       </div>
 
-      <form className="mb-4 flex max-w-lg gap-2" role="search">
+      <form className="mb-4 flex max-w-3xl flex-wrap gap-2" role="search">
         {sp.status && <input type="hidden" name="status" value={sp.status} />}
         <label htmlFor="mq" className="sr-only">Search members</label>
-        <input id="mq" name="q" type="search" defaultValue={sp.q} placeholder="Name, member ID, email, phone or profession" className="input" />
+        <input id="mq" name="q" type="search" defaultValue={sp.q} placeholder="Name, member ID, email, phone or profession" className="input min-w-0 flex-1 basis-64" />
+        {groups.length > 0 && (
+          <>
+            <label htmlFor="mg" className="sr-only">Buddy group</label>
+            <select id="mg" name="group" defaultValue={sp.group || ""} className="input w-auto">
+              <option value="">All buddy groups</option>
+              {groups.map((g) => <option key={g.id} value={g.id}>{g.name} ({g._count.members})</option>)}
+              <option value="none">No buddy group</option>
+            </select>
+          </>
+        )}
         <button className="btn-ink btn-sm">Search</button>
       </form>
       <nav aria-label="Membership status" className="mb-6 flex flex-wrap gap-2">
@@ -58,13 +72,14 @@ export default async function MembersPage({ searchParams }: { searchParams: Prom
         <div className="card overflow-x-auto">
           <table className="table-x">
             <thead>
-              <tr><th>Name</th><th>Status</th><th>Profession</th><th>Email</th><th>Phone</th><th>Joined</th><th>Profile</th><th>Account</th></tr>
+              <tr><th>Name</th><th>Status</th><th>Buddy group</th><th>Profession</th><th>Email</th><th>Phone</th><th>Joined</th><th>Profile</th><th>Account</th></tr>
             </thead>
             <tbody>
               {members.map((m) => (
                 <tr key={m.id}>
                   <td><Link href={`/admin/c/members/${m.id}`} className="font-semibold hover:text-cranberry">{m.person.name}</Link><span className="block font-cond text-xs text-stone">{m.memberNumber}</span></td>
                   <td><span className={cn("rounded-full px-2 py-0.5 text-xs font-semibold", TONE[m.status])}>{STATUS_LABEL[m.status]}</span></td>
+                  <td className="whitespace-nowrap">{m.buddyGroup ? <Link href={`/admin/members${qs({ group: m.buddyGroupId! })}`} className="hover:text-cranberry">{m.buddyGroup.name}</Link> : <span className="text-stone">—</span>}</td>
                   <td className="text-stone">{[m.person.professionalTitle, m.person.organization].filter(Boolean).join(", ") || "—"}</td>
                   <td>{m.email ? <a href={`mailto:${m.email}`} className="hover:text-cranberry">{m.email}</a> : <span className="text-stone">—</span>}</td>
                   <td className="whitespace-nowrap">{m.phone || <span className="text-stone">—</span>}</td>
@@ -78,8 +93,8 @@ export default async function MembersPage({ searchParams }: { searchParams: Prom
         </div>
       ) : (
         <div className="card p-8 text-center">
-          <p className="font-semibold">{sp.q || sp.status ? "No members match." : "No members yet."}</p>
-          <p className="mt-1 text-sm text-stone">{sp.q || sp.status ? <Link href="/admin/members" className="underline">Show everyone</Link> : <>Add them one at a time, or <Link href="/admin/members/import" className="underline">import a spreadsheet</Link>.</>}</p>
+          <p className="font-semibold">{sp.q || sp.status || sp.group ? "No members match." : "No members yet."}</p>
+          <p className="mt-1 text-sm text-stone">{sp.q || sp.status || sp.group ? <Link href="/admin/members" className="underline">Show everyone</Link> : <>Add them one at a time, or <Link href="/admin/members/import" className="underline">import a spreadsheet</Link>.</>}</p>
         </div>
       )}
       {members.length >= 500 && <p className="mt-3 text-sm text-stone">Showing the first 500. Search or filter to narrow the list; the CSV export includes everyone.</p>}

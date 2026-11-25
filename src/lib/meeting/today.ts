@@ -46,7 +46,8 @@ export const dayValue = (iso: string) => new Date(`${iso}T00:00:00Z`);
 
 type Plan = { title: string; type: MeetingType; date: Date; venue: string | null; eventId: string | null };
 
-async function planFor(now: Date): Promise<Plan> {
+/** What the meeting on `now`'s Kampala day is called and when it starts. Also used when importing old sign-ins. */
+export async function planMeetingFor(now: Date): Promise<Plan> {
   const { iso, weekday } = localParts(now);
   const { start, end } = localDayRange(iso);
   const ms = await meetingSettings();
@@ -78,7 +79,7 @@ export async function getOrCreateTodaysMeeting(now = new Date()) {
   const day = dayValue(localParts(now).iso);
   const existing = await db.meeting.findUnique({ where: { day } });
   if (existing) return existing;
-  const plan = await planFor(now);
+  const plan = await planMeetingFor(now);
   // Several phones can scan at the same moment on the first sign-in of the day. ON CONFLICT DO
   // NOTHING lets exactly one insert win without raising (and logging) a unique-constraint error.
   await db.meeting.createMany({ data: [{ ...plan, day }], skipDuplicates: true });
@@ -88,7 +89,7 @@ export async function getOrCreateTodaysMeeting(now = new Date()) {
 /** What today's meeting is (or will be called) without creating it. For the sign-in page heading. */
 export async function previewTodaysMeeting(now = new Date()) {
   const existing = await db.meeting.findUnique({ where: { day: dayValue(localParts(now).iso) } });
-  return existing ?? { ...(await planFor(now)), id: null as string | null };
+  return existing ?? { ...(await planMeetingFor(now)), id: null as string | null };
 }
 
 /** The next published club event after now, for the "Coming up" box in emails. */

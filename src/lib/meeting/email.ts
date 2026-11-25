@@ -50,7 +50,7 @@ export async function composeFor(recordId: string) {
   return { record: r, to: r.email, ...mail, card };
 }
 
-export type SendResult = "SENT" | "FAILED" | "SKIPPED" | "NO_EMAIL" | "ALREADY_SENT" | "NOT_FOUND";
+export type SendResult = "SENT" | "FAILED" | "SKIPPED" | "NO_EMAIL" | "ALREADY_SENT" | "NOT_FOUND" | "IMPORTED";
 
 /**
  * Send one thank-you email. Never throws: the outcome is always written to the record.
@@ -59,8 +59,10 @@ export type SendResult = "SENT" | "FAILED" | "SKIPPED" | "NO_EMAIL" | "ALREADY_S
  */
 export async function sendThankYou(recordId: string, opts: { again?: boolean } = {}): Promise<SendResult> {
   try {
-    const r = await db.attendanceRecord.findUnique({ where: { id: recordId }, select: { id: true, email: true, emailStatus: true } });
+    const r = await db.attendanceRecord.findUnique({ where: { id: recordId }, select: { id: true, email: true, emailStatus: true, method: true } });
     if (!r) return "NOT_FOUND";
+    // Sign-ins brought in from the old sheet are history: never thank people for meetings long past.
+    if (r.method === "IMPORT") return "IMPORTED";
     if (!r.email) return "NO_EMAIL";
     if (r.emailStatus === "SENT" && !opts.again) return "ALREADY_SENT";
     const off = emailOffReason();

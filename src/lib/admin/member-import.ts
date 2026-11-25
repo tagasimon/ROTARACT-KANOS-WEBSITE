@@ -7,7 +7,7 @@ import { uniqueSlug } from "@/lib/admin/crud";
 
 export const MAX_IMPORT_ROWS = 2000;
 
-type Field = "name" | "firstName" | "lastName" | "memberNumber" | "email" | "phone" | "status" | "membershipDate" | "professionalTitle" | "organization" | "notes";
+type Field = "name" | "firstName" | "lastName" | "memberNumber" | "email" | "phone" | "status" | "buddyGroup" | "membershipDate" | "professionalTitle" | "organization" | "notes";
 
 /** Accepted column names (compared lower-case with spaces and punctuation removed). */
 const ALIASES: Record<Field, string[]> = {
@@ -18,6 +18,7 @@ const ALIASES: Record<Field, string[]> = {
   email: ["email", "emailaddress", "mail", "e-mail"],
   phone: ["phone", "phonenumber", "mobile", "mobilenumber", "tel", "telephone", "whatsapp", "contact"],
   status: ["status", "membershipstatus", "memberstatus"],
+  buddyGroup: ["buddygroup", "buddy", "buddies", "group", "buddygroupname"],
   membershipDate: ["membershipdate", "joined", "datejoined", "joindate", "joiningdate", "inducted", "inductiondate", "membersince"],
   professionalTitle: ["profession", "occupation", "jobtitle", "professionaltitle", "job", "role", "position"],
   organization: ["organisation", "organization", "employer", "company", "workplace", "business"],
@@ -61,7 +62,7 @@ function parseDate(raw: string): { date: Date | null; warning?: string } {
 type Existing = Awaited<ReturnType<typeof loadExisting>>;
 async function loadExisting() {
   const [members, freePeople] = await Promise.all([
-    db.member.findMany({ include: { person: { select: { id: true, name: true, professionalTitle: true, organization: true } } } }),
+    db.member.findMany({ include: { person: { select: { id: true, name: true, professionalTitle: true, organization: true } }, buddyGroup: { select: { name: true } } } }),
     db.person.findMany({ where: { member: null, type: "MEMBER" }, select: { id: true, name: true, professionalTitle: true, organization: true } }),
   ]);
   return { members, freePeople };
@@ -80,6 +81,8 @@ export type PlanRow = {
     memberId?: string;
     personId?: string;
     member: { email?: string; phone?: string; status?: MemberStatus; membershipDate?: Date; notes?: string };
+    /** buddy group by name; created on import if the club doesn't have it yet */
+    buddyGroup?: string;
     person: { professionalTitle?: string; organization?: string };
   };
 };
@@ -107,6 +110,20 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
   if (col.name === undefined && col.firstName === undefined) return { rows: [], ignoredColumns, counts, error: 'No "Name" column found. The first row must hold column names, including Name (or First name and Last name).' };
 
   const ex: Existing = await loadExisting();
+  const groupNames = new Map((await db.buddyGroup.findMany({ select: { name: true } })).map((g) => [g.name.toLowerCase(), g.name]));
+  const newGroups = new Set<string>();
+  /** The club's spelling of a buddy group, or the file's spelling for a new one (noted once). */
+  const groupFor = (raw: string, details: string[]) => {
+    const name = clip(raw, 60);
+    if (!name) return undefined;
+    const known = groupNames.get(name.toLowerCase());
+    if (known) return known;
+    if (!newGroups.has(name.toLowerCase())) {
+      newGroups.add(name.toLowerCase());
+      details.push(`new buddy group "${name}"`);
+    }
+    return name;
+  };
   const byNumber = new Map(ex.members.map((m) => [m.memberNumber.toUpperCase(), m]));
   const byEmail = new Map(ex.members.filter((m) => m.email).map((m) => [m.email!.toLowerCase(), m]));
   const byPhone = new Map(ex.members.map((m) => [normalisePhone(m.phone), m]).filter(([k]) => !!k) as [string, (typeof ex.members)[number]][]);
@@ -190,6 +207,8 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
       if (email && email !== (target.email || "").toLowerCase()) (member.email = email), details.push(`email → ${email}`);
       if (phone && phone !== normalisePhone(target.phone)) (member.phone = phone), details.push(`phone → ${phone}`);
       if (status && status !== target.status) (member.status = status), details.push(`status → ${status.toLowerCase()}`);
+      const group = groupFor(get(r, "buddyGroup"), details);
+      if (group && group.toLowerCase() !== (target.buddyGroup?.name || "").toLowerCase()) details.push(`buddy group → ${group}`);
       if (membershipDate && membershipDate.getTime() !== target.membershipDate?.getTime()) (member.membershipDate = membershipDate), details.push(`joined → ${kampalaDay(membershipDate)}`);
       if (notes && !(target.notes || "").includes(notes)) (member.notes = target.notes ? `${target.notes}\n${notes}` : notes), details.push("note added");
       if (professionalTitle && !target.person.professionalTitle) (person.professionalTitle = professionalTitle), details.push(`profession → ${professionalTitle}`);
@@ -197,7 +216,8 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
       if (nameKey(name) !== nameKey(target.person.name)) warnings.push(`The file says "${name}"; the record keeps "${target.person.name}".`);
       const action: PlanAction = details.length ? "update" : "unchanged";
       counts[action]++;
-      out.push({ line, name: target.person.name, memberNumber: target.memberNumber, action, details: details.length ? details : ["Already up to date"], warnings, apply: { memberId: target.id, member, person } });
+      const buddyGroup = group && group.toLowerCase() !== (target.buddyGroup?.name || "").toLowerCase() ? group : undefined;
+      out.push({ line, name: target.person.name, memberNumber: target.memberNumber, action, details: details.length ? details : ["Already up to date"], warnings, apply: { memberId: target.id, member, person, buddyGroup } });
       return;
     }
 
@@ -210,6 +230,8 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
     const id = memberNumber || newId();
     const details = [reuse ? `Linked to the existing profile "${reuse.name}"` : "New hidden profile"];
     if (!memberNumber) details.push(`Member ID ${id} assigned`);
+    const buddyGroup = groupFor(get(r, "buddyGroup"), details);
+    if (buddyGroup) details.push(`buddy group ${buddyGroup}`);
     if (!email && !phone) warnings.push("No email or phone, so they can't be contacted or matched later.");
     const action: PlanAction = reuse ? "link" : "create";
     counts[action]++;
@@ -223,6 +245,7 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
       apply: {
         personId: reuse?.id,
         member: { email, phone, status: status || "ACTIVE", membershipDate, notes },
+        buddyGroup,
         person: reuse
           ? { professionalTitle: reuse.professionalTitle ? undefined : professionalTitle, organization: reuse.organization ? undefined : organization }
           : { professionalTitle, organization },
@@ -233,13 +256,26 @@ export async function planMemberImport(csvText: string): Promise<Plan> {
   return { rows: out, ignoredColumns, counts };
 }
 
+/** Id of the buddy group with this name (any capitalisation), creating it if needed. */
+export async function buddyGroupId(name: string) {
+  const found = await db.buddyGroup.findFirst({ where: { name: { equals: name, mode: "insensitive" } }, select: { id: true } });
+  if (found) return found.id;
+  try {
+    return (await db.buddyGroup.create({ data: { name }, select: { id: true } })).id;
+  } catch {
+    // created by a parallel request a moment ago
+    return (await db.buddyGroup.findFirstOrThrow({ where: { name: { equals: name, mode: "insensitive" } }, select: { id: true } })).id;
+  }
+}
+
 /** Carry out a plan. Each row is written on its own, so one failure doesn't stop the rest. */
 export async function applyMemberImport(plan: Plan) {
   const done: Record<"created" | "linked" | "updated", number> = { created: 0, linked: 0, updated: 0 };
   const failed: { line: number; name: string; error: string }[] = [];
   for (const r of plan.rows) {
     if (!r.apply || r.action === "skip" || r.action === "unchanged") continue;
-    const { member, person } = r.apply;
+    const { person } = r.apply;
+    const member = { ...r.apply.member, ...(r.apply.buddyGroup ? { buddyGroupId: await buddyGroupId(r.apply.buddyGroup) } : {}) };
     const personData = Object.fromEntries(Object.entries(person).filter(([, v]) => v !== undefined));
     try {
       if (r.action === "update") {
