@@ -11,6 +11,9 @@ export type SiteSettings = {
   heroHeadline: string;
   heroSubhead: string;
   heroImageId: string | null;
+  /** homepage "Who we are" photo and the photo behind "Join us" */
+  homeAboutImageId: string | null;
+  homeJoinImageId: string | null;
   logoImageId: string | null;
   charterDate: string | null; // ISO
   charterVerified: boolean;
@@ -43,6 +46,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   heroHeadline: "Kampala North, in service since 2014.",
   heroSubhead: "",
   heroImageId: null,
+  homeAboutImageId: null,
+  homeJoinImageId: null,
   logoImageId: null,
   charterDate: "2014-12-01",
   charterVerified: true,

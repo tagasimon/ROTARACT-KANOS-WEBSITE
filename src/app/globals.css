@@ -34,6 +34,12 @@
   --color-stone: #54565a;            /* secondary text: Charcoal (7.3:1 on white) */
   --color-stone-2: #898a8d;          /* Pewter: decorative only (fails small-text contrast) */
   --color-line: rgb(0 0 0 / 0.12);
+  /* Homepage (editorial): ink for dark sections, warm paper tones, deep gold for small labels on light */
+  --color-ink: #0d1626;
+  --color-heading: #13203a;
+  --color-cream: #faf8f4;
+  --color-sand: #f1ede6;
+  --color-gold-deep: #8a5a00;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }

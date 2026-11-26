@@ -7,7 +7,7 @@ export async function SiteFooter() {
   const socials = Object.entries(s.socials).filter(([, v]) => v);
   const label: Record<string, string> = { x: "X", instagram: "Instagram", facebook: "Facebook", linkedin: "LinkedIn", youtube: "YouTube", tiktok: "TikTok" };
   return (
-    <footer className="grain bg-royal text-paper">
+    <footer className="grain bg-ink text-paper">
       <div className="container-x grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-5">
           <Wordmark name={s.shortName} light />

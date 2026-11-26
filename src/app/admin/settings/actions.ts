@@ -17,6 +17,14 @@ export async function saveSettings(fd: FormData) {
   const hero = fd.get("heroImage") as File | null;
   if (hero && typeof hero === "object" && hero.size) heroImageId = (await saveImageUpload(hero, { alt: str("heroAlt") || "Rotaract Club Kampala North" }))?.id ?? heroImageId;
   if (fd.get("heroRemove") === "on") heroImageId = null;
+  const photo = async (field: string, current: string | null, alt: string) => {
+    const f = fd.get(field) as File | null;
+    if (fd.get(`${field}Remove`) === "on") return null;
+    if (f && typeof f === "object" && f.size) return (await saveImageUpload(f, { alt: str(`${field}Alt`) || alt }))?.id ?? current;
+    return current;
+  };
+  const homeAboutImageId = await photo("homeAboutImage", cur.homeAboutImageId, "Members of Rotaract Club Kampala North");
+  const homeJoinImageId = await photo("homeJoinImage", cur.homeJoinImageId, "A Rotaract Club Kampala North fellowship");
   let logoImageId = cur.logoImageId;
   const logo = fd.get("logoImage") as File | null;
   if (logo && typeof logo === "object" && logo.size) logoImageId = (await saveImageUpload(logo, { alt: "Club logo" }))?.id ?? logoImageId;
@@ -31,6 +39,8 @@ export async function saveSettings(fd: FormData) {
     heroHeadline: str("heroHeadline") || cur.heroHeadline,
     heroSubhead: str("heroSubhead"),
     heroImageId,
+    homeAboutImageId,
+    homeJoinImageId,
     logoImageId,
     charterDate: str("charterDate") || null,
     charterVerified: fd.get("charterVerified") === "on",

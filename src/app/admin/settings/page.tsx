@@ -14,6 +14,23 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
   const s = await getSettings();
   const hero = s.heroImageId ? await db.media.findUnique({ where: { id: s.heroImageId } }) : null;
   const logo = s.logoImageId ? await db.media.findUnique({ where: { id: s.logoImageId } }) : null;
+  const [aboutPhoto, joinPhoto] = await Promise.all([
+    s.homeAboutImageId ? db.media.findUnique({ where: { id: s.homeAboutImageId } }) : null,
+    s.homeJoinImageId ? db.media.findUnique({ where: { id: s.homeJoinImageId } }) : null,
+  ]);
+  const Photo = ({ n, l, m, help }: { n: string; l: string; m: typeof aboutPhoto; help: string }) => (
+    <div className="field sm:col-span-2">
+      <span className="label">{l}</span>
+      <div className="flex flex-wrap items-center gap-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {m ? <img src={mediaSrc(m, "sm")!} alt="" className="h-20 w-32 rounded object-cover" /> : <span className="text-sm text-stone">None.</span>}
+        <input type="file" name={n} accept="image/*" className="text-sm" />
+        {m && <label className="text-xs"><input type="checkbox" name={`${n}Remove`} /> Remove</label>}
+      </div>
+      <input name={`${n}Alt`} placeholder="Describe the photo (alt text)" defaultValue={m?.alt || ""} className="input mt-2" />
+      <span className="text-xs text-stone">{help}</span>
+    </div>
+  );
   const T = ({ n, l, v, type = "text", help }: { n: string; l: string; v?: string | number | null; type?: string; help?: string }) => (
     <label className="field"><span className="label">{l}</span><input name={n} type={type} defaultValue={v ?? ""} step={type === "number" ? "any" : undefined} className="input" />{help && <span className="text-xs text-stone">{help}</span>}</label>
   );
@@ -55,6 +72,8 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
             </div>
             <input name="heroAlt" placeholder="Describe the photo (alt text)" defaultValue={hero?.alt || ""} className="input mt-2" />
           </div>
+          <Photo n="homeAboutImage" l="“Who we are” photo" m={aboutPhoto} help="Shown beside the club introduction. A portrait-shaped crop of a group photo works best." />
+          <Photo n="homeJoinImage" l="“Join us” photo" m={joinPhoto} help="Shown, darkened, behind the invitation at the bottom of the homepage." />
           <A n="joinIntro" l="Joining explanation (Get involved)" v={s.joinIntro} /><T n="tagline" l="Tagline" v={s.tagline} />
         </fieldset>
         <fieldset className="card grid gap-4 p-6">

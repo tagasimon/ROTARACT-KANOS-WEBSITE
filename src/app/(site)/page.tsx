@@ -1,32 +1,47 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
 import { getCurrentYear } from "@/lib/years";
 import { getLeadershipForYear, getSnapshot, nextRegularMeeting, publicProject } from "@/lib/queries";
 import { Img } from "@/components/site/Img";
 import { JsonLd } from "@/components/site/JsonLd";
-import { absoluteUrl, initials, truncate } from "@/lib/utils";
-import { mediaSrc } from "@/lib/media";
+import { absoluteUrl, cn, initials, truncate } from "@/lib/utils";
+import { mediaSrc, mediaSrcSet } from "@/lib/media";
 import { campaignProgress, fmtMoneyShort, getFeaturedCampaign } from "@/lib/campaigns";
+import { MEETING } from "@/lib/meeting/config";
 
 const TZ = "Africa/Kampala";
 const kampalaDay = (d: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(d);
+const fmt = (d: Date, o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat("en-GB", { timeZone: TZ, ...o }).format(d);
 const NUMBER_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 const words = (n: number) => NUMBER_WORDS[n] ?? String(n);
+const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-/**
- * The homepage is an invitation: come on Friday. Everything else has its own page.
- * Hero with the Friday "ticket" → the current appeal → what we're working on → recognition → join.
- */
+/** Small gold label above a heading. */
+function Eyebrow({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
+  return <p className={cn("text-[0.72rem] font-bold uppercase tracking-[0.2em]", dark ? "text-gold" : "text-gold-deep")}>{children}</p>;
+}
+
+/** Quiet "MORE ABOUT US ——" link. */
+function MoreLink({ href, children, dark }: { href: string; children: React.ReactNode; dark?: boolean }) {
+  return (
+    <Link href={href} className={cn("group inline-flex items-center gap-3 text-[0.76rem] font-bold uppercase tracking-[0.16em]", dark ? "text-cream" : "text-heading")}>
+      {children}
+      <span className="h-px w-8 bg-current transition-[width] duration-300 group-hover:w-12" aria-hidden />
+    </Link>
+  );
+}
+
 export default async function HomePage() {
   const [s, year, snap, campaign] = await Promise.all([getSettings(), getCurrentYear(), getSnapshot(), getFeaturedCampaign()]);
-  const [heroMedia, projects, recognition, leaders] = await Promise.all([
+  const [heroMedia, aboutMedia, joinMedia, projects, recognition, leaders] = await Promise.all([
     s.heroImageId ? db.media.findUnique({ where: { id: s.heroImageId } }) : null,
+    s.homeAboutImageId ? db.media.findUnique({ where: { id: s.homeAboutImageId } }) : null,
+    s.homeJoinImageId ? db.media.findUnique({ where: { id: s.homeJoinImageId } }) : null,
     db.project.findMany({
       where: publicProject,
       include: { cover: true, media: { where: { kind: "IMAGE" }, orderBy: { createdAt: "asc" }, take: 4 } },
-      // what's happening now first, then the club's featured work
       orderBy: [{ featured: "desc" }, { updatedAt: "desc" }],
       take: 12,
     }),
@@ -34,30 +49,34 @@ export default async function HomePage() {
     year ? getLeadershipForYear(year.id) : Promise.resolve([]),
   ]);
 
+  // Projects: what's happening now first; never repeat a photo already used higher up the page.
+  const used = new Set([heroMedia, aboutMedia].filter(Boolean).map((m) => mediaSrc(m!, "sm")));
+  const fresh = (m: { id: string } | null) => !!m && !used.has(mediaSrc(m as never, "sm"));
   const live = ["IDEA", "PLANNING", "FUNDRAISING", "IMPLEMENTATION", "ONGOING"];
-  const showcase = [...projects.filter((p) => live.includes(p.status) && p.cover), ...projects.filter((p) => !live.includes(p.status) && p.cover)].slice(0, 3);
+  const showcase = [...projects.filter((p) => live.includes(p.status)), ...projects.filter((p) => !live.includes(p.status))]
+    .filter((p) => p.cover || p.media.length)
+    .slice(0, 3)
+    .map((p) => ({ ...p, picture: fresh(p.cover) ? p.cover : p.media.find(fresh) ?? p.cover }));
+
   const heroSrc = mediaSrc(heroMedia, "xl");
-  // Don't show the hero photo twice: a project whose cover is the hero uses its next photo.
-  const sameAsHero = (m: { id: string } | null) => !!m && !!heroMedia && (m.id === heroMedia.id || mediaSrc(m as never, "sm") === mediaSrc(heroMedia, "sm"));
-  const picture = (p: (typeof projects)[number]) => (sameAsHero(p.cover) ? p.media.find((m) => !sameAsHero(m)) ?? p.cover : p.cover);
+  const aboutSrc = mediaSrc(aboutMedia, "lg");
+  const joinSrc = mediaSrc(joinMedia, "lg");
   const meeting = nextRegularMeeting(s.meetingDay, s.meetingTime);
   const isToday = meeting && kampalaDay(meeting) === kampalaDay(new Date());
-  const directions = s.meetingLat != null && s.meetingLng != null
-    ? `https://www.google.com/maps/search/?api=1&query=${s.meetingLat},${s.meetingLng}`
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${s.meetingVenue}, ${s.meetingAddress}`)}`;
-  const foundedYear = snap.founded ? snap.founded.getUTCFullYear() : null;
-  const record = [
-    foundedYear && `Since ${foundedYear}`,
-    snap.members ? `${snap.members} members` : null,
-    snap.projects ? `${words(snap.projects)} projects` : null,
-    snap.communities ? `${words(snap.communities)} communities` : null,
-  ];
-  const trackRecord =
-    record[0] && record[1] && record[2] && record[3]
-      ? `${record[0]}, the club has grown to ${record[1]} and taken on ${record[2]} across ${record[3]}.`
-      : null;
-  const team = leaders.slice(0, 3);
+  const meetingDay = capital((s.meetingDay || "Friday").toLowerCase());
+  const directions =
+    s.meetingLat != null && s.meetingLng != null
+      ? `https://www.google.com/maps/search/?api=1&query=${s.meetingLat},${s.meetingLng}`
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${s.meetingVenue}, ${s.meetingAddress}`)}`;
+  const president = leaders.find((l) => l.role.slug === "president");
+  const team = leaders.slice(0, 6);
   const money = campaign ? campaignProgress(campaign) : null;
+  const facts = [
+    snap.founded ? `Chartered on ${fmt(snap.founded, { day: "numeric", month: "long", year: "numeric" })} in Rotary District ${MEETING.DISTRICT} (Rotary International club ID ${MEETING.CLUB_ID}).` : null,
+    snap.members ? `${snap.members} active members${president && year ? `, led in ${year.label} by President ${president.person.name}` : ""}.` : null,
+  ].filter(Boolean).join(" ");
+  const projectsTitle =
+    snap.projects && snap.communities ? `${capital(words(snap.projects))} projects across ${words(snap.communities)} communities` : "What we're working on";
 
   return (
     <>
@@ -75,177 +94,219 @@ export default async function HomePage() {
         }}
       />
 
-      {/* Hero: the headline, the club's photo in full colour, and a seat for Friday */}
-      <section className="bg-paper">
-        <div className="container-x grid gap-y-8 pb-14 pt-8 sm:pt-12 xl:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] xl:gap-x-12 xl:gap-y-0 xl:pb-20 xl:pt-14">
-          <h1 className="rise max-w-5xl text-balance text-[clamp(2.75rem,6.2vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.025em] xl:col-span-2">{s.heroHeadline}</h1>
-          {(s.heroSubhead || s.description) && (
-            <p className="rise rise-2 -mt-2 hidden max-w-2xl font-serif text-xl leading-relaxed text-charcoal sm:block xl:col-span-2 xl:mt-6">{s.heroSubhead || s.description}</p>
-          )}
-
-          <div className="rise rise-2 max-w-3xl xl:col-start-1 xl:row-span-2 xl:row-start-3 xl:mt-12 xl:max-w-none xl:self-start">
-            {heroSrc ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              // shown whole, at its own shape: club photos often carry text or a logo near the edges
-              <img src={heroSrc} alt={heroMedia?.alt || ""} width={heroMedia?.width ?? undefined} height={heroMedia?.height ?? undefined} fetchPriority="high" className="h-auto w-full rounded-2xl" />
-            ) : (
-              <div className="aspect-[4/3] w-full rounded-2xl bg-paper-2 xl:aspect-square" aria-hidden />
-            )}
+      {/* ── Hero: dark, the photo on the right (on top on phones), a serif headline ── */}
+      <section className="relative isolate overflow-hidden bg-ink text-cream">
+        {heroSrc && (
+          <div className="relative h-[44svh] min-h-64 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[60%]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroSrc}
+              srcSet={heroMedia ? mediaSrcSet(heroMedia) : undefined}
+              sizes="(min-width:1024px) 60vw, 100vw"
+              alt={heroMedia?.alt || ""}
+              fetchPriority="high"
+              className="size-full object-cover object-[40%_center]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-ink/30 lg:to-transparent" aria-hidden />
           </div>
-
-          {meeting && (
-            <aside aria-labelledby="friday-title" className="ticket rise rise-3 flex w-full max-w-sm flex-col rounded-2xl bg-cranberry text-paper shadow-[0_24px_48px_-24px_rgb(0_0_0/0.45)] xl:col-start-2 xl:row-start-3 xl:mt-12 xl:max-w-md xl:self-start">
-              <div className="flex-1 px-6 pb-7 pt-6">
-                <p id="friday-title" className="text-base font-semibold text-paper/85">{isToday ? "Your seat tonight" : `Your seat this ${new Intl.DateTimeFormat("en-GB", { timeZone: TZ, weekday: "long" }).format(meeting)}`}</p>
-                <div className="mt-1">
-                  <p className="whitespace-nowrap font-display text-6xl font-bold leading-none tracking-tight">{new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "numeric", month: "short" }).format(meeting)}</p>
-                  <div className="mt-4">
-                    <p className="text-xl font-bold leading-tight">{s.meetingTime}</p>
-                    <p className="text-lg leading-snug">{s.meetingVenue}, {s.meetingAddress}</p>
-                    <a href={directions} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-paper/90 underline underline-offset-4 hover:no-underline">
-                      <MapPin className="size-4" aria-hidden /> Get directions
-                    </a>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-paper/80">Visitors are welcome. Come a little early and stay for fellowship.</p>
-              </div>
-              <div className="flex h-[5.25rem] shrink-0 items-center border-t-2 border-dashed border-paper/45 px-6">
-                <Link href="/get-involved?type=ATTEND" className="btn w-full bg-paper text-base text-cranberry hover:bg-gold hover:text-fg">Tell us you&rsquo;re coming</Link>
-              </div>
-            </aside>
-          )}
-
-          <p className="rise rise-4 text-base text-charcoal xl:col-start-2 xl:row-start-4 xl:mt-5">
-            New here? <Link href="/projects" className="link-u font-semibold text-fg">See our projects</Link> or <Link href="/get-involved?type=JOIN" className="link-u font-semibold text-fg">ask about joining</Link>.
-          </p>
+        )}
+        <div className="container-x relative">
+          <div className="flex max-w-xl flex-col justify-center pb-12 pt-8 lg:min-h-[min(calc(100svh-9rem),720px)] lg:max-w-[33rem] lg:py-24 xl:max-w-[36rem]">
+            <div className="rise">
+              <Eyebrow dark>Rotaract club · Kampala, Uganda</Eyebrow>
+            </div>
+            <h1 className="rise rise-2 mt-5 text-balance font-serif text-[clamp(2.6rem,5.4vw,4.75rem)] font-normal leading-[1.04] tracking-[-0.02em] text-cream">{s.heroHeadline}</h1>
+            {(s.heroSubhead || s.description) && (
+              <p className="rise rise-3 mt-7 font-serif text-lg leading-[1.7] text-cream/80 sm:text-xl">{s.heroSubhead || s.description}</p>
+            )}
+            <nav aria-label="Get started" className="rise rise-4 mt-10 flex flex-wrap gap-x-9 gap-y-5">
+              {[
+                { k: "Visit", v: meeting ? (isToday ? "Tonight" : `${meetingDay} ${fmt(meeting, { day: "numeric", month: "short" })}`) : `This ${meetingDay}`, href: "/get-involved?type=ATTEND" },
+                { k: "See", v: "Our projects", href: "/projects" },
+                { k: "Join", v: "The club", href: "/get-involved?type=JOIN" },
+              ].map((l) => (
+                <Link key={l.k} href={l.href} className="group border-b border-cream/30 pb-2 transition-colors hover:border-gold">
+                  <span className="mr-2.5 text-[0.66rem] font-bold uppercase tracking-[0.2em] text-gold">{l.k}</span>
+                  <span className="font-serif text-lg text-cream">{l.v}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+        <div className="relative border-t border-cream/15 bg-ink/70 backdrop-blur-sm">
+          <div className="container-x flex flex-wrap items-center justify-between gap-x-10 gap-y-2 py-5 text-[0.68rem] font-bold uppercase tracking-[0.2em]">
+            <span className="text-gold">Service above self</span>
+            <span className="text-cream/70">{s.meetingVenue}, {s.meetingAddress}</span>
+            <span className="text-cream/70">{meetingDay}s, {s.meetingTime}</span>
+          </div>
         </div>
       </section>
 
-      {/* The club's current appeal: one strip, not a whole screen */}
+      {/* ── The club's current appeal ── */}
       {campaign && (
-        <section aria-labelledby="appeal-title" className="bg-gold text-fg">
-          <div className="container-x flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between md:gap-10">
-            <div className="flex max-w-3xl items-start gap-5">
-              {campaign.image && <Img media={campaign.image} size="sm" sizes="80px" className="hidden size-20 shrink-0 rounded-full sm:block" />}
+        <section aria-labelledby="appeal-title" className="bg-cream">
+          <div className="container-x pt-14 sm:pt-20">
+            <div className="grid gap-7 border-l-4 border-gold bg-sand px-6 py-8 sm:px-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-12">
               <div>
-                <h2 id="appeal-title" className="text-2xl font-bold leading-tight">{campaign.tagline || campaign.title}</h2>
-                {campaign.summary && <p className="mt-2 text-base leading-relaxed">{campaign.summary}</p>}
+                <Eyebrow>One of our own needs us</Eyebrow>
+                <h2 id="appeal-title" className="mt-3 font-serif text-2xl leading-snug text-heading sm:text-[1.9rem]">{campaign.tagline || campaign.title}</h2>
+                {campaign.summary && <p className="mt-3 max-w-2xl text-base leading-relaxed text-charcoal">{campaign.summary}</p>}
                 {money?.percent != null && money.raised != null && money.goal != null && (
-                  <div className="mt-3 max-w-md">
-                    <div className="h-2 overflow-hidden rounded-full bg-fg/15" role="progressbar" aria-valuenow={money.percent} aria-valuemin={0} aria-valuemax={100} aria-label="Raised so far">
-                      <div className="h-full rounded-full bg-royal" style={{ width: `${money.percent}%` }} />
+                  <div className="mt-4 max-w-md">
+                    <div className="h-1.5 overflow-hidden bg-heading/10" role="progressbar" aria-valuenow={money.percent} aria-valuemin={0} aria-valuemax={100} aria-label="Raised so far">
+                      <div className="h-full bg-gold" style={{ width: `${money.percent}%` }} />
                     </div>
-                    <p className="mt-1.5 text-sm font-semibold">{fmtMoneyShort(money.raised, campaign.currency)} raised of {fmtMoneyShort(money.goal, campaign.currency)}</p>
+                    <p className="mt-2 text-sm font-semibold text-heading">{fmtMoneyShort(money.raised, campaign.currency)} raised of {fmtMoneyShort(money.goal, campaign.currency)}</p>
                   </div>
                 )}
               </div>
-            </div>
-            <div className="flex shrink-0 flex-wrap items-center gap-4">
-              {campaign.donateUrl && (
-                <a href={campaign.donateUrl} target="_blank" rel="noopener noreferrer" className="btn bg-royal px-6 text-base text-paper hover:bg-fg">
-                  {campaign.donateLabel || "Donate"} <ArrowUpRight className="size-4" aria-hidden />
-                </a>
-              )}
-              <Link href={`/campaigns/${campaign.slug}`} className="font-semibold underline underline-offset-4 hover:no-underline">Read his story</Link>
+              <div className="flex flex-wrap items-center gap-6">
+                {campaign.donateUrl && (
+                  <a href={campaign.donateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-heading hover:text-cream">
+                    {campaign.donateLabel || "Donate"}
+                  </a>
+                )}
+                <MoreLink href={`/campaigns/${campaign.slug}`}>Read his story</MoreLink>
+              </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* What we're working on */}
+      {/* ── Who we are ── */}
+      <section aria-labelledby="about-title" className="bg-cream">
+        <div className={cn("container-x grid gap-12 pb-20 sm:pb-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-20", campaign ? "pt-16 sm:pt-24" : "pt-20 sm:pt-28")}>
+          {aboutSrc && (
+            <Img media={aboutMedia} size="lg" sizes="(min-width:1024px) 40vw, 100vw" className="aspect-[4/5] w-full max-w-md object-cover lg:max-w-none" />
+          )}
+          <div className={cn(!aboutSrc && "lg:col-span-2 lg:max-w-3xl")}>
+            <Eyebrow>Who we are</Eyebrow>
+            <h2 id="about-title" className="mt-4 text-balance font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.08] tracking-[-0.015em] text-heading">Young professionals, serving Kampala together</h2>
+            {s.description && <p className="mt-6 font-serif text-xl leading-[1.65] text-heading/90">{s.description}</p>}
+            {facts && <p className="mt-5 text-base leading-relaxed text-charcoal">{facts}</p>}
+            <div className="mt-9">
+              <MoreLink href="/about">More about the club</MoreLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Projects ── */}
       {showcase.length > 0 && (
-        <section aria-labelledby="work-title" className="container-x py-20 sm:py-28">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <h2 id="work-title" className="text-[clamp(2.25rem,4.6vw,3.75rem)] font-bold leading-[1.02] tracking-tight">What we&rsquo;re working on</h2>
-              {trackRecord && <p className="mt-4 font-serif text-xl leading-relaxed text-charcoal">{trackRecord}</p>}
-            </div>
-            <Link href="/projects" className="link-u text-base font-semibold">All projects</Link>
-          </div>
-          <ul className="scrollbar-none -mx-4 mt-10 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:mt-12 sm:scroll-px-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0" aria-label="Projects">
-            {showcase.map((p, i) => (
-              <li key={p.id} className="w-[78%] shrink-0 snap-start md:w-auto">
-                <Link href={`/projects/${p.slug}`} className="group block">
-                  <Img media={picture(p)} size="lg" sizes="(min-width:768px) 33vw, 100vw" className="aspect-[4/5] w-full rounded-xl bg-paper-2" priority={i === 0} />
-                  <h3 className="mt-5 text-2xl font-bold leading-tight group-hover:text-cranberry">{p.title}</h3>
-                  {p.locationName && <p className="mt-1 text-sm font-semibold text-stone">{p.locationName}</p>}
-                  {(p.tagline || p.summary) && <p className="mt-3 font-serif text-lg leading-relaxed text-charcoal">{truncate(p.tagline || p.summary || "", 120)}</p>}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* One piece of recognition, and who leads the club this year */}
-      {(recognition || team.length > 0) && (
-        <section aria-label="Recognition and leadership" className="bg-paper-2">
-          <div className="container-x grid gap-14 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:gap-20">
-            {recognition && (
-              <div>
-                <p className="font-serif text-[clamp(1.9rem,3.8vw,3.4rem)] leading-[1.15] text-balance text-fg">{recognition.title}</p>
-                {recognition.description && <p className="mt-6 max-w-2xl text-base leading-relaxed text-charcoal">{truncate(recognition.description, 160)}</p>}
-                <Link href="/achievements" className="mt-6 inline-block font-semibold text-cranberry underline-offset-4 hover:underline">More of what the club has achieved</Link>
-              </div>
-            )}
-            {team.length > 0 && (
-              <div>
-                <h2 className="text-base font-semibold text-charcoal">Leading the club{year ? ` in ${year.label}` : ""}</h2>
-                <ul className="mt-4 divide-y divide-line border-y border-line">
-                  {team.map((l) => (
-                    <li key={l.id}>
-                      <Link href={`/people/${l.person.slug}`} className="group flex items-center gap-4 py-3.5">
-                        <Img
-                          media={l.person.photo}
-                          size="sm"
-                          sizes="48px"
-                          className="size-12 shrink-0 rounded-full"
-                          fallback={<span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-paper text-sm font-bold text-charcoal" aria-hidden>{initials(l.person.name)}</span>}
-                        />
-                        <span>
-                          <span className="block font-semibold group-hover:underline">{l.person.name}</span>
-                          <span className="block text-sm text-charcoal">{l.customTitle || l.role.title}</span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/people" className="mt-4 inline-block font-semibold text-cranberry underline-offset-4 hover:underline">Meet the members</Link>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Join */}
-      <section aria-labelledby="join-title" className="container-x py-20 sm:py-28">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-20">
-          <div>
-            <h2 id="join-title" className="text-[clamp(2.5rem,5.4vw,4.75rem)] font-bold leading-[0.98] tracking-tight">Pull up a chair on {s.meetingDay ? s.meetingDay.charAt(0).toUpperCase() + s.meetingDay.slice(1).toLowerCase() : "Friday"}.</h2>
-            <p className="mt-6 max-w-xl font-serif text-xl leading-relaxed text-charcoal">
-              Joining starts with a visit, not a form. Come as a guest, meet the club, and we&rsquo;ll walk you through membership. Young professionals aged 18 and over are welcome.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/get-involved?type=ATTEND" className="btn-primary px-6 text-base">Tell us you&rsquo;re coming</Link>
-              <Link href="/get-involved?type=JOIN" className="btn-ghost px-6 text-base">Ask about joining</Link>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-stone">Other ways to help</h3>
-            <ul className="mt-3 divide-y divide-line border-y border-line text-lg font-semibold">
-              {[
-                { href: "/get-involved?type=VOLUNTEER", label: "Volunteer on a project day" },
-                { href: "/get-involved?type=PARTNER", label: "Partner with the club" },
-                { href: "/support", label: "Sponsor a project" },
-                campaign ? { href: `/campaigns/${campaign.slug}`, label: `Give to ${campaign.title}` } : { href: "/support#talk", label: "Donate" },
-              ].map((w) => (
-                <li key={w.href}>
-                  <Link href={w.href} className="flex items-center justify-between gap-4 py-3.5 hover:text-cranberry">
-                    {w.label} <ArrowUpRight className="size-5 shrink-0 text-stone" aria-hidden />
+        <section aria-labelledby="work-title" className="bg-sand">
+          <div className="container-x py-20 sm:py-28">
+            <Eyebrow>Our projects</Eyebrow>
+            <h2 id="work-title" className="mt-4 max-w-3xl text-balance font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.08] tracking-[-0.015em] text-heading">{projectsTitle}</h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-charcoal">Three of the projects the club is working on. Each one has its own page with the full story and photos.</p>
+            <ul aria-label="Projects" className="scrollbar-none -mx-4 mt-12 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-0 md:overflow-visible md:border md:border-heading/15 md:px-0">
+              {showcase.map((p, i) => (
+                <li key={p.id} className="w-[82%] shrink-0 snap-start border border-heading/15 bg-cream/60 md:w-auto md:border-0 md:bg-transparent md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-heading/15">
+                  <Link href={`/projects/${p.slug}`} className="group flex h-full flex-col">
+                    <Img media={p.picture} size="lg" sizes="(min-width:768px) 33vw, 85vw" className="aspect-[3/2] w-full" priority={i === 0} />
+                    <div className="flex flex-1 flex-col p-6 sm:p-8">
+                      <h3 className="font-serif text-[1.6rem] leading-tight text-heading group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{p.title}</h3>
+                      {(p.tagline || p.summary) && <p className="mt-3 text-[0.95rem] leading-relaxed text-charcoal">{truncate(p.tagline || p.summary || "", 140)}</p>}
+                      {p.locationName && (
+                        <div className="mt-auto pt-6">
+                          <p className="border-t border-heading/15 pt-4 text-sm font-semibold text-heading">{p.locationName}</p>
+                        </div>
+                      )}
+                    </div>
                   </Link>
                 </li>
               ))}
             </ul>
+            <div className="mt-10">
+              <MoreLink href="/projects">All projects</MoreLink>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── One piece of recognition ── */}
+      {recognition && (
+        <section aria-label="Recognition" className="bg-cream">
+          <div className="container-x py-20 text-center sm:py-28">
+            <p className="mx-auto max-w-4xl text-balance font-serif text-[clamp(1.75rem,3.4vw,2.9rem)] leading-[1.22] text-heading">{recognition.title}</p>
+            <span className="mx-auto mt-9 block h-px w-16 bg-gold" aria-hidden />
+            {recognition.description && <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-charcoal">{truncate(recognition.description, 160)}</p>}
+            <div className="mt-8">
+              <MoreLink href="/achievements">What the club has achieved</MoreLink>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Who leads the club ── */}
+      {team.length > 0 && (
+        <section aria-labelledby="people-title" className="bg-sand">
+          <div className="container-x py-20 sm:py-28">
+            <Eyebrow>Our people</Eyebrow>
+            <h2 id="people-title" className="mt-4 font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.08] tracking-[-0.015em] text-heading">Who leads the club</h2>
+            {year && <p className="mt-5 max-w-2xl text-base leading-relaxed text-charcoal">The {year.label} leadership team{snap.members ? `, for a club of ${snap.members} members` : ""}.</p>}
+            <ul className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {team.map((l) => (
+                <li key={l.id} className="border-t-2 border-heading pt-5">
+                  <Link href={`/people/${l.person.slug}`} className="group flex items-center gap-4">
+                    <Img
+                      media={l.person.photo}
+                      size="sm"
+                      sizes="56px"
+                      className="size-14 shrink-0 rounded-full"
+                      fallback={<span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-cream text-sm font-bold text-heading" aria-hidden>{initials(l.person.name)}</span>}
+                    />
+                    <span>
+                      <span className="block font-serif text-xl leading-snug text-heading group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{l.person.name}</span>
+                      <span className="mt-0.5 block text-sm font-semibold text-gold-deep">{l.customTitle || l.role.title}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12">
+              <MoreLink href="/people">Meet the members</MoreLink>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Join us ── */}
+      <section aria-labelledby="join-title" className="relative isolate overflow-hidden bg-ink text-cream">
+        {joinSrc && (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={joinSrc} alt="" loading="lazy" className="absolute inset-0 -z-10 size-full object-cover" />
+            <div className="absolute inset-0 -z-10 bg-ink/70 lg:bg-gradient-to-r lg:from-ink lg:via-ink/70 lg:to-ink/15" aria-hidden />
+          </>
+        )}
+        <div className="container-x py-24 sm:py-32">
+          <div className="max-w-2xl">
+            <Eyebrow dark>Join us</Eyebrow>
+            <h2 id="join-title" className="mt-4 font-serif text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.05] tracking-[-0.015em] text-cream">Pull up a chair on {meetingDay}.</h2>
+            <p className="mt-6 text-lg leading-relaxed text-cream/80">
+              Visitors are welcome at every fellowship: {meetingDay}s at {s.meetingTime}, {s.meetingVenue}, {s.meetingAddress}.
+              {meeting && !isToday && <> The next one is on {fmt(meeting, { weekday: "long", day: "numeric", month: "long" })}.</>}
+              {" "}Joining starts with a visit, not a form. Young professionals aged 18 and over are welcome.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/get-involved?type=ATTEND" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-cream">Tell us you&rsquo;re coming</Link>
+              <a href={directions} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 border border-cream/40 px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-cream transition-colors hover:border-cream">
+                <MapPin className="size-4" aria-hidden /> Get directions
+              </a>
+            </div>
+            <p className="mt-10 text-sm leading-relaxed text-cream/70">
+              Other ways to help:{" "}
+              <Link href="/get-involved?type=VOLUNTEER" className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">volunteer on a project day</Link>,{" "}
+              <Link href="/get-involved?type=PARTNER" className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">partner with the club</Link>
+              {campaign ? ", " : " or "}
+              <Link href="/support" className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">sponsor a project</Link>
+              {campaign && (
+                <>
+                  {" "}or <Link href={`/campaigns/${campaign.slug}`} className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">give to {campaign.title}</Link>
+                </>
+              )}
+              .
+            </p>
           </div>
         </div>
       </section>
