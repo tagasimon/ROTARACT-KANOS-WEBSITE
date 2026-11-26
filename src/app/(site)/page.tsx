@@ -75,55 +75,49 @@ export default async function HomePage() {
         }}
       />
 
-      {/* Hero: the club in one photo and one line, and a seat for Friday */}
-      <section className="relative isolate overflow-hidden bg-royal text-paper">
-        {heroSrc && (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroSrc} alt={heroMedia?.alt || ""} fetchPriority="high" className="absolute inset-0 -z-10 size-full object-cover object-[30%_center] sm:object-center" />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-royal via-royal/70 to-royal/35 sm:via-royal/60 sm:to-royal/5" aria-hidden />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-royal/70 via-royal/20 to-transparent" aria-hidden />
-          </>
-        )}
-        <div className="container-x grid min-h-[min(calc(100svh-4.5rem),880px)] items-end gap-8 pb-8 pt-24 sm:gap-10 sm:pb-14 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-16">
-          <div className="max-w-3xl">
-            <h1 className="rise text-balance text-[clamp(2.9rem,7.2vw,6.75rem)] font-bold leading-[0.98] tracking-[-0.025em]">{s.heroHeadline}</h1>
-            {(s.heroSubhead || s.description) && (
-              <p className="rise rise-2 mt-6 hidden max-w-xl font-serif text-xl leading-relaxed text-paper/85 sm:block">{s.heroSubhead || s.description}</p>
+      {/* Hero: the headline, the club's photo in full colour, and a seat for Friday */}
+      <section className="bg-paper">
+        <div className="container-x grid gap-y-8 pb-14 pt-8 sm:pt-12 xl:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] xl:gap-x-12 xl:gap-y-0 xl:pb-20 xl:pt-14">
+          <h1 className="rise max-w-5xl text-balance text-[clamp(2.75rem,6.2vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.025em] xl:col-span-2">{s.heroHeadline}</h1>
+          {(s.heroSubhead || s.description) && (
+            <p className="rise rise-2 -mt-2 hidden max-w-2xl font-serif text-xl leading-relaxed text-charcoal sm:block xl:col-span-2 xl:mt-6">{s.heroSubhead || s.description}</p>
+          )}
+
+          <div className="rise rise-2 max-w-3xl xl:col-start-1 xl:row-span-2 xl:row-start-3 xl:mt-12 xl:max-w-none xl:self-start">
+            {heroSrc ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              // shown whole, at its own shape: club photos often carry text or a logo near the edges
+              <img src={heroSrc} alt={heroMedia?.alt || ""} width={heroMedia?.width ?? undefined} height={heroMedia?.height ?? undefined} fetchPriority="high" className="h-auto w-full rounded-2xl" />
+            ) : (
+              <div className="aspect-[4/3] w-full rounded-2xl bg-paper-2 xl:aspect-square" aria-hidden />
             )}
-            <div className="rise rise-3 mt-8 flex flex-wrap gap-3">
-              <Link href="/get-involved?type=JOIN" className="btn bg-gold px-6 text-base text-fg hover:bg-paper">Join the club</Link>
-              <Link href="/projects" className="btn-ghost-light px-6 text-base">See our projects</Link>
-            </div>
           </div>
 
           {meeting && (
-            <aside
-              aria-labelledby="friday-title"
-              className="rise rise-4 relative w-full max-w-sm justify-self-start rounded-2xl bg-cranberry text-paper shadow-[0_32px_64px_-24px_rgb(0_0_0/0.55)] lg:justify-self-end"
-              // the two notches where the ticket tears off
-              style={{
-                WebkitMask: "radial-gradient(circle at 0 calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) left / 51% 100% no-repeat, radial-gradient(circle at 100% calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) right / 51% 100% no-repeat",
-                mask: "radial-gradient(circle at 0 calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) left / 51% 100% no-repeat, radial-gradient(circle at 100% calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) right / 51% 100% no-repeat",
-              }}
-            >
-              <div className="px-6 pb-7 pt-6">
+            <aside aria-labelledby="friday-title" className="ticket rise rise-3 flex w-full max-w-sm flex-col rounded-2xl bg-cranberry text-paper shadow-[0_24px_48px_-24px_rgb(0_0_0/0.45)] xl:col-start-2 xl:row-start-3 xl:mt-12 xl:max-w-md xl:self-start">
+              <div className="flex-1 px-6 pb-7 pt-6">
                 <p id="friday-title" className="text-base font-semibold text-paper/85">{isToday ? "Your seat tonight" : `Your seat this ${new Intl.DateTimeFormat("en-GB", { timeZone: TZ, weekday: "long" }).format(meeting)}`}</p>
-                <p className="mt-1 font-display text-6xl font-bold leading-none tracking-tight">
-                  {new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "numeric", month: "short" }).format(meeting)}
-                </p>
-                <p className="mt-4 text-xl font-bold">{s.meetingTime}</p>
-                <p className="text-lg leading-snug">{s.meetingVenue}, {s.meetingAddress}</p>
-                <a href={directions} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-paper/90 underline underline-offset-4 hover:no-underline">
-                  <MapPin className="size-4" aria-hidden /> Get directions
-                </a>
+                <div className="mt-1">
+                  <p className="whitespace-nowrap font-display text-6xl font-bold leading-none tracking-tight">{new Intl.DateTimeFormat("en-GB", { timeZone: TZ, day: "numeric", month: "short" }).format(meeting)}</p>
+                  <div className="mt-4">
+                    <p className="text-xl font-bold leading-tight">{s.meetingTime}</p>
+                    <p className="text-lg leading-snug">{s.meetingVenue}, {s.meetingAddress}</p>
+                    <a href={directions} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-paper/90 underline underline-offset-4 hover:no-underline">
+                      <MapPin className="size-4" aria-hidden /> Get directions
+                    </a>
+                  </div>
+                </div>
                 <p className="mt-4 text-sm leading-relaxed text-paper/80">Visitors are welcome. Come a little early and stay for fellowship.</p>
               </div>
-              <div className="flex h-[5.25rem] items-center border-t-2 border-dashed border-paper/45 px-6">
+              <div className="flex h-[5.25rem] shrink-0 items-center border-t-2 border-dashed border-paper/45 px-6">
                 <Link href="/get-involved?type=ATTEND" className="btn w-full bg-paper text-base text-cranberry hover:bg-gold hover:text-fg">Tell us you&rsquo;re coming</Link>
               </div>
             </aside>
           )}
+
+          <p className="rise rise-4 text-base text-charcoal xl:col-start-2 xl:row-start-4 xl:mt-5">
+            New here? <Link href="/projects" className="link-u font-semibold text-fg">See our projects</Link> or <Link href="/get-involved?type=JOIN" className="link-u font-semibold text-fg">ask about joining</Link>.
+          </p>
         </div>
       </section>
 
@@ -185,19 +179,19 @@ export default async function HomePage() {
 
       {/* One piece of recognition, and who leads the club this year */}
       {(recognition || team.length > 0) && (
-        <section aria-label="Recognition and leadership" className="bg-royal text-paper">
+        <section aria-label="Recognition and leadership" className="bg-paper-2">
           <div className="container-x grid gap-14 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:gap-20">
             {recognition && (
               <div>
-                <p className="font-serif text-[clamp(1.9rem,3.8vw,3.4rem)] leading-[1.15] text-balance">{recognition.title}</p>
-                {recognition.description && <p className="mt-6 max-w-2xl text-base leading-relaxed text-paper/75">{truncate(recognition.description, 160)}</p>}
-                <Link href="/achievements" className="mt-6 inline-block font-semibold text-gold underline-offset-4 hover:underline">More of what the club has achieved</Link>
+                <p className="font-serif text-[clamp(1.9rem,3.8vw,3.4rem)] leading-[1.15] text-balance text-fg">{recognition.title}</p>
+                {recognition.description && <p className="mt-6 max-w-2xl text-base leading-relaxed text-charcoal">{truncate(recognition.description, 160)}</p>}
+                <Link href="/achievements" className="mt-6 inline-block font-semibold text-cranberry underline-offset-4 hover:underline">More of what the club has achieved</Link>
               </div>
             )}
             {team.length > 0 && (
               <div>
-                <h2 className="text-base font-semibold text-paper/75">Leading the club{year ? ` in ${year.label}` : ""}</h2>
-                <ul className="mt-4 divide-y divide-paper/15 border-y border-paper/15">
+                <h2 className="text-base font-semibold text-charcoal">Leading the club{year ? ` in ${year.label}` : ""}</h2>
+                <ul className="mt-4 divide-y divide-line border-y border-line">
                   {team.map((l) => (
                     <li key={l.id}>
                       <Link href={`/people/${l.person.slug}`} className="group flex items-center gap-4 py-3.5">
@@ -206,17 +200,17 @@ export default async function HomePage() {
                           size="sm"
                           sizes="48px"
                           className="size-12 shrink-0 rounded-full"
-                          fallback={<span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-paper/15 text-sm font-bold" aria-hidden>{initials(l.person.name)}</span>}
+                          fallback={<span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-paper text-sm font-bold text-charcoal" aria-hidden>{initials(l.person.name)}</span>}
                         />
                         <span>
                           <span className="block font-semibold group-hover:underline">{l.person.name}</span>
-                          <span className="block text-sm text-paper/70">{l.customTitle || l.role.title}</span>
+                          <span className="block text-sm text-charcoal">{l.customTitle || l.role.title}</span>
                         </span>
                       </Link>
                     </li>
                   ))}
                 </ul>
-                <Link href="/people" className="mt-4 inline-block font-semibold text-gold underline-offset-4 hover:underline">Meet the members</Link>
+                <Link href="/people" className="mt-4 inline-block font-semibold text-cranberry underline-offset-4 hover:underline">Meet the members</Link>
               </div>
             )}
           </div>

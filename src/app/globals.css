@@ -153,6 +153,14 @@
 .rise-3 { animation-delay: 0.24s; }
 .rise-4 { animation-delay: 0.36s; }
 
+/* Homepage "seat this Friday" ticket: two notches where the stub (the bottom 5.25rem) tears off. */
+.ticket {
+  --notch: radial-gradient(circle at 0 calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% calc(100% - 5.25rem), #0000 0.8rem, #000 calc(0.8rem + 0.5px)) right / 51% 100% no-repeat;
+  -webkit-mask: var(--notch);
+  mask: var(--notch);
+}
+
 .scrollbar-none { scrollbar-width: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
