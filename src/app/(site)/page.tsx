@@ -50,7 +50,7 @@ export default async function HomePage() {
   ]);
 
   // Projects: what's happening now first; never repeat a photo already used higher up the page.
-  const used = new Set([heroMedia, aboutMedia].filter(Boolean).map((m) => mediaSrc(m!, "sm")));
+  const used = new Set([heroMedia, aboutMedia, joinMedia].filter(Boolean).map((m) => mediaSrc(m!, "sm")));
   const fresh = (m: { id: string } | null) => !!m && !used.has(mediaSrc(m as never, "sm"));
   const live = ["IDEA", "PLANNING", "FUNDRAISING", "IMPLEMENTATION", "ONGOING"];
   const showcase = [...projects.filter((p) => live.includes(p.status)), ...projects.filter((p) => !live.includes(p.status))]
@@ -94,10 +94,10 @@ export default async function HomePage() {
         }}
       />
 
-      {/* ── Hero: dark, the photo on the right (on top on phones), a serif headline ── */}
-      <section className="relative isolate overflow-hidden bg-ink text-cream">
+      {/* ── Hero: Rotary blue, the photo on the right (on top on phones), the main menu floating over both ── */}
+      <section className="relative isolate overflow-hidden bg-royal text-cream">
         {heroSrc && (
-          <div className="relative h-[44svh] min-h-64 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[60%]">
+          <div className="relative h-[52svh] min-h-80 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[60%]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={heroSrc}
@@ -105,13 +105,15 @@ export default async function HomePage() {
               sizes="(min-width:1024px) 60vw, 100vw"
               alt={heroMedia?.alt || ""}
               fetchPriority="high"
-              className="size-full object-cover object-[40%_center]"
+              className="size-full object-cover object-[38%_70%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-ink/30 lg:to-transparent" aria-hidden />
+            <div className="absolute inset-0 bg-gradient-to-t from-royal via-royal/0 via-30% to-transparent lg:bg-gradient-to-r lg:from-royal lg:via-royal/20 lg:via-25% lg:to-transparent lg:to-50%" aria-hidden />
           </div>
         )}
+        {/* keeps the floating menu readable over the brightest part of the photo */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-royal/80 via-royal/30 to-transparent" aria-hidden />
         <div className="container-x relative">
-          <div className="flex max-w-xl flex-col justify-center pb-12 pt-8 lg:min-h-[min(calc(100svh-9rem),720px)] lg:max-w-[33rem] lg:py-24 xl:max-w-[36rem]">
+          <div className="flex max-w-xl flex-col justify-center pb-12 pt-8 lg:min-h-[min(calc(100svh-4.25rem),840px)] lg:max-w-[33rem] lg:pb-20 lg:pt-36 xl:max-w-[36rem]">
             <div className="rise">
               <Eyebrow dark>Rotaract club · Kampala, Uganda</Eyebrow>
             </div>
@@ -133,7 +135,7 @@ export default async function HomePage() {
             </nav>
           </div>
         </div>
-        <div className="relative border-t border-cream/15 bg-ink/70 backdrop-blur-sm">
+        <div className="relative border-t border-white/15 bg-royal/85 backdrop-blur-sm">
           <div className="container-x flex flex-wrap items-center justify-between gap-x-10 gap-y-2 py-5 text-[0.68rem] font-bold uppercase tracking-[0.2em]">
             <span className="text-gold">Service above self</span>
             <span className="text-cream/70">{s.meetingVenue}, {s.meetingAddress}</span>
@@ -162,7 +164,7 @@ export default async function HomePage() {
               </div>
               <div className="flex flex-wrap items-center gap-6">
                 {campaign.donateUrl && (
-                  <a href={campaign.donateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-heading hover:text-cream">
+                  <a href={campaign.donateUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-fg transition-colors hover:bg-royal hover:text-white">
                     {campaign.donateLabel || "Donate"}
                   </a>
                 )}
@@ -182,7 +184,7 @@ export default async function HomePage() {
           <div className={cn(!aboutSrc && "lg:col-span-2 lg:max-w-3xl")}>
             <Eyebrow>Who we are</Eyebrow>
             <h2 id="about-title" className="mt-4 text-balance font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.08] tracking-[-0.015em] text-heading">Young professionals, serving Kampala together</h2>
-            {s.description && <p className="mt-6 font-serif text-xl leading-[1.65] text-heading/90">{s.description}</p>}
+            {s.description && <p className="mt-6 font-serif text-xl leading-[1.65] text-fg/80">{s.description}</p>}
             {facts && <p className="mt-5 text-base leading-relaxed text-charcoal">{facts}</p>}
             <div className="mt-9">
               <MoreLink href="/about">More about the club</MoreLink>
@@ -270,31 +272,37 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Join us ── */}
-      <section aria-labelledby="join-title" className="relative isolate overflow-hidden bg-ink text-cream">
+      {/* ── Join us: the whole team, then the invitation ── */}
+      <section aria-labelledby="join-title" className="bg-royal text-cream">
         {joinSrc && (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={joinSrc} alt="" loading="lazy" className="absolute inset-0 -z-10 size-full object-cover" />
-            <div className="absolute inset-0 -z-10 bg-ink/70 lg:bg-gradient-to-r lg:from-ink lg:via-ink/70 lg:to-ink/15" aria-hidden />
-          </>
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={joinSrc}
+            srcSet={joinMedia ? mediaSrcSet(joinMedia) : undefined}
+            sizes="100vw"
+            alt={joinMedia?.alt || ""}
+            loading="lazy"
+            className="aspect-[16/9] w-full object-cover object-[center_62%] sm:aspect-[2/1] lg:aspect-[21/8]"
+          />
         )}
-        <div className="container-x py-24 sm:py-32">
-          <div className="max-w-2xl">
+        <div className="container-x grid gap-10 py-16 sm:py-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20 lg:py-24">
+          <div>
             <Eyebrow dark>Join us</Eyebrow>
-            <h2 id="join-title" className="mt-4 font-serif text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.05] tracking-[-0.015em] text-cream">Pull up a chair on {meetingDay}.</h2>
-            <p className="mt-6 text-lg leading-relaxed text-cream/80">
+            <h2 id="join-title" className="mt-4 text-balance font-serif text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.05] tracking-[-0.015em] text-cream">Pull up a chair on {meetingDay}.</h2>
+          </div>
+          <div className="lg:pt-10">
+            <p className="text-lg leading-relaxed text-cream/85">
               Visitors are welcome at every fellowship: {meetingDay}s at {s.meetingTime}, {s.meetingVenue}, {s.meetingAddress}.
               {meeting && !isToday && <> The next one is on {fmt(meeting, { weekday: "long", day: "numeric", month: "long" })}.</>}
               {" "}Joining starts with a visit, not a form. Young professionals aged 18 and over are welcome.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/get-involved?type=ATTEND" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-cream">Tell us you&rsquo;re coming</Link>
-              <a href={directions} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 border border-cream/40 px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-cream transition-colors hover:border-cream">
+              <Link href="/get-involved?type=ATTEND" className="inline-flex min-h-12 items-center bg-gold px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-fg transition-colors hover:bg-white">Tell us you&rsquo;re coming</Link>
+              <a href={directions} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 border border-cream/50 px-6 text-[0.76rem] font-bold uppercase tracking-[0.16em] text-cream transition-colors hover:border-cream hover:bg-white/10">
                 <MapPin className="size-4" aria-hidden /> Get directions
               </a>
             </div>
-            <p className="mt-10 text-sm leading-relaxed text-cream/70">
+            <p className="mt-10 text-sm leading-relaxed text-cream/80">
               Other ways to help:{" "}
               <Link href="/get-involved?type=VOLUNTEER" className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">volunteer on a project day</Link>,{" "}
               <Link href="/get-involved?type=PARTNER" className="text-cream underline decoration-cream/40 underline-offset-4 hover:decoration-cream">partner with the club</Link>

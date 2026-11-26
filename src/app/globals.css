@@ -34,9 +34,9 @@
   --color-stone: #54565a;            /* secondary text: Charcoal (7.3:1 on white) */
   --color-stone-2: #898a8d;          /* Pewter: decorative only (fails small-text contrast) */
   --color-line: rgb(0 0 0 / 0.12);
-  /* Homepage (editorial): ink for dark sections, warm paper tones, deep gold for small labels on light */
-  --color-ink: #0d1626;
-  --color-heading: #13203a;
+  /* Homepage (editorial): Rotary Royal Blue for dark sections and headings, warm paper tones, and a
+     deep gold for small labels on light backgrounds (Rotary Gold itself is too pale for small text there) */
+  --color-heading: #17458f;
   --color-cream: #faf8f4;
   --color-sand: #f1ede6;
   --color-gold-deep: #8a5a00;

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -26,7 +27,8 @@ export function MobileNav({ items, signedIn, isAdmin }: { items: { href: string;
       >
         <Menu className="size-6" aria-hidden />
       </button>
-      {open && (
+      {/* Portalled to <body>: the header's backdrop blur would otherwise trap this fixed panel inside the header bar. */}
+      {open && createPortal(
         <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" className="fixed inset-0 z-50 flex flex-col bg-royal text-paper">
           <div className="container-x flex h-16 items-center justify-end">
             <button type="button" onClick={() => setOpen(false)} className="flex size-11 items-center justify-center rounded-full hover:bg-paper/10" aria-label="Close menu">
@@ -50,7 +52,8 @@ export function MobileNav({ items, signedIn, isAdmin }: { items: { href: string;
               </Link>
             </div>
           </nav>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   );
